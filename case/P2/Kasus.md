@@ -2,6 +2,36 @@
 
 Gunakan jaringan, kapasitas, biaya buka, tarif angkut, tarif penanganan, dan permintaan dasar dari [kasus P1](../P1/Kasus.md). Jalankan Low, Medium, dan High sebagai tiga instans terpisah. Pada P2, permintaan **produk A di K1** belum diketahui saat perusahaan harus memutuskan gudang mana yang dibuka. Permintaan setiap pelanggan–produk lain tetap sebesar permintaan dasar pada level tersebut.
 
+## Diagram jaringan
+
+**Pola garis**
+
+- A · Minuman kemasan · garis penuh
+- B · Pangan kering · garis putus-putus
+- C · Produk dingin · garis titik-titik
+
+Setiap panah menunjukkan satu jalur aktif untuk produk di panelnya. Kode fasilitas yang sama di beberapa panel merujuk pada lokasi fisik yang sama.
+
+[Low](../diagram/Jaringan_Low.svg) · [Medium](../diagram/Jaringan_Medium.svg) · [High](../diagram/Jaringan_High.svg)
+
+Pada P2, lihat simpul **K1 di panel A**. Permintaannya berubah mengikuti skenario pada tabel. Jalur yang tersedia tetap sama pada setiap skenario.
+
+![Jaringan Low dari pabrik ke calon gudang dan pelanggan, dengan panel untuk produk A, B, dan C](../diagram/Jaringan_Low.svg)
+
+<details>
+<summary>Lihat diagram Medium</summary>
+
+![Jaringan Medium dari pabrik ke calon gudang dan pelanggan, dengan panel untuk produk A, B, dan C](../diagram/Jaringan_Medium.svg)
+
+</details>
+
+<details>
+<summary>Lihat diagram High</summary>
+
+![Jaringan High dari pabrik ke calon gudang dan pelanggan, dengan panel untuk produk A, B, dan C](../diagram/Jaringan_High.svg)
+
+</details>
+
 ## Keputusan yang harus dibuat
 
 1. Sebelum permintaan K1 diketahui, pilih satu kombinasi gudang. Pilihan tersebut berlaku untuk seluruh skenario. Biaya buka dibayar sekali.

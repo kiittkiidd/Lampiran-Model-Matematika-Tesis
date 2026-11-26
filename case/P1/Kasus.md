@@ -19,6 +19,32 @@ Perusahaan menyalurkan minuman kemasan (A), pangan kering (B), dan produk dingin
 
 ## Jalur masuk dan keluar
 
+**Pola garis**
+
+- A · Minuman kemasan · garis penuh
+- B · Pangan kering · garis putus-putus
+- C · Produk dingin · garis titik-titik
+
+Setiap panah menunjukkan satu jalur aktif untuk produk di panelnya. Kode fasilitas yang sama di beberapa panel merujuk pada lokasi fisik yang sama.
+
+[Low](../diagram/Jaringan_Low.svg) · [Medium](../diagram/Jaringan_Medium.svg) · [High](../diagram/Jaringan_High.svg)
+
+![Jaringan Low dari pabrik ke calon gudang dan pelanggan, dengan panel untuk produk A, B, dan C](../diagram/Jaringan_Low.svg)
+
+<details>
+<summary>Lihat diagram Medium</summary>
+
+![Jaringan Medium dari pabrik ke calon gudang dan pelanggan, dengan panel untuk produk A, B, dan C](../diagram/Jaringan_Medium.svg)
+
+</details>
+
+<details>
+<summary>Lihat diagram High</summary>
+
+![Jaringan High dari pabrik ke calon gudang dan pelanggan, dengan panel untuk produk A, B, dan C](../diagram/Jaringan_High.svg)
+
+</details>
+
 Pada tabel masuk, setiap pabrik di satu baris produk boleh memasok setiap gudang pada baris itu. Tabel keluar menyebut pelanggan yang dapat dilayani untuk setiap gudang dan produk.
 
 | Level | Produk | Pabrik | Gudang yang dapat menerima |

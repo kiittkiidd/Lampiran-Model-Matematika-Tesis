@@ -4,7 +4,15 @@ P2 menggunakan jaringan dan biaya dari P1. Permintaan A di K1 baru terungkap set
 
 ## 1. Parameter dan tahap keputusan
 
-Gunakan indeks pabrik $i$, gudang $g$, pelanggan $j$, produk $p$, level $\ell$, dan skenario $s$. Himpunan jalur masuk $E_{\ell}^{\mathrm{in}}$ dan keluar $E_{\ell}^{\mathrm{out}}$ sama seperti P1 di level yang bersesuaian. Kapasitas pabrik adalah $C_i$, kapasitas gudang $U_g$, biaya buka $F_g$, tarif angkut $c^{\mathrm{in}}_{igp}$ dan $c^{\mathrm{out}}_{gjp}$, dan tarif penanganan $h_{gp}$.
+Gunakan indeks pabrik $i$, gudang $g$, pelanggan $j$, produk $p$, level $\ell$, dan skenario $s$. Himpunan jalur masuk $E_{\ell}^{\mathrm{in}}$ dan keluar $E_{\ell}^{\mathrm{out}}$ sama seperti P1 di level yang bersesuaian. Kapasitas pabrik adalah $C_i$, kapasitas gudang $U_g$, dan biaya buka $F_g$. Ketiga tarif per palet didefinisikan sebagai berikut.
+
+```math
+\begin{aligned}
+c_{i,g,p}^{\mathrm{in}}&\quad\text{tarif angkut per palet dari pabrik }i\text{ ke gudang }g,\\
+c_{g,j,p}^{\mathrm{out}}&\quad\text{tarif angkut per palet dari gudang }g\text{ ke pelanggan }j,\\
+h_{g,p}&\quad\text{tarif penanganan per palet produk }p\text{ di gudang }g.
+\end{aligned}
+```
 
 | Tahap | Variabel | Keputusan |
 | --- | --- | --- |
@@ -30,9 +38,9 @@ Tuliskan permintaan skenario sebagai $d_{jp}^{\ell,s}$. Hanya $d_{1,A}^{\ell,s}$
 \begin{aligned}
 \min\quad &\sum_g F_g y_g + \sum_s \pi_s\,O_s(x^s,z^s),\\
 O_s(x^s,z^s)
-&=\sum_{(i,g,p)\in E_{\ell}^{\mathrm{in}}}c_{igp}^{\mathrm{in}}x^s_{i,g,p}\\
+&=\sum_{(i,g,p)\in E_{\ell}^{\mathrm{in}}}c_{i,g,p}^{\mathrm{in}}x^s_{i,g,p}\\
 &\quad +\sum_{(g,j,p)\in E_{\ell}^{\mathrm{out}}}
-(c_{gjp}^{\mathrm{out}}+h_{gp})z^s_{g,j,p}.
+(c_{g,j,p}^{\mathrm{out}}+h_{g,p})z^s_{g,j,p}.
 \end{aligned}
 ```
 
@@ -82,6 +90,18 @@ Sebagai contoh, R18 di Low memuat $z^s_{1,1,A}+z^s_{2,1,A}+z^s_{4,1,A}=d_{1,A}^{
 
 Jika $y_g=0$, kiriman keluar gudang tersebut nol pada semua skenario. Jika $y_g=1$, kapasitas $U_g$ berlaku di masing-masing skenario. Biaya buka dan keputusan $y_g$ tetap dimodelkan sekali.
 
+### Kendala domain variabel
+
+```math
+\begin{aligned}
+x^s_{i,g,p} &\in \mathbb{R}_{\ge 0} &&\forall (i,g,p)\in E_{\ell}^{\mathrm{in}},\ \forall s,\\
+z^s_{g,j,p} &\in \mathbb{R}_{\ge 0} &&\forall (g,j,p)\in E_{\ell}^{\mathrm{out}},\ \forall s,\\
+y_g &\in \{0,1\} &&\forall g.
+\end{aligned}
+```
+
+Arus kiriman kontinu dan nonnegatif. Keputusan buka gudang biner. Audit WCC menggunakan baris fungsional R1–R39 pada setiap blok. Indeks skenario berlaku untuk arus. Satu keputusan buka per gudang berlaku pada semua skenario.
+
 ## 4. Cara memeriksa hasil
 
-Dengan satu pola buka gudang yang tetap, arus paling murah dapat dihitung lewat satu program linear per skenario. Jumlahkan biaya buka dan biaya operasi berbobot peluang. Ulangi untuk seluruh 16 pola buka gudang, lalu pilih pola layak dengan biaya minimum. [Verifikasi.py](Verifikasi.py) juga menyelesaikan MILP gabungan dengan satu set $y_g$ dan mengecek kesesuaian nilai optimum kedua metode.
+Dengan satu pola buka gudang yang tetap, arus paling murah dapat dihitung lewat satu program linear per skenario. Jumlahkan biaya buka dan biaya operasi berbobot peluang. Ulangi untuk seluruh 16 pola buka gudang, lalu pilih pola layak dengan biaya minimum. Notebook juga menyelesaikan MILP gabungan dengan satu set $y_g$ dan mencocokkan nilai optimum kedua metode. [Notebook verifikasi P1 dan P2](../Verifikasi_P1_P2.ipynb) · [Buka di Google Colab](https://colab.research.google.com/github/kiittkiidd/Lampiran-Model-Matematika-Tesis/blob/main/math_model_acuan/Verifikasi_P1_P2.ipynb)

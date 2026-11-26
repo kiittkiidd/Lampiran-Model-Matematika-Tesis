@@ -71,9 +71,17 @@ Tarif angkut dan penanganan serta rincian permintaan per pelanggan–produk ters
 | $E_{\ell}^{\mathrm{out}}$ | Himpunan tripel $(g,j,p)$ yang diizinkan sesuai tabel jaringan |
 | $C_i$ | Kapasitas total pabrik $i$, dalam palet |
 | $U_g,F_g$ | Kapasitas total dan biaya buka tetap gudang $g$ per periode |
-| $c_{igp}^{\mathrm{in}},c_{gjp}^{\mathrm{out}}$ | Tarif per palet pada jalur masuk dan keluar |
-| $h_{gp}$ | Tarif penanganan per palet produk $p$ di gudang $g$ |
 | $d_{jp}^{(\ell)}$ | Permintaan pelanggan $j$ untuk produk $p$ pada tingkat $\ell$, dalam palet |
+
+Notasi untuk tarif ketiga jenis kegiatan adalah sebagai berikut.
+
+```math
+\begin{aligned}
+c_{i,g,p}^{\mathrm{in}}&\quad\text{tarif angkut per palet dari pabrik }i\text{ ke gudang }g,\\
+c_{g,j,p}^{\mathrm{out}}&\quad\text{tarif angkut per palet dari gudang }g\text{ ke pelanggan }j,\\
+h_{g,p}&\quad\text{tarif penanganan per palet produk }p\text{ di gudang }g.
+\end{aligned}
+```
 
 | Variabel keputusan | Makna | Domain |
 | --- | --- | --- |
@@ -90,9 +98,9 @@ Sebagai contoh, $x_{1,2,A}$ mengukur kiriman A dari P1 ke G2 dan $z_{2,1,A}$ men
 ```math
 \min\quad
 \sum_g F_g y_g
-+\sum_{(i,g,p)\in E_{\ell}^{\mathrm{in}}} c_{igp}^{\mathrm{in}}x_{i,g,p}
-+\sum_{(g,j,p)\in E_{\ell}^{\mathrm{out}}} c_{gjp}^{\mathrm{out}}z_{g,j,p}
-+\sum_{(g,j,p)\in E_{\ell}^{\mathrm{out}}} h_{gp}z_{g,j,p}.
++\sum_{(i,g,p)\in E_{\ell}^{\mathrm{in}}} c_{i,g,p}^{\mathrm{in}}x_{i,g,p}
++\sum_{(g,j,p)\in E_{\ell}^{\mathrm{out}}} c_{g,j,p}^{\mathrm{out}}z_{g,j,p}
++\sum_{(g,j,p)\in E_{\ell}^{\mathrm{out}}} h_{g,p}z_{g,j,p}.
 ```
 
 Biaya buka dibayar sekali untuk tiap gudang. Biaya angkut dihitung per palet pada dua tahap pengiriman. Biaya penanganan mencakup kegiatan gudang seperti pemindahan dan penyortiran. Biaya ini dibebankan sekali per palet yang melewati gudang. Sebagai contoh, membuka G2 menambah biaya tetap 31 dan menyalurkan lima palet A dari G2 ke K1 menambah $5c_{2,1,A}^{\mathrm{out}}$ untuk angkut serta $5h_{2,A}$ untuk penanganan. Karena biaya penanganan memakai $z_{g,j,p}$ yang sudah tersedia, penambahan biaya ini mempertahankan jumlah variabel dan kendala.
@@ -137,11 +145,17 @@ Untuk satu pelanggan dan produk, kiriman dari gudang yang melayaninya harus berj
 
 Saat $y_g=0$, semua kiriman keluar nol karena variabel arus nonnegatif. K2 kemudian membuat arus masuk gudang juga nol. Saat $y_g=1$, gudang dapat menyalurkan sampai $U_g$ palet untuk seluruh produknya. Dalam contoh Low, G2 bisa menyalurkan 10 palet A dan 5 palet C, sehingga memakai 15 dari 20 palet kapasitasnya.
 
-### Domain
+### Kendala domain variabel
 
 ```math
-x_{i,g,p}\ge 0,\qquad z_{g,j,p}\ge 0,\qquad y_g\in\{0,1\}.
+\begin{aligned}
+x_{i,g,p} &\in \mathbb{R}_{\ge 0} &&\forall (i,g,p)\in E_{\ell}^{\mathrm{in}},\\
+z_{g,j,p} &\in \mathbb{R}_{\ge 0} &&\forall (g,j,p)\in E_{\ell}^{\mathrm{out}},\\
+y_g &\in \{0,1\} &&\forall g.
+\end{aligned}
 ```
+
+Arus kiriman kontinu dan nonnegatif. Keputusan buka gudang biner. Audit WCC menggunakan baris fungsional R1–R39 pada setiap blok.
 
 Satu rencana layak Low menggunakan G2 dan G3. Kirim masing-masing 5 palet melalui jalur P1–G2–K1 (A), P5–G2–K2 (A), P2–G3–K3 (B), P3–G3–K4 (B), P4–G2–K5 (C), dan P6–G3–K6 (C). G2 dan G3 masing-masing menangani 15 palet dan setiap pabrik mengirim 5 palet.
 
@@ -167,11 +181,11 @@ $P$ mencatat setiap pasangan dua baris berbeda sekali. Cakupan acuan adalah jari
 | M | 22 | 25 | 51 | 31 | 123 | 81 | 97 | 41,81% |
 | H | 34 | 51 | 89 | 39 | 225 | 147 | 187 | 80,60% |
 
-Penyebut bersama adalah **232**. Satu variabel kiriman masuk muncul di dua kendala dan menyumbang 1 poin bobot. Satu variabel kiriman keluar muncul di tiga kendala dan menyumbang 3 poin. Empat variabel buka gudang masing-masing muncul pada satu baris kapasitas. Selisih Low–Medium adalah **14,22 poin persentase** dan Medium–High **38,79 poin persentase**. Penjabaran R1–R39 dan audit 741 pasangan tersedia di lampiran. [Lampiran WCC](../../Lampiran_WCC.md)
+Penyebut bersama adalah **232**. Satu variabel kiriman masuk muncul di dua kendala dan menyumbang 1 poin bobot. Satu variabel kiriman keluar muncul di tiga kendala dan menyumbang 3 poin. Empat variabel buka gudang masing-masing muncul pada satu baris kapasitas. Selisih Low–Medium adalah **14,22 poin persentase** dan Medium–High **38,79 poin persentase**. Penjabaran R1–R39 dan audit 741 pasangan tersedia di lampiran. [Audit WCC P1](Audit_WCC.md) · [Lampiran WCC](../../Lampiran_WCC.md)
 
 ## 5. Keputusan desain untuk pengembangan profil
 
-- **Nonlinear.** Total arus produk di gudang, $Q_{gp}=\sum_j z_{g,j,p}$ pada jalur aktif, merupakan singkatan ekspresi. Bentuk biaya penanganan dapat dikembangkan dari $h_{gp}Q_{gp}$ menjadi $h_{gp}Q_{gp}+\alpha_{gp}Q_{gp}^2$. Untuk menguji kendala nonlinear, K4 dapat diganti dengan batas waktu penanganan $\sum_p(t_{gp}Q_{gp}+\beta_{gp}Q_{gp}^2)\le T_gy_g$. Di sini $t_{gp}$ dan $\beta_{gp}$ menyatakan waktu dasar dan tambahan waktu akibat kenaikan beban, sedangkan $T_g$ adalah waktu tersedia. Substitusi ekspresi $Q_{gp}$ mempertahankan variabel keputusan. Jika setiap baris pengganti memakai himpunan variabel yang sama, WCC juga sama.
+- **Nonlinear.** Total arus produk di gudang, $Q_{gp}=\sum_j z_{g,j,p}$ pada jalur aktif, merupakan singkatan ekspresi. Bentuk biaya penanganan dapat dikembangkan dari $h_{g,p}Q_{gp}$ menjadi $h_{g,p}Q_{gp}+\alpha_{gp}Q_{gp}^2$. Untuk menguji kendala nonlinear, K4 dapat diganti dengan batas waktu penanganan $\sum_p(t_{gp}Q_{gp}+\beta_{gp}Q_{gp}^2)\le T_gy_g$. Di sini $t_{gp}$ dan $\beta_{gp}$ menyatakan waktu dasar dan tambahan waktu akibat kenaikan beban, sedangkan $T_g$ adalah waktu tersedia. Substitusi ekspresi $Q_{gp}$ mempertahankan variabel keputusan. Jika setiap baris pengganti memakai himpunan variabel yang sama, WCC juga sama.
 - **Stokastik.** Keputusan buka gudang $y_g$ ditetapkan sebelum permintaan diketahui. Kiriman $x^{(s)}$ dan $z^{(s)}$ disesuaikan setelah skenario $s$ terungkap, sehingga bentuk skalar memuat salinan arus dan baris operasional per skenario. Untuk membandingkan struktur jaringan, gunakan WCC pada blok operasional satu skenario dengan ID dan rute acuan yang sama. Untuk menggambarkan ukuran formulasi stokastik, laporkan secara terpisah jumlah skenario, baris, dan variabel model yang diperluas. Gunakan jumlah skenario yang sama pada Low, Medium, dan High dalam satu profil stokastik.
 - **Banyak tujuan.** Emisi dapat dimodelkan sebagai fungsi tujuan kedua yang memakai variabel arus yang sudah ada. Metode batas emisi menambah satu baris pada persoalan yang diselesaikan untuk menghasilkan titik Pareto. Catat baris tersebut jika mengaudit formulasi solver yang diperluas.
 
@@ -185,4 +199,4 @@ Sebelum optimasi, periksa kelayakan permintaan setiap skenario. Misalnya, pada H
 | M | G2, G3, G4 | 264,37 |
 | H | G2, G4 | 242,95 |
 
-Hasil diverifikasi dengan enumerasi 16 pilihan gudang dan MILP. [Kode verifikasi P1 dan P2](../P2/Verifikasi.py)
+Hasil diverifikasi dengan enumerasi 16 pilihan gudang dan MILP. [Notebook verifikasi P1 dan P2](../Verifikasi_P1_P2.ipynb) · [Buka di Google Colab](https://colab.research.google.com/github/kiittkiidd/Lampiran-Model-Matematika-Tesis/blob/main/math_model_acuan/Verifikasi_P1_P2.ipynb)

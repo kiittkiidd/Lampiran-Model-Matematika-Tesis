@@ -1,5 +1,7 @@
 # Audit WCC dan verifikasi optimasi P2
 
+[CSV pasangan](Audit_WCC_Pasangan.csv) · [Notebook verifikasi P1 dan P2](../Verifikasi_P1_P2.ipynb) · [Buka di Google Colab](https://colab.research.google.com/github/kiittkiidd/Lampiran-Model-Matematika-Tesis/blob/main/math_model_acuan/Verifikasi_P1_P2.ipynb)
+
 ## 1. Satu blok skenario terhadap P1
 
 Pada setiap level, satu blok skenario P2 menggunakan R1–R39 dan rute yang sama dengan P1. Setelah indeks skenario diabaikan pada satu blok, variabel bersama pada tiap pasangan persis sama. Peluang dan besarnya permintaan hanya memengaruhi fungsi tujuan atau ruas kanan.
@@ -18,7 +20,7 @@ Tiga blok masing-masing menyumbang bobot yang sama. Di antara dua blok, hanya pa
 B_{\mathrm{penuh}}=3B_{\mathrm{blok}}+12.
 ```
 
-Tiga blok menyediakan 117 posisi R1–R39 pada setiap level, dengan $117\cdot116/2=6.786$ pasangan posisi. Posisi dengan baris $0=0$ mempunyai NNZ nol.
+Tiga blok menyediakan 117 posisi R1–R39 pada setiap level, dengan $117\cdot116/2=6.786$ pasangan posisi. Posisi dengan baris $0=0$ mempunyai NNZ nol. CSV P2 berisi seluruh 6.786 pasangan posisi, termasuk pasangan dengan bobot nol. Nama kolom mengikuti CSV P1. Akhiran **@S1**, **@S2**, dan **@S3** menandai skenario Sepi, Sedang, dan Ramai pada ID baris dan variabel arus. Keputusan buka gudang **y[g]** dipakai bersama oleh semua skenario.
 
 | Tingkat | Variabel | Baris aktif | NNZ | Pasangan positif | Bobot penuh | Penyebut | WCC penuh |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -44,4 +46,4 @@ Pada High, P1 membuka G2 dan G4. P2 memilih G2 dan G3. Memakai keputusan P2 pada
 | M | 2 | 76,0000 | 179,2192 | 188,3700 | 198,0459 |
 | H | 6 | 59,0000 | 174,8492 | 184,0000 | 193,6759 |
 
-Rincian data ada di [Data bersama](../../case/Data_Bersama.json). Jalankan [Verifikasi.py](Verifikasi.py) dengan Python 3, NumPy, dan SciPy untuk menghitung ulang WCC dan nilai optimum.
+Rincian data ada di [Data bersama](../../case/Data_Bersama.json). Jalankan notebook pada tautan di atas untuk menghitung ulang WCC, nilai optimum, dan CSV P2.
