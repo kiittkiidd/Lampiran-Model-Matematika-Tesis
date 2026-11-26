@@ -4,7 +4,39 @@ Weighted Constraint Coupling (WCC) mengukur keterkaitan antarbaris kendala berda
 
 Untuk menghitungnya, jabarkan dulu indeks pada setiap kendala. Satu rumus yang berlaku untuk dua pelanggan menghasilkan dua baris, dan setiap keputusan pengiriman dikenali lewat nama variabel beserta seluruh indeksnya.
 
-## 1. Kasus dan kendala
+## Contoh cepat dengan tiga kendala
+
+Hitung WCC langsung dari model berikut.
+
+```math
+\begin{aligned}
+\text{R1}\quad & x_1+x_2=5 \\
+\text{R2}\quad & x_2+x_3=4 \\
+\text{R3}\quad & x_1+x_3=7
+\end{aligned}
+```
+
+**1. Daftar semua pasangan baris.** R1 bisa berpasangan dengan R2 dan R3. Setelah itu, tersisa R2–R3. Jadi ada **3 pasangan yang mungkin**.
+
+| Pasangan | Variabel yang muncul di kedua baris | Bobot |
+| --- | --- | ---: |
+| R1–R2 | $x_2$ | 1 |
+| R1–R3 | $x_1$ | 1 |
+| R2–R3 | $x_3$ | 1 |
+
+**2. Jumlahkan bobotnya.** Ketiga pasangan masing-masing berbobot 1. Jadi total bobotnya **$1+1+1=3$**.
+
+**3. Tentukan batas bobot per pasangan.** Setiap baris memuat dua variabel. Sepasang baris bisa berbagi paling banyak **2 variabel**, yaitu jika kedua baris memakai daftar variabel yang persis sama. Dalam tiga persamaan di atas, setiap pasangan berbagi satu variabel. Jadi **1 adalah bobot aktual** tiap pasangan dan **2 adalah batas skala** tiap pasangan.
+
+**4. Bagi dengan jumlah pasangan dikali batas bobot.** Penyebutnya **$3 \times 2=6$**. Maka WCC-nya sebagai berikut.
+
+```math
+\mathrm{WCC} = \frac{3}{3\times 2}\times 100\% = 50\%
+```
+
+Cara membacanya: rata-rata ada **$3/3=1$ variabel bersama per pasangan**. Satu variabel dari batas dua variabel berarti **50%**.
+
+## 1. Kasus pengiriman dan kendalanya
 
 Gudang 1 mengirim produk A dan B ke dua pelanggan. Kedua produk dihitung dalam satuan paket. Gudang dapat menangani paling banyak **20 paket**. Produk A memerlukan penanganan dingin, dengan kapasitas **12 paket A** yang termasuk dalam kapasitas total gudang. Pelanggan 1 harus menerima sedikitnya **7 paket**, dan pelanggan 2 sedikitnya **6 paket**. Dalam contoh ini, kedua pelanggan dapat menerima kombinasi A dan B.
 
@@ -63,7 +95,31 @@ x_{1,2,A}+x_{1,2,B} \ge 6
 
 Pelanggan 2 menerima $2+4=6$ paket. Semua variabel pengiriman bernilai nonnegatif. Graf tutorial ini memakai empat baris kendala fungsional R1–R4. Nonnegativitas dicatat sebagai domain variabel.
 
-## 2. Bandingkan keenam pasangan baris satu per satu
+## 2. Hitung jumlah pasangan yang mungkin dan bobotnya
+
+### 2.1 Dari mana angka 6 berasal?
+
+Ambil satu baris dan pasangkan dengan baris yang berada setelahnya. Dengan cara ini, setiap pasangan dicatat sekali.
+
+| Mulai dari | Pasangkan dengan | Pasangan baru |
+| --- | --- | ---: |
+| R1 | R2, R3, R4 | 3 |
+| R2 | R3, R4 | 2 |
+| R3 | R4 | 1 |
+| R4 | Selesai | 0 |
+| **Total** | | **6** |
+
+Secara umum, dengan $m$ baris, setiap baris dapat dipasangkan dengan $m-1$ baris lain. Perkalian $m(m-1)$ menghitung setiap pasangan dua kali, misalnya R1–R2 dan R2–R1. Karena urutannya tidak memengaruhi bobot, bagi hasilnya dengan 2. Huruf $N$ menyatakan jumlah semua pasangan yang mungkin.
+
+```math
+N = \frac{m(m-1)}{2}
+= \frac{4(4-1)}{2}
+= 6
+```
+
+Angka ini mencakup pasangan yang akhirnya berbobot nol. Kita menentukan $N$ dari jumlah baris sebelum memeriksa garis pada graf.
+
+### 2.2 Hitung bobot keenam pasangan
 
 Pertama, tandai variabel yang muncul pada setiap baris. Tanda ✓ berarti variabel dengan **nama dan seluruh indeks tersebut** muncul pada baris itu.
 
@@ -130,7 +186,7 @@ w_{rs} = \lvert S_r \cap S_s \rvert
 
 ### 4.2 Jumlahkan bobot seluruh pasangan
 
-R1 membentuk tiga pasangan dengan R2, R3, dan R4. Setelah itu, R2 membentuk dua pasangan baru dengan R3 dan R4. Terakhir, tersisa R3–R4. Jadi ada **3 + 2 + 1 = 6 pasangan**, masing-masing dihitung sekali. Huruf $B$ menyatakan total bobot keenam pasangan.
+Huruf $B$ menyatakan total bobot keenam pasangan yang sudah didaftar pada bagian 2.1.
 
 ```math
 B = w_{12}+w_{13}+w_{14}+w_{23}+w_{24}+w_{34}
@@ -158,88 +214,63 @@ Untuk model yang lebih besar, $P$ menyatakan daftar semua pasangan baris berbeda
 B = \sum_{(r,s) \in P} w_{rs}
 ```
 
-## 5. Hitung versi rute terbatas dan bandingkan skornya
+## 5. Hitung batas bobot dan WCC dari model pengiriman
 
-### 5.1 Mengapa bobot R1–R4 turun dari 2 menjadi 1?
+### 5.1 Bagaimana menghitung batas bobot per pasangan?
 
-Pada versi awal, R1 menghitung semua kiriman gudang dan R4 menghitung kiriman ke Pelanggan 2. Karena itu, kiriman A dan kiriman B ke Pelanggan 2 muncul di kedua baris.
+Hitung banyaknya variabel pada tiap baris. Pada tabel kemunculan variabel di bagian 2.2, R1 memiliki **4** tanda centang, sedangkan R2, R3, dan R4 masing-masing memiliki **2**.
 
-```math
-\begin{aligned}
-\text{R1}\quad & x_{1,1,A}+x_{1,1,B}+x_{1,2,A}+x_{1,2,B} \le 20 \\
-\text{R4}\quad & x_{1,2,A}+x_{1,2,B} \ge 6
-\end{aligned}
-```
+Ambil R1–R2. R1 memiliki empat variabel dan R2 memiliki dua. Jumlah yang bisa muncul di keduanya dibatasi oleh R2, karena daftar R2 hanya punya dua tempat. Maka batas pasangan ini adalah $\min(4,2)=2$. Fungsi $\min$ mengambil angka yang lebih kecil. Terapkan aturan itu ke keenam pasangan.
 
-Pada versi rute terbatas, Pelanggan 2 hanya menerima A. Aturan ini menghapus keputusan pengiriman $x_{1,2,B}$ dari model. Suku itu hilang dari R1 dan R4.
+| Pasangan | Banyak variabel pada masing-masing baris | Batas dari banyaknya variabel | Bobot aktual dari irisan |
+| --- | --- | ---: | ---: |
+| R1–R2 | 4 dan 2 | 2 | 2 |
+| R1–R3 | 4 dan 2 | 2 | 2 |
+| R1–R4 | 4 dan 2 | 2 | 2 |
+| R2–R3 | 2 dan 2 | 2 | 1 |
+| R2–R4 | 2 dan 2 | 2 | 1 |
+| R3–R4 | 2 dan 2 | 2 | 0 |
 
-```math
-\begin{aligned}
-\text{R1}\quad & x_{1,1,A}+x_{1,1,B}+x_{1,2,A} \le 20 \\
-\text{R4}\quad & x_{1,2,A} \ge 6
-\end{aligned}
-```
+Kolom batas memakai **banyaknya variabel** pada tiap baris. Kolom aktual memakai **daftar variabel yang benar-benar sama**. Misalnya, batas R3–R4 adalah 2 karena tiap baris punya dua variabel. Bobot aktualnya 0 karena R3 memakai variabel untuk Pelanggan 1 dan R4 memakai variabel untuk Pelanggan 2.
 
-Sekarang yang muncul di kedua baris tinggal $x_{1,2,A}$. Jadi garis R1–R4 masih ada, dengan label **1**. Jika rute B tetap tersedia dan solver kebetulan memilih kiriman nol, $x_{1,2,B}$ tetap muncul di kedua kendala dan bobotnya tetap **2**. Bobot mengikuti variabel yang muncul pada formulasi, terlepas dari nilai yang dipilih solver.
+Untuk memakai satu skala yang sama pada seluruh pasangan, ambil nilai terbesar dari kolom batas. Sebut angka itu $K$. Dengan begitu, $K$ merupakan batas atas untuk bobot semua pasangan. Di model pengiriman ini, keenam batas bernilai 2, sehingga **$K=2$**. Aturan ini tetap berlaku kalau banyaknya variabel berbeda antarpasangan. Selalu ambil angka terkecil di dalam tiap pasangan, lalu ambil yang terbesar dari semua batas pasangan.
 
-| Pasangan | Bobot versi awal | Variabel bersama pada versi rute terbatas | Bobot pada versi rute terbatas |
-| --- | ---: | --- | ---: |
-| R1–R2 | 2 | $x_{1,1,A}$ dan $x_{1,2,A}$ | 2 |
-| R1–R3 | 2 | $x_{1,1,A}$ dan $x_{1,1,B}$ | 2 |
-| R1–R4 | 2 | $x_{1,2,A}$ | 1 |
-| R2–R3 | 1 | $x_{1,1,A}$ | 1 |
-| R2–R4 | 1 | $x_{1,2,A}$ | 1 |
-| R3–R4 | 0 | Tidak ada | 0 |
-| **Total** | **8** | | **7** |
+### 5.2 Mengapa penyebutnya 12?
 
-### 5.2 Bobot dikali jumlah garis
+Model ini mempunyai **6 pasangan yang mungkin**. Setiap pasangan dinilai pada skala dari 0 sampai **2**. Jadi batas skala seragam untuk total bobot adalah **$6\times 2=12$**.
 
-Di versi rute terbatas, ada **2 garis berbobot 2** dan **3 garis berbobot 1**. Mengalikan bobot dengan jumlah garis pada setiap kelompok memberi hasil yang sama dengan menjumlahkan label satu per satu.
+Dari graf, ada tiga garis berbobot 2 dan dua garis berbobot 1. Pasangan R3–R4 menyumbang 0. Jadi pembilangnya **$(2\times 3)+(1\times 2)+0=8$**. Hasil WCC untuk empat kendala yang ditulis pada bagian 1 adalah sebagai berikut.
 
 ```math
-B = (2 \times 2) + (1 \times 3) = 7
-```
-
-Jika pembaginya adalah **5 garis yang ada**, hasilnya $7/5=1{,}4$ variabel bersama per garis. Ukuran itu menjawab seberapa kuat hubungan yang terbentuk. Jika pertanyaannya mencakup semua pasangan baris, R3–R4 juga ikut dihitung dengan bobot nol. Pembaginya menjadi **6 pasangan yang mungkin**, sehingga rata-ratanya $7/6\approx1{,}17$ variabel bersama per pasangan.
-
-### 5.3 Persentase untuk membandingkan tingkat WCC
-
-Untuk pelaporan Low–Medium–High, gunakan semua pasangan yang mungkin dan tetapkan batas bobot per pasangan yang sama untuk seluruh versi. Sebut batas itu $K_{\mathrm{ref}}$. Pada contoh empat baris ini, bobot terbesar pada versi awal adalah **2**. Versi yang hanya menghapus rute dari formulasi awal memiliki jumlah variabel bersama yang sama atau lebih kecil pada setiap pasangan. Jadi angka 2 juga merupakan batas untuk semua versi tersebut.
-
-```math
-\mathrm{WCC} =
-\frac{\text{total bobot semua pasangan}}
-{\text{jumlah pasangan yang mungkin} \times K_{\mathrm{ref}}}
+\mathrm{WCC}
+= \frac{\text{total bobot aktual}}{\text{jumlah pasangan yang mungkin}\times\text{batas seragam per pasangan}}
 \times 100\%
+= \frac{8}{6\times 2}\times 100\%
+\approx 66{,}67\%
 ```
 
-Enam pasangan dikali batas 2 memberi penyebut **12**. Angka 12 adalah batas seragam untuk skala ini. Struktur kendala dapat membuat sebagian pasangan selalu berada di bawah batas tersebut.
+| Angka | Arti | Cara memperoleh |
+| --- | --- | --- |
+| **6** | Jumlah pasangan yang mungkin | Daftar pasangan dari 4 baris |
+| **2** | Batas bobot seragam per pasangan | Nilai terbesar pada kolom batas |
+| **8** | Total bobot aktual | Jumlah variabel bersama, dijumlahkan pada keenam pasangan |
+| **12** | Penyebut untuk persentase | 6 pasangan dikali batas 2 |
+| **66,67%** | WCC model pengiriman | 8 dibagi 12, lalu dikali 100% |
 
-| Versi contoh | Total bobot | Pasangan yang mungkin | Batas per pasangan | WCC |
-| --- | ---: | ---: | ---: | ---: |
-| Awal | 8 | 6 | 2 | $8/12 \times 100\% = 66{,}67\%$ |
-| Rute terbatas | 7 | 6 | 2 | $7/12 \times 100\% = 58{,}33\%$ |
-
-Versi rute terbatas memiliki WCC lebih rendah pada skala yang sama. Untuk menetapkan kategori Low pada model penelitian, terapkan rumus pada semua baris model tersebut dan bandingkan hasilnya dengan ambang yang ditetapkan.
-
-Jika tujuan perhitungannya hanya mengetahui **berapa bagian bobot versi awal yang masih ada**, penyebutnya adalah total bobot versi awal, yaitu **8**. Untuk pertanyaan itu, hasilnya $7/8=87{,}5\%$. Ketiga pembagi menjawab tiga pertanyaan berbeda.
-
-| Pembagi pada versi rute terbatas | Pertanyaan | Hasil |
-| --- | --- | ---: |
-| 5 garis dengan bobot positif | Berapa rata-rata jumlah variabel bersama pada garis yang ada? | 1,4 |
-| $6 \times 2 = 12$ | Berapa persen total bobot terhadap batas seragam seluruh pasangan? | 58,33% |
-| 8 poin bobot pada versi awal | Berapa persen total bobot versi awal yang masih ada? | 87,5% |
+Hasil yang sama bisa dibaca dalam dua langkah. Rata-rata aktualnya $8/6$, sekitar **1,33 variabel bersama per pasangan**. Dibandingkan dengan batas **2 variabel per pasangan**, rata-rata itu mencapai **66,67%**. Pada skala ini, 100% berarti setiap pasangan mencapai batas seragamnya.
 
 ## 6. Terapkan pada model lain
 
 1. Tetapkan baris kendala fungsional yang dihitung pada formulasi sebelum *presolve*. Fungsi tujuan dan deklarasi domain berada di luar graf ini.
 2. Jabarkan rumus berindeks menjadi baris terpisah. Catat nama dan **seluruh indeks** variabel pada setiap baris. Untuk baris linear, gabungkan suku sejenis terlebih dahulu. Catat satu kali setiap variabel dengan koefisien akhir bukan nol.
 3. Periksa setiap pasangan baris sekali. Beri satu poin untuk setiap variabel berindeks lengkap yang muncul di kedua baris. Jumlahkan seluruh bobot pasangan untuk memperoleh $B$.
-4. Untuk melaporkan WCC dalam persen, bagi $B$ dengan jumlah pasangan yang mungkin dikali $K_{\mathrm{ref}}$, lalu kalikan dengan 100%. Untuk perbandingan versi dengan baris yang sama, tetapkan satu batas $K_{\mathrm{ref}}$ positif yang berlaku pada seluruh versi.
+4. Hitung jumlah pasangan yang mungkin dengan $N=m(m-1)/2$. Pasangan yang bobotnya nol tetap masuk dalam $N$.
+5. Untuk setiap pasangan, ambil jumlah variabel yang lebih kecil dari dua barisnya. Gunakan nilai terbesar dari hasil langkah itu sebagai batas seragam $K$ untuk model ini.
+6. Hitung persentase WCC dengan $100\%\times B/(N\times K)$, dengan $N$ dan $K$ positif.
 
 Kesamaan WCC dengan penyebut yang sama menunjukkan kesamaan **total bobot**. Jika yang ingin dipastikan juga mencakup kesamaan garis serta variabel yang menghubungkannya, periksa daftar variabel bersama **pada setiap pasangan baris**.
 
 ## Referensi
 
 - Gasse et al. (2019) merepresentasikan MILP sebagai graf bipartit variabel dan kendala. Pada tutorial ini, hubungan awal menunjukkan apakah suatu variabel muncul pada suatu baris kendala. [NeurIPS 2019](https://papers.neurips.cc/paper_files/paper/2019/hash/d14c2267d848abeb81fd590f371d39bd-Abstract.html)
-- Cann, Weaver, dan Williams (2020), Persamaan (2), menjelaskan proyeksi dengan bobot berupa jumlah tetangga bersama. Di sini tetangga bersama sepasang baris adalah variabel keputusan yang muncul di keduanya. Normalisasi WCC dengan batas seragam $K_{\mathrm{ref}}$ adalah definisi operasional yang digunakan untuk perbandingan tingkat pada tutorial ini. [Network Science](https://doi.org/10.1017/nws.2020.11)
+- Cann, Weaver, dan Williams (2020), Persamaan (2), menjelaskan proyeksi dengan bobot berupa jumlah tetangga bersama. Di sini tetangga bersama sepasang baris adalah variabel keputusan yang muncul di keduanya. Normalisasi dengan jumlah pasangan dan batas seragam $K$ adalah definisi operasional WCC yang dipakai di tutorial ini. [Network Science](https://doi.org/10.1017/nws.2020.11)
