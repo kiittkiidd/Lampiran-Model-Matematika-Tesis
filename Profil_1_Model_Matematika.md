@@ -4,7 +4,7 @@ Perusahaan memilih calon gudang yang dibuka dan menentukan kiriman produk dari p
 
 ## 1. Kasus dan jaringan
 
-Produk A adalah minuman kemasan, B pangan kering, dan C produk dingin. Untuk setiap kombinasi tingkat dan produk, setiap pabrik pada tabel dapat memasok setiap gudang yang tercantum. Setiap gudang itu dapat memasok setiap pelanggan yang tercantum. Satu gudang fisik memiliki satu keputusan buka, satu kapasitas gabungan untuk semua produk, dan satu biaya buka.
+Produk A adalah minuman kemasan, B pangan kering, dan C produk dingin. Untuk setiap tingkat dan produk, setiap pabrik pada tabel dapat memasok setiap gudang yang tercantum. Pada Low dan Medium, setiap gudang dalam satu baris produk dapat memasok setiap pelanggan pada baris yang sama. Pada High, jalur keluar dibentuk dengan aturan wilayah yang dijelaskan di bawah. Satu gudang fisik memiliki satu keputusan buka, satu kapasitas gabungan untuk semua produk, dan satu biaya buka.
 
 | Tingkat | Produk | Pabrik yang dapat memasok | Gudang yang dapat menangani | Pelanggan yang membutuhkan | Jalur masuk | Jalur keluar |
 | --- | --- | --- | --- | --- | ---: | ---: |
@@ -14,11 +14,31 @@ Produk A adalah minuman kemasan, B pangan kering, dan C produk dingin. Untuk set
 | M | A | P1, P5 | G1, G2, G4 | K1, K2, K5, K6 | 6 | 12 |
 | M | B | P1, P2, P3 | G1, G2, G3, G4 | K1, K2, K3, K4 | 12 | 16 |
 | M | C | P4, P6 | G2, G3 | K3, K4, K5, K6 | 4 | 8 |
-| H | A | P1, P3, P5 | G1, G2, G3, G4 | K1, K2, K3, K4, K5, K6 | 12 | 24 |
-| H | B | P1, P2, P3, P4 | G1, G2, G3, G4 | K1, K2, K3, K4, K5, K6 | 16 | 24 |
-| H | C | P4, P6 | G2, G3, G4 | K1, K2, K3, K4, K5, K6 | 6 | 18 |
+| H | A | P1, P3, P5 | G1, G2, G3, G4 | K1, K2, K3, K4, K5, K6 | 12 | 18 |
+| H | B | P1, P2, P3, P4 | G1, G2, G3, G4 | K1, K2, K3, K4, K5, K6 | 16 | 20 |
+| H | C | P4, P6 | G2, G3, G4 | K1, K2, K3, K4, K5, K6 | 6 | 13 |
 
 Contoh Low untuk A. P1 dan P5 dapat mengirim A ke G1, G2, dan G4, sehingga ada $2\times3=6$ jalur masuk A. Ketiga gudang itu dapat memasok A ke K1 dan K2, sehingga ada $3\times2=6$ jalur keluar A. Setiap jalur membentuk satu variabel arus dengan indeks produk lengkap.
+
+### Jalur keluar High dan cakupan acuan
+
+Cakupan acuan adalah seluruh kombinasi pabrik, gudang, dan pelanggan yang kompatibel pada baris High di tabel produk. Dengan cakupan ini ada 34 jalur masuk dan 66 jalur keluar. Acuan ditetapkan untuk mengukur kapasitas hubungan pada skala bersama.
+
+High menggunakan semua 34 jalur masuk. Untuk jalur keluar, High mempertahankan seluruh 36 jalur Medium, termasuk jalur lintas wilayah yang sudah ada. Dari rute kompatibel yang masih tersedia, High menambah 15 jalur keluar dengan gudang dan pelanggan di wilayah yang sama. Hasilnya 51 jalur keluar. Semua pelanggan tetap dapat menerima A, B, dan C.
+
+| Gudang | Produk | Pelanggan dari jalur Medium | Pelanggan dari jalur baru sewilayah | Total jalur High |
+| --- | --- | --- | --- | ---: |
+| G1 | A | K1, K2, K5, K6 | K3 | 5 |
+| G1 | B | K1, K2, K3, K4 | K5 | 5 |
+| G2 | A | K1, K2, K5, K6 | K3 | 5 |
+| G2 | B | K1, K2, K3, K4 | K5 | 5 |
+| G2 | C | K3, K4, K5, K6 | K1 | 5 |
+| G3 | A | — | K2, K4, K6 | 3 |
+| G3 | B | K1, K2, K3, K4 | K6 | 5 |
+| G3 | C | K3, K4, K5, K6 | K2 | 5 |
+| G4 | A | K1, K2, K5, K6 | K4 | 5 |
+| G4 | B | K1, K2, K3, K4 | K6 | 5 |
+| G4 | C | — | K2, K4, K6 | 3 |
 
 ## 2. Data dan notasi
 
@@ -135,12 +155,12 @@ D_{\mathrm{ref}} &=\sum_{(r,s)\in P}\lvert U_r^{\mathrm{ref}}\cap U_s^{\mathrm{r
 \end{aligned}
 ```
 
-$P$ mencatat setiap pasangan dua baris berbeda sekali. Cakupan jalur acuan memuat seluruh rute yang diizinkan pada tiga jaringan di bagian 1, sehingga setiap bobot aktual berada dalam batas pasangannya. Pada desain ini, High menggunakan seluruh cakupan tersebut. Nilai High 100% menyatakan cakupan hubungan terhadap acuan ini.
+$P$ mencatat setiap pasangan dua baris berbeda sekali. Cakupan acuan adalah jaringan kompatibilitas penuh pada bagian 1, dengan 34 jalur masuk dan 66 jalur keluar. Ketiga tingkat adalah bagian dari cakupan ini. High menggunakan 34 jalur masuk dan 51 jalur keluar, dengan bobot aktual 187 dari batas total 232.
 
 | Tingkat | Jalur masuk | Jalur keluar | Variabel | Baris dengan variabel | NNZ | Pasangan berbobot positif | Total bobot aktual | WCC |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | L | 16 | 16 | 36 | 24 | 84 | 56 | 64 | 27,59% |
 | M | 22 | 36 | 62 | 31 | 156 | 103 | 130 | 56,03% |
-| H | 34 | 66 | 104 | 39 | 270 | 177 | 232 | 100,00% |
+| H | 34 | 51 | 89 | 39 | 225 | 147 | 187 | 80,60% |
 
 Penyebut bersama adalah **232**. Satu variabel kiriman masuk muncul di dua kendala dan menyumbang 1 poin bobot. Satu variabel kiriman keluar muncul di tiga kendala dan menyumbang 3 poin. Empat variabel buka gudang masing-masing muncul pada satu baris kapasitas. Penjabaran lengkap R1–R39, contoh perhitungan pasangan, dan audit 741 pasangan ada di lampiran. [Lampiran WCC](Tutorial_Weighted_Constraint_Coupling.md)
