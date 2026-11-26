@@ -1,25 +1,22 @@
-# Audit WCC dan verifikasi optimasi P1
+# Audit WCC P1
 
-[CSV pasangan](Audit_WCC_Pasangan.csv) · [Notebook verifikasi P1 dan P2](../Verifikasi_P1_P2.ipynb) · [Buka di Google Colab](https://colab.research.google.com/github/kiittkiidd/Lampiran-Model-Matematika-Tesis/blob/main/math_model_acuan/Verifikasi_P1_P2.ipynb)
+WCC dihitung dari identitas variabel lengkap sebelum presolve. Satu pasang baris menyumbang jumlah variabel yang muncul pada kedua baris. Himpunan acuan memuat 34 rute pabrik–gudang dan 66 rute gudang–pelanggan. Posisi tanpa variabel tetap tercatat. [Cara hitung lengkap](../../Lampiran_WCC.md) · [CSV pasangan](Audit_WCC_Pasangan.csv) · [Hasil solver](../Hasil_Benchmark.md)
 
-## 1. Pasangan baris dan WCC
+## 39 baris dan 741 pasangan
 
-CSV memuat seluruh 741 pasangan dari 39 posisi baris R1–R39. Untuk setiap pasangan, berkas mencatat batas bobot dan variabel yang mungkin dipakai bersama pada acuan, lalu bobot dan variabel bersama yang muncul pada Low, Medium, dan High. Format kolomnya sama dengan CSV P2. Identitas baris P1 berlaku untuk satu model deterministik per tingkat. Pada P2, akhiran skenario menandai blok model lengkap.
+| Tingkat | Bobot aktual | Penyebut bersama | WCC |
+| --- | ---: | ---: | ---: |
+| Low | 109 | 232 | 46,98% |
+| Medium | 142 | 232 | 61,21% |
+| High | 196 | 232 | 84,48% |
 
-| Tingkat | Variabel | Baris aktif | Penyebut | Bobot | WCC |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Low | 36 | 24 | 232 | 64 | 27,59% |
-| Medium | 51 | 31 | 232 | 97 | 41,81% |
-| High | 89 | 39 | 232 | 187 | 80,60% |
+Satu variabel rute masuk muncul pada batas kapasitas pabrik dan neraca gudang–produk. Bagi total WCC, kontribusinya satu. Satu variabel rute keluar muncul pada tiga kendala dan menyumbang $3$ pasang. Variabel buka gudang hanya muncul di satu baris kapasitas pada P1.
 
-Cara menelusuri persamaan, pasangan berbobot nol, dan pembagi dijelaskan di [Lampiran WCC](../../Lampiran_WCC.md).
+| Tingkat | Rute masuk | Rute keluar | Pembilang |
+| --- | ---: | ---: | ---: |
+| Low | 16 | 31 | $16+3(31)=109$ |
+| Medium | 22 | 40 | $22+3(40)=142$ |
+| High | 34 | 54 | $34+3(54)=196$ |
+| Acuan | 34 | 66 | $34+3(66)=232$ |
 
-## 2. Hasil optimasi
-
-| Tingkat | Gudang yang dibuka | Biaya total minimum |
-| --- | --- | ---: |
-| Low | G1, G3, G4 | 263,95 |
-| Medium | G2, G3, G4 | 264,37 |
-| High | G2, G4 | 242,95 |
-
-Notebook membandingkan hasil MILP dengan enumerasi 16 pilihan gudang. Ia juga mencocokkan variabel bersama pada tiap pasangan terhadap CSV P1. [Data bersama](../../case/Data_Bersama.json)
+Kenaikan Low ke Medium **14,22 poin persentase**. Kenaikan Medium ke High **23,28 poin persentase**. CSV menyimpan semua 741 pasangan, termasuk pasangan berbobot nol.

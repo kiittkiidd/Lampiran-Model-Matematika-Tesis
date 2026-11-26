@@ -22,15 +22,15 @@ h_{g,p}&\quad\text{tarif penanganan per palet produk }p\text{ di gudang }g.
 
 ### Dari distribusi ke skenario
 
-Misalkan $\mu_\ell=d_{1,A}^{(\ell)}$ dari P1 dan $\sigma=1$ palet. Pada normal baku, $q=\Phi(-1)=0{,}1586552539\ldots$ adalah peluang satu ekor dan $a=\phi(1)/q=1{,}5251352762\ldots$ adalah nilai absolut rata-rata kondisional ekor. $\Phi$ dan $\phi$ menyatakan fungsi distribusi kumulatif dan fungsi kepadatan normal baku.
+Misalkan $\mu=d_{1,A}=3$ dari P1 dan $\sigma=1$ palet. Pada normal baku, $q=\Phi(-1)=0{,}1586552539\ldots$ adalah peluang satu ekor dan $a=\phi(1)/q=1{,}5251352762\ldots$ adalah nilai absolut rata-rata kondisional ekor. $\Phi$ dan $\phi$ menyatakan fungsi distribusi kumulatif dan fungsi kepadatan normal baku.
 
 | Skenario | Peluang $\pi_s$ | Permintaan A di K1 |
 | --- | ---: | --- |
-| Sepi | $q$ | $\mu_\ell-a\sigma$ |
-| Sedang | $1-2q$ | $\mu_\ell$ |
-| Ramai | $q$ | $\mu_\ell+a\sigma$ |
+| Sepi | $q$ | $\mu-a\sigma$ |
+| Sedang | $1-2q$ | $\mu$ |
+| Ramai | $q$ | $\mu+a\sigma$ |
 
-Tuliskan permintaan skenario sebagai $d_{jp}^{\ell,s}$. Hanya $d_{1,A}^{\ell,s}$ yang berubah. Simetri skenario membuat rata-rata tertimbang permintaan tetap tepat $\mu_\ell$. Data lengkap memakai presisi penuh dari [Data bersama](../../case/Data_Bersama.json). Model mengharuskan pemenuhan untuk tiga titik skenario yang ditetapkan. Rata-rata kondisional ekor atas mewakili permintaan Ramai pada model diskret.
+Tuliskan permintaan skenario sebagai $d_{jp}^{\ell,s}$. Hanya $d_{1,A}^{\ell,s}$ yang berubah. Simetri skenario membuat rata-rata tertimbang permintaan tetap tepat $\mu$. Data lengkap memakai presisi penuh dari [Data bersama](../../case/Data_Bersama.json). Model mengharuskan pemenuhan untuk tiga titik skenario yang ditetapkan. Rata-rata kondisional ekor atas mewakili permintaan Ramai pada model diskret.
 
 ## 2. Fungsi tujuan
 
@@ -78,7 +78,7 @@ Untuk setiap pasangan gudang–produk pada daftar acuan, jumlah yang masuk harus
 \qquad \forall j,p,s.
 ```
 
-Sebagai contoh, R18 di Low memuat $z^s_{1,1,A}+z^s_{2,1,A}+z^s_{4,1,A}=d_{1,A}^{L,s}$. Ruas kanannya sekitar 3,474865, 5, atau 6,525135 palet. Daftar jalurnya sama pada ketiga skenario.
+Sebagai contoh, R18 di Low memuat $z^s_{1,1,A}+z^s_{2,1,A}=d_{1,A}^{L,s}$. Ruas kanannya sekitar 1,474865, 3, atau 4,525135 palet. Daftar jalurnya sama pada ketiga skenario.
 
 **R36–R39 · kapasitas dan buka gudang**
 
@@ -104,4 +104,4 @@ Arus kiriman kontinu dan nonnegatif. Keputusan buka gudang biner. Audit WCC meng
 
 ## 4. Cara memeriksa hasil
 
-Dengan satu pola buka gudang yang tetap, arus paling murah dapat dihitung lewat satu program linear per skenario. Jumlahkan biaya buka dan biaya operasi berbobot peluang. Ulangi untuk seluruh 16 pola buka gudang, lalu pilih pola layak dengan biaya minimum. Notebook juga menyelesaikan MILP gabungan dengan satu set $y_g$ dan mencocokkan nilai optimum kedua metode. [Notebook verifikasi P1 dan P2](../Verifikasi_P1_P2.ipynb) · [Buka di Google Colab](https://colab.research.google.com/github/kiittkiidd/Lampiran-Model-Matematika-Tesis/blob/main/math_model_acuan/Verifikasi_P1_P2.ipynb)
+Dengan satu pola buka gudang yang tetap, arus paling murah dapat dihitung lewat satu program linear per skenario. Jumlahkan biaya buka dan biaya operasi berbobot peluang. Ulangi untuk seluruh 16 pola buka gudang, lalu pilih pola layak dengan biaya minimum. Notebook juga menyelesaikan MILP gabungan dengan satu set $y_g$ dan mencocokkan nilai optimum kedua metode. [Notebook verifikasi P1–P3](../Verifikasi_P1_P2_P3.ipynb) · [Buka di Google Colab](https://colab.research.google.com/github/kiittkiidd/Lampiran-Model-Matematika-Tesis/blob/main/math_model_acuan/Verifikasi_P1_P2_P3.ipynb)

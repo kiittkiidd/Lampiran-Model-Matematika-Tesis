@@ -19,6 +19,9 @@ Perusahaan menyalurkan minuman kemasan (A), pangan kering (B), dan produk dingin
 
 ## Jalur masuk dan keluar
 
+Low menggunakan jaringan distribusi dasar. Pada Medium, perusahaan membuka pilihan layanan alternatif, terutama pengiriman A melalui G1 dan distribusi produk dingin C melalui G3. Pada High, penambahan akses produk dan jalur membuat G4 bisa menyalurkan C ke pelanggan wilayah Timur. Semua jalur dari tingkat sebelumnya tersedia pada tingkat berikutnya. Pesanan pelanggan sama pada ketiga tingkat.
+
+
 **Pola garis**
 
 - A · Minuman kemasan · garis penuh
@@ -45,46 +48,47 @@ Setiap panah menunjukkan satu jalur aktif untuk produk di panelnya. Kode fasilit
 
 </details>
 
-Pada tabel masuk, setiap pabrik di satu baris produk boleh memasok setiap gudang pada baris itu. Tabel keluar menyebut pelanggan yang dapat dilayani untuk setiap gudang dan produk.
+Pada tabel masuk, setiap pabrik pada satu baris produk boleh memasok setiap gudang pada baris tersebut. Tabel keluar menyebut pelanggan yang dapat dilayani untuk setiap gudang dan produk. Tanda — berarti jalur belum tersedia.
 
-| Level | Produk | Pabrik | Gudang yang dapat menerima |
+| Tingkat | Produk | Pabrik pemasok | Gudang penerima |
 | --- | --- | --- | --- |
-| L | A | P1, P5 | G1, G2, G4 |
-| L | B | P2, P3 | G1, G3, G4 |
-| L | C | P4, P6 | G2, G3 |
-| M | A | P1, P5 | G1, G2, G4 |
-| M | B | P1, P2, P3 | G1, G2, G3, G4 |
-| M | C | P4, P6 | G2, G3 |
-| H | A | P1, P3, P5 | G1, G2, G3, G4 |
-| H | B | P1, P2, P3, P4 | G1, G2, G3, G4 |
-| H | C | P4, P6 | G2, G3, G4 |
+| Low | A | P1, P5 | G1, G2, G4 |
+| Low | B | P2, P3 | G1, G3, G4 |
+| Low | C | P4, P6 | G2, G3 |
+| Medium | A | P1, P5 | G1, G2, G4 |
+| Medium | B | P1, P2, P3 | G1, G2, G3, G4 |
+| Medium | C | P4, P6 | G2, G3 |
+| High | A | P1, P3, P5 | G1, G2, G3, G4 |
+| High | B | P1, P2, P3, P4 | G1, G2, G3, G4 |
+| High | C | P4, P6 | G2, G3, G4 |
 
-| Gudang | Produk | Pelanggan Low | Pelanggan Medium | Pelanggan High |
+| Gudang | Produk | Low | Medium | High |
 | --- | --- | --- | --- | --- |
-| G1 | A | K1, K2 | K1, K2, K5 | K1, K2, K3, K5, K6 |
-| G1 | B | K3, K4 | K1, K3, K4 | K1, K2, K3, K4, K5 |
-| G2 | A | K1, K2 | K1, K2, K5 | K1, K2, K3, K5, K6 |
-| G2 | B | — | K1 | K1, K2, K3, K4, K5 |
-| G2 | C | K5, K6 | K3, K5, K6 | K1, K3, K4, K5, K6 |
-| G3 | A | — | — | K2, K4, K6 |
-| G3 | B | K3, K4 | K2, K3, K4 | K1, K2, K3, K4, K6 |
-| G3 | C | K5, K6 | K4, K5, K6 | K2, K3, K4, K5, K6 |
-| G4 | A | K1, K2 | K1, K2, K6 | K1, K2, K4, K5, K6 |
-| G4 | B | K3, K4 | K2, K3, K4 | K1, K2, K3, K4, K6 |
+| G1 | A | K1 | K1, K2, K3, K4, K5, K6 | K1, K2, K3, K4, K5, K6 |
+| G1 | B | K1, K2, K3, K4, K5, K6 | K1, K2, K3, K4, K5, K6 | K1, K2, K3, K4, K5, K6 |
+| G2 | A | K1, K2, K3, K4, K5, K6 | K1, K2, K3, K4, K5, K6 | K1, K2, K3, K4, K5, K6 |
+| G2 | B | — | — | K1, K3, K5 |
+| G2 | C | K1, K2, K3, K4, K5, K6 | K1, K2, K3, K4, K5, K6 | K1, K2, K3, K4, K5, K6 |
+| G3 | A | — | — | K1, K3, K5 |
+| G3 | B | K1, K2, K3, K4, K5, K6 | K1, K2, K3, K4, K5, K6 | K1, K2, K3, K4, K5, K6 |
+| G3 | C | K2, K4 | K1, K2, K3, K4, K5, K6 | K1, K2, K3, K4, K5, K6 |
+| G4 | A | K2 | K2 | K2, K4, K6 |
+| G4 | B | K2, K4, K6 | K2, K4, K6 | K1, K2, K3, K4, K5, K6 |
 | G4 | C | — | — | K2, K4, K6 |
 
 ## Permintaan per pelanggan
 
-Masing-masing kolom berisi jumlah palet **A / B / C**.
+Semua angka dalam palet dan berlaku untuk seluruh tingkat.
 
-| Pelanggan | Low | Medium | High |
-| --- | ---: | ---: | ---: |
-| K1 | 5 / 0 / 0 | 3 / 2 / 0 | 3 / 1 / 1 |
-| K2 | 5 / 0 / 0 | 3 / 2 / 0 | 3 / 1 / 1 |
-| K3 | 0 / 5 / 0 | 0 / 3 / 2 | 1 / 3 / 1 |
-| K4 | 0 / 5 / 0 | 0 / 3 / 2 | 1 / 3 / 1 |
-| K5 | 0 / 0 / 5 | 2 / 0 / 3 | 1 / 1 / 3 |
-| K6 | 0 / 0 / 5 | 2 / 0 / 3 | 1 / 1 / 3 |
+| Pelanggan | A | B | C | Total |
+| --- | ---: | ---: | ---: | ---: |
+| K1 | 3 | 1 | 1 | 5 |
+| K2 | 3 | 1 | 1 | 5 |
+| K3 | 1 | 3 | 1 | 5 |
+| K4 | 1 | 3 | 1 | 5 |
+| K5 | 1 | 1 | 3 | 5 |
+| K6 | 1 | 1 | 3 | 5 |
+| **Total** | 10 | 10 | 10 | 30 |
 
 ## Tarif per palet
 
@@ -119,4 +123,4 @@ Tarif angkut berlaku untuk seluruh produk pada satu pasangan lokasi. Pemakaian t
 | G3 | 2 | 1 | 2 |
 | G4 | 1 | 1 | 3 |
 
-Salinan data dalam format terstruktur tersedia di [Data bersama P1 dan P2](../Data_Bersama.json).
+Salinan data dalam format terstruktur tersedia di [Data bersama P1–P3](../Data_Bersama.json).
