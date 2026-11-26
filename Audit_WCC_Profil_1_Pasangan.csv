@@ -231,7 +231,7 @@ R7,Neraca G1–A,R23,Permintaan K2–C,0,,0,,0,,0,
 R7,Neraca G1–A,R24,Permintaan K3–A,1,"z[1,3,A]",0,,0,,1,"z[1,3,A]"
 R7,Neraca G1–A,R25,Permintaan K3–B,0,,0,,0,,0,
 R7,Neraca G1–A,R26,Permintaan K3–C,0,,0,,0,,0,
-R7,Neraca G1–A,R27,Permintaan K4–A,1,"z[1,4,A]",0,,0,,1,"z[1,4,A]"
+R7,Neraca G1–A,R27,Permintaan K4–A,1,"z[1,4,A]",0,,0,,0,
 R7,Neraca G1–A,R28,Permintaan K4–B,0,,0,,0,,0,
 R7,Neraca G1–A,R29,Permintaan K4–C,0,,0,,0,,0,
 R7,Neraca G1–A,R30,Permintaan K5–A,1,"z[1,5,A]",0,,1,"z[1,5,A]",1,"z[1,5,A]"
@@ -240,7 +240,7 @@ R7,Neraca G1–A,R32,Permintaan K5–C,0,,0,,0,,0,
 R7,Neraca G1–A,R33,Permintaan K6–A,1,"z[1,6,A]",0,,1,"z[1,6,A]",1,"z[1,6,A]"
 R7,Neraca G1–A,R34,Permintaan K6–B,0,,0,,0,,0,
 R7,Neraca G1–A,R35,Permintaan K6–C,0,,0,,0,,0,
-R7,Neraca G1–A,R36,Kapasitas G1,6,"z[1,1,A]; z[1,2,A]; z[1,3,A]; z[1,4,A]; z[1,5,A]; z[1,6,A]",2,"z[1,1,A]; z[1,2,A]",4,"z[1,1,A]; z[1,2,A]; z[1,5,A]; z[1,6,A]",6,"z[1,1,A]; z[1,2,A]; z[1,3,A]; z[1,4,A]; z[1,5,A]; z[1,6,A]"
+R7,Neraca G1–A,R36,Kapasitas G1,6,"z[1,1,A]; z[1,2,A]; z[1,3,A]; z[1,4,A]; z[1,5,A]; z[1,6,A]",2,"z[1,1,A]; z[1,2,A]",4,"z[1,1,A]; z[1,2,A]; z[1,5,A]; z[1,6,A]",5,"z[1,1,A]; z[1,2,A]; z[1,3,A]; z[1,5,A]; z[1,6,A]"
 R7,Neraca G1–A,R37,Kapasitas G2,0,,0,,0,,0,
 R7,Neraca G1–A,R38,Kapasitas G3,0,,0,,0,,0,
 R7,Neraca G1–A,R39,Kapasitas G4,0,,0,,0,,0,
@@ -269,9 +269,9 @@ R8,Neraca G1–B,R30,Permintaan K5–A,0,,0,,0,,0,
 R8,Neraca G1–B,R31,Permintaan K5–B,1,"z[1,5,B]",0,,0,,1,"z[1,5,B]"
 R8,Neraca G1–B,R32,Permintaan K5–C,0,,0,,0,,0,
 R8,Neraca G1–B,R33,Permintaan K6–A,0,,0,,0,,0,
-R8,Neraca G1–B,R34,Permintaan K6–B,1,"z[1,6,B]",0,,0,,1,"z[1,6,B]"
+R8,Neraca G1–B,R34,Permintaan K6–B,1,"z[1,6,B]",0,,0,,0,
 R8,Neraca G1–B,R35,Permintaan K6–C,0,,0,,0,,0,
-R8,Neraca G1–B,R36,Kapasitas G1,6,"z[1,1,B]; z[1,2,B]; z[1,3,B]; z[1,4,B]; z[1,5,B]; z[1,6,B]",2,"z[1,3,B]; z[1,4,B]",4,"z[1,1,B]; z[1,2,B]; z[1,3,B]; z[1,4,B]",6,"z[1,1,B]; z[1,2,B]; z[1,3,B]; z[1,4,B]; z[1,5,B]; z[1,6,B]"
+R8,Neraca G1–B,R36,Kapasitas G1,6,"z[1,1,B]; z[1,2,B]; z[1,3,B]; z[1,4,B]; z[1,5,B]; z[1,6,B]",2,"z[1,3,B]; z[1,4,B]",4,"z[1,1,B]; z[1,2,B]; z[1,3,B]; z[1,4,B]",5,"z[1,1,B]; z[1,2,B]; z[1,3,B]; z[1,4,B]; z[1,5,B]"
 R8,Neraca G1–B,R37,Kapasitas G2,0,,0,,0,,0,
 R8,Neraca G1–B,R38,Kapasitas G3,0,,0,,0,,0,
 R8,Neraca G1–B,R39,Kapasitas G4,0,,0,,0,,0,
@@ -292,7 +292,7 @@ R9,Neraca G2–A,R23,Permintaan K2–C,0,,0,,0,,0,
 R9,Neraca G2–A,R24,Permintaan K3–A,1,"z[2,3,A]",0,,0,,1,"z[2,3,A]"
 R9,Neraca G2–A,R25,Permintaan K3–B,0,,0,,0,,0,
 R9,Neraca G2–A,R26,Permintaan K3–C,0,,0,,0,,0,
-R9,Neraca G2–A,R27,Permintaan K4–A,1,"z[2,4,A]",0,,0,,1,"z[2,4,A]"
+R9,Neraca G2–A,R27,Permintaan K4–A,1,"z[2,4,A]",0,,0,,0,
 R9,Neraca G2–A,R28,Permintaan K4–B,0,,0,,0,,0,
 R9,Neraca G2–A,R29,Permintaan K4–C,0,,0,,0,,0,
 R9,Neraca G2–A,R30,Permintaan K5–A,1,"z[2,5,A]",0,,1,"z[2,5,A]",1,"z[2,5,A]"
@@ -302,7 +302,7 @@ R9,Neraca G2–A,R33,Permintaan K6–A,1,"z[2,6,A]",0,,1,"z[2,6,A]",1,"z[2,6,A]"
 R9,Neraca G2–A,R34,Permintaan K6–B,0,,0,,0,,0,
 R9,Neraca G2–A,R35,Permintaan K6–C,0,,0,,0,,0,
 R9,Neraca G2–A,R36,Kapasitas G1,0,,0,,0,,0,
-R9,Neraca G2–A,R37,Kapasitas G2,6,"z[2,1,A]; z[2,2,A]; z[2,3,A]; z[2,4,A]; z[2,5,A]; z[2,6,A]",2,"z[2,1,A]; z[2,2,A]",4,"z[2,1,A]; z[2,2,A]; z[2,5,A]; z[2,6,A]",6,"z[2,1,A]; z[2,2,A]; z[2,3,A]; z[2,4,A]; z[2,5,A]; z[2,6,A]"
+R9,Neraca G2–A,R37,Kapasitas G2,6,"z[2,1,A]; z[2,2,A]; z[2,3,A]; z[2,4,A]; z[2,5,A]; z[2,6,A]",2,"z[2,1,A]; z[2,2,A]",4,"z[2,1,A]; z[2,2,A]; z[2,5,A]; z[2,6,A]",5,"z[2,1,A]; z[2,2,A]; z[2,3,A]; z[2,5,A]; z[2,6,A]"
 R9,Neraca G2–A,R38,Kapasitas G3,0,,0,,0,,0,
 R9,Neraca G2–A,R39,Kapasitas G4,0,,0,,0,,0,
 R10,Neraca G2–B,R11,Neraca G2–C,0,,0,,0,,0,
@@ -328,10 +328,10 @@ R10,Neraca G2–B,R30,Permintaan K5–A,0,,0,,0,,0,
 R10,Neraca G2–B,R31,Permintaan K5–B,1,"z[2,5,B]",0,,0,,1,"z[2,5,B]"
 R10,Neraca G2–B,R32,Permintaan K5–C,0,,0,,0,,0,
 R10,Neraca G2–B,R33,Permintaan K6–A,0,,0,,0,,0,
-R10,Neraca G2–B,R34,Permintaan K6–B,1,"z[2,6,B]",0,,0,,1,"z[2,6,B]"
+R10,Neraca G2–B,R34,Permintaan K6–B,1,"z[2,6,B]",0,,0,,0,
 R10,Neraca G2–B,R35,Permintaan K6–C,0,,0,,0,,0,
 R10,Neraca G2–B,R36,Kapasitas G1,0,,0,,0,,0,
-R10,Neraca G2–B,R37,Kapasitas G2,6,"z[2,1,B]; z[2,2,B]; z[2,3,B]; z[2,4,B]; z[2,5,B]; z[2,6,B]",0,,4,"z[2,1,B]; z[2,2,B]; z[2,3,B]; z[2,4,B]",6,"z[2,1,B]; z[2,2,B]; z[2,3,B]; z[2,4,B]; z[2,5,B]; z[2,6,B]"
+R10,Neraca G2–B,R37,Kapasitas G2,6,"z[2,1,B]; z[2,2,B]; z[2,3,B]; z[2,4,B]; z[2,5,B]; z[2,6,B]",0,,4,"z[2,1,B]; z[2,2,B]; z[2,3,B]; z[2,4,B]",5,"z[2,1,B]; z[2,2,B]; z[2,3,B]; z[2,4,B]; z[2,5,B]"
 R10,Neraca G2–B,R38,Kapasitas G3,0,,0,,0,,0,
 R10,Neraca G2–B,R39,Kapasitas G4,0,,0,,0,,0,
 R11,Neraca G2–C,R12,Neraca G3–A,0,,0,,0,,0,
@@ -345,7 +345,7 @@ R11,Neraca G2–C,R19,Permintaan K1–B,0,,0,,0,,0,
 R11,Neraca G2–C,R20,Permintaan K1–C,1,"z[2,1,C]",0,,0,,1,"z[2,1,C]"
 R11,Neraca G2–C,R21,Permintaan K2–A,0,,0,,0,,0,
 R11,Neraca G2–C,R22,Permintaan K2–B,0,,0,,0,,0,
-R11,Neraca G2–C,R23,Permintaan K2–C,1,"z[2,2,C]",0,,0,,1,"z[2,2,C]"
+R11,Neraca G2–C,R23,Permintaan K2–C,1,"z[2,2,C]",0,,0,,0,
 R11,Neraca G2–C,R24,Permintaan K3–A,0,,0,,0,,0,
 R11,Neraca G2–C,R25,Permintaan K3–B,0,,0,,0,,0,
 R11,Neraca G2–C,R26,Permintaan K3–C,1,"z[2,3,C]",0,,1,"z[2,3,C]",1,"z[2,3,C]"
@@ -359,7 +359,7 @@ R11,Neraca G2–C,R33,Permintaan K6–A,0,,0,,0,,0,
 R11,Neraca G2–C,R34,Permintaan K6–B,0,,0,,0,,0,
 R11,Neraca G2–C,R35,Permintaan K6–C,1,"z[2,6,C]",1,"z[2,6,C]",1,"z[2,6,C]",1,"z[2,6,C]"
 R11,Neraca G2–C,R36,Kapasitas G1,0,,0,,0,,0,
-R11,Neraca G2–C,R37,Kapasitas G2,6,"z[2,1,C]; z[2,2,C]; z[2,3,C]; z[2,4,C]; z[2,5,C]; z[2,6,C]",2,"z[2,5,C]; z[2,6,C]",4,"z[2,3,C]; z[2,4,C]; z[2,5,C]; z[2,6,C]",6,"z[2,1,C]; z[2,2,C]; z[2,3,C]; z[2,4,C]; z[2,5,C]; z[2,6,C]"
+R11,Neraca G2–C,R37,Kapasitas G2,6,"z[2,1,C]; z[2,2,C]; z[2,3,C]; z[2,4,C]; z[2,5,C]; z[2,6,C]",2,"z[2,5,C]; z[2,6,C]",4,"z[2,3,C]; z[2,4,C]; z[2,5,C]; z[2,6,C]",5,"z[2,1,C]; z[2,3,C]; z[2,4,C]; z[2,5,C]; z[2,6,C]"
 R11,Neraca G2–C,R38,Kapasitas G3,0,,0,,0,,0,
 R11,Neraca G2–C,R39,Kapasitas G4,0,,0,,0,,0,
 R12,Neraca G3–A,R13,Neraca G3–B,0,,0,,0,,0,
@@ -367,19 +367,19 @@ R12,Neraca G3–A,R14,Neraca G3–C,0,,0,,0,,0,
 R12,Neraca G3–A,R15,Neraca G4–A,0,,0,,0,,0,
 R12,Neraca G3–A,R16,Neraca G4–B,0,,0,,0,,0,
 R12,Neraca G3–A,R17,Neraca G4–C,0,,0,,0,,0,
-R12,Neraca G3–A,R18,Permintaan K1–A,1,"z[3,1,A]",0,,0,,1,"z[3,1,A]"
+R12,Neraca G3–A,R18,Permintaan K1–A,1,"z[3,1,A]",0,,0,,0,
 R12,Neraca G3–A,R19,Permintaan K1–B,0,,0,,0,,0,
 R12,Neraca G3–A,R20,Permintaan K1–C,0,,0,,0,,0,
 R12,Neraca G3–A,R21,Permintaan K2–A,1,"z[3,2,A]",0,,0,,1,"z[3,2,A]"
 R12,Neraca G3–A,R22,Permintaan K2–B,0,,0,,0,,0,
 R12,Neraca G3–A,R23,Permintaan K2–C,0,,0,,0,,0,
-R12,Neraca G3–A,R24,Permintaan K3–A,1,"z[3,3,A]",0,,0,,1,"z[3,3,A]"
+R12,Neraca G3–A,R24,Permintaan K3–A,1,"z[3,3,A]",0,,0,,0,
 R12,Neraca G3–A,R25,Permintaan K3–B,0,,0,,0,,0,
 R12,Neraca G3–A,R26,Permintaan K3–C,0,,0,,0,,0,
 R12,Neraca G3–A,R27,Permintaan K4–A,1,"z[3,4,A]",0,,0,,1,"z[3,4,A]"
 R12,Neraca G3–A,R28,Permintaan K4–B,0,,0,,0,,0,
 R12,Neraca G3–A,R29,Permintaan K4–C,0,,0,,0,,0,
-R12,Neraca G3–A,R30,Permintaan K5–A,1,"z[3,5,A]",0,,0,,1,"z[3,5,A]"
+R12,Neraca G3–A,R30,Permintaan K5–A,1,"z[3,5,A]",0,,0,,0,
 R12,Neraca G3–A,R31,Permintaan K5–B,0,,0,,0,,0,
 R12,Neraca G3–A,R32,Permintaan K5–C,0,,0,,0,,0,
 R12,Neraca G3–A,R33,Permintaan K6–A,1,"z[3,6,A]",0,,0,,1,"z[3,6,A]"
@@ -387,7 +387,7 @@ R12,Neraca G3–A,R34,Permintaan K6–B,0,,0,,0,,0,
 R12,Neraca G3–A,R35,Permintaan K6–C,0,,0,,0,,0,
 R12,Neraca G3–A,R36,Kapasitas G1,0,,0,,0,,0,
 R12,Neraca G3–A,R37,Kapasitas G2,0,,0,,0,,0,
-R12,Neraca G3–A,R38,Kapasitas G3,6,"z[3,1,A]; z[3,2,A]; z[3,3,A]; z[3,4,A]; z[3,5,A]; z[3,6,A]",0,,0,,6,"z[3,1,A]; z[3,2,A]; z[3,3,A]; z[3,4,A]; z[3,5,A]; z[3,6,A]"
+R12,Neraca G3–A,R38,Kapasitas G3,6,"z[3,1,A]; z[3,2,A]; z[3,3,A]; z[3,4,A]; z[3,5,A]; z[3,6,A]",0,,0,,3,"z[3,2,A]; z[3,4,A]; z[3,6,A]"
 R12,Neraca G3–A,R39,Kapasitas G4,0,,0,,0,,0,
 R13,Neraca G3–B,R14,Neraca G3–C,0,,0,,0,,0,
 R13,Neraca G3–B,R15,Neraca G4–A,0,,0,,0,,0,
@@ -406,21 +406,21 @@ R13,Neraca G3–B,R27,Permintaan K4–A,0,,0,,0,,0,
 R13,Neraca G3–B,R28,Permintaan K4–B,1,"z[3,4,B]",1,"z[3,4,B]",1,"z[3,4,B]",1,"z[3,4,B]"
 R13,Neraca G3–B,R29,Permintaan K4–C,0,,0,,0,,0,
 R13,Neraca G3–B,R30,Permintaan K5–A,0,,0,,0,,0,
-R13,Neraca G3–B,R31,Permintaan K5–B,1,"z[3,5,B]",0,,0,,1,"z[3,5,B]"
+R13,Neraca G3–B,R31,Permintaan K5–B,1,"z[3,5,B]",0,,0,,0,
 R13,Neraca G3–B,R32,Permintaan K5–C,0,,0,,0,,0,
 R13,Neraca G3–B,R33,Permintaan K6–A,0,,0,,0,,0,
 R13,Neraca G3–B,R34,Permintaan K6–B,1,"z[3,6,B]",0,,0,,1,"z[3,6,B]"
 R13,Neraca G3–B,R35,Permintaan K6–C,0,,0,,0,,0,
 R13,Neraca G3–B,R36,Kapasitas G1,0,,0,,0,,0,
 R13,Neraca G3–B,R37,Kapasitas G2,0,,0,,0,,0,
-R13,Neraca G3–B,R38,Kapasitas G3,6,"z[3,1,B]; z[3,2,B]; z[3,3,B]; z[3,4,B]; z[3,5,B]; z[3,6,B]",2,"z[3,3,B]; z[3,4,B]",4,"z[3,1,B]; z[3,2,B]; z[3,3,B]; z[3,4,B]",6,"z[3,1,B]; z[3,2,B]; z[3,3,B]; z[3,4,B]; z[3,5,B]; z[3,6,B]"
+R13,Neraca G3–B,R38,Kapasitas G3,6,"z[3,1,B]; z[3,2,B]; z[3,3,B]; z[3,4,B]; z[3,5,B]; z[3,6,B]",2,"z[3,3,B]; z[3,4,B]",4,"z[3,1,B]; z[3,2,B]; z[3,3,B]; z[3,4,B]",5,"z[3,1,B]; z[3,2,B]; z[3,3,B]; z[3,4,B]; z[3,6,B]"
 R13,Neraca G3–B,R39,Kapasitas G4,0,,0,,0,,0,
 R14,Neraca G3–C,R15,Neraca G4–A,0,,0,,0,,0,
 R14,Neraca G3–C,R16,Neraca G4–B,0,,0,,0,,0,
 R14,Neraca G3–C,R17,Neraca G4–C,0,,0,,0,,0,
 R14,Neraca G3–C,R18,Permintaan K1–A,0,,0,,0,,0,
 R14,Neraca G3–C,R19,Permintaan K1–B,0,,0,,0,,0,
-R14,Neraca G3–C,R20,Permintaan K1–C,1,"z[3,1,C]",0,,0,,1,"z[3,1,C]"
+R14,Neraca G3–C,R20,Permintaan K1–C,1,"z[3,1,C]",0,,0,,0,
 R14,Neraca G3–C,R21,Permintaan K2–A,0,,0,,0,,0,
 R14,Neraca G3–C,R22,Permintaan K2–B,0,,0,,0,,0,
 R14,Neraca G3–C,R23,Permintaan K2–C,1,"z[3,2,C]",0,,0,,1,"z[3,2,C]"
@@ -438,7 +438,7 @@ R14,Neraca G3–C,R34,Permintaan K6–B,0,,0,,0,,0,
 R14,Neraca G3–C,R35,Permintaan K6–C,1,"z[3,6,C]",1,"z[3,6,C]",1,"z[3,6,C]",1,"z[3,6,C]"
 R14,Neraca G3–C,R36,Kapasitas G1,0,,0,,0,,0,
 R14,Neraca G3–C,R37,Kapasitas G2,0,,0,,0,,0,
-R14,Neraca G3–C,R38,Kapasitas G3,6,"z[3,1,C]; z[3,2,C]; z[3,3,C]; z[3,4,C]; z[3,5,C]; z[3,6,C]",2,"z[3,5,C]; z[3,6,C]",4,"z[3,3,C]; z[3,4,C]; z[3,5,C]; z[3,6,C]",6,"z[3,1,C]; z[3,2,C]; z[3,3,C]; z[3,4,C]; z[3,5,C]; z[3,6,C]"
+R14,Neraca G3–C,R38,Kapasitas G3,6,"z[3,1,C]; z[3,2,C]; z[3,3,C]; z[3,4,C]; z[3,5,C]; z[3,6,C]",2,"z[3,5,C]; z[3,6,C]",4,"z[3,3,C]; z[3,4,C]; z[3,5,C]; z[3,6,C]",5,"z[3,2,C]; z[3,3,C]; z[3,4,C]; z[3,5,C]; z[3,6,C]"
 R14,Neraca G3–C,R39,Kapasitas G4,0,,0,,0,,0,
 R15,Neraca G4–A,R16,Neraca G4–B,0,,0,,0,,0,
 R15,Neraca G4–A,R17,Neraca G4–C,0,,0,,0,,0,
@@ -448,7 +448,7 @@ R15,Neraca G4–A,R20,Permintaan K1–C,0,,0,,0,,0,
 R15,Neraca G4–A,R21,Permintaan K2–A,1,"z[4,2,A]",1,"z[4,2,A]",1,"z[4,2,A]",1,"z[4,2,A]"
 R15,Neraca G4–A,R22,Permintaan K2–B,0,,0,,0,,0,
 R15,Neraca G4–A,R23,Permintaan K2–C,0,,0,,0,,0,
-R15,Neraca G4–A,R24,Permintaan K3–A,1,"z[4,3,A]",0,,0,,1,"z[4,3,A]"
+R15,Neraca G4–A,R24,Permintaan K3–A,1,"z[4,3,A]",0,,0,,0,
 R15,Neraca G4–A,R25,Permintaan K3–B,0,,0,,0,,0,
 R15,Neraca G4–A,R26,Permintaan K3–C,0,,0,,0,,0,
 R15,Neraca G4–A,R27,Permintaan K4–A,1,"z[4,4,A]",0,,0,,1,"z[4,4,A]"
@@ -463,7 +463,7 @@ R15,Neraca G4–A,R35,Permintaan K6–C,0,,0,,0,,0,
 R15,Neraca G4–A,R36,Kapasitas G1,0,,0,,0,,0,
 R15,Neraca G4–A,R37,Kapasitas G2,0,,0,,0,,0,
 R15,Neraca G4–A,R38,Kapasitas G3,0,,0,,0,,0,
-R15,Neraca G4–A,R39,Kapasitas G4,6,"z[4,1,A]; z[4,2,A]; z[4,3,A]; z[4,4,A]; z[4,5,A]; z[4,6,A]",2,"z[4,1,A]; z[4,2,A]",4,"z[4,1,A]; z[4,2,A]; z[4,5,A]; z[4,6,A]",6,"z[4,1,A]; z[4,2,A]; z[4,3,A]; z[4,4,A]; z[4,5,A]; z[4,6,A]"
+R15,Neraca G4–A,R39,Kapasitas G4,6,"z[4,1,A]; z[4,2,A]; z[4,3,A]; z[4,4,A]; z[4,5,A]; z[4,6,A]",2,"z[4,1,A]; z[4,2,A]",4,"z[4,1,A]; z[4,2,A]; z[4,5,A]; z[4,6,A]",5,"z[4,1,A]; z[4,2,A]; z[4,4,A]; z[4,5,A]; z[4,6,A]"
 R16,Neraca G4–B,R17,Neraca G4–C,0,,0,,0,,0,
 R16,Neraca G4–B,R18,Permintaan K1–A,0,,0,,0,,0,
 R16,Neraca G4–B,R19,Permintaan K1–B,1,"z[4,1,B]",0,,1,"z[4,1,B]",1,"z[4,1,B]"
@@ -478,7 +478,7 @@ R16,Neraca G4–B,R27,Permintaan K4–A,0,,0,,0,,0,
 R16,Neraca G4–B,R28,Permintaan K4–B,1,"z[4,4,B]",1,"z[4,4,B]",1,"z[4,4,B]",1,"z[4,4,B]"
 R16,Neraca G4–B,R29,Permintaan K4–C,0,,0,,0,,0,
 R16,Neraca G4–B,R30,Permintaan K5–A,0,,0,,0,,0,
-R16,Neraca G4–B,R31,Permintaan K5–B,1,"z[4,5,B]",0,,0,,1,"z[4,5,B]"
+R16,Neraca G4–B,R31,Permintaan K5–B,1,"z[4,5,B]",0,,0,,0,
 R16,Neraca G4–B,R32,Permintaan K5–C,0,,0,,0,,0,
 R16,Neraca G4–B,R33,Permintaan K6–A,0,,0,,0,,0,
 R16,Neraca G4–B,R34,Permintaan K6–B,1,"z[4,6,B]",0,,0,,1,"z[4,6,B]"
@@ -486,29 +486,29 @@ R16,Neraca G4–B,R35,Permintaan K6–C,0,,0,,0,,0,
 R16,Neraca G4–B,R36,Kapasitas G1,0,,0,,0,,0,
 R16,Neraca G4–B,R37,Kapasitas G2,0,,0,,0,,0,
 R16,Neraca G4–B,R38,Kapasitas G3,0,,0,,0,,0,
-R16,Neraca G4–B,R39,Kapasitas G4,6,"z[4,1,B]; z[4,2,B]; z[4,3,B]; z[4,4,B]; z[4,5,B]; z[4,6,B]",2,"z[4,3,B]; z[4,4,B]",4,"z[4,1,B]; z[4,2,B]; z[4,3,B]; z[4,4,B]",6,"z[4,1,B]; z[4,2,B]; z[4,3,B]; z[4,4,B]; z[4,5,B]; z[4,6,B]"
+R16,Neraca G4–B,R39,Kapasitas G4,6,"z[4,1,B]; z[4,2,B]; z[4,3,B]; z[4,4,B]; z[4,5,B]; z[4,6,B]",2,"z[4,3,B]; z[4,4,B]",4,"z[4,1,B]; z[4,2,B]; z[4,3,B]; z[4,4,B]",5,"z[4,1,B]; z[4,2,B]; z[4,3,B]; z[4,4,B]; z[4,6,B]"
 R17,Neraca G4–C,R18,Permintaan K1–A,0,,0,,0,,0,
 R17,Neraca G4–C,R19,Permintaan K1–B,0,,0,,0,,0,
-R17,Neraca G4–C,R20,Permintaan K1–C,1,"z[4,1,C]",0,,0,,1,"z[4,1,C]"
+R17,Neraca G4–C,R20,Permintaan K1–C,1,"z[4,1,C]",0,,0,,0,
 R17,Neraca G4–C,R21,Permintaan K2–A,0,,0,,0,,0,
 R17,Neraca G4–C,R22,Permintaan K2–B,0,,0,,0,,0,
 R17,Neraca G4–C,R23,Permintaan K2–C,1,"z[4,2,C]",0,,0,,1,"z[4,2,C]"
 R17,Neraca G4–C,R24,Permintaan K3–A,0,,0,,0,,0,
 R17,Neraca G4–C,R25,Permintaan K3–B,0,,0,,0,,0,
-R17,Neraca G4–C,R26,Permintaan K3–C,1,"z[4,3,C]",0,,0,,1,"z[4,3,C]"
+R17,Neraca G4–C,R26,Permintaan K3–C,1,"z[4,3,C]",0,,0,,0,
 R17,Neraca G4–C,R27,Permintaan K4–A,0,,0,,0,,0,
 R17,Neraca G4–C,R28,Permintaan K4–B,0,,0,,0,,0,
 R17,Neraca G4–C,R29,Permintaan K4–C,1,"z[4,4,C]",0,,0,,1,"z[4,4,C]"
 R17,Neraca G4–C,R30,Permintaan K5–A,0,,0,,0,,0,
 R17,Neraca G4–C,R31,Permintaan K5–B,0,,0,,0,,0,
-R17,Neraca G4–C,R32,Permintaan K5–C,1,"z[4,5,C]",0,,0,,1,"z[4,5,C]"
+R17,Neraca G4–C,R32,Permintaan K5–C,1,"z[4,5,C]",0,,0,,0,
 R17,Neraca G4–C,R33,Permintaan K6–A,0,,0,,0,,0,
 R17,Neraca G4–C,R34,Permintaan K6–B,0,,0,,0,,0,
 R17,Neraca G4–C,R35,Permintaan K6–C,1,"z[4,6,C]",0,,0,,1,"z[4,6,C]"
 R17,Neraca G4–C,R36,Kapasitas G1,0,,0,,0,,0,
 R17,Neraca G4–C,R37,Kapasitas G2,0,,0,,0,,0,
 R17,Neraca G4–C,R38,Kapasitas G3,0,,0,,0,,0,
-R17,Neraca G4–C,R39,Kapasitas G4,6,"z[4,1,C]; z[4,2,C]; z[4,3,C]; z[4,4,C]; z[4,5,C]; z[4,6,C]",0,,0,,6,"z[4,1,C]; z[4,2,C]; z[4,3,C]; z[4,4,C]; z[4,5,C]; z[4,6,C]"
+R17,Neraca G4–C,R39,Kapasitas G4,6,"z[4,1,C]; z[4,2,C]; z[4,3,C]; z[4,4,C]; z[4,5,C]; z[4,6,C]",0,,0,,3,"z[4,2,C]; z[4,4,C]; z[4,6,C]"
 R18,Permintaan K1–A,R19,Permintaan K1–B,0,,0,,0,,0,
 R18,Permintaan K1–A,R20,Permintaan K1–C,0,,0,,0,,0,
 R18,Permintaan K1–A,R21,Permintaan K2–A,0,,0,,0,,0,
@@ -528,7 +528,7 @@ R18,Permintaan K1–A,R34,Permintaan K6–B,0,,0,,0,,0,
 R18,Permintaan K1–A,R35,Permintaan K6–C,0,,0,,0,,0,
 R18,Permintaan K1–A,R36,Kapasitas G1,1,"z[1,1,A]",1,"z[1,1,A]",1,"z[1,1,A]",1,"z[1,1,A]"
 R18,Permintaan K1–A,R37,Kapasitas G2,1,"z[2,1,A]",1,"z[2,1,A]",1,"z[2,1,A]",1,"z[2,1,A]"
-R18,Permintaan K1–A,R38,Kapasitas G3,1,"z[3,1,A]",0,,0,,1,"z[3,1,A]"
+R18,Permintaan K1–A,R38,Kapasitas G3,1,"z[3,1,A]",0,,0,,0,
 R18,Permintaan K1–A,R39,Kapasitas G4,1,"z[4,1,A]",1,"z[4,1,A]",1,"z[4,1,A]",1,"z[4,1,A]"
 R19,Permintaan K1–B,R20,Permintaan K1–C,0,,0,,0,,0,
 R19,Permintaan K1–B,R21,Permintaan K2–A,0,,0,,0,,0,
@@ -567,8 +567,8 @@ R20,Permintaan K1–C,R34,Permintaan K6–B,0,,0,,0,,0,
 R20,Permintaan K1–C,R35,Permintaan K6–C,0,,0,,0,,0,
 R20,Permintaan K1–C,R36,Kapasitas G1,0,,0,,0,,0,
 R20,Permintaan K1–C,R37,Kapasitas G2,1,"z[2,1,C]",0,,0,,1,"z[2,1,C]"
-R20,Permintaan K1–C,R38,Kapasitas G3,1,"z[3,1,C]",0,,0,,1,"z[3,1,C]"
-R20,Permintaan K1–C,R39,Kapasitas G4,1,"z[4,1,C]",0,,0,,1,"z[4,1,C]"
+R20,Permintaan K1–C,R38,Kapasitas G3,1,"z[3,1,C]",0,,0,,0,
+R20,Permintaan K1–C,R39,Kapasitas G4,1,"z[4,1,C]",0,,0,,0,
 R21,Permintaan K2–A,R22,Permintaan K2–B,0,,0,,0,,0,
 R21,Permintaan K2–A,R23,Permintaan K2–C,0,,0,,0,,0,
 R21,Permintaan K2–A,R24,Permintaan K3–A,0,,0,,0,,0,
@@ -617,7 +617,7 @@ R23,Permintaan K2–C,R33,Permintaan K6–A,0,,0,,0,,0,
 R23,Permintaan K2–C,R34,Permintaan K6–B,0,,0,,0,,0,
 R23,Permintaan K2–C,R35,Permintaan K6–C,0,,0,,0,,0,
 R23,Permintaan K2–C,R36,Kapasitas G1,0,,0,,0,,0,
-R23,Permintaan K2–C,R37,Kapasitas G2,1,"z[2,2,C]",0,,0,,1,"z[2,2,C]"
+R23,Permintaan K2–C,R37,Kapasitas G2,1,"z[2,2,C]",0,,0,,0,
 R23,Permintaan K2–C,R38,Kapasitas G3,1,"z[3,2,C]",0,,0,,1,"z[3,2,C]"
 R23,Permintaan K2–C,R39,Kapasitas G4,1,"z[4,2,C]",0,,0,,1,"z[4,2,C]"
 R24,Permintaan K3–A,R25,Permintaan K3–B,0,,0,,0,,0,
@@ -633,8 +633,8 @@ R24,Permintaan K3–A,R34,Permintaan K6–B,0,,0,,0,,0,
 R24,Permintaan K3–A,R35,Permintaan K6–C,0,,0,,0,,0,
 R24,Permintaan K3–A,R36,Kapasitas G1,1,"z[1,3,A]",0,,0,,1,"z[1,3,A]"
 R24,Permintaan K3–A,R37,Kapasitas G2,1,"z[2,3,A]",0,,0,,1,"z[2,3,A]"
-R24,Permintaan K3–A,R38,Kapasitas G3,1,"z[3,3,A]",0,,0,,1,"z[3,3,A]"
-R24,Permintaan K3–A,R39,Kapasitas G4,1,"z[4,3,A]",0,,0,,1,"z[4,3,A]"
+R24,Permintaan K3–A,R38,Kapasitas G3,1,"z[3,3,A]",0,,0,,0,
+R24,Permintaan K3–A,R39,Kapasitas G4,1,"z[4,3,A]",0,,0,,0,
 R25,Permintaan K3–B,R26,Permintaan K3–C,0,,0,,0,,0,
 R25,Permintaan K3–B,R27,Permintaan K4–A,0,,0,,0,,0,
 R25,Permintaan K3–B,R28,Permintaan K4–B,0,,0,,0,,0,
@@ -661,7 +661,7 @@ R26,Permintaan K3–C,R35,Permintaan K6–C,0,,0,,0,,0,
 R26,Permintaan K3–C,R36,Kapasitas G1,0,,0,,0,,0,
 R26,Permintaan K3–C,R37,Kapasitas G2,1,"z[2,3,C]",0,,1,"z[2,3,C]",1,"z[2,3,C]"
 R26,Permintaan K3–C,R38,Kapasitas G3,1,"z[3,3,C]",0,,1,"z[3,3,C]",1,"z[3,3,C]"
-R26,Permintaan K3–C,R39,Kapasitas G4,1,"z[4,3,C]",0,,0,,1,"z[4,3,C]"
+R26,Permintaan K3–C,R39,Kapasitas G4,1,"z[4,3,C]",0,,0,,0,
 R27,Permintaan K4–A,R28,Permintaan K4–B,0,,0,,0,,0,
 R27,Permintaan K4–A,R29,Permintaan K4–C,0,,0,,0,,0,
 R27,Permintaan K4–A,R30,Permintaan K5–A,0,,0,,0,,0,
@@ -670,8 +670,8 @@ R27,Permintaan K4–A,R32,Permintaan K5–C,0,,0,,0,,0,
 R27,Permintaan K4–A,R33,Permintaan K6–A,0,,0,,0,,0,
 R27,Permintaan K4–A,R34,Permintaan K6–B,0,,0,,0,,0,
 R27,Permintaan K4–A,R35,Permintaan K6–C,0,,0,,0,,0,
-R27,Permintaan K4–A,R36,Kapasitas G1,1,"z[1,4,A]",0,,0,,1,"z[1,4,A]"
-R27,Permintaan K4–A,R37,Kapasitas G2,1,"z[2,4,A]",0,,0,,1,"z[2,4,A]"
+R27,Permintaan K4–A,R36,Kapasitas G1,1,"z[1,4,A]",0,,0,,0,
+R27,Permintaan K4–A,R37,Kapasitas G2,1,"z[2,4,A]",0,,0,,0,
 R27,Permintaan K4–A,R38,Kapasitas G3,1,"z[3,4,A]",0,,0,,1,"z[3,4,A]"
 R27,Permintaan K4–A,R39,Kapasitas G4,1,"z[4,4,A]",0,,0,,1,"z[4,4,A]"
 R28,Permintaan K4–B,R29,Permintaan K4–C,0,,0,,0,,0,
@@ -702,7 +702,7 @@ R30,Permintaan K5–A,R34,Permintaan K6–B,0,,0,,0,,0,
 R30,Permintaan K5–A,R35,Permintaan K6–C,0,,0,,0,,0,
 R30,Permintaan K5–A,R36,Kapasitas G1,1,"z[1,5,A]",0,,1,"z[1,5,A]",1,"z[1,5,A]"
 R30,Permintaan K5–A,R37,Kapasitas G2,1,"z[2,5,A]",0,,1,"z[2,5,A]",1,"z[2,5,A]"
-R30,Permintaan K5–A,R38,Kapasitas G3,1,"z[3,5,A]",0,,0,,1,"z[3,5,A]"
+R30,Permintaan K5–A,R38,Kapasitas G3,1,"z[3,5,A]",0,,0,,0,
 R30,Permintaan K5–A,R39,Kapasitas G4,1,"z[4,5,A]",0,,1,"z[4,5,A]",1,"z[4,5,A]"
 R31,Permintaan K5–B,R32,Permintaan K5–C,0,,0,,0,,0,
 R31,Permintaan K5–B,R33,Permintaan K6–A,0,,0,,0,,0,
@@ -710,15 +710,15 @@ R31,Permintaan K5–B,R34,Permintaan K6–B,0,,0,,0,,0,
 R31,Permintaan K5–B,R35,Permintaan K6–C,0,,0,,0,,0,
 R31,Permintaan K5–B,R36,Kapasitas G1,1,"z[1,5,B]",0,,0,,1,"z[1,5,B]"
 R31,Permintaan K5–B,R37,Kapasitas G2,1,"z[2,5,B]",0,,0,,1,"z[2,5,B]"
-R31,Permintaan K5–B,R38,Kapasitas G3,1,"z[3,5,B]",0,,0,,1,"z[3,5,B]"
-R31,Permintaan K5–B,R39,Kapasitas G4,1,"z[4,5,B]",0,,0,,1,"z[4,5,B]"
+R31,Permintaan K5–B,R38,Kapasitas G3,1,"z[3,5,B]",0,,0,,0,
+R31,Permintaan K5–B,R39,Kapasitas G4,1,"z[4,5,B]",0,,0,,0,
 R32,Permintaan K5–C,R33,Permintaan K6–A,0,,0,,0,,0,
 R32,Permintaan K5–C,R34,Permintaan K6–B,0,,0,,0,,0,
 R32,Permintaan K5–C,R35,Permintaan K6–C,0,,0,,0,,0,
 R32,Permintaan K5–C,R36,Kapasitas G1,0,,0,,0,,0,
 R32,Permintaan K5–C,R37,Kapasitas G2,1,"z[2,5,C]",1,"z[2,5,C]",1,"z[2,5,C]",1,"z[2,5,C]"
 R32,Permintaan K5–C,R38,Kapasitas G3,1,"z[3,5,C]",1,"z[3,5,C]",1,"z[3,5,C]",1,"z[3,5,C]"
-R32,Permintaan K5–C,R39,Kapasitas G4,1,"z[4,5,C]",0,,0,,1,"z[4,5,C]"
+R32,Permintaan K5–C,R39,Kapasitas G4,1,"z[4,5,C]",0,,0,,0,
 R33,Permintaan K6–A,R34,Permintaan K6–B,0,,0,,0,,0,
 R33,Permintaan K6–A,R35,Permintaan K6–C,0,,0,,0,,0,
 R33,Permintaan K6–A,R36,Kapasitas G1,1,"z[1,6,A]",0,,1,"z[1,6,A]",1,"z[1,6,A]"
@@ -726,8 +726,8 @@ R33,Permintaan K6–A,R37,Kapasitas G2,1,"z[2,6,A]",0,,1,"z[2,6,A]",1,"z[2,6,A]"
 R33,Permintaan K6–A,R38,Kapasitas G3,1,"z[3,6,A]",0,,0,,1,"z[3,6,A]"
 R33,Permintaan K6–A,R39,Kapasitas G4,1,"z[4,6,A]",0,,1,"z[4,6,A]",1,"z[4,6,A]"
 R34,Permintaan K6–B,R35,Permintaan K6–C,0,,0,,0,,0,
-R34,Permintaan K6–B,R36,Kapasitas G1,1,"z[1,6,B]",0,,0,,1,"z[1,6,B]"
-R34,Permintaan K6–B,R37,Kapasitas G2,1,"z[2,6,B]",0,,0,,1,"z[2,6,B]"
+R34,Permintaan K6–B,R36,Kapasitas G1,1,"z[1,6,B]",0,,0,,0,
+R34,Permintaan K6–B,R37,Kapasitas G2,1,"z[2,6,B]",0,,0,,0,
 R34,Permintaan K6–B,R38,Kapasitas G3,1,"z[3,6,B]",0,,0,,1,"z[3,6,B]"
 R34,Permintaan K6–B,R39,Kapasitas G4,1,"z[4,6,B]",0,,0,,1,"z[4,6,B]"
 R35,Permintaan K6–C,R36,Kapasitas G1,0,,0,,0,,0,
