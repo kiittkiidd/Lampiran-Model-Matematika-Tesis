@@ -1,6 +1,6 @@
 # Lampiran — Weighted Constraint Coupling (WCC)
 
-WCC menghitung berapa banyak variabel keputusan yang dipakai bersama oleh kendala. Pada Profil 1, seluruh tingkat dinilai pada **satu skala acuan**. Pembagi diperoleh dengan menjumlahkan batas bobot yang benar-benar diizinkan untuk setiap pasangan baris. [Model matematika Profil 1](Model_Matematika.md)
+WCC menghitung berapa banyak variabel keputusan yang dipakai bersama oleh kendala. Pada Profil 1, seluruh tingkat dinilai pada **satu skala acuan**. Pembagi diperoleh dengan menjumlahkan batas bobot yang benar-benar diizinkan untuk setiap pasangan baris. [Model matematika Profil 1](math_model_acuan/P1/Model_Matematika.md)
 
 ## 1. Cara membaca bobot pasangan
 
@@ -85,7 +85,7 @@ Di sini $P$ adalah daftar pasangan posisi baris yang sama untuk semua tingkat. P
 
 ### 3.1 Pemetaan ID dan penjabaran R1–R39
 
-Profil 1 terdiri atas **enam pabrik, empat calon gudang, enam pelanggan, tiga produk, dan satu periode**. Subbab ini menurunkan semua baris dari empat keluarga kendala pada [model utama](Model_Matematika.md#3-fungsi-tujuan-dan-seluruh-keluarga-kendala).
+Profil 1 terdiri atas **enam pabrik, empat calon gudang, enam pelanggan, tiga produk, dan satu periode**. Subbab ini menurunkan semua baris dari empat keluarga kendala pada [model utama](math_model_acuan/P1/Model_Matematika.md#3-fungsi-tujuan-dan-seluruh-keluarga-kendala).
 
 | ID | Keluarga | Jumlah posisi acuan |
 | --- | --- | ---: |
@@ -274,7 +274,7 @@ Pasangan kapasitas pabrik dengan permintaan atau kapasitas gudang juga berbatas 
 | Daftar variabel acuan kedua baris terpisah | R1–R4, kapasitas P1 dan P4 | 0 | 0 |
 | Variabel bersama tersedia di acuan dan belum dipakai pada Low | R4–R8, kapasitas P4 dan neraca B di G1. Keduanya dapat berbagi $x_{4,1,B}$ pada acuan. | 0 | 1 |
 
-Kedua pasangan itu ikut diperiksa. Penyebut WCC menjumlahkan batas yang dimungkinkan oleh acuan, sehingga pasangan dengan batas nol menambah 0 dan pasangan dengan batas positif tetap menambah penyebut walaupun bobot aktualnya nol. Detail tiap pasangan dan daftar variabel yang membentuk bobotnya tersedia di [audit lengkap 741 pasangan](Audit_WCC_Pasangan.csv).
+Kedua pasangan itu ikut diperiksa. Penyebut WCC menjumlahkan batas yang dimungkinkan oleh acuan, sehingga pasangan dengan batas nol menambah 0 dan pasangan dengan batas positif tetap menambah penyebut walaupun bobot aktualnya nol. Detail tiap pasangan dan daftar variabel yang membentuk bobotnya tersedia di [audit lengkap 741 pasangan](math_model_acuan/P1/Audit_WCC_Pasangan.csv).
 
 | Kelompok pasangan | Jumlah pasangan | Bobot L | Bobot M | Bobot H | Total batas acuan |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -312,6 +312,13 @@ High menggunakan seluruh 34 jalur masuk acuan. Jalur keluarnya mencakup 36 jalur
 | Medium ke High | $(187-97)/232\times100\%=38{,}79$ poin persentase, dibulatkan | Memenuhi minimum 20 poin persentase |
 
 Jumlah rute, variabel, baris dengan variabel aktif, dan cakupan permintaan per produk berbeda antartingkat. WCC mendeskripsikan perubahan struktur tersebut. Untuk menilai pengaruh WCC secara terpisah dari perubahan ukuran, desain eksperimen memerlukan variasi yang mengendalikan jumlah variabel dan baris aktif.
+
+
+## 4. Perbandingan P1 dan P2
+
+P2 memakai tiga skenario permintaan, dengan satu keputusan buka gudang yang dipakai di ketiganya dan arus kiriman yang dipilih per skenario. Untuk membandingkan tingkat jaringan dengan P1, ukur WCC pada satu blok skenario. Angkanya tetap **27,59%, 41,81%, dan 80,60%** karena rute dan kemunculan variabel dalam setiap baris sama.
+
+Graf model P2 lengkap mempunyai 117 posisi baris. Di dalamnya, kapasitas gudang yang sama pada dua skenario berbagi variabel buka gudang. Empat gudang dan tiga pasangan skenario menambah 12 poin bobot lintas blok. Dengan penyebut khusus graf lengkap sebesar 708, WCC model lengkap adalah **28,81%, 42,80%, dan 80,93%**. [Audit P2](math_model_acuan/P2/Audit_WCC.md)
 
 ## Referensi
 

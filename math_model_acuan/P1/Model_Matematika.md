@@ -61,7 +61,7 @@ Diagram dasar memberi kapasitas 8 palet per pabrik. Formulasi ini memakai **8 pa
 
 Setiap pelanggan membutuhkan total 5 palet per periode, sehingga total sistem adalah 30 palet. Di Low, K1 dan K2 masing-masing meminta 5 palet A, K3 dan K4 masing-masing 5 palet B, dan K5 dan K6 masing-masing 5 palet C. Pada Medium dan High, $d_{jp}^{(\ell)}$ adalah permintaan per pelanggan dan produk. Total setiap pelanggan tetap 5 palet. Produk yang tercantum di tabel jaringan mempunyai permintaan positif dan pasangan pelanggan–produk di luar tabel mempunyai permintaan nol.
 
-Tarif per jalur, tarif penanganan per palet di gudang, dan pembagian 5 palet per produk pada Medium dan High masih berupa parameter. Perhitungan WCC memakai rute dan kemunculan variabel yang sudah ditetapkan. Perhitungan optimum biaya memerlukan nilai parameter tersebut.
+Tarif angkut dan penanganan serta rincian permintaan per pelanggan–produk tersedia pada [kasus P1](../../case/P1/Kasus.md) dan [Data bersama](../../case/Data_Bersama.json). Tarif benchmark bersifat sintetis dan digunakan bersama oleh P1 dan P2. Permintaan pasti P1 menjadi nilai ekspektasi permintaan P2.
 
 | Notasi | Arti |
 | --- | --- |
@@ -167,7 +167,7 @@ $P$ mencatat setiap pasangan dua baris berbeda sekali. Cakupan acuan adalah jari
 | M | 22 | 25 | 51 | 31 | 123 | 81 | 97 | 41,81% |
 | H | 34 | 51 | 89 | 39 | 225 | 147 | 187 | 80,60% |
 
-Penyebut bersama adalah **232**. Satu variabel kiriman masuk muncul di dua kendala dan menyumbang 1 poin bobot. Satu variabel kiriman keluar muncul di tiga kendala dan menyumbang 3 poin. Empat variabel buka gudang masing-masing muncul pada satu baris kapasitas. Selisih Low–Medium adalah **14,22 poin persentase** dan Medium–High **38,79 poin persentase**. Penjabaran R1–R39 dan audit 741 pasangan tersedia di lampiran. [Lampiran WCC](Lampiran_WCC.md)
+Penyebut bersama adalah **232**. Satu variabel kiriman masuk muncul di dua kendala dan menyumbang 1 poin bobot. Satu variabel kiriman keluar muncul di tiga kendala dan menyumbang 3 poin. Empat variabel buka gudang masing-masing muncul pada satu baris kapasitas. Selisih Low–Medium adalah **14,22 poin persentase** dan Medium–High **38,79 poin persentase**. Penjabaran R1–R39 dan audit 741 pasangan tersedia di lampiran. [Lampiran WCC](../../Lampiran_WCC.md)
 
 ## 5. Keputusan desain untuk pengembangan profil
 
@@ -176,3 +176,13 @@ Penyebut bersama adalah **232**. Satu variabel kiriman masuk muncul di dua kenda
 - **Banyak tujuan.** Emisi dapat dimodelkan sebagai fungsi tujuan kedua yang memakai variabel arus yang sudah ada. Metode batas emisi menambah satu baris pada persoalan yang diselesaikan untuk menghasilkan titik Pareto. Catat baris tersebut jika mengaudit formulasi solver yang diperluas.
 
 Sebelum optimasi, periksa kelayakan permintaan setiap skenario. Misalnya, pada High hanya P4 dan P6 yang dapat memasok C. Dengan kapasitas 8 palet per pabrik, permintaan C di atas 16 palet pada suatu skenario melampaui batas produksi. Kapasitas P4 juga dipakai oleh B.
+
+## 6. Hasil optimasi acuan
+
+| Tingkat | Gudang yang dibuka | Biaya total minimum |
+| --- | --- | ---: |
+| L | G1, G3, G4 | 263,95 |
+| M | G2, G3, G4 | 264,37 |
+| H | G2, G4 | 242,95 |
+
+Hasil diverifikasi dengan enumerasi 16 pilihan gudang dan MILP. [Kode verifikasi P1 dan P2](../P2/Verifikasi.py)
