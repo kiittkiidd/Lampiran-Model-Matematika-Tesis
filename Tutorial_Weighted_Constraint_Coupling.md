@@ -158,27 +158,31 @@ Untuk model yang lebih besar, $P$ menyatakan daftar semua pasangan baris berbeda
 B = \sum_{(r,s) \in P} w_{rs}
 ```
 
-## 5. Dari mana penyebut persentase WCC berasal?
+## 5. Hitung versi rute terbatas dan bandingkan skornya
 
-### 5.1 Tentukan jaringan yang menjadi patokan
+### 5.1 Mengapa bobot R1–R4 turun dari 2 menjadi 1?
 
-Persentase menjawab pertanyaan **“Total bobot versi ini mencapai berapa persen dari bobot jaringan acuan?”** Dalam tutorial ini, jaringan acuan adalah versi yang mengizinkan **A dan B ke kedua pelanggan**. Keempat kombinasi pengiriman tersedia, dan bentuk empat baris kendalanya sudah ditulis pada bagian 1.
-
-Terapkan penghitungan yang sama pada jaringan acuan. Dari langkah 4.2, total bobotnya adalah **2 + 2 + 2 + 1 + 1 + 0 = 8**. Karena itulah penyebutnya **8**. Kita menulis $B_{\mathrm{ref}}$ untuk total bobot khusus jaringan acuan, dan $B$ untuk total bobot versi yang sedang dinilai.
+Pada versi awal, R1 menghitung semua kiriman gudang dan R4 menghitung kiriman ke Pelanggan 2. Karena itu, kiriman A dan kiriman B ke Pelanggan 2 muncul di kedua baris.
 
 ```math
-\mathrm{WCC}_{\mathrm{ref}} = \frac{B}{B_{\mathrm{ref}}} \times 100\%
+\begin{aligned}
+\text{R1}\quad & x_{1,1,A}+x_{1,1,B}+x_{1,2,A}+x_{1,2,B} \le 20 \\
+\text{R4}\quad & x_{1,2,A}+x_{1,2,B} \ge 6
+\end{aligned}
 ```
 
-Di sini ada dua angka dengan peran berbeda. **6** adalah banyaknya pasangan baris yang diperiksa. **8** adalah jumlah bobot keenam pasangan pada jaringan acuan. Karena persentase yang kita cari membandingkan *total bobot dengan total bobot*, nilai pembaginya adalah 8.
+Pada versi rute terbatas, Pelanggan 2 hanya menerima A. Aturan ini menghapus keputusan pengiriman $x_{1,2,B}$ dari model. Suku itu hilang dari R1 dan R4.
 
-Untuk jaringan acuan sendiri, pembilang dan penyebut sama-sama 8. Maka $8\div8=1$, lalu $1\times100\%=100\%$. Artinya jaringan itu mencapai seluruh **bobot jaringan acuan**. R3–R4 tetap berbobot 0.
+```math
+\begin{aligned}
+\text{R1}\quad & x_{1,1,A}+x_{1,1,B}+x_{1,2,A} \le 20 \\
+\text{R4}\quad & x_{1,2,A} \ge 6
+\end{aligned}
+```
 
-### 5.2 Uji satu perubahan dan hitung ulang keenam pasangan
+Sekarang yang muncul di kedua baris tinggal $x_{1,2,A}$. Jadi garis R1–R4 masih ada, dengan label **1**. Jika rute B tetap tersedia dan solver kebetulan memilih kiriman nol, $x_{1,2,B}$ tetap muncul di kedua kendala dan bobotnya tetap **2**. Bobot mengikuti variabel yang muncul pada formulasi, terlepas dari nilai yang dipilih solver.
 
-Sekarang anggap Pelanggan 2 hanya menerima A. Kombinasi $x_{1,2,B}$ dihapus dari jaringan, beserta sukunya pada R1 dan R4. R1 menjumlahkan tiga pengiriman, dan R4 menjadi $x_{1,2,A}\ge6$. R2 dan R3 memakai daftar variabel yang sama seperti sebelumnya.
-
-| Pasangan | Bobot acuan | Variabel bersama setelah perubahan | Bobot setelah perubahan |
+| Pasangan | Bobot versi awal | Variabel bersama pada versi rute terbatas | Bobot pada versi rute terbatas |
 | --- | ---: | --- | ---: |
 | R1–R2 | 2 | $x_{1,1,A}$ dan $x_{1,2,A}$ | 2 |
 | R1–R3 | 2 | $x_{1,1,A}$ dan $x_{1,1,B}$ | 2 |
@@ -188,23 +192,54 @@ Sekarang anggap Pelanggan 2 hanya menerima A. Kombinasi $x_{1,2,B}$ dihapus dari
 | R3–R4 | 0 | Tidak ada | 0 |
 | **Total** | **8** | | **7** |
 
-Jumlahkan kolom terakhir dan gunakan acuan yang sama. Angka 7 berasal dari jaringan setelah perubahan, dan angka 8 dari jaringan acuan.
+### 5.2 Bobot dikali jumlah garis
+
+Di versi rute terbatas, ada **2 garis berbobot 2** dan **3 garis berbobot 1**. Mengalikan bobot dengan jumlah garis pada setiap kelompok memberi hasil yang sama dengan menjumlahkan label satu per satu.
 
 ```math
-B = 2 + 2 + 1 + 1 + 1 + 0 = 7
+B = (2 \times 2) + (1 \times 3) = 7
 ```
+
+Jika pembaginya adalah **5 garis yang ada**, hasilnya $7/5=1{,}4$ variabel bersama per garis. Ukuran itu menjawab seberapa kuat hubungan yang terbentuk. Jika pertanyaannya mencakup semua pasangan baris, R3–R4 juga ikut dihitung dengan bobot nol. Pembaginya menjadi **6 pasangan yang mungkin**, sehingga rata-ratanya $7/6\approx1{,}17$ variabel bersama per pasangan.
+
+### 5.3 Persentase untuk membandingkan tingkat WCC
+
+Untuk pelaporan Low–Medium–High, gunakan semua pasangan yang mungkin dan tetapkan batas bobot per pasangan yang sama untuk seluruh versi. Sebut batas itu $K_{\mathrm{ref}}$. Pada contoh empat baris ini, bobot terbesar pada versi awal adalah **2**. Versi yang hanya menghapus rute dari formulasi awal memiliki jumlah variabel bersama yang sama atau lebih kecil pada setiap pasangan. Jadi angka 2 juga merupakan batas untuk semua versi tersebut.
 
 ```math
-\mathrm{WCC}_{\mathrm{ref}} = \frac{7}{8} \times 100\% = 87{,}5\%
+\mathrm{WCC} =
+\frac{\text{total bobot semua pasangan}}
+{\text{jumlah pasangan yang mungkin} \times K_{\mathrm{ref}}}
+\times 100\%
 ```
 
-Secara aritmetika, $7\div8=0{,}875$. Kalikan dengan 100% untuk memperoleh **87,5%**. Kelima garis masih ada karena R1–R4 tetap berbagi $x_{1,2,A}$. Label garis itulah yang berubah dari 2 menjadi 1. WCC menangkap bobot yang hilang ketika Pelanggan 2 hanya menerima produk A.
+Enam pasangan dikali batas 2 memberi penyebut **12**. Angka 12 adalah batas seragam untuk skala ini. Struktur kendala dapat membuat sebagian pasangan selalu berada di bawah batas tersebut.
+
+| Versi contoh | Total bobot | Pasangan yang mungkin | Batas per pasangan | WCC |
+| --- | ---: | ---: | ---: | ---: |
+| Awal | 8 | 6 | 2 | $8/12 \times 100\% = 66{,}67\%$ |
+| Rute terbatas | 7 | 6 | 2 | $7/12 \times 100\% = 58{,}33\%$ |
+
+Versi rute terbatas memiliki WCC lebih rendah pada skala yang sama. Untuk menetapkan kategori Low pada model penelitian, terapkan rumus pada semua baris model tersebut dan bandingkan hasilnya dengan ambang yang ditetapkan.
+
+Jika tujuan perhitungannya hanya mengetahui **berapa bagian bobot versi awal yang masih ada**, penyebutnya adalah total bobot versi awal, yaitu **8**. Untuk pertanyaan itu, hasilnya $7/8=87{,}5\%$. Ketiga pembagi menjawab tiga pertanyaan berbeda.
+
+| Pembagi pada versi rute terbatas | Pertanyaan | Hasil |
+| --- | --- | ---: |
+| 5 garis dengan bobot positif | Berapa rata-rata jumlah variabel bersama pada garis yang ada? | 1,4 |
+| $6 \times 2 = 12$ | Berapa persen total bobot terhadap batas seragam seluruh pasangan? | 58,33% |
+| 8 poin bobot pada versi awal | Berapa persen total bobot versi awal yang masih ada? | 87,5% |
 
 ## 6. Terapkan pada model lain
 
 1. Tetapkan baris kendala fungsional yang dihitung pada formulasi sebelum *presolve*. Fungsi tujuan dan deklarasi domain berada di luar graf ini.
 2. Jabarkan rumus berindeks menjadi baris terpisah. Catat nama dan **seluruh indeks** variabel pada setiap baris. Untuk baris linear, gabungkan suku sejenis terlebih dahulu. Catat satu kali setiap variabel dengan koefisien akhir bukan nol.
 3. Periksa setiap pasangan baris sekali. Beri satu poin untuk setiap variabel berindeks lengkap yang muncul di kedua baris. Jumlahkan seluruh bobot pasangan untuk memperoleh $B$.
-4. Jika hasil dilaporkan dalam persen, tetapkan satu jaringan acuan dengan $B_{\mathrm{ref}}>0$. Gunakan aturan penghitungan yang sama untuk memperoleh bobotnya dan pakai **penyebut yang sama** pada seluruh versi pembanding.
+4. Untuk melaporkan WCC dalam persen, bagi $B$ dengan jumlah pasangan yang mungkin dikali $K_{\mathrm{ref}}$, lalu kalikan dengan 100%. Untuk perbandingan versi dengan baris yang sama, tetapkan satu batas $K_{\mathrm{ref}}$ positif yang berlaku pada seluruh versi.
 
 Kesamaan WCC dengan penyebut yang sama menunjukkan kesamaan **total bobot**. Jika yang ingin dipastikan juga mencakup kesamaan garis serta variabel yang menghubungkannya, periksa daftar variabel bersama **pada setiap pasangan baris**.
+
+## Referensi
+
+- Gasse et al. (2019) merepresentasikan MILP sebagai graf bipartit variabel dan kendala. Pada tutorial ini, hubungan awal menunjukkan apakah suatu variabel muncul pada suatu baris kendala. [NeurIPS 2019](https://papers.neurips.cc/paper_files/paper/2019/hash/d14c2267d848abeb81fd590f371d39bd-Abstract.html)
+- Cann, Weaver, dan Williams (2020), Persamaan (2), menjelaskan proyeksi dengan bobot berupa jumlah tetangga bersama. Di sini tetangga bersama sepasang baris adalah variabel keputusan yang muncul di keduanya. Normalisasi WCC dengan batas seragam $K_{\mathrm{ref}}$ adalah definisi operasional yang digunakan untuk perbandingan tingkat pada tutorial ini. [Network Science](https://doi.org/10.1017/nws.2020.11)
