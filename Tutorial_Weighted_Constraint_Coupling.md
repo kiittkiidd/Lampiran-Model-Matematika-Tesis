@@ -259,7 +259,51 @@ Dari graf, ada tiga garis berbobot 2 dan dua garis berbobot 1. Pasangan R3–R4 
 
 Hasil yang sama bisa dibaca dalam dua langkah. Rata-rata aktualnya $8/6$, sekitar **1,33 variabel bersama per pasangan**. Dibandingkan dengan batas **2 variabel per pasangan**, rata-rata itu mencapai **66,67%**. Pada skala ini, 100% berarti setiap pasangan mencapai batas seragamnya.
 
-## 6. Terapkan pada model lain
+## 6. Contoh ketika NNZ berbeda pada setiap baris
+
+**NNZ** (*number of nonzeros*) adalah jumlah koefisien selain nol dalam satu baris kendala. Setelah suku sejenis digabungkan, NNZ menunjukkan berapa variabel yang muncul pada baris itu. Pada contoh ini, koefisien 2 untuk $x_1$ pada R2 tetap dihitung sebagai satu kemunculan variabel.
+
+```math
+\begin{aligned}
+\text{R1}\quad & x_1+x_2=2 \\
+\text{R2}\quad & 2x_1+x_2+x_3=4 \\
+\text{R3}\quad & x_1+x_4+x_5+x_6=4 \\
+\text{R4}\quad & x_3+x_4+x_5+x_6+x_7=5
+\end{aligned}
+```
+
+| Kendala | Variabel yang muncul | NNZ |
+| --- | --- | ---: |
+| R1 | $x_1,x_2$ | 2 |
+| R2 | $x_1,x_2,x_3$ | 3 |
+| R3 | $x_1,x_4,x_5,x_6$ | 4 |
+| R4 | $x_3,x_4,x_5,x_6,x_7$ | 5 |
+
+Empat baris menghasilkan **6 pasangan yang mungkin**. Pada setiap pasangan, baca dua hal:
+
+- **Bobot aktual** adalah jumlah variabel yang benar-benar muncul di kedua baris.
+- **Batas dari NNZ** adalah NNZ yang lebih kecil pada pasangan tersebut. Irisan kedua daftar paling besar sebesar ukuran daftar yang lebih pendek.
+
+| Pasangan | NNZ kedua baris | Variabel bersama | Bobot aktual | Batas dari NNZ |
+| --- | --- | --- | ---: | ---: |
+| R1–R2 | 2 dan 3 | $x_1,x_2$ | 2 | 2 |
+| R1–R3 | 2 dan 4 | $x_1$ | 1 | 2 |
+| R1–R4 | 2 dan 5 | Tidak ada | 0 | 2 |
+| R2–R3 | 3 dan 4 | $x_1$ | 1 | 3 |
+| R2–R4 | 3 dan 5 | $x_3$ | 1 | 3 |
+| R3–R4 | 4 dan 5 | $x_4,x_5,x_6$ | 3 | 4 |
+
+**Lihat R3–R4.** Daftar R3 berisi empat variabel, sehingga batas dari NNZ-nya adalah $\min(4,5)=4$. Ketika dicocokkan, hanya $x_4$, $x_5$, dan $x_6$ yang muncul juga di R4. Jadi bobot aktualnya **3**. R1–R4 juga tetap dihitung sebagai satu pasangan dalam penyebut, dengan bobot aktual **0**.
+
+Jumlahkan bobot aktual untuk mendapat $B=2+1+0+1+1+3=8$. Lalu ambil **nilai terbesar** dari kolom batas, yaitu $K=4$. Nilai ini menjadi satu batas seragam untuk enam pasangan. Dengan definisi WCC di tutorial ini, penyebutnya adalah $6\times4=24$.
+
+```math
+\mathrm{WCC} = \frac{B}{N\times K}\times 100\%
+= \frac{8}{6\times4}\times100\%
+\approx 33{,}33\%
+```
+
+## 7. Terapkan pada model lain
 
 1. Tetapkan baris kendala fungsional yang dihitung pada formulasi sebelum *presolve*. Fungsi tujuan dan deklarasi domain berada di luar graf ini.
 2. Jabarkan rumus berindeks menjadi baris terpisah. Catat nama dan **seluruh indeks** variabel pada setiap baris. Untuk baris linear, gabungkan suku sejenis terlebih dahulu. Catat satu kali setiap variabel dengan koefisien akhir bukan nol.
