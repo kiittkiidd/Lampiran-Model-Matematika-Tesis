@@ -1,6 +1,6 @@
-# Kasus P1 — Pemilihan gudang dan pengiriman dengan permintaan pasti
+# Kasus dasar · Pemilihan gudang dan pengiriman
 
-Perusahaan menyalurkan minuman kemasan (A), pangan kering (B), dan produk dingin (C) dari enam pabrik melalui empat calon gudang ke enam pelanggan selama satu periode. Pilih gudang yang dibuka serta jumlah kiriman di setiap tahap untuk meminimalkan biaya total. Jalankan Low, Medium, dan High sebagai tiga instans terpisah.
+Perusahaan menyalurkan minuman kemasan (A), pangan kering (B), dan produk dingin (C) dari enam pabrik melalui empat calon gudang ke enam pelanggan selama satu periode. Perusahaan memilih gudang yang dibuka dan jumlah kiriman pada setiap rute. Low, Medium, dan High memakai fasilitas dan data dasar yang sama. Perbedaan tingkat berasal dari rute yang tersedia. [Pengaturan delapan profil](Profil_P1_P8.md)
 
 ## Aturan operasi
 
@@ -30,21 +30,21 @@ Low menggunakan jaringan distribusi dasar. Pada Medium, perusahaan membuka pilih
 
 Setiap panah menunjukkan satu jalur aktif untuk produk di panelnya. Kode fasilitas yang sama di beberapa panel merujuk pada lokasi fisik yang sama.
 
-[Low](../diagram/Jaringan_Low.svg) · [Medium](../diagram/Jaringan_Medium.svg) · [High](../diagram/Jaringan_High.svg)
+[Low](diagram/Jaringan_Low.svg) · [Medium](diagram/Jaringan_Medium.svg) · [High](diagram/Jaringan_High.svg)
 
-![Jaringan Low dari pabrik ke calon gudang dan pelanggan, dengan panel untuk produk A, B, dan C](../diagram/Jaringan_Low.svg)
+![Jaringan Low dari pabrik ke calon gudang dan pelanggan, dengan panel untuk produk A, B, dan C](diagram/Jaringan_Low.svg)
 
 <details>
 <summary>Lihat diagram Medium</summary>
 
-![Jaringan Medium dari pabrik ke calon gudang dan pelanggan, dengan panel untuk produk A, B, dan C](../diagram/Jaringan_Medium.svg)
+![Jaringan Medium dari pabrik ke calon gudang dan pelanggan, dengan panel untuk produk A, B, dan C](diagram/Jaringan_Medium.svg)
 
 </details>
 
 <details>
 <summary>Lihat diagram High</summary>
 
-![Jaringan High dari pabrik ke calon gudang dan pelanggan, dengan panel untuk produk A, B, dan C](../diagram/Jaringan_High.svg)
+![Jaringan High dari pabrik ke calon gudang dan pelanggan, dengan panel untuk produk A, B, dan C](diagram/Jaringan_High.svg)
 
 </details>
 
@@ -123,4 +123,4 @@ Tarif angkut berlaku untuk seluruh produk pada satu pasangan lokasi. Pemakaian t
 | G3 | 2 | 1 | 2 |
 | G4 | 1 | 1 | 3 |
 
-Salinan data dalam format terstruktur tersedia di [Data bersama P1–P3](../Data_Bersama.json).
+Salinan data dalam format terstruktur tersedia di [Data bersama P1–P8](Data_Bersama.json).

@@ -1,0 +1,36 @@
+{
+  "gap_oa": 0.00025,
+  "toleransi_kelayakan": 2e-07,
+  "toleransi_seri": 0.0006,
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "sistem": "Linux",
+  "arsitektur": "x86_64",
+  "wcc": {
+    "L": {
+      "baris": 130,
+      "variabel": 145,
+      "pasangan_positif": 555,
+      "bobot": 1158,
+      "acuan": 2370,
+      "wcc": 48.860759493670884
+    },
+    "M": {
+      "baris": 130,
+      "variabel": 190,
+      "pasangan_positif": 657,
+      "bobot": 1482,
+      "acuan": 2370,
+      "wcc": 62.53164556962025
+    },
+    "H": {
+      "baris": 130,
+      "variabel": 268,
+      "pasangan_positif": 843,
+      "bobot": 2010,
+      "acuan": 2370,
+      "wcc": 84.81012658227849
+    }
+  }
+}
