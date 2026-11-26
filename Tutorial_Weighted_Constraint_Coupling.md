@@ -199,39 +199,39 @@ Pasangan G1–C berada di luar acuan karena ketiga jaringan menempatkan C di gud
 | R4 | Kapasitas P4 | $x_{4,1,B}+x_{4,2,B}+x_{4,2,C}+x_{4,3,B}+x_{4,3,C}+x_{4,4,B}+x_{4,4,C}\le 8$ | 7 |
 | R5 | Kapasitas P5 | $x_{5,1,A}+x_{5,2,A}+x_{5,3,A}+x_{5,4,A}\le 8$ | 4 |
 | R6 | Kapasitas P6 | $x_{6,2,C}+x_{6,3,C}+x_{6,4,C}\le 8$ | 3 |
-| R7 | Neraca G1–A | $x_{1,1,A}+x_{3,1,A}+x_{5,1,A}=z_{1,1,A}+z_{1,2,A}+z_{1,3,A}+z_{1,4,A}+z_{1,5,A}+z_{1,6,A}$ | 9 |
-| R8 | Neraca G1–B | $x_{1,1,B}+x_{2,1,B}+x_{3,1,B}+x_{4,1,B}=z_{1,1,B}+z_{1,2,B}+z_{1,3,B}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}$ | 10 |
-| R9 | Neraca G2–A | $x_{1,2,A}+x_{3,2,A}+x_{5,2,A}=z_{2,1,A}+z_{2,2,A}+z_{2,3,A}+z_{2,4,A}+z_{2,5,A}+z_{2,6,A}$ | 9 |
-| R10 | Neraca G2–B | $x_{1,2,B}+x_{2,2,B}+x_{3,2,B}+x_{4,2,B}=z_{2,1,B}+z_{2,2,B}+z_{2,3,B}+z_{2,4,B}+z_{2,5,B}+z_{2,6,B}$ | 10 |
-| R11 | Neraca G2–C | $x_{4,2,C}+x_{6,2,C}=z_{2,1,C}+z_{2,2,C}+z_{2,3,C}+z_{2,4,C}+z_{2,5,C}+z_{2,6,C}$ | 8 |
-| R12 | Neraca G3–A | $x_{1,3,A}+x_{3,3,A}+x_{5,3,A}=z_{3,1,A}+z_{3,2,A}+z_{3,3,A}+z_{3,4,A}+z_{3,5,A}+z_{3,6,A}$ | 9 |
-| R13 | Neraca G3–B | $x_{1,3,B}+x_{2,3,B}+x_{3,3,B}+x_{4,3,B}=z_{3,1,B}+z_{3,2,B}+z_{3,3,B}+z_{3,4,B}+z_{3,5,B}+z_{3,6,B}$ | 10 |
-| R14 | Neraca G3–C | $x_{4,3,C}+x_{6,3,C}=z_{3,1,C}+z_{3,2,C}+z_{3,3,C}+z_{3,4,C}+z_{3,5,C}+z_{3,6,C}$ | 8 |
-| R15 | Neraca G4–A | $x_{1,4,A}+x_{3,4,A}+x_{5,4,A}=z_{4,1,A}+z_{4,2,A}+z_{4,3,A}+z_{4,4,A}+z_{4,5,A}+z_{4,6,A}$ | 9 |
-| R16 | Neraca G4–B | $x_{1,4,B}+x_{2,4,B}+x_{3,4,B}+x_{4,4,B}=z_{4,1,B}+z_{4,2,B}+z_{4,3,B}+z_{4,4,B}+z_{4,5,B}+z_{4,6,B}$ | 10 |
-| R17 | Neraca G4–C | $x_{4,4,C}+x_{6,4,C}=z_{4,1,C}+z_{4,2,C}+z_{4,3,C}+z_{4,4,C}+z_{4,5,C}+z_{4,6,C}$ | 8 |
-| R18 | Permintaan K1–A | $z_{1,1,A}+z_{2,1,A}+z_{3,1,A}+z_{4,1,A}=d^{H}_{1,A}$ | 4 |
+| R7 | Neraca G1–A | $x_{1,1,A}+x_{3,1,A}+x_{5,1,A}=z_{1,1,A}+z_{1,2,A}+z_{1,3,A}+z_{1,5,A}+z_{1,6,A}$ | 8 |
+| R8 | Neraca G1–B | $x_{1,1,B}+x_{2,1,B}+x_{3,1,B}+x_{4,1,B}=z_{1,1,B}+z_{1,2,B}+z_{1,3,B}+z_{1,4,B}+z_{1,5,B}$ | 9 |
+| R9 | Neraca G2–A | $x_{1,2,A}+x_{3,2,A}+x_{5,2,A}=z_{2,1,A}+z_{2,2,A}+z_{2,3,A}+z_{2,5,A}+z_{2,6,A}$ | 8 |
+| R10 | Neraca G2–B | $x_{1,2,B}+x_{2,2,B}+x_{3,2,B}+x_{4,2,B}=z_{2,1,B}+z_{2,2,B}+z_{2,3,B}+z_{2,4,B}+z_{2,5,B}$ | 9 |
+| R11 | Neraca G2–C | $x_{4,2,C}+x_{6,2,C}=z_{2,1,C}+z_{2,3,C}+z_{2,4,C}+z_{2,5,C}+z_{2,6,C}$ | 7 |
+| R12 | Neraca G3–A | $x_{1,3,A}+x_{3,3,A}+x_{5,3,A}=z_{3,2,A}+z_{3,4,A}+z_{3,6,A}$ | 6 |
+| R13 | Neraca G3–B | $x_{1,3,B}+x_{2,3,B}+x_{3,3,B}+x_{4,3,B}=z_{3,1,B}+z_{3,2,B}+z_{3,3,B}+z_{3,4,B}+z_{3,6,B}$ | 9 |
+| R14 | Neraca G3–C | $x_{4,3,C}+x_{6,3,C}=z_{3,2,C}+z_{3,3,C}+z_{3,4,C}+z_{3,5,C}+z_{3,6,C}$ | 7 |
+| R15 | Neraca G4–A | $x_{1,4,A}+x_{3,4,A}+x_{5,4,A}=z_{4,1,A}+z_{4,2,A}+z_{4,4,A}+z_{4,5,A}+z_{4,6,A}$ | 8 |
+| R16 | Neraca G4–B | $x_{1,4,B}+x_{2,4,B}+x_{3,4,B}+x_{4,4,B}=z_{4,1,B}+z_{4,2,B}+z_{4,3,B}+z_{4,4,B}+z_{4,6,B}$ | 9 |
+| R17 | Neraca G4–C | $x_{4,4,C}+x_{6,4,C}=z_{4,2,C}+z_{4,4,C}+z_{4,6,C}$ | 5 |
+| R18 | Permintaan K1–A | $z_{1,1,A}+z_{2,1,A}+z_{4,1,A}=d^{H}_{1,A}$ | 3 |
 | R19 | Permintaan K1–B | $z_{1,1,B}+z_{2,1,B}+z_{3,1,B}+z_{4,1,B}=d^{H}_{1,B}$ | 4 |
-| R20 | Permintaan K1–C | $z_{2,1,C}+z_{3,1,C}+z_{4,1,C}=d^{H}_{1,C}$ | 3 |
+| R20 | Permintaan K1–C | $z_{2,1,C}=d^{H}_{1,C}$ | 1 |
 | R21 | Permintaan K2–A | $z_{1,2,A}+z_{2,2,A}+z_{3,2,A}+z_{4,2,A}=d^{H}_{2,A}$ | 4 |
 | R22 | Permintaan K2–B | $z_{1,2,B}+z_{2,2,B}+z_{3,2,B}+z_{4,2,B}=d^{H}_{2,B}$ | 4 |
-| R23 | Permintaan K2–C | $z_{2,2,C}+z_{3,2,C}+z_{4,2,C}=d^{H}_{2,C}$ | 3 |
-| R24 | Permintaan K3–A | $z_{1,3,A}+z_{2,3,A}+z_{3,3,A}+z_{4,3,A}=d^{H}_{3,A}$ | 4 |
+| R23 | Permintaan K2–C | $z_{3,2,C}+z_{4,2,C}=d^{H}_{2,C}$ | 2 |
+| R24 | Permintaan K3–A | $z_{1,3,A}+z_{2,3,A}=d^{H}_{3,A}$ | 2 |
 | R25 | Permintaan K3–B | $z_{1,3,B}+z_{2,3,B}+z_{3,3,B}+z_{4,3,B}=d^{H}_{3,B}$ | 4 |
-| R26 | Permintaan K3–C | $z_{2,3,C}+z_{3,3,C}+z_{4,3,C}=d^{H}_{3,C}$ | 3 |
-| R27 | Permintaan K4–A | $z_{1,4,A}+z_{2,4,A}+z_{3,4,A}+z_{4,4,A}=d^{H}_{4,A}$ | 4 |
+| R26 | Permintaan K3–C | $z_{2,3,C}+z_{3,3,C}=d^{H}_{3,C}$ | 2 |
+| R27 | Permintaan K4–A | $z_{3,4,A}+z_{4,4,A}=d^{H}_{4,A}$ | 2 |
 | R28 | Permintaan K4–B | $z_{1,4,B}+z_{2,4,B}+z_{3,4,B}+z_{4,4,B}=d^{H}_{4,B}$ | 4 |
 | R29 | Permintaan K4–C | $z_{2,4,C}+z_{3,4,C}+z_{4,4,C}=d^{H}_{4,C}$ | 3 |
-| R30 | Permintaan K5–A | $z_{1,5,A}+z_{2,5,A}+z_{3,5,A}+z_{4,5,A}=d^{H}_{5,A}$ | 4 |
-| R31 | Permintaan K5–B | $z_{1,5,B}+z_{2,5,B}+z_{3,5,B}+z_{4,5,B}=d^{H}_{5,B}$ | 4 |
-| R32 | Permintaan K5–C | $z_{2,5,C}+z_{3,5,C}+z_{4,5,C}=d^{H}_{5,C}$ | 3 |
+| R30 | Permintaan K5–A | $z_{1,5,A}+z_{2,5,A}+z_{4,5,A}=d^{H}_{5,A}$ | 3 |
+| R31 | Permintaan K5–B | $z_{1,5,B}+z_{2,5,B}=d^{H}_{5,B}$ | 2 |
+| R32 | Permintaan K5–C | $z_{2,5,C}+z_{3,5,C}=d^{H}_{5,C}$ | 2 |
 | R33 | Permintaan K6–A | $z_{1,6,A}+z_{2,6,A}+z_{3,6,A}+z_{4,6,A}=d^{H}_{6,A}$ | 4 |
-| R34 | Permintaan K6–B | $z_{1,6,B}+z_{2,6,B}+z_{3,6,B}+z_{4,6,B}=d^{H}_{6,B}$ | 4 |
+| R34 | Permintaan K6–B | $z_{3,6,B}+z_{4,6,B}=d^{H}_{6,B}$ | 2 |
 | R35 | Permintaan K6–C | $z_{2,6,C}+z_{3,6,C}+z_{4,6,C}=d^{H}_{6,C}$ | 3 |
-| R36 | Kapasitas G1 | $z_{1,1,A}+z_{1,1,B}+z_{1,2,A}+z_{1,2,B}+z_{1,3,A}+z_{1,3,B}+z_{1,4,A}+z_{1,4,B}+z_{1,5,A}+z_{1,5,B}+z_{1,6,A}+z_{1,6,B}\le 16y_{1}$ | 13 |
-| R37 | Kapasitas G2 | $z_{2,1,A}+z_{2,1,B}+z_{2,1,C}+z_{2,2,A}+z_{2,2,B}+z_{2,2,C}+z_{2,3,A}+z_{2,3,B}+z_{2,3,C}+z_{2,4,A}+z_{2,4,B}+z_{2,4,C}+z_{2,5,A}+z_{2,5,B}+z_{2,5,C}+z_{2,6,A}+z_{2,6,B}+z_{2,6,C}\le 20y_{2}$ | 19 |
-| R38 | Kapasitas G3 | $z_{3,1,A}+z_{3,1,B}+z_{3,1,C}+z_{3,2,A}+z_{3,2,B}+z_{3,2,C}+z_{3,3,A}+z_{3,3,B}+z_{3,3,C}+z_{3,4,A}+z_{3,4,B}+z_{3,4,C}+z_{3,5,A}+z_{3,5,B}+z_{3,5,C}+z_{3,6,A}+z_{3,6,B}+z_{3,6,C}\le 18y_{3}$ | 19 |
-| R39 | Kapasitas G4 | $z_{4,1,A}+z_{4,1,B}+z_{4,1,C}+z_{4,2,A}+z_{4,2,B}+z_{4,2,C}+z_{4,3,A}+z_{4,3,B}+z_{4,3,C}+z_{4,4,A}+z_{4,4,B}+z_{4,4,C}+z_{4,5,A}+z_{4,5,B}+z_{4,5,C}+z_{4,6,A}+z_{4,6,B}+z_{4,6,C}\le 14y_{4}$ | 19 |
+| R36 | Kapasitas G1 | $z_{1,1,A}+z_{1,1,B}+z_{1,2,A}+z_{1,2,B}+z_{1,3,A}+z_{1,3,B}+z_{1,4,B}+z_{1,5,A}+z_{1,5,B}+z_{1,6,A}\le 16y_{1}$ | 11 |
+| R37 | Kapasitas G2 | $z_{2,1,A}+z_{2,1,B}+z_{2,1,C}+z_{2,2,A}+z_{2,2,B}+z_{2,3,A}+z_{2,3,B}+z_{2,3,C}+z_{2,4,B}+z_{2,4,C}+z_{2,5,A}+z_{2,5,B}+z_{2,5,C}+z_{2,6,A}+z_{2,6,C}\le 20y_{2}$ | 16 |
+| R38 | Kapasitas G3 | $z_{3,1,B}+z_{3,2,A}+z_{3,2,B}+z_{3,2,C}+z_{3,3,B}+z_{3,3,C}+z_{3,4,A}+z_{3,4,B}+z_{3,4,C}+z_{3,5,C}+z_{3,6,A}+z_{3,6,B}+z_{3,6,C}\le 18y_{3}$ | 14 |
+| R39 | Kapasitas G4 | $z_{4,1,A}+z_{4,1,B}+z_{4,2,A}+z_{4,2,B}+z_{4,2,C}+z_{4,3,B}+z_{4,4,A}+z_{4,4,B}+z_{4,4,C}+z_{4,5,A}+z_{4,6,A}+z_{4,6,B}+z_{4,6,C}\le 14y_{4}$ | 14 |
 
 </details>
 
@@ -239,7 +239,7 @@ Pasangan G1–C berada di luar acuan karena ketiga jaringan menempatkan C di gud
 
 Ambil **R1–R4** pada Low. R1 berisi tiga variabel kiriman A dari P1 ke G1, G2, dan G4. R4 berisi dua variabel kiriman C dari P4 ke G2 dan G3. Walaupun keduanya mengirim ke G2, tipe arus dan seluruh indeks harus cocok. Bobot aktualnya **0** dan batas acuannya juga **0**, karena variabel dengan indeks pabrik 1 dan 4 tetap berbeda di setiap tingkat.
 
-Sekarang ambil **R1–R7** pada Low. R7 adalah neraca A di G1. Dari persamaan R1 dan R7, satu variabel yang sama adalah $x_{1,1,A}$, yaitu kiriman A dari P1 ke G1. Bobotnya **1**. Untuk pasangan **R7–R36**, kedua baris berbagi $z_{1,1,A}$ dan $z_{1,2,A}$, sehingga bobotnya **2** pada Low. Pada High, G1 dapat memasok A ke enam pelanggan. Keenam arus keluar A itu muncul pada R7 dan R36, sehingga batas acuannya **6** dan bobot High juga **6**.
+Sekarang ambil **R1–R7** pada Low. R7 adalah neraca A di G1. Dari persamaan R1 dan R7, satu variabel yang sama adalah $x_{1,1,A}$, yaitu kiriman A dari P1 ke G1. Bobotnya **1**. Untuk pasangan **R7–R36**, kedua baris berbagi $z_{1,1,A}$ dan $z_{1,2,A}$, sehingga bobotnya **2** pada Low. Pada Medium, G1 dapat memasok A ke K1, K2, K5, dan K6, sehingga bobotnya **4**. Pada High, G1 juga dapat memasok A ke K3, yang berada di wilayah Barat seperti G1, sehingga bobotnya **5**. Acuan kompatibilitas penuh mengizinkan G1 memasok A ke keenam pelanggan dan memberi batas **6**.
 
 | Pasangan | Makna baris yang dibandingkan | Bobot L | Bobot M | Bobot H | Batas acuan |
 | --- | --- | ---: | ---: | ---: | ---: |
@@ -247,9 +247,9 @@ Sekarang ambil **R1–R7** pada Low. R7 adalah neraca A di G1. Dari persamaan R1
 | R1–R7 | Kapasitas P1 dan Neraca G1–A | 1 | 1 | 1 | 1 |
 | R4–R8 | Kapasitas P4 dan Neraca G1–B | 0 | 0 | 1 | 1 |
 | R7–R18 | Neraca G1–A dan Permintaan K1–A | 1 | 1 | 1 | 1 |
-| R7–R36 | Neraca G1–A dan Kapasitas G1 | 2 | 4 | 6 | 6 |
+| R7–R36 | Neraca G1–A dan Kapasitas G1 | 2 | 4 | 5 | 6 |
 | R18–R36 | Permintaan K1–A dan Kapasitas G1 | 1 | 1 | 1 | 1 |
-| R17–R39 | Neraca G4–C dan Kapasitas G4 | 0 | 0 | 6 | 6 |
+| R17–R39 | Neraca G4–C dan Kapasitas G4 | 0 | 0 | 3 | 6 |
 
 Subgraf berikut menampilkan keterkaitan Low pada empat baris aktual di sekitar G1. Setiap lingkaran adalah satu baris, dan angka pada garis adalah banyaknya variabel bersama.
 
@@ -263,7 +263,18 @@ flowchart LR
 
 ### 3.3 Hitung pembilang dan penyebut dari 741 pasangan
 
-Jumlah posisi baris 39 menghasilkan $39\times38/2=741$ pasangan. Tabel ini menjumlahkan seluruh bobot menurut keluarga, termasuk kelompok dengan batas nol. Setiap pasangan muncul pada satu kelompok saja. Baris individual dan daftar variabel yang membentuk bobotnya tersedia dalam [audit lengkap 741 pasangan](Audit_WCC_Profil_1_Pasangan.csv).
+Jumlah posisi baris 39 menghasilkan $39\times38/2=741$ pasangan. Kolom **Jumlah pasangan** menghitung berapa pasangan yang diperiksa. Misalnya, enam baris kapasitas pabrik bisa dipasangkan dengan 11 neraca gudang–produk sehingga kelompok itu berisi $6\times11=66$ pasangan. Kolom **Total batas acuan** menjumlahkan berapa variabel yang bisa dipakai bersama dalam 66 pasangan tersebut. Kolom bobot L, M, dan H menjumlahkan variabel bersama yang muncul pada persamaan masing-masing level.
+
+**Kenapa ada kelompok dengan banyak pasangan dan bobot nol?** Enam baris kapasitas pabrik membentuk $6\times5/2=15$ pasangan. Baris P1 hanya memuat $x_{1,g,p}$, sedangkan baris P4 hanya memuat $x_{4,g,p}$. Kedua baris mengatur keputusan produk yang berbeda karena indeks pabriknya berbeda. Hal yang sama berlaku untuk semua pasangan dua pabrik. Karena desain acuan juga memakai indeks pabrik yang berbeda, masing-masing dari 15 pasangan menyumbang **0** pada total penyebut.
+
+Pasangan kapasitas pabrik dengan permintaan atau kapasitas gudang juga berbatas nol karena jenis variabelnya terpisah. Kapasitas pabrik memakai arus masuk $x$, permintaan memakai arus keluar $z$, dan kapasitas gudang memakai $z$ dan keputusan buka $y$. Dua neraca gudang–produk memiliki indeks gudang atau produk yang berbeda. Dua baris permintaan memiliki indeks pelanggan atau produk yang berbeda. Dua baris kapasitas gudang memiliki indeks gudang yang berbeda. Pada ketiga keluarga itu, dua baris dalam keluarga yang sama selalu memiliki daftar variabel yang terpisah.
+
+| Keadaan pasangan | Contoh | Kontribusi ke pembilang Low | Kontribusi ke penyebut |
+| --- | --- | ---: | ---: |
+| Daftar variabel acuan kedua baris terpisah | R1–R4, kapasitas P1 dan P4 | 0 | 0 |
+| Variabel bersama tersedia di acuan dan belum dipakai pada Low | R4–R8, kapasitas P4 dan neraca B di G1. Keduanya dapat berbagi $x_{4,1,B}$ pada acuan. | 0 | 1 |
+
+Kedua pasangan itu ikut diperiksa. Penyebut WCC menjumlahkan batas yang dimungkinkan oleh acuan, sehingga pasangan dengan batas nol menambah 0 dan pasangan dengan batas positif tetap menambah penyebut walaupun bobot aktualnya nol. Detail tiap pasangan dan daftar variabel yang membentuk bobotnya tersedia di [audit lengkap 741 pasangan](Audit_WCC_Profil_1_Pasangan.csv).
 
 | Kelompok pasangan | Jumlah pasangan | Bobot L | Bobot M | Bobot H | Total batas acuan |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -272,12 +283,12 @@ Jumlah posisi baris 39 menghasilkan $39\times38/2=741$ pasangan. Tabel ini menju
 | Kapasitas pabrik × Permintaan pelanggan–produk | 108 | 0 | 0 | 0 | 0 |
 | Kapasitas pabrik × Kapasitas gudang | 24 | 0 | 0 | 0 | 0 |
 | Neraca gudang–produk × Neraca gudang–produk | 55 | 0 | 0 | 0 | 0 |
-| Neraca gudang–produk × Permintaan pelanggan–produk | 198 | 16 | 36 | 66 | 66 |
-| Neraca gudang–produk × Kapasitas gudang | 44 | 16 | 36 | 66 | 66 |
+| Neraca gudang–produk × Permintaan pelanggan–produk | 198 | 16 | 36 | 51 | 66 |
+| Neraca gudang–produk × Kapasitas gudang | 44 | 16 | 36 | 51 | 66 |
 | Permintaan pelanggan–produk × Permintaan pelanggan–produk | 153 | 0 | 0 | 0 | 0 |
-| Permintaan pelanggan–produk × Kapasitas gudang | 72 | 16 | 36 | 66 | 66 |
+| Permintaan pelanggan–produk × Kapasitas gudang | 72 | 16 | 36 | 51 | 66 |
 | Kapasitas gudang × Kapasitas gudang | 6 | 0 | 0 | 0 | 0 |
-| **Total** | **741** | **64** | **130** | **232** | **232** |
+| **Total** | **741** | **64** | **130** | **187** | **232** |
 
 **Asal penyebut 232.** Pada cakupan rute acuan, ada 166 pasangan dengan batas 1 dan 11 pasangan dengan batas 6. Sebanyak 564 pasangan lain memiliki batas 0. Jadi $166\times1+11\times6=232$. Jumlah ini dapat diperiksa lewat kemunculan variabel:
 
@@ -291,9 +302,11 @@ Hasilnya **$34+198=232$**. Dengan pemeriksaan serupa, pada Low bobotnya $16+3\ti
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | L | 16 | 16 | 36 | 24 | 84 | 56 | 64 | 27,59% |
 | M | 22 | 36 | 62 | 31 | 156 | 103 | 130 | 56,03% |
-| H | 34 | 66 | 104 | 39 | 270 | 177 | 232 | 100,00% |
+| H | 34 | 51 | 89 | 39 | 225 | 147 | 187 | 80,60% |
 
-High memakai semua rute yang diizinkan dalam cakupan acuan, sehingga mencapai $232/232=100\%$ pada skala ini. Low ke Medium naik **28,45 poin persentase** dan Medium ke High naik **43,97 poin persentase**, dihitung sebelum pembulatan. Pada struktur ini, tambahan arus masuk menyumbang 1 bobot dan tambahan arus keluar menyumbang 3 bobot. Jumlah rute, variabel, dan baris dengan variabel aktif berbeda antartingkat. WCC mendeskripsikan perubahan struktur tersebut, sementara performa formulasi LLM dinilai melalui eksperimen tersendiri.
+High menggunakan seluruh 34 jalur masuk acuan. Jalur keluarnya mencakup 36 jalur Medium dan 15 jalur baru dalam wilayah yang sama. Dengan 51 jalur keluar, bobot aktualnya $34+3\times51=187$ dan WCC-nya **80,60%** pada skala acuan yang sama. Sebanyak 15 dari 66 jalur keluar acuan berada di luar High, masing-masing dengan potensi 3 poin bobot. Selisih terhadap total batas acuan adalah $15\times3=45$ poin.
+
+Low ke Medium naik **28,45 poin persentase** dan Medium ke High naik **24,57 poin persentase**, dihitung sebelum pembulatan. Jumlah rute, variabel, dan baris dengan variabel aktif berbeda antartingkat. WCC mendeskripsikan perubahan struktur tersebut, sementara performa formulasi LLM dinilai melalui eksperimen tersendiri.
 
 ## Referensi
 
