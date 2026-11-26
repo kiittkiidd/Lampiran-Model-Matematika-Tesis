@@ -1,6 +1,6 @@
 # Lampiran — Weighted Constraint Coupling (WCC)
 
-WCC menghitung berapa banyak variabel keputusan yang dipakai bersama oleh kendala. Pada Profil 1, seluruh tingkat dinilai pada **satu skala acuan**. Pembagi diperoleh dengan menjumlahkan batas bobot yang benar-benar diizinkan untuk setiap pasangan baris. [Model matematika Profil 1](math_model_acuan/P1/Model_Matematika.md)
+WCC menghitung berapa banyak variabel keputusan yang dipakai bersama oleh kendala. P1, P2, dan P3 memakai **WCC jaringan yang sama pada setiap tingkat**. Lihat [cara membaca WCC jaringan dan WCC formulasi lengkap](#4-perbandingan-p1-p2-dan-p3). Pembagi diperoleh dengan menjumlahkan batas bobot yang benar-benar diizinkan untuk setiap pasangan baris. [Model matematika Profil 1](math_model_acuan/P1/Model_Matematika.md)
 
 ## 1. Cara membaca bobot pasangan
 
@@ -275,13 +275,27 @@ Setiap rute masuk menyumbang satu dan setiap rute keluar menyumbang tiga. Pada L
 
 ## 4. Perbandingan P1, P2, dan P3
 
-| Cakupan | Low | Medium | High | Audit rinci |
-| --- | ---: | ---: | ---: | --- |
-| Jaringan P1 (R1–R39) | 46,98% | 61,21% | 84,48% | [Audit P1](math_model_acuan/P1/Audit_WCC.md) |
-| Formulasi P2 tiga skenario | 47,88% | 61,86% | 84,75% | [Audit P2](math_model_acuan/P2/Audit_WCC.md) |
-| Formulasi P3 dengan R40 | 47,41% | 61,75% | 85,66% | [Audit P3](math_model_acuan/P3/Audit_WCC.md) |
+### 4.1 WCC jaringan untuk perbandingan lintas profil
 
-Gunakan R1–R39 sebagai skala bersama untuk membandingkan jaringan. Pada P2 perbandingan memakai satu blok skenario. Pada P3 perbandingan memakai kendala operasi. Audit formulasi lengkap P2 menghitung hubungan lintas skenario. Audit P3 dengan batas emisi menghitung R40.
+Ukuran ini mengambil R1–R39 pada P1 dan P3, serta satu blok R1–R39 pada P2. Untuk setiap tingkat, daftar pasangan baris, variabel yang dipakai bersama, dan bobot pasangannya sama setelah nama skenario pada variabel arus P2 dipetakan ke notasi jaringan. Penyebutnya 232 untuk semua profil.
+
+| Tingkat | Bobot jaringan | P1 | P2 | P3 |
+| --- | ---: | ---: | ---: | ---: |
+| Low | 109 | 46,98% | 46,98% | 46,98% |
+| Medium | 142 | 61,21% | 61,21% | 61,21% |
+| High | 196 | 84,48% | 84,48% | 84,48% |
+
+### 4.2 WCC formulasi lengkap untuk masing-masing profil
+
+Pada P2, tiga skenario menambah blok kendala dan berbagi keputusan buka gudang. Pada P3, formulasi dengan batas emisi menambah R40. Kedua perluasan menambah bobot aktual dan bobot acuan. Penyebut pada tabel ini mengikuti cakupan formulasi masing-masing.
+
+| Profil dan cakupan | Penyebut | Low | Medium | High |
+| --- | ---: | ---: | ---: | ---: |
+| [P1 · R1–R39](math_model_acuan/P1/Audit_WCC.md) | 232 | 46,98% | 61,21% | 84,48% |
+| [P2 · tiga skenario](math_model_acuan/P2/Audit_WCC.md) | 708 | 47,88% | 61,86% | 84,75% |
+| [P3 · R1–R40 dengan batas emisi](math_model_acuan/P3/Audit_WCC.md) | 502 | 47,41% | 61,75% | 85,66% |
+
+Sebagai contoh, Low memiliki bobot jaringan 109. Pada P2, tiga blok memberi bobot 327 dan keputusan gudang yang dipakai lintas skenario menambah 12, sehingga WCC formulasi lengkapnya 339/708. Pada P3, R40 menambah 129 dari irisan dengan kendala operasi, sehingga WCC formulasi lengkapnya 238/502.
 
 WCC mendeskripsikan irisan variabel pada formulasi. Besaran kapasitas, tarif, ketatnya batas emisi, dan keputusan gudang yang layak dapat berubah sementara identitas variabel pada setiap baris tetap sama. [Hasil benchmark dan uji kapasitas](math_model_acuan/Hasil_Benchmark.md)
 
