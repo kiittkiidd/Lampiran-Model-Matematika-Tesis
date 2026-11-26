@@ -1,22 +1,18 @@
-# Tutorial Weighted Constraint Coupling (WCC)
+# Lampiran — Weighted Constraint Coupling (WCC)
 
-Weighted Constraint Coupling (WCC) mengukur keterkaitan antarbaris kendala berdasarkan **jumlah variabel keputusan yang dipakai bersama**. Misalnya, aturan kapasitas gudang dan aturan minimum kiriman sama-sama membatasi pengiriman A dan B ke Pelanggan 1. Kedua keputusan itu menghubungkan sepasang kendala, sehingga garisnya berbobot **2**. Pasangan lain yang hanya berbagi pengiriman A mendapat bobot **1**. Bobot ini membuat perbedaan kedua pasangan terlihat pada graf.
+WCC menghitung berapa banyak variabel keputusan yang dipakai bersama oleh kendala. Pada Profil 1, seluruh tingkat dinilai pada **satu skala acuan**. Pembagi diperoleh dengan menjumlahkan batas bobot yang benar-benar diizinkan untuk setiap pasangan baris. [Model matematika Profil 1](Profil_1_Model_Matematika.md)
 
-Untuk menghitungnya, jabarkan dulu indeks pada setiap kendala. Satu rumus yang berlaku untuk dua pelanggan menghasilkan dua baris, dan setiap keputusan pengiriman dikenali lewat nama variabel beserta seluruh indeksnya.
+## 1. Cara membaca bobot pasangan
 
-## Contoh cepat dengan tiga kendala
-
-Hitung WCC langsung dari model berikut.
+Ambil tiga persamaan ini.
 
 ```math
 \begin{aligned}
-\text{R1}\quad & x_1+x_2=5 \\
-\text{R2}\quad & x_2+x_3=4 \\
-\text{R3}\quad & x_1+x_3=7
+\text{R1}\quad &x_1+x_2=5,\\
+\text{R2}\quad &x_2+x_3=4,\\
+\text{R3}\quad &x_1+x_3=7.
 \end{aligned}
 ```
-
-**1. Daftar semua pasangan baris.** R1 bisa berpasangan dengan R2 dan R3. Setelah itu, tersisa R2–R3. Jadi ada **3 pasangan yang mungkin**.
 
 | Pasangan | Variabel yang muncul di kedua baris | Bobot |
 | --- | --- | ---: |
@@ -24,297 +20,282 @@ Hitung WCC langsung dari model berikut.
 | R1–R3 | $x_1$ | 1 |
 | R2–R3 | $x_3$ | 1 |
 
-**2. Jumlahkan bobotnya.** Ketiga pasangan masing-masing berbobot 1. Jadi total bobotnya **$1+1+1=3$**.
+Bobot aktual totalnya $1+1+1=3$. Dengan tiga baris, ada tiga pasangan. Secara umum, $m$ baris menghasilkan $m(m-1)/2$ pasangan. Setiap baris bisa dipasangkan dengan $m-1$ baris lain, lalu hasilnya dibagi dua karena pasangan R1–R2 dan R2–R1 dihitung satu kali. Pasangan dengan irisan kosong tetap terdaftar dengan bobot nol.
 
-**3. Tentukan batas bobot per pasangan.** Setiap baris memuat dua variabel. Sepasang baris bisa berbagi paling banyak **2 variabel**, yaitu jika kedua baris memakai daftar variabel yang persis sama. Dalam tiga persamaan di atas, setiap pasangan berbagi satu variabel. Jadi **1 adalah bobot aktual** tiap pasangan dan **2 adalah batas skala** tiap pasangan.
+Untuk kendala linear, gabungkan dahulu semua suku dengan variabel berindeks sama. Ambil variabel dengan koefisien akhir selain nol. Suku $2x_1$ menyumbang satu kemunculan $x_1$, sama seperti suku $x_1$. Pada model berindeks, $z_{1,1,A}$ dan $z_{2,1,A}$ adalah dua keputusan berbeda karena gudangnya berbeda.
 
-**4. Bagi dengan jumlah pasangan dikali batas bobot.** Penyebutnya **$3 \times 2=6$**. Maka WCC-nya sebagai berikut.
+## 2. Cara menetapkan penyebut bersama
 
-```math
-\mathrm{WCC} = \frac{3}{3\times 2}\times 100\% = 50\%
-```
+### 2.1 Contoh empat kendala dengan NNZ berbeda
 
-Cara membacanya: rata-rata ada **$3/3=1$ variabel bersama per pasangan**. Satu variabel dari batas dua variabel berarti **50%**.
-
-## 1. Kasus pengiriman dan kendalanya
-
-Gudang 1 mengirim produk A dan B ke dua pelanggan. Kedua produk dihitung dalam satuan paket. Gudang dapat menangani paling banyak **20 paket**. Produk A memerlukan penanganan dingin, dengan kapasitas **12 paket A** yang termasuk dalam kapasitas total gudang. Pelanggan 1 harus menerima sedikitnya **7 paket**, dan pelanggan 2 sedikitnya **6 paket**. Dalam contoh ini, kedua pelanggan dapat menerima kombinasi A dan B.
-
-### Variabel keputusan
-
-Notasi $x_{g,j,p}$ berarti jumlah paket produk $p$ yang dikirim dari gudang $g$ ke pelanggan $j$. Urutan indeksnya adalah **gudang, pelanggan, produk**. Karena hanya ada satu gudang, indeks pertama selalu 1.
-
-| Variabel | Keputusan yang dicatat |
-| --- | --- |
-| $x_{1,1,A}$ | Paket A dari Gudang 1 ke Pelanggan 1 |
-| $x_{1,1,B}$ | Paket B dari Gudang 1 ke Pelanggan 1 |
-| $x_{1,2,A}$ | Paket A dari Gudang 1 ke Pelanggan 2 |
-| $x_{1,2,B}$ | Paket B dari Gudang 1 ke Pelanggan 2 |
-
-Sebagai contoh, $x_{1,1,A}=4$ dan $x_{1,2,A}=2$ berarti Gudang 1 mengirim empat paket A ke Pelanggan 1 dan dua paket A ke Pelanggan 2. Perbedaan pada indeks pelanggan membuat keduanya menjadi variabel yang berbeda, walaupun keduanya memakai huruf $x$ dan produk A yang sama.
-
-### Empat baris kendala
-
-**R1. Kapasitas total gudang**
-
-```math
-x_{1,1,A}+x_{1,1,B}+x_{1,2,A}+x_{1,2,B} \le 20
-```
-
-Keempat pengiriman memakai kapasitas gudang. Jika pengiriman pada urutan di atas adalah 4, 3, 2, dan 4 paket, kapasitas yang terpakai adalah $4+3+2+4=13$ paket.
-
-**R2. Kapasitas penanganan dingin untuk produk A**
-
-```math
-x_{1,1,A}+x_{1,2,A} \le 12
-```
-
-Kendala ini menjumlahkan pengiriman produk A ke kedua pelanggan. Pada pengiriman yang sama, kapasitas dingin yang terpakai adalah $4+2=6$ paket A.
-
-**R3 dan R4. Jumlah minimum paket untuk setiap pelanggan**
-
-Kedua baris berasal dari satu rumus. Indeks $j$ menunjukkan pelanggan, $p$ menunjukkan produk, dan $d_j$ adalah jumlah paket minimum untuk pelanggan $j$.
-
-```math
-\sum_{p\in\{A,B\}} x_{1,j,p} \ge d_j, \qquad j\in\{1,2\}
-```
-
-Masukkan $j=1$ dan $d_1=7$ untuk memperoleh **R3**.
-
-```math
-x_{1,1,A}+x_{1,1,B} \ge 7
-```
-
-Pelanggan 1 menerima $4+3=7$ paket pada contoh pengiriman tadi.
-
-Masukkan $j=2$ dan $d_2=6$ untuk memperoleh **R4**.
-
-```math
-x_{1,2,A}+x_{1,2,B} \ge 6
-```
-
-Pelanggan 2 menerima $2+4=6$ paket. Semua variabel pengiriman bernilai nonnegatif. Graf tutorial ini memakai empat baris kendala fungsional R1–R4. Nonnegativitas dicatat sebagai domain variabel.
-
-## 2. Hitung jumlah pasangan yang mungkin dan bobotnya
-
-### 2.1 Dari mana angka 6 berasal?
-
-Ambil satu baris dan pasangkan dengan baris yang berada setelahnya. Dengan cara ini, setiap pasangan dicatat sekali.
-
-| Mulai dari | Pasangkan dengan | Pasangan baru |
-| --- | --- | ---: |
-| R1 | R2, R3, R4 | 3 |
-| R2 | R3, R4 | 2 |
-| R3 | R4 | 1 |
-| R4 | Selesai | 0 |
-| **Total** | | **6** |
-
-Secara umum, dengan $m$ baris, setiap baris dapat dipasangkan dengan $m-1$ baris lain. Perkalian $m(m-1)$ menghitung setiap pasangan dua kali, misalnya R1–R2 dan R2–R1. Karena urutannya tidak memengaruhi bobot, bagi hasilnya dengan 2. Huruf $N$ menyatakan jumlah semua pasangan yang mungkin.
-
-```math
-N = \frac{m(m-1)}{2}
-= \frac{4(4-1)}{2}
-= 6
-```
-
-Angka ini mencakup pasangan yang akhirnya berbobot nol. Kita menentukan $N$ dari jumlah baris sebelum memeriksa garis pada graf.
-
-### 2.2 Hitung bobot keenam pasangan
-
-Pertama, tandai variabel yang muncul pada setiap baris. Tanda ✓ berarti variabel dengan **nama dan seluruh indeks tersebut** muncul pada baris itu.
-
-| Baris | $x_{1,1,A}$ | $x_{1,1,B}$ | $x_{1,2,A}$ | $x_{1,2,B}$ |
-| --- | :---: | :---: | :---: | :---: |
-| R1 · Kapasitas total | ✓ | ✓ | ✓ | ✓ |
-| R2 · Kapasitas dingin | ✓ | | ✓ | |
-| R3 · Minimum Pelanggan 1 | ✓ | ✓ | | |
-| R4 · Minimum Pelanggan 2 | | | ✓ | ✓ |
-
-Selanjutnya, ambil dua baris dan hitung kolom yang memiliki ✓ di **kedua** baris. Contohnya, R1 dan R2 sama-sama memiliki ✓ pada kolom $x_{1,1,A}$ dan $x_{1,2,A}$. Jadi bobot pasangan R1–R2 adalah $1+1=2$.
-
-| Pasangan | Variabel yang sama persis di kedua baris | Bobot garis |
-| --- | --- | ---: |
-| R1–R2 | $x_{1,1,A}$ dan $x_{1,2,A}$ | 2 |
-| R1–R3 | $x_{1,1,A}$ dan $x_{1,1,B}$ | 2 |
-| R1–R4 | $x_{1,2,A}$ dan $x_{1,2,B}$ | 2 |
-| R2–R3 | $x_{1,1,A}$ | 1 |
-| R2–R4 | $x_{1,2,A}$ | 1 |
-| R3–R4 | Tidak ada. Indeks pelanggan pada R3 adalah 1 dan pada R4 adalah 2. | 0 |
-
-Perhatikan R3–R4. Kedua baris menyebut produk A dan B. Namun, $x_{1,1,A}$ masuk ke R3, sedangkan $x_{1,2,A}$ masuk ke R4. Untuk produk B, perbedaan indeks pelanggannya juga sama. Karena tidak ada kolom yang ditandai pada kedua baris, bobotnya **0**.
-
-## 3. Gambar graf kendala
-
-Setiap lingkaran mewakili satu baris kendala. Garis muncul jika dua baris memakai sedikitnya satu variabel yang sama. Angka pada garis menunjukkan jumlah variabel yang digunakan bersama. R3 dan R4 tidak memiliki garis langsung.
-
-```mermaid
-flowchart TB
-    R1((R1)) ---|2| R3((R3))
-    R1 ---|2| R2((R2))
-    R1 ---|2| R4((R4))
-    R3 ---|1| R2
-    R4 ---|1| R2
-```
-
-## 4. Dari mana rumus bobot berasal?
-
-### 4.1 Hitung satu pasangan dulu
-
-Ambil **R1 dan R2**. Baca kedua baris dan beri **1** untuk setiap variabel yang muncul di keduanya, atau **0** jika variabel itu hanya muncul di salah satu baris.
-
-| Variabel | Ada di R1? | Ada di R2? | Sumbangan ke bobot R1–R2 |
-| --- | :---: | :---: | ---: |
-| $x_{1,1,A}$ | Ya | Ya | 1 |
-| $x_{1,1,B}$ | Ya | Tidak | 0 |
-| $x_{1,2,A}$ | Ya | Ya | 1 |
-| $x_{1,2,B}$ | Ya | Tidak | 0 |
-| **Total** | | | **2** |
-
-Inilah asal angka **2** pada garis R1–R2. Nilai pengirimannya, misalnya empat paket A ke Pelanggan 1, digunakan untuk memeriksa kapasitas pada model. Untuk menghitung bobot, kemunculan variabel pengiriman tersebut menyumbang **1** ke pasangan R1–R2.
-
-Dalam notasi matematika, $S_r$ adalah daftar variabel pada baris R yang bernomor $r$. Jadi $S_1$ berisi empat variabel pengiriman pada R1. $S_2$ berisi dua variabel pengiriman produk A pada R2. Simbol $\cap$ berarti mengambil anggota yang ada di kedua daftar.
-
-```math
-S_1 \cap S_2 = \{x_{1,1,A},\ x_{1,2,A}\}
-```
-
-Hasilnya berisi dua anggota. Jika $R_r$ dan $R_s$ adalah dua baris yang sedang dibandingkan, $w_{rs}$ adalah bobot garis penghubungnya. Tanda $\lvert\,\cdot\,\rvert$ pada rumus berikut berarti menghitung banyaknya anggota.
-
-```math
-w_{rs} = \lvert S_r \cap S_s \rvert
-```
-
-### 4.2 Jumlahkan bobot seluruh pasangan
-
-Huruf $B$ menyatakan total bobot keenam pasangan yang sudah didaftar pada bagian 2.1.
-
-```math
-B = w_{12}+w_{13}+w_{14}+w_{23}+w_{24}+w_{34}
-```
-
-Masukkan bobot dari tabel pasangan di bagian 2 sesuai urutan. R3–R4 ikut diperiksa dengan bobot 0.
-
-```math
-B = 2 + 2 + 2 + 1 + 1 + 0 = 8
-```
-
-Angka **8** berasal dari penjumlahan lima label pada graf. Dalam contoh ini, ada empat variabel pengiriman, dan satu variabel bisa menyumbang bobot ke lebih dari satu pasangan. Misalnya, $x_{1,1,A}$ muncul di R1, R2, dan R3. Variabel ini menyumbang satu ke R1–R2, satu ke R1–R3, dan satu ke R2–R3. Kita bisa memeriksa hasil 8 dengan menghitung dari sisi variabel.
-
-| Variabel | Baris tempat variabel muncul | Pasangan yang mendapat tambahan 1 | Sumbangan |
-| --- | --- | --- | ---: |
-| $x_{1,1,A}$ | R1, R2, R3 | R1–R2, R1–R3, R2–R3 | 3 |
-| $x_{1,1,B}$ | R1, R3 | R1–R3 | 1 |
-| $x_{1,2,A}$ | R1, R2, R4 | R1–R2, R1–R4, R2–R4 | 3 |
-| $x_{1,2,B}$ | R1, R4 | R1–R4 | 1 |
-| **Total** | | | **8** |
-
-Untuk model yang lebih besar, $P$ menyatakan daftar semua pasangan baris berbeda, dengan setiap pasangan dicatat sekali. Simbol $\sum$ menyingkat penjumlahan bobot pada daftar itu.
-
-```math
-B = \sum_{(r,s) \in P} w_{rs}
-```
-
-## 5. Hitung batas bobot dan WCC dari model pengiriman
-
-### 5.1 Bagaimana menghitung batas bobot per pasangan?
-
-Hitung banyaknya variabel pada tiap baris. Pada tabel kemunculan variabel di bagian 2.2, R1 memiliki **4** tanda centang, sedangkan R2, R3, dan R4 masing-masing memiliki **2**.
-
-Ambil R1–R2. R1 memiliki empat variabel dan R2 memiliki dua. Jumlah yang bisa muncul di keduanya dibatasi oleh R2, karena daftar R2 hanya punya dua tempat. Maka batas pasangan ini adalah $\min(4,2)=2$. Fungsi $\min$ mengambil angka yang lebih kecil. Terapkan aturan itu ke keenam pasangan.
-
-| Pasangan | Banyak variabel pada masing-masing baris | Batas dari banyaknya variabel | Bobot aktual dari irisan |
-| --- | --- | ---: | ---: |
-| R1–R2 | 4 dan 2 | 2 | 2 |
-| R1–R3 | 4 dan 2 | 2 | 2 |
-| R1–R4 | 4 dan 2 | 2 | 2 |
-| R2–R3 | 2 dan 2 | 2 | 1 |
-| R2–R4 | 2 dan 2 | 2 | 1 |
-| R3–R4 | 2 dan 2 | 2 | 0 |
-
-Kolom batas memakai **banyaknya variabel** pada tiap baris. Kolom aktual memakai **daftar variabel yang benar-benar sama**. Misalnya, batas R3–R4 adalah 2 karena tiap baris punya dua variabel. Bobot aktualnya 0 karena R3 memakai variabel untuk Pelanggan 1 dan R4 memakai variabel untuk Pelanggan 2.
-
-Untuk memakai satu skala yang sama pada seluruh pasangan, ambil nilai terbesar dari kolom batas. Sebut angka itu $K$. Dengan begitu, $K$ merupakan batas atas untuk bobot semua pasangan. Di model pengiriman ini, keenam batas bernilai 2, sehingga **$K=2$**. Aturan ini tetap berlaku kalau banyaknya variabel berbeda antarpasangan. Selalu ambil angka terkecil di dalam tiap pasangan, lalu ambil yang terbesar dari semua batas pasangan.
-
-### 5.2 Mengapa penyebutnya 12?
-
-Model ini mempunyai **6 pasangan yang mungkin**. Setiap pasangan dinilai pada skala dari 0 sampai **2**. Jadi batas skala seragam untuk total bobot adalah **$6\times 2=12$**.
-
-Dari graf, ada tiga garis berbobot 2 dan dua garis berbobot 1. Pasangan R3–R4 menyumbang 0. Jadi pembilangnya **$(2\times 3)+(1\times 2)+0=8$**. Hasil WCC untuk empat kendala yang ditulis pada bagian 1 adalah sebagai berikut.
-
-```math
-\mathrm{WCC}
-= \frac{\text{total bobot aktual}}{\text{jumlah pasangan yang mungkin}\times\text{batas seragam per pasangan}}
-\times 100\%
-= \frac{8}{6\times 2}\times 100\%
-\approx 66{,}67\%
-```
-
-| Angka | Arti | Cara memperoleh |
-| --- | --- | --- |
-| **6** | Jumlah pasangan yang mungkin | Daftar pasangan dari 4 baris |
-| **2** | Batas bobot seragam per pasangan | Nilai terbesar pada kolom batas |
-| **8** | Total bobot aktual | Jumlah variabel bersama, dijumlahkan pada keenam pasangan |
-| **12** | Penyebut untuk persentase | 6 pasangan dikali batas 2 |
-| **66,67%** | WCC model pengiriman | 8 dibagi 12, lalu dikali 100% |
-
-Hasil yang sama bisa dibaca dalam dua langkah. Rata-rata aktualnya $8/6$, sekitar **1,33 variabel bersama per pasangan**. Dibandingkan dengan batas **2 variabel per pasangan**, rata-rata itu mencapai **66,67%**. Pada skala ini, 100% berarti setiap pasangan mencapai batas seragamnya.
-
-## 6. Contoh ketika NNZ berbeda pada setiap baris
-
-**NNZ** (*number of nonzeros*) adalah jumlah koefisien selain nol dalam satu baris kendala. Setelah suku sejenis digabungkan, NNZ menunjukkan berapa variabel yang muncul pada baris itu. Pada contoh ini, koefisien 2 untuk $x_1$ pada R2 tetap dihitung sebagai satu kemunculan variabel.
+NNZ (*number of nonzeros*) adalah jumlah koefisien selain nol setelah suku sejenis digabungkan. Pada satu baris kendala linear, ini sama dengan jumlah variabel yang muncul pada baris.
 
 ```math
 \begin{aligned}
-\text{R1}\quad & x_1+x_2=2 \\
-\text{R2}\quad & 2x_1+x_2+x_3=4 \\
-\text{R3}\quad & x_1+x_4+x_5+x_6=4 \\
-\text{R4}\quad & x_3+x_4+x_5+x_6+x_7=5
+\text{R1}\quad &x_1+x_2=2,\\
+\text{R2}\quad &2x_1+x_2+x_3=4,\\
+\text{R3}\quad &x_1+x_4+x_5+x_6=4,\\
+\text{R4}\quad &x_3+x_4+x_5+x_6+x_7=5.
 \end{aligned}
 ```
 
-| Kendala | Variabel yang muncul | NNZ |
-| --- | --- | ---: |
-| R1 | $x_1,x_2$ | 2 |
-| R2 | $x_1,x_2,x_3$ | 3 |
-| R3 | $x_1,x_4,x_5,x_6$ | 4 |
-| R4 | $x_3,x_4,x_5,x_6,x_7$ | 5 |
+Misalkan desain contoh ini menetapkan batas NNZ acuan R1–R4 sebesar **2, 3, 4, dan 5**. Jika yang diketahui hanya batas NNZ, dua baris paling banyak bisa berbagi sebanyak ukuran daftar yang lebih pendek. R1–R2, misalnya, paling banyak berbagi 2 variabel karena R1 hanya memuat 2. Batas tersebut dihitung untuk setiap pasangan.
 
-Empat baris menghasilkan **6 pasangan yang mungkin**. Pada setiap pasangan, baca dua hal:
+| Pasangan | Batas NNZ kedua baris | Batas bobot dari NNZ | Variabel bersama aktual | Bobot aktual |
+| --- | ---: | ---: | --- | ---: |
+| R1–R2 | 2 dan 3 | 2 | $x_1,x_2$ | 2 |
+| R1–R3 | 2 dan 4 | 2 | $x_1$ | 1 |
+| R1–R4 | 2 dan 5 | 2 | — | 0 |
+| R2–R3 | 3 dan 4 | 3 | $x_1$ | 1 |
+| R2–R4 | 3 dan 5 | 3 | $x_3$ | 1 |
+| R3–R4 | 4 dan 5 | 4 | $x_4,x_5,x_6$ | 3 |
+| **Total** | | **16** | | **8** |
 
-- **Bobot aktual** adalah jumlah variabel yang benar-benar muncul di kedua baris.
-- **Batas dari NNZ** adalah NNZ yang lebih kecil pada pasangan tersebut. Irisan kedua daftar paling besar sebesar ukuran daftar yang lebih pendek.
+Penyebutnya $2+2+2+3+3+4=16$. WCC contoh ini adalah $8/16\times100\%=50\%$. Batas 2, 3, atau 4 mengikuti kemampuan masing-masing pasangan. Jika keempat batas NNZ itu menjadi bagian dari satu desain tingkat Low, Medium, dan High, ketiganya menggunakan penyebut 16. Isi kendala aktual pada masing-masing tingkat menentukan pembilangnya.
 
-| Pasangan | NNZ kedua baris | Variabel bersama | Bobot aktual | Batas dari NNZ |
-| --- | --- | --- | ---: | ---: |
-| R1–R2 | 2 dan 3 | $x_1,x_2$ | 2 | 2 |
-| R1–R3 | 2 dan 4 | $x_1$ | 1 | 2 |
-| R1–R4 | 2 dan 5 | Tidak ada | 0 | 2 |
-| R2–R3 | 3 dan 4 | $x_1$ | 1 | 3 |
-| R2–R4 | 3 dan 5 | $x_3$ | 1 | 3 |
-| R3–R4 | 4 dan 5 | $x_4,x_5,x_6$ | 3 | 4 |
+### 2.2 Perketat batas dengan daftar variabel yang diizinkan
 
-**Lihat R3–R4.** Daftar R3 berisi empat variabel, sehingga batas dari NNZ-nya adalah $\min(4,5)=4$. Ketika dicocokkan, hanya $x_4$, $x_5$, dan $x_6$ yang muncul juga di R4. Jadi bobot aktualnya **3**. R1–R4 juga tetap dihitung sebagai satu pasangan dalam penyebut, dengan bobot aktual **0**.
+Dalam kasus nyata, aturan jaringan bisa lebih informatif daripada NNZ. Kapasitas P1 dan kapasitas P4, misalnya, hanya memakai variabel pengiriman dari pabriknya masing-masing. Indeks pabrik berbeda, sehingga batas pasangan itu memang **0**, berapa pun NNZ kedua baris.
 
-Jumlahkan bobot aktual untuk mendapat $B=2+1+0+1+1+3=8$. Lalu ambil **nilai terbesar** dari kolom batas, yaitu $K=4$. Nilai ini menjadi satu batas seragam untuk enam pasangan. Dengan definisi WCC di tutorial ini, penyebutnya adalah $6\times4=24$.
+Untuk setiap posisi baris $r$, tetapkan $U_r^{\mathrm{ref}}$, yaitu daftar variabel yang diizinkan muncul oleh desain acuan. Bila desain juga mempunyai batas NNZ independen, sebut $d_r^{\mathrm{ref}}$ sebagai batasnya. Maka batas satu pasangan dapat dihitung sebagai berikut.
 
 ```math
-\mathrm{WCC} = \frac{B}{N\times K}\times 100\%
-= \frac{8}{6\times4}\times100\%
-\approx 33{,}33\%
+b_{rs}^{\mathrm{ref}}=
+\min\!\left(
+d_r^{\mathrm{ref}},
+d_s^{\mathrm{ref}},
+\lvert U_r^{\mathrm{ref}}\cap U_s^{\mathrm{ref}}\rvert
+\right).
 ```
 
-## 7. Terapkan pada model lain
+Pada Profil 1, jalur yang diizinkan menentukan seluruh daftar variabel per baris. Nilai $d_r^{\mathrm{ref}}$ sama dengan ukuran daftar $U_r^{\mathrm{ref}}$, sehingga kita cukup menghitung irisannya. Bekukan daftar acuan dan pemetaan ID sebelum penilaian. Untuk setiap tingkat $\ell$, $S_r^{(\ell)}$ adalah daftar variabel dari kendala yang benar-benar ditulis pada tingkat itu.
 
-1. Tetapkan baris kendala fungsional yang dihitung pada formulasi sebelum *presolve*. Fungsi tujuan dan deklarasi domain berada di luar graf ini.
-2. Jabarkan rumus berindeks menjadi baris terpisah. Catat nama dan **seluruh indeks** variabel pada setiap baris. Untuk baris linear, gabungkan suku sejenis terlebih dahulu. Catat satu kali setiap variabel dengan koefisien akhir bukan nol.
-3. Periksa setiap pasangan baris sekali. Beri satu poin untuk setiap variabel berindeks lengkap yang muncul di kedua baris. Jumlahkan seluruh bobot pasangan untuk memperoleh $B$.
-4. Hitung jumlah pasangan yang mungkin dengan $N=m(m-1)/2$. Pasangan yang bobotnya nol tetap masuk dalam $N$.
-5. Untuk setiap pasangan, ambil jumlah variabel yang lebih kecil dari dua barisnya. Gunakan nilai terbesar dari hasil langkah itu sebagai batas seragam $K$ untuk model ini.
-6. Hitung persentase WCC dengan $100\%\times B/(N\times K)$, dengan $N$ dan $K$ positif.
+```math
+\begin{aligned}
+w_{rs}^{(\ell)} &= \lvert S_r^{(\ell)}\cap S_s^{(\ell)}\rvert,\\
+B_\ell &= \sum_{(r,s)\in P} w_{rs}^{(\ell)},\\
+D_{\mathrm{ref}} &= \sum_{(r,s)\in P} b_{rs}^{\mathrm{ref}},\\
+\mathrm{WCC}_\ell &= 100\%\times\frac{B_\ell}{D_{\mathrm{ref}}}.
+\end{aligned}
+```
 
-Kesamaan WCC dengan penyebut yang sama menunjukkan kesamaan **total bobot**. Jika yang ingin dipastikan juga mencakup kesamaan garis serta variabel yang menghubungkannya, periksa daftar variabel bersama **pada setiap pasangan baris**.
+Di sini $P$ adalah daftar pasangan posisi baris yang sama untuk semua tingkat. Pembaginya positif selama sedikitnya satu pasangan bisa berbagi variabel.
+
+## 3. Studi kasus Profil 1 — seluruh kendala asli
+
+### 3.1 Pemetaan ID dan penjabaran R1–R39
+
+Profil 1 terdiri atas **enam pabrik, empat calon gudang, enam pelanggan, tiga produk, dan satu periode**. Subbab ini menurunkan semua baris dari empat keluarga kendala pada [model utama](Profil_1_Model_Matematika.md#3-fungsi-tujuan-dan-seluruh-keluarga-kendala).
+
+| ID | Keluarga | Jumlah posisi acuan |
+| --- | --- | ---: |
+| R1–R6 | Kapasitas setiap pabrik | 6 |
+| R7–R17 | Neraca setiap pasangan gudang–produk yang diizinkan pada acuan | 11 |
+| R18–R35 | Pemenuhan permintaan setiap pasangan pelanggan–produk | 18 |
+| R36–R39 | Kapasitas dan keputusan buka setiap gudang | 4 |
+| **Total** | | **39** |
+
+Pasangan G1–C berada di luar acuan karena ketiga jaringan menempatkan C di gudang lain. Baris yang menjadi $0=0$ pada suatu tingkat dipertahankan sebagai posisi pembanding dan diberi NNZ nol. Contohnya, R19 adalah permintaan B di K1. Pada Low, K1 hanya meminta A, sehingga R19 bernilai $0=0$. Pada Medium, K1 mulai meminta B dan R19 mempunyai variabel pengiriman.
+
+**Low** di bawah menampilkan semua posisi, termasuk posisi kosong. Buka tabel Medium dan High untuk melihat persamaan skalar dengan ID yang sama. Nilai $d_{j,p}^{M}$ dan $d_{j,p}^{H}$ menunjukkan pembagian permintaan per produk yang masih berupa parameter.
+
+| ID | Kendala | Bentuk skalar | NNZ |
+| --- | --- | --- | ---: |
+| R1 | Kapasitas P1 | $x_{1,1,A}+x_{1,2,A}+x_{1,4,A}\le 8$ | 3 |
+| R2 | Kapasitas P2 | $x_{2,1,B}+x_{2,3,B}+x_{2,4,B}\le 8$ | 3 |
+| R3 | Kapasitas P3 | $x_{3,1,B}+x_{3,3,B}+x_{3,4,B}\le 8$ | 3 |
+| R4 | Kapasitas P4 | $x_{4,2,C}+x_{4,3,C}\le 8$ | 2 |
+| R5 | Kapasitas P5 | $x_{5,1,A}+x_{5,2,A}+x_{5,4,A}\le 8$ | 3 |
+| R6 | Kapasitas P6 | $x_{6,2,C}+x_{6,3,C}\le 8$ | 2 |
+| R7 | Neraca G1–A | $x_{1,1,A}+x_{5,1,A}=z_{1,1,A}+z_{1,2,A}$ | 4 |
+| R8 | Neraca G1–B | $x_{2,1,B}+x_{3,1,B}=z_{1,3,B}+z_{1,4,B}$ | 4 |
+| R9 | Neraca G2–A | $x_{1,2,A}+x_{5,2,A}=z_{2,1,A}+z_{2,2,A}$ | 4 |
+| R10 | Neraca G2–B | $0=0$ | 0 |
+| R11 | Neraca G2–C | $x_{4,2,C}+x_{6,2,C}=z_{2,5,C}+z_{2,6,C}$ | 4 |
+| R12 | Neraca G3–A | $0=0$ | 0 |
+| R13 | Neraca G3–B | $x_{2,3,B}+x_{3,3,B}=z_{3,3,B}+z_{3,4,B}$ | 4 |
+| R14 | Neraca G3–C | $x_{4,3,C}+x_{6,3,C}=z_{3,5,C}+z_{3,6,C}$ | 4 |
+| R15 | Neraca G4–A | $x_{1,4,A}+x_{5,4,A}=z_{4,1,A}+z_{4,2,A}$ | 4 |
+| R16 | Neraca G4–B | $x_{2,4,B}+x_{3,4,B}=z_{4,3,B}+z_{4,4,B}$ | 4 |
+| R17 | Neraca G4–C | $0=0$ | 0 |
+| R18 | Permintaan K1–A | $z_{1,1,A}+z_{2,1,A}+z_{4,1,A}=5$ | 3 |
+| R19 | Permintaan K1–B | $0=0$ | 0 |
+| R20 | Permintaan K1–C | $0=0$ | 0 |
+| R21 | Permintaan K2–A | $z_{1,2,A}+z_{2,2,A}+z_{4,2,A}=5$ | 3 |
+| R22 | Permintaan K2–B | $0=0$ | 0 |
+| R23 | Permintaan K2–C | $0=0$ | 0 |
+| R24 | Permintaan K3–A | $0=0$ | 0 |
+| R25 | Permintaan K3–B | $z_{1,3,B}+z_{3,3,B}+z_{4,3,B}=5$ | 3 |
+| R26 | Permintaan K3–C | $0=0$ | 0 |
+| R27 | Permintaan K4–A | $0=0$ | 0 |
+| R28 | Permintaan K4–B | $z_{1,4,B}+z_{3,4,B}+z_{4,4,B}=5$ | 3 |
+| R29 | Permintaan K4–C | $0=0$ | 0 |
+| R30 | Permintaan K5–A | $0=0$ | 0 |
+| R31 | Permintaan K5–B | $0=0$ | 0 |
+| R32 | Permintaan K5–C | $z_{2,5,C}+z_{3,5,C}=5$ | 2 |
+| R33 | Permintaan K6–A | $0=0$ | 0 |
+| R34 | Permintaan K6–B | $0=0$ | 0 |
+| R35 | Permintaan K6–C | $z_{2,6,C}+z_{3,6,C}=5$ | 2 |
+| R36 | Kapasitas G1 | $z_{1,1,A}+z_{1,2,A}+z_{1,3,B}+z_{1,4,B}\le 16y_{1}$ | 5 |
+| R37 | Kapasitas G2 | $z_{2,1,A}+z_{2,2,A}+z_{2,5,C}+z_{2,6,C}\le 20y_{2}$ | 5 |
+| R38 | Kapasitas G3 | $z_{3,3,B}+z_{3,4,B}+z_{3,5,C}+z_{3,6,C}\le 18y_{3}$ | 5 |
+| R39 | Kapasitas G4 | $z_{4,1,A}+z_{4,2,A}+z_{4,3,B}+z_{4,4,B}\le 14y_{4}$ | 5 |
+
+<details>
+<summary>Medium — buka tabel R1–R39</summary>
+
+| ID | Kendala | Bentuk skalar | NNZ |
+| --- | --- | --- | ---: |
+| R1 | Kapasitas P1 | $x_{1,1,A}+x_{1,1,B}+x_{1,2,A}+x_{1,2,B}+x_{1,3,B}+x_{1,4,A}+x_{1,4,B}\le 8$ | 7 |
+| R2 | Kapasitas P2 | $x_{2,1,B}+x_{2,2,B}+x_{2,3,B}+x_{2,4,B}\le 8$ | 4 |
+| R3 | Kapasitas P3 | $x_{3,1,B}+x_{3,2,B}+x_{3,3,B}+x_{3,4,B}\le 8$ | 4 |
+| R4 | Kapasitas P4 | $x_{4,2,C}+x_{4,3,C}\le 8$ | 2 |
+| R5 | Kapasitas P5 | $x_{5,1,A}+x_{5,2,A}+x_{5,4,A}\le 8$ | 3 |
+| R6 | Kapasitas P6 | $x_{6,2,C}+x_{6,3,C}\le 8$ | 2 |
+| R7 | Neraca G1–A | $x_{1,1,A}+x_{5,1,A}=z_{1,1,A}+z_{1,2,A}+z_{1,5,A}+z_{1,6,A}$ | 6 |
+| R8 | Neraca G1–B | $x_{1,1,B}+x_{2,1,B}+x_{3,1,B}=z_{1,1,B}+z_{1,2,B}+z_{1,3,B}+z_{1,4,B}$ | 7 |
+| R9 | Neraca G2–A | $x_{1,2,A}+x_{5,2,A}=z_{2,1,A}+z_{2,2,A}+z_{2,5,A}+z_{2,6,A}$ | 6 |
+| R10 | Neraca G2–B | $x_{1,2,B}+x_{2,2,B}+x_{3,2,B}=z_{2,1,B}+z_{2,2,B}+z_{2,3,B}+z_{2,4,B}$ | 7 |
+| R11 | Neraca G2–C | $x_{4,2,C}+x_{6,2,C}=z_{2,3,C}+z_{2,4,C}+z_{2,5,C}+z_{2,6,C}$ | 6 |
+| R12 | Neraca G3–A | $0=0$ | 0 |
+| R13 | Neraca G3–B | $x_{1,3,B}+x_{2,3,B}+x_{3,3,B}=z_{3,1,B}+z_{3,2,B}+z_{3,3,B}+z_{3,4,B}$ | 7 |
+| R14 | Neraca G3–C | $x_{4,3,C}+x_{6,3,C}=z_{3,3,C}+z_{3,4,C}+z_{3,5,C}+z_{3,6,C}$ | 6 |
+| R15 | Neraca G4–A | $x_{1,4,A}+x_{5,4,A}=z_{4,1,A}+z_{4,2,A}+z_{4,5,A}+z_{4,6,A}$ | 6 |
+| R16 | Neraca G4–B | $x_{1,4,B}+x_{2,4,B}+x_{3,4,B}=z_{4,1,B}+z_{4,2,B}+z_{4,3,B}+z_{4,4,B}$ | 7 |
+| R17 | Neraca G4–C | $0=0$ | 0 |
+| R18 | Permintaan K1–A | $z_{1,1,A}+z_{2,1,A}+z_{4,1,A}=d^{M}_{1,A}$ | 3 |
+| R19 | Permintaan K1–B | $z_{1,1,B}+z_{2,1,B}+z_{3,1,B}+z_{4,1,B}=d^{M}_{1,B}$ | 4 |
+| R20 | Permintaan K1–C | $0=0$ | 0 |
+| R21 | Permintaan K2–A | $z_{1,2,A}+z_{2,2,A}+z_{4,2,A}=d^{M}_{2,A}$ | 3 |
+| R22 | Permintaan K2–B | $z_{1,2,B}+z_{2,2,B}+z_{3,2,B}+z_{4,2,B}=d^{M}_{2,B}$ | 4 |
+| R23 | Permintaan K2–C | $0=0$ | 0 |
+| R24 | Permintaan K3–A | $0=0$ | 0 |
+| R25 | Permintaan K3–B | $z_{1,3,B}+z_{2,3,B}+z_{3,3,B}+z_{4,3,B}=d^{M}_{3,B}$ | 4 |
+| R26 | Permintaan K3–C | $z_{2,3,C}+z_{3,3,C}=d^{M}_{3,C}$ | 2 |
+| R27 | Permintaan K4–A | $0=0$ | 0 |
+| R28 | Permintaan K4–B | $z_{1,4,B}+z_{2,4,B}+z_{3,4,B}+z_{4,4,B}=d^{M}_{4,B}$ | 4 |
+| R29 | Permintaan K4–C | $z_{2,4,C}+z_{3,4,C}=d^{M}_{4,C}$ | 2 |
+| R30 | Permintaan K5–A | $z_{1,5,A}+z_{2,5,A}+z_{4,5,A}=d^{M}_{5,A}$ | 3 |
+| R31 | Permintaan K5–B | $0=0$ | 0 |
+| R32 | Permintaan K5–C | $z_{2,5,C}+z_{3,5,C}=d^{M}_{5,C}$ | 2 |
+| R33 | Permintaan K6–A | $z_{1,6,A}+z_{2,6,A}+z_{4,6,A}=d^{M}_{6,A}$ | 3 |
+| R34 | Permintaan K6–B | $0=0$ | 0 |
+| R35 | Permintaan K6–C | $z_{2,6,C}+z_{3,6,C}=d^{M}_{6,C}$ | 2 |
+| R36 | Kapasitas G1 | $z_{1,1,A}+z_{1,1,B}+z_{1,2,A}+z_{1,2,B}+z_{1,3,B}+z_{1,4,B}+z_{1,5,A}+z_{1,6,A}\le 16y_{1}$ | 9 |
+| R37 | Kapasitas G2 | $z_{2,1,A}+z_{2,1,B}+z_{2,2,A}+z_{2,2,B}+z_{2,3,B}+z_{2,3,C}+z_{2,4,B}+z_{2,4,C}+z_{2,5,A}+z_{2,5,C}+z_{2,6,A}+z_{2,6,C}\le 20y_{2}$ | 13 |
+| R38 | Kapasitas G3 | $z_{3,1,B}+z_{3,2,B}+z_{3,3,B}+z_{3,3,C}+z_{3,4,B}+z_{3,4,C}+z_{3,5,C}+z_{3,6,C}\le 18y_{3}$ | 9 |
+| R39 | Kapasitas G4 | $z_{4,1,A}+z_{4,1,B}+z_{4,2,A}+z_{4,2,B}+z_{4,3,B}+z_{4,4,B}+z_{4,5,A}+z_{4,6,A}\le 14y_{4}$ | 9 |
+
+</details>
+
+<details>
+<summary>High — buka tabel R1–R39</summary>
+
+| ID | Kendala | Bentuk skalar | NNZ |
+| --- | --- | --- | ---: |
+| R1 | Kapasitas P1 | $x_{1,1,A}+x_{1,1,B}+x_{1,2,A}+x_{1,2,B}+x_{1,3,A}+x_{1,3,B}+x_{1,4,A}+x_{1,4,B}\le 8$ | 8 |
+| R2 | Kapasitas P2 | $x_{2,1,B}+x_{2,2,B}+x_{2,3,B}+x_{2,4,B}\le 8$ | 4 |
+| R3 | Kapasitas P3 | $x_{3,1,A}+x_{3,1,B}+x_{3,2,A}+x_{3,2,B}+x_{3,3,A}+x_{3,3,B}+x_{3,4,A}+x_{3,4,B}\le 8$ | 8 |
+| R4 | Kapasitas P4 | $x_{4,1,B}+x_{4,2,B}+x_{4,2,C}+x_{4,3,B}+x_{4,3,C}+x_{4,4,B}+x_{4,4,C}\le 8$ | 7 |
+| R5 | Kapasitas P5 | $x_{5,1,A}+x_{5,2,A}+x_{5,3,A}+x_{5,4,A}\le 8$ | 4 |
+| R6 | Kapasitas P6 | $x_{6,2,C}+x_{6,3,C}+x_{6,4,C}\le 8$ | 3 |
+| R7 | Neraca G1–A | $x_{1,1,A}+x_{3,1,A}+x_{5,1,A}=z_{1,1,A}+z_{1,2,A}+z_{1,3,A}+z_{1,4,A}+z_{1,5,A}+z_{1,6,A}$ | 9 |
+| R8 | Neraca G1–B | $x_{1,1,B}+x_{2,1,B}+x_{3,1,B}+x_{4,1,B}=z_{1,1,B}+z_{1,2,B}+z_{1,3,B}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}$ | 10 |
+| R9 | Neraca G2–A | $x_{1,2,A}+x_{3,2,A}+x_{5,2,A}=z_{2,1,A}+z_{2,2,A}+z_{2,3,A}+z_{2,4,A}+z_{2,5,A}+z_{2,6,A}$ | 9 |
+| R10 | Neraca G2–B | $x_{1,2,B}+x_{2,2,B}+x_{3,2,B}+x_{4,2,B}=z_{2,1,B}+z_{2,2,B}+z_{2,3,B}+z_{2,4,B}+z_{2,5,B}+z_{2,6,B}$ | 10 |
+| R11 | Neraca G2–C | $x_{4,2,C}+x_{6,2,C}=z_{2,1,C}+z_{2,2,C}+z_{2,3,C}+z_{2,4,C}+z_{2,5,C}+z_{2,6,C}$ | 8 |
+| R12 | Neraca G3–A | $x_{1,3,A}+x_{3,3,A}+x_{5,3,A}=z_{3,1,A}+z_{3,2,A}+z_{3,3,A}+z_{3,4,A}+z_{3,5,A}+z_{3,6,A}$ | 9 |
+| R13 | Neraca G3–B | $x_{1,3,B}+x_{2,3,B}+x_{3,3,B}+x_{4,3,B}=z_{3,1,B}+z_{3,2,B}+z_{3,3,B}+z_{3,4,B}+z_{3,5,B}+z_{3,6,B}$ | 10 |
+| R14 | Neraca G3–C | $x_{4,3,C}+x_{6,3,C}=z_{3,1,C}+z_{3,2,C}+z_{3,3,C}+z_{3,4,C}+z_{3,5,C}+z_{3,6,C}$ | 8 |
+| R15 | Neraca G4–A | $x_{1,4,A}+x_{3,4,A}+x_{5,4,A}=z_{4,1,A}+z_{4,2,A}+z_{4,3,A}+z_{4,4,A}+z_{4,5,A}+z_{4,6,A}$ | 9 |
+| R16 | Neraca G4–B | $x_{1,4,B}+x_{2,4,B}+x_{3,4,B}+x_{4,4,B}=z_{4,1,B}+z_{4,2,B}+z_{4,3,B}+z_{4,4,B}+z_{4,5,B}+z_{4,6,B}$ | 10 |
+| R17 | Neraca G4–C | $x_{4,4,C}+x_{6,4,C}=z_{4,1,C}+z_{4,2,C}+z_{4,3,C}+z_{4,4,C}+z_{4,5,C}+z_{4,6,C}$ | 8 |
+| R18 | Permintaan K1–A | $z_{1,1,A}+z_{2,1,A}+z_{3,1,A}+z_{4,1,A}=d^{H}_{1,A}$ | 4 |
+| R19 | Permintaan K1–B | $z_{1,1,B}+z_{2,1,B}+z_{3,1,B}+z_{4,1,B}=d^{H}_{1,B}$ | 4 |
+| R20 | Permintaan K1–C | $z_{2,1,C}+z_{3,1,C}+z_{4,1,C}=d^{H}_{1,C}$ | 3 |
+| R21 | Permintaan K2–A | $z_{1,2,A}+z_{2,2,A}+z_{3,2,A}+z_{4,2,A}=d^{H}_{2,A}$ | 4 |
+| R22 | Permintaan K2–B | $z_{1,2,B}+z_{2,2,B}+z_{3,2,B}+z_{4,2,B}=d^{H}_{2,B}$ | 4 |
+| R23 | Permintaan K2–C | $z_{2,2,C}+z_{3,2,C}+z_{4,2,C}=d^{H}_{2,C}$ | 3 |
+| R24 | Permintaan K3–A | $z_{1,3,A}+z_{2,3,A}+z_{3,3,A}+z_{4,3,A}=d^{H}_{3,A}$ | 4 |
+| R25 | Permintaan K3–B | $z_{1,3,B}+z_{2,3,B}+z_{3,3,B}+z_{4,3,B}=d^{H}_{3,B}$ | 4 |
+| R26 | Permintaan K3–C | $z_{2,3,C}+z_{3,3,C}+z_{4,3,C}=d^{H}_{3,C}$ | 3 |
+| R27 | Permintaan K4–A | $z_{1,4,A}+z_{2,4,A}+z_{3,4,A}+z_{4,4,A}=d^{H}_{4,A}$ | 4 |
+| R28 | Permintaan K4–B | $z_{1,4,B}+z_{2,4,B}+z_{3,4,B}+z_{4,4,B}=d^{H}_{4,B}$ | 4 |
+| R29 | Permintaan K4–C | $z_{2,4,C}+z_{3,4,C}+z_{4,4,C}=d^{H}_{4,C}$ | 3 |
+| R30 | Permintaan K5–A | $z_{1,5,A}+z_{2,5,A}+z_{3,5,A}+z_{4,5,A}=d^{H}_{5,A}$ | 4 |
+| R31 | Permintaan K5–B | $z_{1,5,B}+z_{2,5,B}+z_{3,5,B}+z_{4,5,B}=d^{H}_{5,B}$ | 4 |
+| R32 | Permintaan K5–C | $z_{2,5,C}+z_{3,5,C}+z_{4,5,C}=d^{H}_{5,C}$ | 3 |
+| R33 | Permintaan K6–A | $z_{1,6,A}+z_{2,6,A}+z_{3,6,A}+z_{4,6,A}=d^{H}_{6,A}$ | 4 |
+| R34 | Permintaan K6–B | $z_{1,6,B}+z_{2,6,B}+z_{3,6,B}+z_{4,6,B}=d^{H}_{6,B}$ | 4 |
+| R35 | Permintaan K6–C | $z_{2,6,C}+z_{3,6,C}+z_{4,6,C}=d^{H}_{6,C}$ | 3 |
+| R36 | Kapasitas G1 | $z_{1,1,A}+z_{1,1,B}+z_{1,2,A}+z_{1,2,B}+z_{1,3,A}+z_{1,3,B}+z_{1,4,A}+z_{1,4,B}+z_{1,5,A}+z_{1,5,B}+z_{1,6,A}+z_{1,6,B}\le 16y_{1}$ | 13 |
+| R37 | Kapasitas G2 | $z_{2,1,A}+z_{2,1,B}+z_{2,1,C}+z_{2,2,A}+z_{2,2,B}+z_{2,2,C}+z_{2,3,A}+z_{2,3,B}+z_{2,3,C}+z_{2,4,A}+z_{2,4,B}+z_{2,4,C}+z_{2,5,A}+z_{2,5,B}+z_{2,5,C}+z_{2,6,A}+z_{2,6,B}+z_{2,6,C}\le 20y_{2}$ | 19 |
+| R38 | Kapasitas G3 | $z_{3,1,A}+z_{3,1,B}+z_{3,1,C}+z_{3,2,A}+z_{3,2,B}+z_{3,2,C}+z_{3,3,A}+z_{3,3,B}+z_{3,3,C}+z_{3,4,A}+z_{3,4,B}+z_{3,4,C}+z_{3,5,A}+z_{3,5,B}+z_{3,5,C}+z_{3,6,A}+z_{3,6,B}+z_{3,6,C}\le 18y_{3}$ | 19 |
+| R39 | Kapasitas G4 | $z_{4,1,A}+z_{4,1,B}+z_{4,1,C}+z_{4,2,A}+z_{4,2,B}+z_{4,2,C}+z_{4,3,A}+z_{4,3,B}+z_{4,3,C}+z_{4,4,A}+z_{4,4,B}+z_{4,4,C}+z_{4,5,A}+z_{4,5,B}+z_{4,5,C}+z_{4,6,A}+z_{4,6,B}+z_{4,6,C}\le 14y_{4}$ | 19 |
+
+</details>
+
+### 3.2 Telusuri pasangan dari persamaan
+
+Ambil **R1–R4** pada Low. R1 berisi tiga variabel kiriman A dari P1 ke G1, G2, dan G4. R4 berisi dua variabel kiriman C dari P4 ke G2 dan G3. Walaupun keduanya mengirim ke G2, tipe arus dan seluruh indeks harus cocok. Bobot aktualnya **0** dan batas acuannya juga **0**, karena variabel dengan indeks pabrik 1 dan 4 tetap berbeda di setiap tingkat.
+
+Sekarang ambil **R1–R7** pada Low. R7 adalah neraca A di G1. Dari persamaan R1 dan R7, satu variabel yang sama adalah $x_{1,1,A}$, yaitu kiriman A dari P1 ke G1. Bobotnya **1**. Untuk pasangan **R7–R36**, kedua baris berbagi $z_{1,1,A}$ dan $z_{1,2,A}$, sehingga bobotnya **2** pada Low. Pada High, G1 dapat memasok A ke enam pelanggan. Keenam arus keluar A itu muncul pada R7 dan R36, sehingga batas acuannya **6** dan bobot High juga **6**.
+
+| Pasangan | Makna baris yang dibandingkan | Bobot L | Bobot M | Bobot H | Batas acuan |
+| --- | --- | ---: | ---: | ---: | ---: |
+| R1–R4 | Kapasitas P1 dan Kapasitas P4 | 0 | 0 | 0 | 0 |
+| R1–R7 | Kapasitas P1 dan Neraca G1–A | 1 | 1 | 1 | 1 |
+| R4–R8 | Kapasitas P4 dan Neraca G1–B | 0 | 0 | 1 | 1 |
+| R7–R18 | Neraca G1–A dan Permintaan K1–A | 1 | 1 | 1 | 1 |
+| R7–R36 | Neraca G1–A dan Kapasitas G1 | 2 | 4 | 6 | 6 |
+| R18–R36 | Permintaan K1–A dan Kapasitas G1 | 1 | 1 | 1 | 1 |
+| R17–R39 | Neraca G4–C dan Kapasitas G4 | 0 | 0 | 6 | 6 |
+
+Subgraf berikut menampilkan keterkaitan Low pada empat baris aktual di sekitar G1. Setiap lingkaran adalah satu baris, dan angka pada garis adalah banyaknya variabel bersama.
+
+```mermaid
+flowchart LR
+    R1((R1)) ---|1| R7((R7))
+    R7 ---|1| R18((R18))
+    R7 ---|2| R36((R36))
+    R18 ---|1| R36
+```
+
+### 3.3 Hitung pembilang dan penyebut dari 741 pasangan
+
+Jumlah posisi baris 39 menghasilkan $39\times38/2=741$ pasangan. Tabel ini menjumlahkan seluruh bobot menurut keluarga, termasuk kelompok dengan batas nol. Setiap pasangan muncul pada satu kelompok saja. Baris individual dan daftar variabel yang membentuk bobotnya tersedia dalam [audit lengkap 741 pasangan](Audit_WCC_Profil_1_Pasangan.csv).
+
+| Kelompok pasangan | Jumlah pasangan | Bobot L | Bobot M | Bobot H | Total batas acuan |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Kapasitas pabrik × Kapasitas pabrik | 15 | 0 | 0 | 0 | 0 |
+| Kapasitas pabrik × Neraca gudang–produk | 66 | 16 | 22 | 34 | 34 |
+| Kapasitas pabrik × Permintaan pelanggan–produk | 108 | 0 | 0 | 0 | 0 |
+| Kapasitas pabrik × Kapasitas gudang | 24 | 0 | 0 | 0 | 0 |
+| Neraca gudang–produk × Neraca gudang–produk | 55 | 0 | 0 | 0 | 0 |
+| Neraca gudang–produk × Permintaan pelanggan–produk | 198 | 16 | 36 | 66 | 66 |
+| Neraca gudang–produk × Kapasitas gudang | 44 | 16 | 36 | 66 | 66 |
+| Permintaan pelanggan–produk × Permintaan pelanggan–produk | 153 | 0 | 0 | 0 | 0 |
+| Permintaan pelanggan–produk × Kapasitas gudang | 72 | 16 | 36 | 66 | 66 |
+| Kapasitas gudang × Kapasitas gudang | 6 | 0 | 0 | 0 | 0 |
+| **Total** | **741** | **64** | **130** | **232** | **232** |
+
+**Asal penyebut 232.** Pada cakupan rute acuan, ada 166 pasangan dengan batas 1 dan 11 pasangan dengan batas 6. Sebanyak 564 pasangan lain memiliki batas 0. Jadi $166\times1+11\times6=232$. Jumlah ini dapat diperiksa lewat kemunculan variabel:
+
+- **34 arus masuk** masing-masing muncul di kapasitas pabrik dan neraca gudang–produk. Setiap variabel menyumbang 1 pasangan, sehingga totalnya 34.
+- **66 arus keluar** masing-masing muncul di neraca gudang–produk, permintaan pelanggan, dan kapasitas gudang. Setiap variabel menyumbang 3 pasangan, sehingga totalnya 198.
+- **4 keputusan buka gudang** masing-masing hanya muncul di satu baris kendala kapasitas. Masing-masing menyumbang 0 pasangan.
+
+Hasilnya **$34+198=232$**. Dengan pemeriksaan serupa, pada Low bobotnya $16+3\times16=64$, dan pada Medium bobotnya $22+3\times36=130$.
+
+| Tingkat | Jalur masuk | Jalur keluar | Variabel | Baris dengan variabel | NNZ | Pasangan berbobot positif | Total bobot aktual | WCC |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| L | 16 | 16 | 36 | 24 | 84 | 56 | 64 | 27,59% |
+| M | 22 | 36 | 62 | 31 | 156 | 103 | 130 | 56,03% |
+| H | 34 | 66 | 104 | 39 | 270 | 177 | 232 | 100,00% |
+
+High memakai semua rute yang diizinkan dalam cakupan acuan, sehingga mencapai $232/232=100\%$ pada skala ini. Low ke Medium naik **28,45 poin persentase** dan Medium ke High naik **43,97 poin persentase**, dihitung sebelum pembulatan. Pada struktur ini, tambahan arus masuk menyumbang 1 bobot dan tambahan arus keluar menyumbang 3 bobot. Jumlah rute, variabel, dan baris dengan variabel aktif berbeda antartingkat. WCC mendeskripsikan perubahan struktur tersebut, sementara performa formulasi LLM dinilai melalui eksperimen tersendiri.
 
 ## Referensi
 
-- Gasse et al. (2019) merepresentasikan MILP sebagai graf bipartit variabel dan kendala. Pada tutorial ini, hubungan awal menunjukkan apakah suatu variabel muncul pada suatu baris kendala. [NeurIPS 2019](https://papers.neurips.cc/paper_files/paper/2019/hash/d14c2267d848abeb81fd590f371d39bd-Abstract.html)
-- Cann, Weaver, dan Williams (2020), Persamaan (2), menjelaskan proyeksi dengan bobot berupa jumlah tetangga bersama. Di sini tetangga bersama sepasang baris adalah variabel keputusan yang muncul di keduanya. Normalisasi dengan jumlah pasangan dan batas seragam $K$ adalah definisi operasional WCC yang dipakai di tutorial ini. [Network Science](https://doi.org/10.1017/nws.2020.11)
+- Gasse et al. (2019) merepresentasikan MILP sebagai graf bipartit variabel–kendala. [NeurIPS 2019](https://papers.neurips.cc/paper_files/paper/2019/hash/d14c2267d848abeb81fd590f371d39bd-Abstract.html)
+- Cann, Weaver, dan Williams (2020), Persamaan (2), menjelaskan proyeksi dengan bobot berdasarkan jumlah tetangga bersama. Pada lampiran ini, tetangga bersama adalah variabel yang muncul di dua baris kendala. Penjumlahan batas acuan per pasangan merupakan definisi operasional normalisasi WCC dalam studi ini. [Network Science](https://doi.org/10.1017/nws.2020.11)
