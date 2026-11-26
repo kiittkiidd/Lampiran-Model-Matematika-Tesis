@@ -4,40 +4,42 @@ Perusahaan memilih calon gudang yang dibuka dan menentukan kiriman produk dari p
 
 ## 1. Kasus dan jaringan
 
-Produk A adalah minuman kemasan, B pangan kering, dan C produk dingin. Untuk setiap tingkat dan produk, setiap pabrik pada tabel dapat memasok setiap gudang yang tercantum. Pada Low dan Medium, setiap gudang dalam satu baris produk dapat memasok setiap pelanggan pada baris yang sama. Pada High, jalur keluar dibentuk dengan aturan wilayah yang dijelaskan di bawah. Satu gudang fisik memiliki satu keputusan buka, satu kapasitas gabungan untuk semua produk, dan satu biaya buka.
+Produk A adalah minuman kemasan, B pangan kering, dan C produk dingin. Untuk setiap tingkat dan produk, setiap pabrik pada tabel dapat memasok setiap gudang yang tercantum. Kolom pelanggan menunjukkan permintaan yang aktif. Jalur keluar Low membentuk seluruh kombinasi gudang dan pelanggan pada produk yang sama. Jalur keluar Medium dan High mengikuti aturan di bawah. Satu gudang fisik memiliki satu keputusan buka, satu kapasitas gabungan untuk semua produk, dan satu biaya buka.
 
 | Tingkat | Produk | Pabrik yang dapat memasok | Gudang yang dapat menangani | Pelanggan yang membutuhkan | Jalur masuk | Jalur keluar |
 | --- | --- | --- | --- | --- | ---: | ---: |
 | L | A | P1, P5 | G1, G2, G4 | K1, K2 | 6 | 6 |
 | L | B | P2, P3 | G1, G3, G4 | K3, K4 | 6 | 6 |
 | L | C | P4, P6 | G2, G3 | K5, K6 | 4 | 4 |
-| M | A | P1, P5 | G1, G2, G4 | K1, K2, K5, K6 | 6 | 12 |
-| M | B | P1, P2, P3 | G1, G2, G3, G4 | K1, K2, K3, K4 | 12 | 16 |
-| M | C | P4, P6 | G2, G3 | K3, K4, K5, K6 | 4 | 8 |
+| M | A | P1, P5 | G1, G2, G4 | K1, K2, K5, K6 | 6 | 9 |
+| M | B | P1, P2, P3 | G1, G2, G3, G4 | K1, K2, K3, K4 | 12 | 10 |
+| M | C | P4, P6 | G2, G3 | K3, K4, K5, K6 | 4 | 6 |
 | H | A | P1, P3, P5 | G1, G2, G3, G4 | K1, K2, K3, K4, K5, K6 | 12 | 18 |
 | H | B | P1, P2, P3, P4 | G1, G2, G3, G4 | K1, K2, K3, K4, K5, K6 | 16 | 20 |
 | H | C | P4, P6 | G2, G3, G4 | K1, K2, K3, K4, K5, K6 | 6 | 13 |
 
 Contoh Low untuk A. P1 dan P5 dapat mengirim A ke G1, G2, dan G4, sehingga ada $2\times3=6$ jalur masuk A. Ketiga gudang itu dapat memasok A ke K1 dan K2, sehingga ada $3\times2=6$ jalur keluar A. Setiap jalur membentuk satu variabel arus dengan indeks produk lengkap.
 
-### Jalur keluar High dan cakupan acuan
+### Pembukaan jalur keluar pada Medium dan High
 
 Cakupan acuan adalah seluruh kombinasi pabrik, gudang, dan pelanggan yang kompatibel pada baris High di tabel produk. Dengan cakupan ini ada 34 jalur masuk dan 66 jalur keluar. Acuan ditetapkan untuk mengukur kapasitas hubungan pada skala bersama.
 
-High menggunakan semua 34 jalur masuk. Untuk jalur keluar, High mempertahankan seluruh 36 jalur Medium, termasuk jalur lintas wilayah yang sudah ada. Dari rute kompatibel yang masih tersedia, High menambah 15 jalur keluar dengan gudang dan pelanggan di wilayah yang sama. Hasilnya 51 jalur keluar. Semua pelanggan tetap dapat menerima A, B, dan C.
+**Medium** mempertahankan 16 jalur keluar Low dan menambah jalur sewilayah untuk enam pasangan pelanggan–produk yang baru aktif. Aturan ini menambah 9 jalur keluar, sehingga totalnya 25. Misalnya, K5 baru meminta A dan mendapat dua jalur dari G1 dan G2 di Barat. K6 juga baru meminta A dan mendapat jalur dari G4 di Timur.
 
-| Gudang | Produk | Pelanggan dari jalur Medium | Pelanggan dari jalur baru sewilayah | Total jalur High |
+**High** menggunakan semua 34 jalur masuk acuan. Untuk jalur keluar, High mengaktifkan semua 36 kombinasi gudang–pelanggan yang kompatibel dengan cakupan produk dan pelanggan Medium, termasuk 11 kombinasi yang belum aktif di Medium. Di luar 36 kombinasi itu, High menambah 15 jalur keluar sewilayah dari cakupan acuan. Hasilnya tetap 51 jalur keluar dan seluruh pelanggan menerima A, B, dan C.
+
+| Gudang | Produk | Pelanggan dari jalur Medium | Pelanggan dari tambahan jalur High | Total jalur High |
 | --- | --- | --- | --- | ---: |
-| G1 | A | K1, K2, K5, K6 | K3 | 5 |
-| G1 | B | K1, K2, K3, K4 | K5 | 5 |
-| G2 | A | K1, K2, K5, K6 | K3 | 5 |
-| G2 | B | K1, K2, K3, K4 | K5 | 5 |
-| G2 | C | K3, K4, K5, K6 | K1 | 5 |
+| G1 | A | K1, K2, K5 | K3, K6 | 5 |
+| G1 | B | K1, K3, K4 | K2, K5 | 5 |
+| G2 | A | K1, K2, K5 | K3, K6 | 5 |
+| G2 | B | K1 | K2, K3, K4, K5 | 5 |
+| G2 | C | K3, K5, K6 | K1, K4 | 5 |
 | G3 | A | — | K2, K4, K6 | 3 |
-| G3 | B | K1, K2, K3, K4 | K6 | 5 |
-| G3 | C | K3, K4, K5, K6 | K2 | 5 |
-| G4 | A | K1, K2, K5, K6 | K4 | 5 |
-| G4 | B | K1, K2, K3, K4 | K6 | 5 |
+| G3 | B | K2, K3, K4 | K1, K6 | 5 |
+| G3 | C | K4, K5, K6 | K2, K3 | 5 |
+| G4 | A | K1, K2, K6 | K4, K5 | 5 |
+| G4 | B | K2, K3, K4 | K1, K6 | 5 |
 | G4 | C | — | K2, K4, K6 | 3 |
 
 ## 2. Data dan notasi
@@ -59,7 +61,7 @@ Diagram dasar memberi kapasitas 8 palet per pabrik. Formulasi ini memakai **8 pa
 
 Setiap pelanggan membutuhkan total 5 palet per periode, sehingga total sistem adalah 30 palet. Di Low, K1 dan K2 masing-masing meminta 5 palet A, K3 dan K4 masing-masing 5 palet B, dan K5 dan K6 masing-masing 5 palet C. Pada Medium dan High, $d_{jp}^{(\ell)}$ adalah permintaan per pelanggan dan produk. Total setiap pelanggan tetap 5 palet. Produk yang tercantum di tabel jaringan mempunyai permintaan positif dan pasangan pelanggan–produk di luar tabel mempunyai permintaan nol.
 
-Tarif per jalur dan pembagian 5 palet per produk pada Medium dan High masih berupa parameter. Perhitungan WCC memakai rute dan kemunculan variabel yang sudah ditetapkan. Perhitungan optimum biaya memerlukan tarif per jalur pada ketiga tingkat dan pembagian permintaan pada Medium dan High.
+Tarif per jalur, tarif penanganan per palet di gudang, dan pembagian 5 palet per produk pada Medium dan High masih berupa parameter. Perhitungan WCC memakai rute dan kemunculan variabel yang sudah ditetapkan. Perhitungan optimum biaya memerlukan nilai parameter tersebut.
 
 | Notasi | Arti |
 | --- | --- |
@@ -70,6 +72,7 @@ Tarif per jalur dan pembagian 5 palet per produk pada Medium dan High masih beru
 | $C_i$ | Kapasitas total pabrik $i$, dalam palet |
 | $U_g,F_g$ | Kapasitas total dan biaya buka tetap gudang $g$ per periode |
 | $c_{igp}^{\mathrm{in}},c_{gjp}^{\mathrm{out}}$ | Tarif per palet pada jalur masuk dan keluar |
+| $h_{gp}$ | Tarif penanganan per palet produk $p$ di gudang $g$ |
 | $d_{jp}^{(\ell)}$ | Permintaan pelanggan $j$ untuk produk $p$ pada tingkat $\ell$, dalam palet |
 
 | Variabel keputusan | Makna | Domain |
@@ -82,16 +85,17 @@ Sebagai contoh, $x_{1,2,A}$ mengukur kiriman A dari P1 ke G2 dan $z_{2,1,A}$ men
 
 ## 3. Fungsi tujuan dan seluruh keluarga kendala
 
-### Fungsi tujuan — biaya buka dan angkut minimum
+### Fungsi tujuan — biaya buka, angkut, dan penanganan minimum
 
 ```math
 \min\quad
 \sum_g F_g y_g
 +\sum_{(i,g,p)\in E_{\ell}^{\mathrm{in}}} c_{igp}^{\mathrm{in}}x_{i,g,p}
-+\sum_{(g,j,p)\in E_{\ell}^{\mathrm{out}}} c_{gjp}^{\mathrm{out}}z_{g,j,p}.
++\sum_{(g,j,p)\in E_{\ell}^{\mathrm{out}}} c_{gjp}^{\mathrm{out}}z_{g,j,p}
++\sum_{(g,j,p)\in E_{\ell}^{\mathrm{out}}} h_{gp}z_{g,j,p}.
 ```
 
-Biaya buka dibayar sekali untuk tiap gudang. Biaya angkut dihitung per palet pada dua tahap pengiriman. Misalnya, membuka G2 menambah 31 satuan biaya tetap dan mengirim 5 palet pada satu jalur menambah lima kali tarif jalur itu.
+Biaya buka dibayar sekali untuk tiap gudang. Biaya angkut dihitung per palet pada dua tahap pengiriman. Biaya penanganan mencakup kegiatan gudang seperti pemindahan dan penyortiran. Biaya ini dibebankan sekali per palet yang melewati gudang. Sebagai contoh, membuka G2 menambah biaya tetap 31 dan menyalurkan lima palet A dari G2 ke K1 menambah $5c_{2,1,A}^{\mathrm{out}}$ untuk angkut serta $5h_{2,A}$ untuk penanganan. Karena biaya penanganan memakai $z_{g,j,p}$ yang sudah tersedia, penambahan biaya ini mempertahankan jumlah variabel dan kendala.
 
 ### K1 — kapasitas pabrik — R1 sampai R6
 
@@ -160,7 +164,15 @@ $P$ mencatat setiap pasangan dua baris berbeda sekali. Cakupan acuan adalah jari
 | Tingkat | Jalur masuk | Jalur keluar | Variabel | Baris dengan variabel | NNZ | Pasangan berbobot positif | Total bobot aktual | WCC |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | L | 16 | 16 | 36 | 24 | 84 | 56 | 64 | 27,59% |
-| M | 22 | 36 | 62 | 31 | 156 | 103 | 130 | 56,03% |
+| M | 22 | 25 | 51 | 31 | 123 | 81 | 97 | 41,81% |
 | H | 34 | 51 | 89 | 39 | 225 | 147 | 187 | 80,60% |
 
-Penyebut bersama adalah **232**. Satu variabel kiriman masuk muncul di dua kendala dan menyumbang 1 poin bobot. Satu variabel kiriman keluar muncul di tiga kendala dan menyumbang 3 poin. Empat variabel buka gudang masing-masing muncul pada satu baris kapasitas. Penjabaran lengkap R1–R39, contoh perhitungan pasangan, dan audit 741 pasangan ada di lampiran. [Lampiran WCC](Tutorial_Weighted_Constraint_Coupling.md)
+Penyebut bersama adalah **232**. Satu variabel kiriman masuk muncul di dua kendala dan menyumbang 1 poin bobot. Satu variabel kiriman keluar muncul di tiga kendala dan menyumbang 3 poin. Empat variabel buka gudang masing-masing muncul pada satu baris kapasitas. Selisih Low–Medium adalah **14,22 poin persentase** dan Medium–High **38,79 poin persentase**. Penjabaran R1–R39 dan audit 741 pasangan tersedia di lampiran. [Lampiran WCC](Lampiran_WCC.md)
+
+## 5. Keputusan desain untuk pengembangan profil
+
+- **Nonlinear.** Total arus produk di gudang, $Q_{gp}=\sum_j z_{g,j,p}$ pada jalur aktif, merupakan singkatan ekspresi. Bentuk biaya penanganan dapat dikembangkan dari $h_{gp}Q_{gp}$ menjadi $h_{gp}Q_{gp}+\alpha_{gp}Q_{gp}^2$. Untuk menguji kendala nonlinear, K4 dapat diganti dengan batas waktu penanganan $\sum_p(t_{gp}Q_{gp}+\beta_{gp}Q_{gp}^2)\le T_gy_g$. Di sini $t_{gp}$ dan $\beta_{gp}$ menyatakan waktu dasar dan tambahan waktu akibat kenaikan beban, sedangkan $T_g$ adalah waktu tersedia. Substitusi ekspresi $Q_{gp}$ mempertahankan variabel keputusan. Jika setiap baris pengganti memakai himpunan variabel yang sama, WCC juga sama.
+- **Stokastik.** Keputusan buka gudang $y_g$ ditetapkan sebelum permintaan diketahui. Kiriman $x^{(s)}$ dan $z^{(s)}$ disesuaikan setelah skenario $s$ terungkap, sehingga bentuk skalar memuat salinan arus dan baris operasional per skenario. Untuk membandingkan struktur jaringan, gunakan WCC pada blok operasional satu skenario dengan ID dan rute acuan yang sama. Untuk menggambarkan ukuran formulasi stokastik, laporkan secara terpisah jumlah skenario, baris, dan variabel model yang diperluas. Gunakan jumlah skenario yang sama pada Low, Medium, dan High dalam satu profil stokastik.
+- **Banyak tujuan.** Emisi dapat dimodelkan sebagai fungsi tujuan kedua yang memakai variabel arus yang sudah ada. Metode batas emisi menambah satu baris pada persoalan yang diselesaikan untuk menghasilkan titik Pareto. Catat baris tersebut jika mengaudit formulasi solver yang diperluas.
+
+Sebelum optimasi, periksa kelayakan permintaan setiap skenario. Misalnya, pada High hanya P4 dan P6 yang dapat memasok C. Dengan kapasitas 8 palet per pabrik, permintaan C di atas 16 palet pada suatu skenario melampaui batas produksi. Kapasitas P4 juga dipakai oleh B.
