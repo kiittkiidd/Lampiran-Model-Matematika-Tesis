@@ -71,7 +71,7 @@ Sebagai contoh, $x_{1,2,A}$ mengukur kiriman A dari P1 ke G2 dan $z_{2,1,A}$ men
 +\sum_{(g,j,p)\in E_{\ell}^{\mathrm{out}}} h_{g,p}z_{g,j,p}.
 ```
 
-Biaya buka dibayar sekali untuk tiap gudang. Biaya angkut dihitung per palet pada dua tahap pengiriman. Biaya penanganan mencakup kegiatan gudang seperti pemindahan dan penyortiran. Biaya ini dibebankan sekali per palet yang melewati gudang. Sebagai contoh, membuka G2 menambah biaya tetap 31 dan menyalurkan lima palet A dari G2 ke K1 menambah $5c_{2,1,A}^{\mathrm{out}}$ untuk angkut serta $5h_{2,A}$ untuk penanganan. Karena biaya penanganan memakai $z_{g,j,p}$ yang sudah tersedia, penambahan biaya ini mempertahankan jumlah variabel dan kendala.
+Biaya buka dibayar sekali untuk tiap gudang. Biaya angkut dihitung per palet pada dua tahap pengiriman. Biaya penanganan mencakup kegiatan gudang seperti pemindahan dan penyortiran. Biaya ini dibebankan sekali per palet yang melewati gudang. Sebagai contoh, membuka G2 menambah biaya tetap 31 dan menyalurkan tiga palet A dari G2 ke K1 menambah $3c_{2,1,A}^{\mathrm{out}}$ untuk angkut serta $3h_{2,A}$ untuk penanganan. Karena biaya penanganan memakai $z_{g,j,p}$ yang sudah tersedia, penambahan biaya ini mempertahankan jumlah variabel dan kendala.
 
 ### K1 — kapasitas pabrik — R1 sampai R6
 
@@ -111,7 +111,7 @@ Untuk satu pelanggan dan produk, kiriman dari gudang yang melayaninya harus berj
 \qquad \text{untuk tiap gudang }g.
 ```
 
-Saat $y_g=0$, semua kiriman keluar nol karena variabel arus nonnegatif. K2 kemudian membuat arus masuk gudang juga nol. Saat $y_g=1$, gudang dapat menyalurkan sampai $U_g$ palet untuk seluruh produknya. Dalam contoh Low, G2 bisa menyalurkan 10 palet A dan 5 palet C, sehingga memakai 15 dari 20 palet kapasitasnya.
+Saat $y_g=0$, semua kiriman keluar nol karena variabel arus nonnegatif. K2 kemudian membuat arus masuk gudang juga nol. Saat $y_g=1$, gudang dapat menyalurkan sampai $U_g$ palet untuk seluruh produknya. Contoh di Low. G2 menyalurkan 10 palet A dan 10 palet C. Seluruh arus itu memakai 20 dari 20 palet kapasitas G2.
 
 ### Kendala domain variabel
 
@@ -123,9 +123,22 @@ y_g &\in \{0,1\} &&\forall g.
 \end{aligned}
 ```
 
-Arus kiriman kontinu dan nonnegatif. Keputusan buka gudang biner. Audit WCC menggunakan baris fungsional R1–R39 pada setiap blok.
+Arus kiriman kontinu dan nonnegatif. Keputusan buka gudang biner. Audit WCC menggunakan baris fungsional R1–R39.
 
-Satu rencana layak Low menggunakan G2 dan G3. Kirim masing-masing 5 palet melalui jalur P1–G2–K1 (A), P5–G2–K2 (A), P2–G3–K3 (B), P3–G3–K4 (B), P4–G2–K5 (C), dan P6–G3–K6 (C). G2 dan G3 masing-masing menangani 15 palet dan setiap pabrik mengirim 5 palet.
+### Contoh rencana pengiriman Low
+
+Contoh rencana layak Low membuka G2 dan G3. G2 menangani A dan C, sementara G3 menangani B. Untuk setiap baris di bawah, pabrik mengirim lima palet ke gudang. Gudang meneruskannya ke tiga pelanggan sesuai jumlah pesanan masing-masing.
+
+| Pabrik | Gudang | Produk | Pelanggan dan pesanan (palet) |
+| --- | --- | --- | --- |
+| P1 | G2 | A | K1 (3), K3 (1), K5 (1) |
+| P5 | G2 | A | K2 (3), K4 (1), K6 (1) |
+| P2 | G3 | B | K1 (1), K3 (3), K5 (1) |
+| P3 | G3 | B | K2 (1), K4 (3), K6 (1) |
+| P4 | G2 | C | K1 (1), K3 (1), K5 (3) |
+| P6 | G2 | C | K2 (1), K4 (1), K6 (3) |
+
+G2 menyalurkan 20 palet, G3 menyalurkan 10 palet, dan setiap pabrik mengirim 5 palet. Seluruh pesanan terpenuhi dan kapasitas setiap fasilitas dipatuhi.
 
 ## 4. Verifikasi solusi
 
