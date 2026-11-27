@@ -1,21 +1,22 @@
 # Menghitung Weighted Constraint Coupling
 
-Untuk setiap pasangan kendala, hitung **berapa variabel berindeks yang benar-benar muncul di kedua baris** dan **berapa yang paling banyak bisa muncul di kedua baris berdasarkan rute yang diizinkan rancangan**. Jumlah pertama masuk ke pembilang. Jumlah kedua masuk ke penyebut. Dua variabel cocok jika huruf dan seluruh indeksnya sama.
+Untuk setiap pasangan kendala, hitung **variabel yang muncul pada kedua baris**. Huruf variabel dan seluruh indeksnya harus sama. Jumlahkan hitungan dari semua pasangan kendala.
 
-## 1. Pembilang dan penyebut dari kasus PT XYZ
+- **Pembilang** memakai rute yang tersedia pada tingkat yang sedang diukur, misalnya Low atau Medium.
+- **Penyebut** memakai satu daftar kemungkinan yang ditetapkan untuk semua tingkat. Daftar ini memuat seluruh rute yang diperbolehkan untuk menghitung bobot maksimum menurut rancangan kasus.
 
-Ambil **R8–R36** dari model distribusi PT XYZ.
+## 1. Hitung satu pasangan dari kasus PT XYZ
 
-| R | Kendala | Variabel yang dapat dipakai |
+| R | Kendala | Isi kendala |
 | --- | --- | --- |
-| R8 | Neraca sirup di G1 | Kiriman sirup masuk ke G1 dan kiriman sirup keluar dari G1 |
-| R36 | Kapasitas tonase G1 | Semua kiriman keluar dari G1 dan keputusan membuka G1 |
+| R8 | Neraca sirup di gudang G1 | Ton sirup yang masuk ke G1 sama dengan ton sirup yang keluar. |
+| R36 | Kapasitas tonase gudang G1 | Total kiriman minyak dan sirup dari G1 paling banyak 16 ton saat gudang dibuka. |
 
-### Pembilang. Variabel yang benar-benar muncul di kedua baris pada Low
+$`x_{i,g,p}`$ adalah kiriman dari pabrik $`i`$ ke gudang $`g`$ untuk produk $`p`$. $`z_{g,j,p}`$ adalah kiriman dari gudang $`g`$ ke zona $`j`$ untuk produk $`p`$. A berarti minyak dan B berarti sirup. $`y_1`$ adalah keputusan buka G1, dengan nilai 1 jika buka dan 0 jika tutup. Contohnya, $`z_{1,4,B}`$ adalah kiriman sirup dari G1 ke K4.
 
-Dalam notasi $`z_{g,j,p}`$, indeks $`g`$ adalah gudang, $`j`$ adalah zona tujuan, dan $`p`$ adalah produk. Jadi $`z_{1,3,B}`$ berarti kiriman sirup (produk B) dari G1 ke K3. Variabel $`x_{i,g,p}`$ adalah kiriman dari pabrik ke gudang dan $`y_1`$ adalah keputusan membuka G1.
+### Tulis kedua kendala dengan indeks lengkap
 
-Persamaan Low memuat rute yang tersedia pada tingkat tersebut.
+**Low. Rute sirup ke K1, K3, dan K5**
 
 ```math
 \begin{aligned}
@@ -26,20 +27,59 @@ Persamaan Low memuat rute yang tersedia pada tingkat tersebut.
 
 ```math
 \begin{aligned}
-\mathrm{R36}\quad &z_{1,1,A}+z_{1,1,B}+z_{1,2,A}+z_{1,3,A}\\
-&{}+z_{1,3,B}+z_{1,4,A}+z_{1,5,A}+z_{1,5,B}\\
-&{}+z_{1,6,A}\\
+\mathrm{R36}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}\\
+&{}+z_{1,4,A}+z_{1,5,A}+z_{1,6,A}\\
+&{}+z_{1,1,B}+z_{1,3,B}+z_{1,5,B}\\
 &\quad \le 16y_1
 \end{aligned}
 ```
 
-Cocokkan variabel pada kedua ruas. **Hanya tiga yang sama**, yaitu $`z_{1,1,B}`$, $`z_{1,3,B}`$, dan $`z_{1,5,B}`$. Ketiganya adalah kiriman sirup dari G1 ke K1, K3, dan K5. Bobot aktual pasangan R8–R36 adalah **3**.
+**Medium. Rute sirup ke K1 sampai K6**
 
-### Penyebut. Variabel yang bisa muncul di kedua baris
+```math
+\begin{aligned}
+\mathrm{R8}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}\\
+&\quad = z_{1,1,B}+z_{1,2,B}+z_{1,3,B}\\
+&\qquad {}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}
+\end{aligned}
+```
 
-R8 membatasi produk ke sirup. R36 membatasi asal kiriman ke G1. Karena itu, variabel yang bisa menghubungkan keduanya hanya berbentuk $`z_{1,j,B}`$. Dalam daftar kemungkinan yang sama untuk semua tingkat, G1 boleh mengirim sirup ke keenam zona. Cocokkan indeksnya satu per satu. Angka 1 berarti variabel tersedia pada kedua baris.
+```math
+\begin{aligned}
+\mathrm{R36}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}\\
+&{}+z_{1,4,A}+z_{1,5,A}+z_{1,6,A}\\
+&{}+z_{1,1,B}+z_{1,2,B}+z_{1,3,B}\\
+&{}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}\\
+&\quad \le 16y_1
+\end{aligned}
+```
 
-| Rute sirup | Variabel | Low (aktual) | Medium (aktual) | Maksimum (penyebut) |
+**Daftar kemungkinan. Semua rute yang diizinkan untuk menghitung penyebut**
+
+```math
+\begin{aligned}
+\mathrm{R8}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}\\
+&{}+x_{4,1,B}\\
+&\quad = z_{1,1,B}+z_{1,2,B}+z_{1,3,B}\\
+&\qquad {}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}
+\end{aligned}
+```
+
+```math
+\begin{aligned}
+\mathrm{R36}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}\\
+&{}+z_{1,4,A}+z_{1,5,A}+z_{1,6,A}\\
+&{}+z_{1,1,B}+z_{1,2,B}+z_{1,3,B}\\
+&{}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}\\
+&\quad \le 16y_1
+\end{aligned}
+```
+
+### Daftar indeks yang bisa muncul di kedua kendala
+
+R8 dan R36 bisa berbagi variabel kiriman sirup dari G1 ke zona mana pun. Karena itu, yang perlu diperiksa berbentuk $`z_{1,j,B}`$. Daftar kemungkinan mengizinkan keenam zona, jadi ada **enam indeks yang mungkin sama**. Angka **1** berarti indeks itu tertulis pada kedua persamaan. Angka **0** berarti tidak muncul bersama.
+
+| Rute sirup | Variabel berindeks | Aktual di Low | Aktual di Medium | Mungkin di kedua baris |
 | --- | --- | ---: | ---: | ---: |
 | G1 → K1 | $`z_{1,1,B}`$ | 1 | 1 | 1 |
 | G1 → K2 | $`z_{1,2,B}`$ | 0 | 1 | 1 |
@@ -47,41 +87,41 @@ R8 membatasi produk ke sirup. R36 membatasi asal kiriman ke G1. Karena itu, vari
 | G1 → K4 | $`z_{1,4,B}`$ | 0 | 1 | 1 |
 | G1 → K5 | $`z_{1,5,B}`$ | 1 | 1 | 1 |
 | G1 → K6 | $`z_{1,6,B}`$ | 0 | 1 | 1 |
-| **Bobot pasangan R8–R36** | | **3** | **6** | **6** |
-
-**Cara memakai NNZ.** NNZ adalah jumlah koefisien bukan nol pada satu baris linear. Pada daftar rute lengkap, R8 dapat memuat 10 variabel (4 kiriman masuk dan 6 kiriman keluar). R36 dapat memuat 13 variabel (6 kiriman minyak, 6 kiriman sirup, dan 1 keputusan buka gudang). Dari NNZ saja, batas atasnya adalah **min(10, 13) = 10**. Pencocokan indeks memperketat batas itu menjadi **6**. Keempat variabel kiriman masuk di R8 memang dapat muncul di R8, tetapi aturan tonase R36 hanya memuat kiriman keluar dan keputusan buka gudang.
+| **Jumlah bobot R8–R36** | | **3** | **6** | **6** |
 
 <details>
-<summary>Lihat R8 dan R36 dengan semua rute yang mungkin</summary>
+<summary>Periksa semua variabel lain pada persamaan R8 dan R36</summary>
 
-```math
-\begin{aligned}
-\mathrm{R8}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}+x_{4,1,B}\\
-&\quad = z_{1,1,B}+z_{1,2,B}+z_{1,3,B}+z_{1,4,B}\\
-&\qquad {}+z_{1,5,B}+z_{1,6,B}
-\end{aligned}
-```
+Pada setiap sel, angka pertama menandai kemunculan di R8 dan angka kedua menandai kemunculan di R36. Semua variabel di bawah menyumbang 0 karena tidak tertulis pada kedua baris.
 
-```math
-\begin{aligned}
-\mathrm{R36}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}+z_{1,4,A}\\
-&{}+z_{1,5,A}+z_{1,6,A}+z_{1,1,B}+z_{1,2,B}\\
-&{}+z_{1,3,B}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}\\
-&\quad \le 16y_1
-\end{aligned}
-```
+| Variabel yang diperiksa | Low · R8 × R36 | Medium · R8 × R36 | Daftar kemungkinan · R8 × R36 |
+| --- | ---: | ---: | ---: |
+| $`x_{1,1,B}`$ | 1 × 0 = 0 | 1 × 0 = 0 | 1 × 0 = 0 |
+| $`x_{2,1,B}`$ | 1 × 0 = 0 | 1 × 0 = 0 | 1 × 0 = 0 |
+| $`x_{3,1,B}`$ | 1 × 0 = 0 | 1 × 0 = 0 | 1 × 0 = 0 |
+| $`x_{4,1,B}`$ | 0 × 0 = 0 | 0 × 0 = 0 | 1 × 0 = 0 |
+| $`z_{1,1,A}`$ | 0 × 1 = 0 | 0 × 1 = 0 | 0 × 1 = 0 |
+| $`z_{1,2,A}`$ | 0 × 1 = 0 | 0 × 1 = 0 | 0 × 1 = 0 |
+| $`z_{1,3,A}`$ | 0 × 1 = 0 | 0 × 1 = 0 | 0 × 1 = 0 |
+| $`z_{1,4,A}`$ | 0 × 1 = 0 | 0 × 1 = 0 | 0 × 1 = 0 |
+| $`z_{1,5,A}`$ | 0 × 1 = 0 | 0 × 1 = 0 | 0 × 1 = 0 |
+| $`z_{1,6,A}`$ | 0 × 1 = 0 | 0 × 1 = 0 | 0 × 1 = 0 |
+| $`y_1`$ | 0 × 1 = 0 | 0 × 1 = 0 | 0 × 1 = 0 |
 
 </details>
 
+**Cek dengan NNZ.** Dalam daftar kemungkinan, R8 berisi 10 variabel dan R36 berisi 13 variabel. Dari banyaknya koefisien bukan nol saja, batas atasnya adalah $`\min(10,13)=10`$. Setelah indeks diperiksa, hanya enam kiriman sirup dari G1 yang bisa tertulis pada kedua kendala. Kiriman masuk hanya tertulis pada R8. Kiriman minyak dan keputusan buka gudang hanya tertulis pada R36. Jadi bobot maksimum menurut daftar kemungkinan untuk pasangan ini adalah **6**.
+
 ### Apa yang bertambah dari Low ke Medium?
 
-Medium menambahkan **tiga kiriman sirup dari G1**, yaitu $`z_{1,2,B}`$ ke K2, $`z_{1,4,B}`$ ke K4, dan $`z_{1,6,B}`$ ke K6. Ketiganya muncul di R8 dan R36. Setiap variabel baru dihitung sekali untuk pasangan itu, sehingga sumbangannya ke pembilang naik dari **3 menjadi 6**. Sumbangannya ke penyebut tetap **6** karena daftar kemungkinan sudah mencakup keenam zona.
+Medium menambahkan tiga indeks yang sama pada kedua persamaan, yaitu $`z_{1,2,B}`$, $`z_{1,4,B}`$, dan $`z_{1,6,B}`$. Setiap indeks dihitung sekali untuk pasangan R8–R36.
 
-| R8–R36 | Sumbangan ke pembilang | Sumbangan ke penyebut |
-| --- | ---: | ---: |
-| Low | 3 | 6 |
-| Medium | 6 | 6 |
-| **Perubahan** | **+3** | **0** |
+| Sumbangan pasangan R8–R36 | Low | Medium | Perubahan |
+| --- | ---: | ---: | ---: |
+| Pembilang | 3 | 3 + 3 = **6** | **+3** |
+| Penyebut | 6 | **6** | **0** |
+
+Enam indeks untuk penyebut sudah tersedia di daftar kemungkinan sebelum memilih tingkat. Saat rute ke K2, K4, dan K6 ditambahkan ke Medium, yang berubah adalah kolom aktual pada tabel.
 
 ## 2. Kendala dan hubungan pada model lengkap Low
 
@@ -993,6 +1033,34 @@ Setiap rute masuk menyumbang satu ke pasangan kapasitas pabrik–neraca. Setiap 
 =\frac{236}{435}\times 100\%
 \approx 54{,}25\%.
 ```
+
+### Dari tambahan 3 pada satu pasangan ke tambahan 47 pada seluruh model
+
+Low memiliki 16 rute masuk dan 36 rute keluar. Medium memiliki 21 rute masuk dan 43 rute keluar. Tabel menunjukkan **semua 12 variabel rute yang bertambah**. Nomor R merujuk pada daftar persamaan di Bagian 2.
+
+| Variabel baru di Medium | Rute dan produk | Kendala yang memuatnya | Tambahan bobot seluruh pasangan |
+| --- | --- | --- | ---: |
+| $`x_{1,2,B}`$ | P1 → G2, B | R1, R10 | 1 |
+| $`x_{1,4,A}`$ | P1 → G4, A | R1, R15 | 1 |
+| $`x_{2,2,B}`$ | P2 → G2, B | R2, R10 | 1 |
+| $`x_{2,3,B}`$ | P2 → G3, B | R2, R13 | 1 |
+| $`x_{5,1,A}`$ | P5 → G1, A | R5, R7 | 1 |
+| $`z_{1,2,B}`$ | G1 → K2, B | R8, R22, R36, R40 | 6 |
+| $`z_{1,4,B}`$ | G1 → K4, B | R8, R28, R36, R40 | 6 |
+| $`z_{1,6,B}`$ | G1 → K6, B | R8, R34, R36, R40 | 6 |
+| $`z_{2,1,B}`$ | G2 → K1, B | R10, R19, R37, R41 | 6 |
+| $`z_{2,3,B}`$ | G2 → K3, B | R10, R25, R37, R41 | 6 |
+| $`z_{4,4,A}`$ | G4 → K4, A | R15, R27, R39, R43 | 6 |
+| $`z_{4,6,A}`$ | G4 → K6, A | R15, R33, R39, R43 | 6 |
+| **Total** | **5 rute masuk + 7 rute keluar** | | **47** |
+
+Misalnya, $`z_{1,2,B}`$ muncul pada R8 (neraca sirup G1), R22 (pesanan sirup K2), R36 (tonase G1), dan R40 (waktu kerja G1). Variabel itu menambah satu bobot pada masing-masing dari enam pasangan berikut.
+
+| R8 dengan baris lain | R22 dengan baris lain | Pasangan terakhir |
+| --- | --- | --- |
+| R8–R22, R8–R36, R8–R40 | R22–R36, R22–R40 | R36–R40 |
+
+Setiap rute masuk baru muncul pada dua kendala, sehingga menambah satu bobot. Setiap rute keluar baru muncul pada empat kendala, sehingga menambah enam bobot. Jadi pembilang seluruh model naik sebanyak **5 × 1 + 7 × 6 = 47**, dari **236** menjadi **283**. Penyebut seluruh model tetap **435**. Tambahan tiga bobot pada R8–R36 sudah termasuk di dalam 47.
 
 ## 4. Ringkasan hasil
 
