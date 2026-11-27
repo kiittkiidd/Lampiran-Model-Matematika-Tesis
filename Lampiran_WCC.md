@@ -1,11 +1,70 @@
-# Menghitung Weighted Constraint Coupling
+# Cara menghitung WCC di PT XYZ
 
-Untuk setiap pasangan kendala, hitung **variabel yang muncul pada kedua baris**. Huruf variabel dan seluruh indeksnya harus sama. Jumlahkan hitungan dari semua pasangan kendala.
+Bayangkan gudang G1 akan mengirim sirup ke K1. **Rute yang sama tertulis di dua aturan.**
 
-- **Pembilang** memakai rute yang tersedia pada tingkat yang sedang diukur, misalnya Low atau Medium.
-- **Penyebut** memakai satu daftar rute pembanding untuk semua tingkat. Dari daftar itu, hitung berapa variabel berindeks yang bisa muncul di kedua kendala.
+| Aturan | Apa yang diperiksa? |
+| --- | --- |
+| **R8 · Aturan sirup** | Jumlah sirup yang masuk ke G1 harus sama dengan jumlah sirup yang dikirim keluar dari G1. |
+| **R36 · Aturan gudang** | Semua barang yang dikirim keluar dari G1, termasuk sirup, ikut memakai batas 16 ton. |
 
-## 1. Hitung satu pasangan dari kasus PT XYZ
+Sirup **G1 → K1** muncul di kedua aturan. Jadi, saat membandingkan dua aturan ini, rute G1 → K1 mendapat **1 poin**. Kiriman sirup ke tujuan lain diperiksa dengan cara yang sama.
+
+## 1. Hitung poin untuk dua aturan ini
+
+PT XYZ punya enam zona tujuan, K1 sampai K6. **Low** membolehkan gudang G1 mengirim sirup ke tiga zona. **Medium** menambah tiga zona. Untuk membandingkan keduanya, penelitian memakai **daftar pembanding** yang berisi keenam zona.
+
+| Tujuan kiriman sirup dari G1 | Low | Medium | Daftar pembanding |
+| --- | ---: | ---: | ---: |
+| K1 | 1 | 1 | 1 |
+| **K2** | 0 | **1** | 1 |
+| K3 | 1 | 1 | 1 |
+| **K4** | 0 | **1** | 1 |
+| K5 | 1 | 1 | 1 |
+| **K6** | 0 | **1** | 1 |
+| **Jumlah poin** | **3** | **6** | **6** |
+
+**1** berarti rute itu tertulis di kedua aturan. **0** berarti rute itu belum tersedia di tingkat tersebut. Lihat baris **K2**. Pada Low, G1 belum boleh mengirim sirup ke K2, jadi poinnya 0. Pada Medium, rute itu ditambahkan dan tertulis di kedua aturan, jadi poinnya 1. Tiga tujuan yang ditebalkan memberi **3 poin tambahan**.
+
+Untuk **dua aturan ini**, Low mendapat **3 dari 6 poin atau 50%**, dan Medium mendapat **6 dari 6 poin atau 100%**. Bagi poin yang didapat dengan poin pembanding. Untuk Low, hitung **3 ÷ 6**. Untuk Medium, hitung **6 ÷ 6**. Angka pembaginya sama.
+
+## 2. Dari mana daftar pembanding berasal?
+
+Dalam contoh tadi, daftar pembanding memuat K1 sampai K6 karena **G1 dapat menerima sirup** dan rancangan pembanding mengizinkan sirup dari G1 dikirim ke semua zona. Untuk jaringan lengkap, daftar pembanding disusun sekali dengan cara berikut.
+
+1. **Dari pabrik ke gudang**, ambil 35 rute masuk dari High. Setiap rute mencatat pabrik, gudang tujuan, dan produknya.
+2. **Dari gudang ke pelanggan**, lihat produk apa saja yang bisa diterima tiap gudang berdasarkan 35 rute tadi. Ada 11 pasangan gudang–produk. Izinkan setiap pasangan mengirim ke 6 zona. Hasilnya **11 × 6 = 66 rute keluar**.
+
+Contohnya, rute **pabrik P4 → G1 untuk sirup** tersedia pada High, sehingga ikut dalam 35 rute masuk pembanding. Di tahap keluar, **G1 → K2 untuk sirup** sudah masuk daftar pembanding sejak awal, termasuk ketika yang sedang dihitung adalah Low. Itulah sebabnya poin yang didapat bisa bertambah dari Low ke Medium sementara poin pembandingnya tetap.
+
+## 3. Hitung poin untuk seluruh jaringan
+
+Jaringan lengkap punya **43 aturan**. Kita memeriksa tiap pasangan aturan satu kali. Jika satu rute tertulis di dua aturan, rute itu mendapat **1 poin**. Jika satu rute tertulis di empat aturan, rute itu bisa ditemukan pada **6 pasangan** dan mendapat **6 poin**. Cara menghitung enam pasangan itu adalah **3 + 2 + 1**. Pasangkan aturan pertama dengan tiga sisanya, aturan kedua dengan dua sisanya, lalu aturan ketiga dengan aturan keempat.
+
+| Yang dihitung | Poin per variabel | Low | Medium | Daftar pembanding |
+| --- | ---: | ---: | ---: | ---: |
+| Rute pabrik → gudang | 1 | 16 × 1 | 21 × 1 | 35 × 1 |
+| Rute gudang → pelanggan | 6 | 36 × 6 | 43 × 6 | 66 × 6 |
+| Keputusan buka gudang | 1 | 4 × 1 | 4 × 1 | 4 × 1 |
+| **Jumlah poin** | | **236** | **283** | **435** |
+
+Contoh cara membaca tabel. Satu rute gudang → pelanggan muncul di empat aturan, yaitu aturan barang masuk dan keluar, pesanan pelanggan, batas tonase, dan batas waktu kerja. Enam pasangan aturan memakai rute itu. Karena Low punya 36 rute jenis ini, sumbangannya **36 × 6 = 216 poin**. Tambahkan 16 poin dari rute pabrik dan 4 poin dari keputusan membuka gudang. Hasilnya **236 poin**. Dengan cara yang sama, daftar pembanding mendapat **35 + 396 + 4 = 435 poin**.
+
+## 4. Ubah poin menjadi persentase
+
+**WCC** (*Weighted Constraint Coupling*) adalah poin yang didapat dibagi poin pembanding, lalu dinyatakan dalam persen. Untuk seluruh jaringan, daftar pembanding selalu memberi **435 poin**.
+
+| Tingkat | Poin yang didapat | Poin pembanding | WCC |
+| --- | ---: | ---: | ---: |
+| Low | 236 | 435 | **54,25%** |
+| Medium | 283 | 435 | **65,06%** |
+| High | 381 | 435 | **87,59%** |
+
+Dari Low ke Medium, ada **5 rute pabrik baru** yang masing-masing memberi 1 poin dan **7 rute gudang baru** yang masing-masing memberi 6 poin. Jadi, seluruh jaringan bertambah **5 + 42 = 47 poin**. Tiga poin dari contoh sirup G1 sudah termasuk dalam 47 poin itu.
+
+## Lampiran teknis
+
+<details>
+<summary>Lihat persamaan, indeks, dan NNZ untuk contoh sirup G1</summary>
 
 | R | Kendala | Isi kendala |
 | --- | --- | --- |
@@ -14,7 +73,7 @@ Untuk setiap pasangan kendala, hitung **variabel yang muncul pada kedua baris**.
 
 $`x_{i,g,p}`$ adalah kiriman dari pabrik $`i`$ ke gudang $`g`$ untuk produk $`p`$. $`z_{g,j,p}`$ adalah kiriman dari gudang $`g`$ ke zona $`j`$ untuk produk $`p`$. A berarti minyak dan B berarti sirup. $`y_1`$ adalah keputusan buka G1, dengan nilai 1 jika buka dan 0 jika tutup. Contohnya, $`z_{1,4,B}`$ adalah kiriman sirup dari G1 ke K4.
 
-### Tulis kedua kendala dengan indeks lengkap
+### Persamaan R8 dan R36
 
 **Low. Rute sirup ke K1, K3, dan K5**
 
@@ -136,7 +195,10 @@ Medium menambahkan tiga indeks yang sama pada kedua persamaan, yaitu $`z_{1,2,B}
 
 Enam indeks untuk penyebut sudah tersedia di daftar kemungkinan sebelum memilih tingkat. Saat rute ke K2, K4, dan K6 ditambahkan ke Medium, yang berubah adalah kolom aktual pada tabel.
 
-## 2. Kendala dan hubungan pada model lengkap Low
+</details>
+
+<details>
+<summary>Lihat 43 persamaan pada Low dan pada daftar pembanding</summary>
 
 ### Daftar kendala R1–R43
 
@@ -571,17 +633,6 @@ Contohnya, R36 dan R40 memuat daftar kiriman keluar G1 yang sama. Dari persamaan
 
 
 Empat puluh tiga baris menghasilkan **43 × 42 ÷ 2 = 903 pasangan**. Jumlahkan bobot setiap pasangan satu kali, termasuk pasangan berbobot nol. Total bobot Low adalah **236**. Tabel pada Bagian 3 merangkum penjumlahannya, dan CSV mencantumkan indeks lengkap untuk setiap pasangan. [Rincian 903 pasangan](math_model_acuan/hasil/Audit_WCC_Pasangan.csv)
-
-## 3. Hitung seluruh pembilang dan penyebut
-
-### Tetapkan semua rute yang mungkin untuk penyebut
-
-Daftar yang dipakai untuk menghitung kemungkinan bersama pada setiap pasangan disebut **acuan bersama**. Daftar ini memakai 43 kendala yang sama dan mencakup semua rute pada Low, Medium, dan High.
-
-- **Rute masuk.** Ada 35 kombinasi pabrik, gudang, dan produk yang diizinkan rancangan. Daftarnya mengikuti rute masuk High.
-- **Rute keluar.** Untuk setiap pasangan gudang–produk yang menerima kiriman pada daftar tersebut, semua zona boleh menjadi tujuan. Ada 11 pasangan gudang–produk dan 6 zona, sehingga terdapat 66 kombinasi gudang, zona, dan produk.
-
-Untuk setiap pasangan kendala, cocokkan variabel dari dua persamaan Low untuk memperoleh bobot aktual. Ulangi pada dua persamaan yang memuat semua rute dalam daftar acuan untuk memperoleh bobot maksimum menurut rancangan. Misalnya, R36 dan R40 memakai kesembilan variabel kiriman keluar G1 dan $`y_1`$ pada Low, sehingga bobot aktualnya 10. Di acuan, tiga rute sirup tambahan dapat muncul di kedua baris, sehingga bobot maksimumnya 13.
 
 <details>
 <summary>Lihat seluruh persamaan R1–R43 dengan daftar rute maksimum</summary>
@@ -1024,6 +1075,11 @@ Untuk setiap pasangan kendala, cocokkan variabel dari dua persamaan Low untuk me
 
 </details>
 
+</details>
+
+<details>
+<summary>Lihat penjumlahan bobot dan rincian 12 rute baru</summary>
+
 ### Jumlahkan bobot, lalu bagi
 
 | Kelompok pasangan | Jumlah pasangan | Bobot aktual Low | Bobot maksimum menurut daftar rute |
@@ -1049,7 +1105,7 @@ Setiap rute masuk menyumbang satu ke pasangan kapasitas pabrik–neraca. Setiap 
 
 ### Dari tambahan 3 pada satu pasangan ke tambahan 47 pada seluruh model
 
-Low memiliki 16 rute masuk dan 36 rute keluar. Medium memiliki 21 rute masuk dan 43 rute keluar. Tabel menunjukkan **semua 12 variabel rute yang bertambah**. Nomor R merujuk pada daftar persamaan di Bagian 2.
+Low memiliki 16 rute masuk dan 36 rute keluar. Medium memiliki 21 rute masuk dan 43 rute keluar. Tabel menunjukkan **semua 12 variabel rute yang bertambah**. Nomor R merujuk pada daftar persamaan dalam lampiran teknis di atas.
 
 | Variabel baru di Medium | Rute dan produk | Kendala yang memuatnya | Tambahan bobot seluruh pasangan |
 | --- | --- | --- | ---: |
@@ -1075,14 +1131,13 @@ Misalnya, $`z_{1,2,B}`$ muncul pada R8 (neraca sirup G1), R22 (pesanan sirup K2)
 
 Setiap rute masuk baru muncul pada dua kendala, sehingga menambah satu bobot. Setiap rute keluar baru muncul pada empat kendala, sehingga menambah enam bobot. Jadi pembilang seluruh model naik sebanyak **5 × 1 + 7 × 6 = 47**, dari **236** menjadi **283**. Penyebut seluruh model tetap **435**. Tambahan tiga bobot pada R8–R36 sudah termasuk di dalam 47.
 
-## 4. Ringkasan hasil
+</details>
 
-| Tingkat | Rute masuk | Rute keluar | Pembilang | Penyebut tetap | WCC |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Low | 16 | 36 | 236 | 435 | **54,25%** |
-| Medium | 21 | 43 | 283 | 435 | **65,06%** |
-| High | 35 | 57 | 381 | 435 | **87,59%** |
+<details>
+<summary>Lihat cakupan audit</summary>
 
 Ketiga tingkat menggunakan 43 aturan operasi yang sama. Variabel kiriman bertambah ketika daftar rute bertambah. Pada satu tingkat, WCC operasi sama untuk P1–P8. Audit memeriksa skenario stokastik satu per satu. Batas emisi, domain variabel, pemilihan emisi saat biaya sama, dan garis singgung solver berada di luar 43 baris yang dihitung.
 
-[Model matematika](math_model_acuan/Model_Matematika.md) · [Data rute](case/Data_Bersama.json) · [Audit 24 kombinasi](math_model_acuan/hasil/WCC.csv) · [Halaman utama](README.md)
+</details>
+
+[Gambar jaringan PT XYZ](case/Kasus_Dasar.md) · [Rincian 903 pasangan](math_model_acuan/hasil/Audit_WCC_Pasangan.csv) · [Model matematika](math_model_acuan/Model_Matematika.md) · [Data rute](case/Data_Bersama.json) · [Audit 24 kombinasi](math_model_acuan/hasil/WCC.csv) · [Halaman utama](README.md)
