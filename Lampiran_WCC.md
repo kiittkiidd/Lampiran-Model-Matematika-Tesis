@@ -1,167 +1,944 @@
 # Menghitung Weighted Constraint Coupling
 
-*Weighted Constraint Coupling* (WCC) mengukur seberapa banyak kendala dalam model memakai variabel keputusan yang sama. Ukurannya dibandingkan dengan satu daftar rute acuan agar skor Low, Medium, dan High memakai skala yang sama.
+Dua kendala terhubung jika keduanya memuat **variabel keputusan yang sama persis**, termasuk semua indeksnya. Bobot hubungan adalah jumlah variabel bersama. Kalau keduanya berbagi dua variabel, bobotnya 2. Kalau tidak ada yang sama, bobotnya 0.
 
-## 1. Rumus dan cara menghitung
+## 1. Contoh kecil dari Low
 
-Untuk satu pasangan kendala, **bobotnya adalah jumlah variabel yang muncul di kedua baris**. Jika keduanya berbagi dua variabel, bobotnya 2. Jika keduanya tidak berbagi variabel, bobotnya 0. Huruf variabel dan seluruh indeksnya harus cocok. Nilai koefisien boleh berbeda selama keduanya bukan nol.
+### Kenali baris kendala
 
-$$
-\mathrm{WCC}
-=\frac{\text{jumlah bobot semua pasangan pada tingkat yang dihitung}}
-       {\text{jumlah bobot semua pasangan pada acuan bersama}}
- \times 100\%.
-$$
-
-1. **Tentukan pasangan kendala.** Pasangkan R1 dengan baris sesudahnya, lalu R2 dengan baris sesudahnya, dan seterusnya. R1–R2 dihitung sekali.
-2. **Hitung pembilang.** Pakai daftar rute yang diizinkan pada tingkat yang dinilai. Hitung variabel bersama untuk setiap pasangan, kemudian jumlahkan bobotnya.
-3. **Hitung penyebut.** Pakai baris kendala yang sama dengan daftar rute acuan. Hitung kembali bobot setiap pasangan, kemudian jumlahkan. Untuk rancangan ini, acuan mencakup semua rute yang diuji, jadi bobot tiap pasangan pada acuan menjadi batas bagi pasangan itu di Low, Medium, dan High.
-
-Jika dua baris linear punya masing-masing 2 dan 5 koefisien bukan nol (*number of nonzeros* atau **NNZ**), keduanya bisa berbagi paling banyak 2 variabel. Untuk tahu bobot pada acuan, tetap cek **variabel mana yang sama**. Jika keduanya hanya berbagi satu variabel, pasangan itu menyumbang 1 ke penyebut.
-
-## 2. Contoh kecil dengan indeks lengkap
-
-Ambil empat potongan kendala PT XYZ untuk sirup gula cair (produk B). Contoh ini memakai empat variabel berikut. Baris R1–R4 diberi nomor khusus untuk contoh. Model lengkap di Bagian 3 juga memuat rute dan variabel lain.
-
-| Variabel | Cara membaca indeks |
+| R | Kendala |
 | --- | --- |
-| $`x_{1,1,B}`$ | Ton sirup dari **pabrik P1** ke **gudang G1**. Indeksnya pabrik, gudang, produk. |
-| $`z_{1,1,B}`$ | Ton sirup dari **gudang G1** ke **zona K1**. Indeksnya gudang, zona, produk. |
-| $`z_{1,2,B}`$ | Ton sirup dari **gudang G1** ke **zona K2**. |
-| $`y_1`$ | Keputusan buka gudang **G1**. Nilai 1 berarti buka dan 0 berarti tutup. |
+| R1 | Kapasitas pabrik P1 |
+| R2 | Neraca sirup di gudang G1 |
+| R3 | Pesanan sirup di zona K1 |
+| R4 | Kapasitas tonase gudang G1 |
 
-**Low** memuat rute sirup P1 → G1 dan G1 → K1. **Acuan contoh** memuat kedua rute itu serta rute sirup G1 → K2. Tambahan rute membuat $`z_{1,2,B}`$ muncul di dua baris, yaitu neraca sirup G1 (R2) dan kapasitas G1 (R4).
+Di contoh ini, tulis hanya suku dari rute sirup P1 → G1 → K1 dan keputusan buka G1. Nomor R di contoh kecil berlaku khusus untuk contoh ini.
 
-| Baris | Aturan | Potongan persamaan Low | Potongan persamaan acuan |
-| --- | --- | --- | --- |
-| R1 | Kapasitas pabrik P1 | $`x_{1,1,B}\le 8`$ | $`x_{1,1,B}\le 8`$ |
-| R2 | Neraca sirup di G1 | $`x_{1,1,B}=z_{1,1,B}`$ | $`x_{1,1,B}=z_{1,1,B}+z_{1,2,B}`$ |
-| R3 | Pesanan sirup di K1 | $`z_{1,1,B}=1`$ | $`z_{1,1,B}=1`$ |
-| R4 | Kapasitas tonase G1 | $`z_{1,1,B}\le16y_1`$ | $`z_{1,1,B}+z_{1,2,B}\le16y_1`$ |
+```math
+\begin{aligned}
+\mathrm{R1}\quad &x_{1,1,B}\le 8,\\
+\mathrm{R2}\quad &x_{1,1,B}=z_{1,1,B},\\
+\mathrm{R3}\quad &z_{1,1,B}=1,\\
+\mathrm{R4}\quad &z_{1,1,B}\le 16y_1.
+\end{aligned}
+```
 
-Ambil **R2–R4**. Baca ke kiri dan ke kanan tanda sama dengan atau tanda kurang dari. Pada Low, cari variabel yang tertulis di kedua baris. Hanya $`z_{1,1,B}`$ yang cocok, jadi **bobot Low = 1**. Lakukan hal yang sama pada kolom acuan. Sekarang $`z_{1,1,B}`$ dan $`z_{1,2,B}`$ muncul di kedua baris, jadi **bobot acuan = 2**. Variabel $`x_{1,1,B}`$ hanya muncul di R2, sedangkan $`y_1`$ hanya muncul di R4.
+B adalah sirup. $`x_{1,1,B}`$ berarti kiriman dari **pabrik P1 ke gudang G1**. $`z_{1,1,B}`$ berarti kiriman dari **gudang G1 ke zona K1**. Hurufnya berbeda, sehingga kedua variabel itu mewakili keputusan yang berbeda meski ketiga indeksnya sama. $`y_1`$ berarti keputusan membuka G1.
 
-| Pasangan | Variabel bersama di Low | Bobot Low | Variabel bersama di acuan | Bobot acuan |
-| --- | --- | ---: | --- | ---: |
-| R1–R2 | $`x_{1,1,B}`$ | 1 | $`x_{1,1,B}`$ | 1 |
-| R1–R3 | Tidak ada | 0 | Tidak ada | 0 |
-| R1–R4 | Tidak ada | 0 | Tidak ada | 0 |
-| R2–R3 | $`z_{1,1,B}`$ | 1 | $`z_{1,1,B}`$ | 1 |
-| R2–R4 | $`z_{1,1,B}`$ | **1** | $`z_{1,1,B}`$, $`z_{1,2,B}`$ | **2** |
-| R3–R4 | $`z_{1,1,B}`$ | 1 | $`z_{1,1,B}`$ | 1 |
-| **Total** | | **4** | | **5** |
+### Cocokkan variabel setiap pasangan
 
-Pada graf, angka pertama di tiap garis adalah bobot Low dan angka kedua adalah bobot acuan. Pasangan yang tidak berbagi variabel tidak memiliki garis.
+| Pasangan | Variabel yang sama persis | Bobot |
+| --- | --- | ---: |
+| R1–R2 | $`x_{1,1,B}`$ | 1 |
+| R1–R3 | Tidak ada | 0 |
+| R1–R4 | Tidak ada | 0 |
+| R2–R3 | $`z_{1,1,B}`$ | 1 |
+| R2–R4 | $`z_{1,1,B}`$ | 1 |
+| R3–R4 | $`z_{1,1,B}`$ | 1 |
+| **Jumlah bobot** | | **4** |
+
+Coba baca **R1–R2**. R1 memuat $`x_{1,1,B}`$. R2 juga memuat $`x_{1,1,B}`$, jadi pasangan itu berbobot 1. R1–R3 berbobot 0 karena R3 hanya memuat $`z_{1,1,B}`$. Untuk setiap pasangan, cek variabel di kedua ruas. Konstanta dan angka koefisien tidak dihitung sebagai variabel.
 
 ```mermaid
 flowchart TB
-    R1["R1 · Kapasitas P1"] ---|1 / 1| R2["R2 · Neraca sirup G1"]
-    R2 ---|1 / 1| R3["R3 · Pesanan sirup K1"]
-    R2 ---|1 / 2| R4["R4 · Kapasitas G1"]
-    R3 ---|1 / 1| R4
+    R1["R1 · Kapasitas P1"] ---|1| R2["R2 · Neraca sirup G1"]
+    R2 ---|1| R3["R3 · Pesanan sirup K1"]
+    R2 ---|1| R4["R4 · Kapasitas G1"]
+    R3 ---|1| R4
 ```
 
-- **Pembilang Low** adalah $1+0+0+1+1+1=4$.
-- **Penyebut acuan** adalah $1+0+0+1+2+1=5$.
+## 2. Kendala dan hubungan pada model lengkap Low
 
-$$
-\mathrm{WCC}_{\mathrm{contoh,\ Low}}=\frac{4}{5}\times100\%=80\%.
-$$
+### Daftar kendala R1–R43
 
-Dalam kolom acuan, R2 dan R4 masing-masing mempunyai NNZ 3. Itu memberi batas atas 3 menurut ukuran baris. Pencocokan indeks menemukan dua variabel bersama, sehingga pasangan R2–R4 menyumbang **2** ke penyebut.
+Di model lengkap, nomor berikut mengikuti urutan 43 baris operasi sebelum penyederhanaan solver. Produk A adalah minyak goreng, B adalah sirup, dan C adalah susu. Buka kelompok yang ingin diperiksa untuk melihat setiap persamaan beserta indeksnya.
 
-## 3. Kasus utama PT XYZ
+| Baris | Kendala |
+| --- | --- |
+| R1–R6 | Kapasitas P1–P6 |
+| R7–R17 | Neraca per gudang dan produk. G1 menangani A dan B, G2–G4 masing-masing menangani A, B, dan C. |
+| R18–R35 | Pesanan K1–K6, masing-masing untuk A, B, dan C |
+| R36–R39 | Kapasitas tonase G1–G4 |
+| R40–R43 | Batas waktu kerja G1–G4 dalam bentuk linear P1 |
 
-### 3.1 Beri nomor 43 baris operasi
+<details>
+<summary>R1–R6 · Kapasitas pabrik</summary>
 
-Audit mengambil satu kondisi permintaan sebelum penyederhanaan model oleh solver. Nomor baris dan jenis aturannya sama untuk semua tingkat rute.
+**R1 · Kapasitas pabrik P1**
 
-| Nomor baris | Aturan | Cara memberi nomor | Jumlah |
+```math
+\begin{aligned}
+\mathrm{R1}\quad &x_{1,1,A}+x_{1,1,B}+x_{1,2,A} \le 8
+\end{aligned}
+```
+
+**R2 · Kapasitas pabrik P2**
+
+```math
+\begin{aligned}
+\mathrm{R2}\quad &x_{2,1,A}+x_{2,1,B}+x_{2,4,B} \le 8
+\end{aligned}
+```
+
+**R3 · Kapasitas pabrik P3**
+
+```math
+\begin{aligned}
+\mathrm{R3}\quad &x_{3,1,B}+x_{3,3,B}+x_{3,3,C}+x_{3,4,B} \le 8
+\end{aligned}
+```
+
+**R4 · Kapasitas pabrik P4**
+
+```math
+\begin{aligned}
+\mathrm{R4}\quad &x_{4,2,C}+x_{4,3,C} \le 8
+\end{aligned}
+```
+
+**R5 · Kapasitas pabrik P5**
+
+```math
+\begin{aligned}
+\mathrm{R5}\quad &x_{5,2,A}+x_{5,4,A} \le 8
+\end{aligned}
+```
+
+**R6 · Kapasitas pabrik P6**
+
+```math
+\begin{aligned}
+\mathrm{R6}\quad &x_{6,2,C}+x_{6,3,C} \le 8
+\end{aligned}
+```
+
+</details>
+
+<details>
+<summary>R7–R17 · Neraca gudang–produk</summary>
+
+**R7 · Neraca minyak di G1**
+
+```math
+\begin{aligned}
+\mathrm{R7}\quad &x_{1,1,A}+x_{2,1,A}\\
+&\quad = z_{1,1,A}+z_{1,2,A}+z_{1,3,A}+z_{1,4,A}\\
+&\qquad {}+z_{1,5,A}+z_{1,6,A}
+\end{aligned}
+```
+
+**R8 · Neraca sirup di G1**
+
+```math
+\begin{aligned}
+\mathrm{R8}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}\\
+&\quad = z_{1,1,B}+z_{1,3,B}+z_{1,5,B}
+\end{aligned}
+```
+
+**R9 · Neraca minyak di G2**
+
+```math
+\begin{aligned}
+\mathrm{R9}\quad &x_{1,2,A}+x_{5,2,A}\\
+&\quad = z_{2,1,A}+z_{2,3,A}+z_{2,4,A}+z_{2,5,A}\\
+&\qquad {}+z_{2,6,A}
+\end{aligned}
+```
+
+**R10 · Neraca sirup di G2**
+
+```math
+\begin{aligned}
+\mathrm{R10}\quad &0\\
+&\quad = 0
+\end{aligned}
+```
+
+**R11 · Neraca susu di G2**
+
+```math
+\begin{aligned}
+\mathrm{R11}\quad &x_{4,2,C}+x_{6,2,C}\\
+&\quad = z_{2,1,C}+z_{2,2,C}+z_{2,3,C}+z_{2,4,C}\\
+&\qquad {}+z_{2,5,C}+z_{2,6,C}
+\end{aligned}
+```
+
+**R12 · Neraca minyak di G3**
+
+```math
+\begin{aligned}
+\mathrm{R12}\quad &0\\
+&\quad = 0
+\end{aligned}
+```
+
+**R13 · Neraca sirup di G3**
+
+```math
+\begin{aligned}
+\mathrm{R13}\quad &x_{3,3,B}\\
+&\quad = z_{3,1,B}+z_{3,2,B}+z_{3,3,B}+z_{3,4,B}\\
+&\qquad {}+z_{3,5,B}+z_{3,6,B}
+\end{aligned}
+```
+
+**R14 · Neraca susu di G3**
+
+```math
+\begin{aligned}
+\mathrm{R14}\quad &x_{3,3,C}+x_{4,3,C}+x_{6,3,C}\\
+&\quad = z_{3,1,C}+z_{3,2,C}+z_{3,3,C}+z_{3,4,C}\\
+&\qquad {}+z_{3,5,C}+z_{3,6,C}
+\end{aligned}
+```
+
+**R15 · Neraca minyak di G4**
+
+```math
+\begin{aligned}
+\mathrm{R15}\quad &x_{5,4,A}\\
+&\quad = z_{4,2,A}
+\end{aligned}
+```
+
+**R16 · Neraca sirup di G4**
+
+```math
+\begin{aligned}
+\mathrm{R16}\quad &x_{2,4,B}+x_{3,4,B}\\
+&\quad = z_{4,2,B}+z_{4,4,B}+z_{4,6,B}
+\end{aligned}
+```
+
+**R17 · Neraca susu di G4**
+
+```math
+\begin{aligned}
+\mathrm{R17}\quad &0\\
+&\quad = 0
+\end{aligned}
+```
+
+</details>
+
+<details>
+<summary>R18–R35 · Pesanan zona–produk</summary>
+
+**R18 · Pesanan minyak di K1**
+
+```math
+\begin{aligned}
+\mathrm{R18}\quad &z_{1,1,A}+z_{2,1,A} = 3
+\end{aligned}
+```
+
+**R19 · Pesanan sirup di K1**
+
+```math
+\begin{aligned}
+\mathrm{R19}\quad &z_{1,1,B}+z_{3,1,B} = 1
+\end{aligned}
+```
+
+**R20 · Pesanan susu di K1**
+
+```math
+\begin{aligned}
+\mathrm{R20}\quad &z_{2,1,C}+z_{3,1,C} = 1
+\end{aligned}
+```
+
+**R21 · Pesanan minyak di K2**
+
+```math
+\begin{aligned}
+\mathrm{R21}\quad &z_{1,2,A}+z_{4,2,A} = 3
+\end{aligned}
+```
+
+**R22 · Pesanan sirup di K2**
+
+```math
+\begin{aligned}
+\mathrm{R22}\quad &z_{3,2,B}+z_{4,2,B} = 1
+\end{aligned}
+```
+
+**R23 · Pesanan susu di K2**
+
+```math
+\begin{aligned}
+\mathrm{R23}\quad &z_{2,2,C}+z_{3,2,C} = 1
+\end{aligned}
+```
+
+**R24 · Pesanan minyak di K3**
+
+```math
+\begin{aligned}
+\mathrm{R24}\quad &z_{1,3,A}+z_{2,3,A} = 1
+\end{aligned}
+```
+
+**R25 · Pesanan sirup di K3**
+
+```math
+\begin{aligned}
+\mathrm{R25}\quad &z_{1,3,B}+z_{3,3,B} = 3
+\end{aligned}
+```
+
+**R26 · Pesanan susu di K3**
+
+```math
+\begin{aligned}
+\mathrm{R26}\quad &z_{2,3,C}+z_{3,3,C} = 1
+\end{aligned}
+```
+
+**R27 · Pesanan minyak di K4**
+
+```math
+\begin{aligned}
+\mathrm{R27}\quad &z_{1,4,A}+z_{2,4,A} = 1
+\end{aligned}
+```
+
+**R28 · Pesanan sirup di K4**
+
+```math
+\begin{aligned}
+\mathrm{R28}\quad &z_{3,4,B}+z_{4,4,B} = 3
+\end{aligned}
+```
+
+**R29 · Pesanan susu di K4**
+
+```math
+\begin{aligned}
+\mathrm{R29}\quad &z_{2,4,C}+z_{3,4,C} = 1
+\end{aligned}
+```
+
+**R30 · Pesanan minyak di K5**
+
+```math
+\begin{aligned}
+\mathrm{R30}\quad &z_{1,5,A}+z_{2,5,A} = 1
+\end{aligned}
+```
+
+**R31 · Pesanan sirup di K5**
+
+```math
+\begin{aligned}
+\mathrm{R31}\quad &z_{1,5,B}+z_{3,5,B} = 1
+\end{aligned}
+```
+
+**R32 · Pesanan susu di K5**
+
+```math
+\begin{aligned}
+\mathrm{R32}\quad &z_{2,5,C}+z_{3,5,C} = 3
+\end{aligned}
+```
+
+**R33 · Pesanan minyak di K6**
+
+```math
+\begin{aligned}
+\mathrm{R33}\quad &z_{1,6,A}+z_{2,6,A} = 1
+\end{aligned}
+```
+
+**R34 · Pesanan sirup di K6**
+
+```math
+\begin{aligned}
+\mathrm{R34}\quad &z_{3,6,B}+z_{4,6,B} = 1
+\end{aligned}
+```
+
+**R35 · Pesanan susu di K6**
+
+```math
+\begin{aligned}
+\mathrm{R35}\quad &z_{2,6,C}+z_{3,6,C} = 3
+\end{aligned}
+```
+
+</details>
+
+<details>
+<summary>R36–R39 · Kapasitas tonase gudang</summary>
+
+**R36 · Kapasitas tonase G1**
+
+```math
+\begin{aligned}
+\mathrm{R36}\quad &z_{1,1,A}+z_{1,1,B}+z_{1,2,A}+z_{1,3,A}\\
+&{}+z_{1,3,B}+z_{1,4,A}+z_{1,5,A}+z_{1,5,B}\\
+&{}+z_{1,6,A}\\
+&\quad \le 16y_1
+\end{aligned}
+```
+
+**R37 · Kapasitas tonase G2**
+
+```math
+\begin{aligned}
+\mathrm{R37}\quad &z_{2,1,A}+z_{2,1,C}+z_{2,2,C}+z_{2,3,A}\\
+&{}+z_{2,3,C}+z_{2,4,A}+z_{2,4,C}+z_{2,5,A}\\
+&{}+z_{2,5,C}+z_{2,6,A}+z_{2,6,C}\\
+&\quad \le 20y_2
+\end{aligned}
+```
+
+**R38 · Kapasitas tonase G3**
+
+```math
+\begin{aligned}
+\mathrm{R38}\quad &z_{3,1,B}+z_{3,1,C}+z_{3,2,B}+z_{3,2,C}\\
+&{}+z_{3,3,B}+z_{3,3,C}+z_{3,4,B}+z_{3,4,C}\\
+&{}+z_{3,5,B}+z_{3,5,C}+z_{3,6,B}+z_{3,6,C}\\
+&\quad \le 18y_3
+\end{aligned}
+```
+
+**R39 · Kapasitas tonase G4**
+
+```math
+\begin{aligned}
+\mathrm{R39}\quad &z_{4,2,A}+z_{4,2,B}+z_{4,4,B}+z_{4,6,B} \le 14y_4
+\end{aligned}
+```
+
+</details>
+
+<details>
+<summary>R40–R43 · Batas waktu kerja gudang</summary>
+
+**R40 · Batas waktu kerja G1**
+
+```math
+\begin{aligned}
+\mathrm{R40}\quad &z_{1,1,A}+z_{1,1,B}+z_{1,2,A}+z_{1,3,A}\\
+&{}+z_{1,3,B}+z_{1,4,A}+z_{1,5,A}+z_{1,5,B}\\
+&{}+z_{1,6,A}\\
+&\quad \le 19{,}2y_1
+\end{aligned}
+```
+
+**R41 · Batas waktu kerja G2**
+
+```math
+\begin{aligned}
+\mathrm{R41}\quad &z_{2,1,A}+z_{2,1,C}+z_{2,2,C}+z_{2,3,A}\\
+&{}+z_{2,3,C}+z_{2,4,A}+z_{2,4,C}+z_{2,5,A}\\
+&{}+z_{2,5,C}+z_{2,6,A}+z_{2,6,C}\\
+&\quad \le 24y_2
+\end{aligned}
+```
+
+**R42 · Batas waktu kerja G3**
+
+```math
+\begin{aligned}
+\mathrm{R42}\quad &z_{3,1,B}+z_{3,1,C}+z_{3,2,B}+z_{3,2,C}\\
+&{}+z_{3,3,B}+z_{3,3,C}+z_{3,4,B}+z_{3,4,C}\\
+&{}+z_{3,5,B}+z_{3,5,C}+z_{3,6,B}+z_{3,6,C}\\
+&\quad \le 21{,}6y_3
+\end{aligned}
+```
+
+**R43 · Batas waktu kerja G4**
+
+```math
+\begin{aligned}
+\mathrm{R43}\quad &z_{4,2,A}+z_{4,2,B}+z_{4,4,B}+z_{4,6,B} \le 16{,}8y_4
+\end{aligned}
+```
+
+</details>
+
+### Telusuri hubungan dari persamaan Low
+
+| Pasangan | Kendala yang dibandingkan | Variabel bersama di Low | Bobot Low |
 | --- | --- | --- | ---: |
-| R1–R6 | Kapasitas pabrik | P1 sampai P6 | 6 |
-| R7–R17 | Neraca gudang–produk | G1 untuk A dan B. G2, G3, dan G4 masing-masing untuk A, B, C. | 11 |
-| R18–R35 | Pesanan zona–produk | K1 sampai K6, masing-masing untuk A, B, C | 18 |
-| R36–R39 | Kapasitas tonase gudang | G1 sampai G4 | 4 |
-| R40–R43 | Batas waktu kerja gudang | G1 sampai G4 | 4 |
-| **Total** | | | **43** |
+| R1–R8 | Kapasitas P1 dan neraca sirup G1 | $`x_{1,1,B}`$ | 1 |
+| R1–R19 | Kapasitas P1 dan pesanan sirup K1 | Tidak ada | 0 |
+| R8–R19 | Neraca sirup G1 dan pesanan sirup K1 | $`z_{1,1,B}`$ | 1 |
+| R8–R36 | Neraca sirup dan tonase G1 | $`z_{1,1,B}`$, $`z_{1,3,B}`$, $`z_{1,5,B}`$ | 3 |
+| R8–R40 | Neraca sirup dan waktu kerja G1 | $`z_{1,1,B}`$, $`z_{1,3,B}`$, $`z_{1,5,B}`$ | 3 |
+| R19–R36 | Pesanan sirup K1 dan tonase G1 | $`z_{1,1,B}`$ | 1 |
+| R19–R40 | Pesanan sirup K1 dan waktu kerja G1 | $`z_{1,1,B}`$ | 1 |
+| R36–R40 | Tonase dan waktu kerja G1 | $`z_{1,j,A}`$ untuk K1–K6, $`z_{1,j,B}`$ untuk K1, K3, K5, $`y_1`$ | 10 |
 
-Ada **43 × 42 ÷ 2 = 903 pasangan baris**. Satu rute menentukan asal, tujuan, dan produk. Contohnya, $`x_{1,1,B}`$ adalah kiriman sirup dari P1 ke G1, sedangkan $`z_{1,3,B}`$ adalah kiriman sirup dari G1 ke K3. Produk A adalah minyak goreng dan produk C adalah susu. [Gambar jaringan dan data kasus](case/Kasus_Dasar.md#rute-low-medium-dan-high)
+Contohnya, R36 dan R40 memuat daftar kiriman keluar G1 yang sama. Dari persamaan keduanya, cocokkan enam variabel kiriman minyak dan tiga variabel kiriman sirup. Cocokkan pula $`y_1`$ pada kedua ruas kanan. Koefisien $`y_1`$ berbeda, yaitu 16 dan 19,2, tetapi identitas variabelnya sama. Bobot pasangan ini adalah **6 + 3 + 1 = 10**.
 
-### 3.2 Tetapkan daftar rute untuk Low dan acuan
+**NNZ** adalah jumlah koefisien bukan nol pada satu baris linear. Contohnya, R8 pada Low punya 6 variabel dan R36 punya 10. Kedua baris bisa berbagi paling banyak 6 menurut jumlah variabelnya. Indeks yang sama persis hanya tiga, yaitu $`z_{1,1,B}`$, $`z_{1,3,B}`$, dan $`z_{1,5,B}`$, sehingga bobot R8–R36 adalah **3**.
 
-| Daftar | Rute masuk pabrik → gudang | Rute keluar gudang → zona |
-| --- | ---: | ---: |
-| Low | 16 | 36 |
-| Acuan bersama | 35, diambil dari daftar rute masuk High | 66, dari 11 pasangan gudang–produk × 6 zona |
+Empat puluh tiga baris menghasilkan **43 × 42 ÷ 2 = 903 pasangan**. Jumlahkan bobot setiap pasangan satu kali, termasuk pasangan berbobot nol. Total bobot Low adalah **236**. Tabel pada Bagian 3 merangkum penjumlahannya, dan CSV mencantumkan indeks lengkap untuk setiap pasangan. [Rincian 903 pasangan](math_model_acuan/hasil/Audit_WCC_Pasangan.csv)
 
-Sebelas pasangan gudang–produk ditentukan dari rute masuk acuan. G1 dapat menerima 2 produk, dan G2, G3, serta G4 masing-masing dapat menerima 3. Perhitungan acuan mengizinkan setiap pasangan itu melayani keenam zona, sehingga ada (2 + 3 + 3 + 3) × 6 = 66 rute keluar.
+## 3. Cara membaca persentase WCC
 
-### 3.3 Lihat variabel yang sama pada persamaan lengkap
+### Apa itu acuan bersama?
 
-#### R36–R40. Kapasitas tonase dan waktu kerja G1
+Total **236** adalah bobot Low. Supaya bisa menyatakan bobot itu dalam persen, penelitian menetapkan **satu daftar rute pembanding** untuk semua tingkat. Daftar pembanding inilah yang disebut acuan. Acuan memakai 43 aturan yang sama dan mencakup semua rute yang ada di Low, Medium, dan High.
 
-Contoh ini memakai bentuk linear pada P1. R36 membatasi volume kiriman G1 sampai **16 ton** saat gudang dibuka. R40 membatasi waktu kerja sampai **19,2 jam** saat gudang dibuka. Setiap ton membutuhkan satu jam kerja, sehingga koefisien setiap kiriman pada R40 adalah 1.
+- **Rute masuk acuan** mengikuti daftar High, yaitu **35 rute**.
+- **Rute keluar acuan** mencakup setiap zona untuk setiap pasangan gudang–produk yang punya rute masuk. Ada 11 pasangan gudang–produk dan 6 zona, sehingga ada **66 rute keluar**.
 
-**Low.** G1 dapat mengirim minyak (A) ke K1–K6 dan sirup (B) ke K1, K3, serta K5.
+Misalnya, pada Low gudang G1 mengirim sirup ke K1, K3, dan K5. Dalam daftar acuan tersedia juga kiriman sirup G1 ke K2, K4, dan K6. Ketiga variabel tambahan, $`z_{1,2,B}`$, $`z_{1,4,B}`$, dan $`z_{1,6,B}`$, muncul pada **R36 dan R40**, sehingga bobot pasangan pada acuan adalah **10 + 3 = 13**. Artinya, pasangan itu menyumbang **10** saat menghitung Low dan **13** saat menghitung acuan.
 
-$$
+<details>
+<summary>Lihat seluruh persamaan R1–R43 dengan rute acuan</summary>
+
+<details>
+<summary>R1–R6 · Kapasitas pabrik</summary>
+
+**R1 · Kapasitas pabrik P1**
+
+```math
 \begin{aligned}
-\mathrm{R36}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}\\
-                  &{}+z_{1,4,A}+z_{1,5,A}+z_{1,6,A}\\
-                  &{}+z_{1,1,B}+z_{1,3,B}+z_{1,5,B}\le 16y_1,\\[3pt]
-\mathrm{R40}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}\\
-                  &{}+z_{1,4,A}+z_{1,5,A}+z_{1,6,A}\\
-                  &{}+z_{1,1,B}+z_{1,3,B}+z_{1,5,B}\le 19{,}2y_1.
+\mathrm{R1}\quad &x_{1,1,A}+x_{1,1,B}+x_{1,2,A}+x_{1,2,B}\\
+&{}+x_{1,3,B}+x_{1,4,A}+x_{1,4,B}\\
+&\quad \le 8
 \end{aligned}
-$$
+```
 
-Cocokkan kedua persamaan. Keenam variabel minyak dan ketiga variabel sirup di ruas kiri muncul di kedua baris. Variabel buka gudang $`y_1`$ juga muncul di kedua ruas kanan. Koefisien 16 dan 19,2 berbeda, tetapi variabelnya sama. Jadi **bobot Low = 6 + 3 + 1 = 10**.
+**R2 · Kapasitas pabrik P2**
 
-**Acuan.** G1 juga dapat mengirim sirup ke K2, K4, dan K6. Ketiga variabel baru itu muncul di kedua baris.
-
-$$
+```math
 \begin{aligned}
-\mathrm{R36}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}\\
-                  &{}+z_{1,4,A}+z_{1,5,A}+z_{1,6,A}\\
-                  &{}+z_{1,1,B}+z_{1,2,B}+z_{1,3,B}\\
-                  &{}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}\le 16y_1,\\[3pt]
-\mathrm{R40}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}\\
-                  &{}+z_{1,4,A}+z_{1,5,A}+z_{1,6,A}\\
-                  &{}+z_{1,1,B}+z_{1,2,B}+z_{1,3,B}\\
-                  &{}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}\le 19{,}2y_1.
+\mathrm{R2}\quad &x_{2,1,A}+x_{2,1,B}+x_{2,2,B}+x_{2,3,B}\\
+&{}+x_{2,4,B}\\
+&\quad \le 8
 \end{aligned}
-$$
+```
 
-Tiga variabel bersama yang bertambah adalah $`z_{1,2,B}`$, $`z_{1,4,B}`$, dan $`z_{1,6,B}`$. Jadi **bobot acuan = 10 + 3 = 13**. Dalam hitungan jaringan, pasangan R36–R40 menyumbang **10 ke pembilang Low** dan **13 ke penyebut**.
+**R3 · Kapasitas pabrik P3**
 
-#### R8–R36. Neraca sirup dan kapasitas tonase G1
-
-R8 menyatakan sirup yang masuk ke G1 sama dengan sirup yang keluar dari G1. Bandingkan persamaan R8 di bawah dengan R36 yang sudah ditulis di atas.
-
-$$
+```math
 \begin{aligned}
-\text{Low}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}\\
-                &\qquad=z_{1,1,B}+z_{1,3,B}+z_{1,5,B},\\[3pt]
-\text{Acuan}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}+x_{4,1,B}\\
-                  &\qquad=z_{1,1,B}+z_{1,2,B}+z_{1,3,B}\\
-                  &\qquad\phantom{=}{}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}.
+\mathrm{R3}\quad &x_{3,1,A}+x_{3,1,B}+x_{3,2,A}+x_{3,2,B}\\
+&{}+x_{3,3,A}+x_{3,3,B}+x_{3,3,C}+x_{3,4,A}\\
+&{}+x_{3,4,B}\\
+&\quad \le 8
 \end{aligned}
-$$
+```
 
-| Daftar rute | NNZ R8 | NNZ R36 | Variabel yang muncul di kedua persamaan | Bobot R8–R36 |
-| --- | ---: | ---: | --- | ---: |
-| Low | 6 | 10 | $`z_{1,1,B}`$, $`z_{1,3,B}`$, $`z_{1,5,B}`$ | **3** |
-| Acuan | 10 | 13 | $`z_{1,1,B}`$, $`z_{1,2,B}`$, $`z_{1,3,B}`$, $`z_{1,4,B}`$, $`z_{1,5,B}`$, $`z_{1,6,B}`$ | **6** |
+**R4 · Kapasitas pabrik P4**
 
-Kiriman masuk $`x_{4,1,B}`$ pada acuan hanya muncul di R8. Jadi variabel itu menambah NNZ R8 dan tidak menyumbang bobot R8–R36. Pasangan ini menyumbang **3 ke pembilang Low** dan **6 ke penyebut**.
+```math
+\begin{aligned}
+\mathrm{R4}\quad &x_{4,1,B}+x_{4,2,B}+x_{4,2,C}+x_{4,3,B}\\
+&{}+x_{4,3,C}+x_{4,4,B}+x_{4,4,C}\\
+&\quad \le 8
+\end{aligned}
+```
 
-## 4. Jumlahkan bobot pada jaringan lengkap
+**R5 · Kapasitas pabrik P5**
 
-Cara membaca tabel ini sama dengan contoh kecil. Hitung bobot tiap pasangan, lalu jumlahkan menurut jenis kendalanya. Misalnya, 6 baris kapasitas pabrik bisa dipasangkan dengan 11 baris neraca, sehingga ada 66 pasangan untuk kelompok pertama. Enam belas rute masuk Low menyumbang total bobot 16 pada kelompok itu. Setiap rute masuk dipakai oleh satu baris kapasitas pabrik dan satu baris neraca.
+```math
+\begin{aligned}
+\mathrm{R5}\quad &x_{5,1,A}+x_{5,2,A}+x_{5,3,A}+x_{5,4,A} \le 8
+\end{aligned}
+```
 
-Untuk kelompok tonase–waktu, setiap rute keluar dipakai pada kedua baris milik gudang yang sama. Keputusan buka tiap gudang juga dipakai oleh kedua barisnya. Total bobot kelompok itu adalah **36 + 4 = 40** di Low dan **66 + 4 = 70** di acuan. Pasangan tonase dan waktu dari gudang yang berbeda berbobot 0.
+**R6 · Kapasitas pabrik P6**
 
-| Kelompok pasangan kendala | Pasangan yang diperiksa | Jumlah bobot Low | Jumlah bobot acuan |
+```math
+\begin{aligned}
+\mathrm{R6}\quad &x_{6,2,C}+x_{6,3,C}+x_{6,4,C} \le 8
+\end{aligned}
+```
+
+</details>
+
+<details>
+<summary>R7–R17 · Neraca gudang–produk</summary>
+
+**R7 · Neraca minyak di G1**
+
+```math
+\begin{aligned}
+\mathrm{R7}\quad &x_{1,1,A}+x_{2,1,A}+x_{3,1,A}+x_{5,1,A}\\
+&\quad = z_{1,1,A}+z_{1,2,A}+z_{1,3,A}+z_{1,4,A}\\
+&\qquad {}+z_{1,5,A}+z_{1,6,A}
+\end{aligned}
+```
+
+**R8 · Neraca sirup di G1**
+
+```math
+\begin{aligned}
+\mathrm{R8}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}+x_{4,1,B}\\
+&\quad = z_{1,1,B}+z_{1,2,B}+z_{1,3,B}+z_{1,4,B}\\
+&\qquad {}+z_{1,5,B}+z_{1,6,B}
+\end{aligned}
+```
+
+**R9 · Neraca minyak di G2**
+
+```math
+\begin{aligned}
+\mathrm{R9}\quad &x_{1,2,A}+x_{3,2,A}+x_{5,2,A}\\
+&\quad = z_{2,1,A}+z_{2,2,A}+z_{2,3,A}+z_{2,4,A}\\
+&\qquad {}+z_{2,5,A}+z_{2,6,A}
+\end{aligned}
+```
+
+**R10 · Neraca sirup di G2**
+
+```math
+\begin{aligned}
+\mathrm{R10}\quad &x_{1,2,B}+x_{2,2,B}+x_{3,2,B}+x_{4,2,B}\\
+&\quad = z_{2,1,B}+z_{2,2,B}+z_{2,3,B}+z_{2,4,B}\\
+&\qquad {}+z_{2,5,B}+z_{2,6,B}
+\end{aligned}
+```
+
+**R11 · Neraca susu di G2**
+
+```math
+\begin{aligned}
+\mathrm{R11}\quad &x_{4,2,C}+x_{6,2,C}\\
+&\quad = z_{2,1,C}+z_{2,2,C}+z_{2,3,C}+z_{2,4,C}\\
+&\qquad {}+z_{2,5,C}+z_{2,6,C}
+\end{aligned}
+```
+
+**R12 · Neraca minyak di G3**
+
+```math
+\begin{aligned}
+\mathrm{R12}\quad &x_{3,3,A}+x_{5,3,A}\\
+&\quad = z_{3,1,A}+z_{3,2,A}+z_{3,3,A}+z_{3,4,A}\\
+&\qquad {}+z_{3,5,A}+z_{3,6,A}
+\end{aligned}
+```
+
+**R13 · Neraca sirup di G3**
+
+```math
+\begin{aligned}
+\mathrm{R13}\quad &x_{1,3,B}+x_{2,3,B}+x_{3,3,B}+x_{4,3,B}\\
+&\quad = z_{3,1,B}+z_{3,2,B}+z_{3,3,B}+z_{3,4,B}\\
+&\qquad {}+z_{3,5,B}+z_{3,6,B}
+\end{aligned}
+```
+
+**R14 · Neraca susu di G3**
+
+```math
+\begin{aligned}
+\mathrm{R14}\quad &x_{3,3,C}+x_{4,3,C}+x_{6,3,C}\\
+&\quad = z_{3,1,C}+z_{3,2,C}+z_{3,3,C}+z_{3,4,C}\\
+&\qquad {}+z_{3,5,C}+z_{3,6,C}
+\end{aligned}
+```
+
+**R15 · Neraca minyak di G4**
+
+```math
+\begin{aligned}
+\mathrm{R15}\quad &x_{1,4,A}+x_{3,4,A}+x_{5,4,A}\\
+&\quad = z_{4,1,A}+z_{4,2,A}+z_{4,3,A}+z_{4,4,A}\\
+&\qquad {}+z_{4,5,A}+z_{4,6,A}
+\end{aligned}
+```
+
+**R16 · Neraca sirup di G4**
+
+```math
+\begin{aligned}
+\mathrm{R16}\quad &x_{1,4,B}+x_{2,4,B}+x_{3,4,B}+x_{4,4,B}\\
+&\quad = z_{4,1,B}+z_{4,2,B}+z_{4,3,B}+z_{4,4,B}\\
+&\qquad {}+z_{4,5,B}+z_{4,6,B}
+\end{aligned}
+```
+
+**R17 · Neraca susu di G4**
+
+```math
+\begin{aligned}
+\mathrm{R17}\quad &x_{4,4,C}+x_{6,4,C}\\
+&\quad = z_{4,1,C}+z_{4,2,C}+z_{4,3,C}+z_{4,4,C}\\
+&\qquad {}+z_{4,5,C}+z_{4,6,C}
+\end{aligned}
+```
+
+</details>
+
+<details>
+<summary>R18–R35 · Pesanan zona–produk</summary>
+
+**R18 · Pesanan minyak di K1**
+
+```math
+\begin{aligned}
+\mathrm{R18}\quad &z_{1,1,A}+z_{2,1,A}+z_{3,1,A}+z_{4,1,A} = 3
+\end{aligned}
+```
+
+**R19 · Pesanan sirup di K1**
+
+```math
+\begin{aligned}
+\mathrm{R19}\quad &z_{1,1,B}+z_{2,1,B}+z_{3,1,B}+z_{4,1,B} = 1
+\end{aligned}
+```
+
+**R20 · Pesanan susu di K1**
+
+```math
+\begin{aligned}
+\mathrm{R20}\quad &z_{2,1,C}+z_{3,1,C}+z_{4,1,C} = 1
+\end{aligned}
+```
+
+**R21 · Pesanan minyak di K2**
+
+```math
+\begin{aligned}
+\mathrm{R21}\quad &z_{1,2,A}+z_{2,2,A}+z_{3,2,A}+z_{4,2,A} = 3
+\end{aligned}
+```
+
+**R22 · Pesanan sirup di K2**
+
+```math
+\begin{aligned}
+\mathrm{R22}\quad &z_{1,2,B}+z_{2,2,B}+z_{3,2,B}+z_{4,2,B} = 1
+\end{aligned}
+```
+
+**R23 · Pesanan susu di K2**
+
+```math
+\begin{aligned}
+\mathrm{R23}\quad &z_{2,2,C}+z_{3,2,C}+z_{4,2,C} = 1
+\end{aligned}
+```
+
+**R24 · Pesanan minyak di K3**
+
+```math
+\begin{aligned}
+\mathrm{R24}\quad &z_{1,3,A}+z_{2,3,A}+z_{3,3,A}+z_{4,3,A} = 1
+\end{aligned}
+```
+
+**R25 · Pesanan sirup di K3**
+
+```math
+\begin{aligned}
+\mathrm{R25}\quad &z_{1,3,B}+z_{2,3,B}+z_{3,3,B}+z_{4,3,B} = 3
+\end{aligned}
+```
+
+**R26 · Pesanan susu di K3**
+
+```math
+\begin{aligned}
+\mathrm{R26}\quad &z_{2,3,C}+z_{3,3,C}+z_{4,3,C} = 1
+\end{aligned}
+```
+
+**R27 · Pesanan minyak di K4**
+
+```math
+\begin{aligned}
+\mathrm{R27}\quad &z_{1,4,A}+z_{2,4,A}+z_{3,4,A}+z_{4,4,A} = 1
+\end{aligned}
+```
+
+**R28 · Pesanan sirup di K4**
+
+```math
+\begin{aligned}
+\mathrm{R28}\quad &z_{1,4,B}+z_{2,4,B}+z_{3,4,B}+z_{4,4,B} = 3
+\end{aligned}
+```
+
+**R29 · Pesanan susu di K4**
+
+```math
+\begin{aligned}
+\mathrm{R29}\quad &z_{2,4,C}+z_{3,4,C}+z_{4,4,C} = 1
+\end{aligned}
+```
+
+**R30 · Pesanan minyak di K5**
+
+```math
+\begin{aligned}
+\mathrm{R30}\quad &z_{1,5,A}+z_{2,5,A}+z_{3,5,A}+z_{4,5,A} = 1
+\end{aligned}
+```
+
+**R31 · Pesanan sirup di K5**
+
+```math
+\begin{aligned}
+\mathrm{R31}\quad &z_{1,5,B}+z_{2,5,B}+z_{3,5,B}+z_{4,5,B} = 1
+\end{aligned}
+```
+
+**R32 · Pesanan susu di K5**
+
+```math
+\begin{aligned}
+\mathrm{R32}\quad &z_{2,5,C}+z_{3,5,C}+z_{4,5,C} = 3
+\end{aligned}
+```
+
+**R33 · Pesanan minyak di K6**
+
+```math
+\begin{aligned}
+\mathrm{R33}\quad &z_{1,6,A}+z_{2,6,A}+z_{3,6,A}+z_{4,6,A} = 1
+\end{aligned}
+```
+
+**R34 · Pesanan sirup di K6**
+
+```math
+\begin{aligned}
+\mathrm{R34}\quad &z_{1,6,B}+z_{2,6,B}+z_{3,6,B}+z_{4,6,B} = 1
+\end{aligned}
+```
+
+**R35 · Pesanan susu di K6**
+
+```math
+\begin{aligned}
+\mathrm{R35}\quad &z_{2,6,C}+z_{3,6,C}+z_{4,6,C} = 3
+\end{aligned}
+```
+
+</details>
+
+<details>
+<summary>R36–R39 · Kapasitas tonase gudang</summary>
+
+**R36 · Kapasitas tonase G1**
+
+```math
+\begin{aligned}
+\mathrm{R36}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}+z_{1,4,A}\\
+&{}+z_{1,5,A}+z_{1,6,A}+z_{1,1,B}+z_{1,2,B}\\
+&{}+z_{1,3,B}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}\\
+&\quad \le 16y_1
+\end{aligned}
+```
+
+**R37 · Kapasitas tonase G2**
+
+```math
+\begin{aligned}
+\mathrm{R37}\quad &z_{2,1,A}+z_{2,2,A}+z_{2,3,A}+z_{2,4,A}\\
+&{}+z_{2,5,A}+z_{2,6,A}+z_{2,1,B}+z_{2,2,B}\\
+&{}+z_{2,3,B}+z_{2,4,B}+z_{2,5,B}+z_{2,6,B}\\
+&{}+z_{2,1,C}+z_{2,2,C}+z_{2,3,C}+z_{2,4,C}\\
+&{}+z_{2,5,C}+z_{2,6,C}\\
+&\quad \le 20y_2
+\end{aligned}
+```
+
+**R38 · Kapasitas tonase G3**
+
+```math
+\begin{aligned}
+\mathrm{R38}\quad &z_{3,1,A}+z_{3,2,A}+z_{3,3,A}+z_{3,4,A}\\
+&{}+z_{3,5,A}+z_{3,6,A}+z_{3,1,B}+z_{3,2,B}\\
+&{}+z_{3,3,B}+z_{3,4,B}+z_{3,5,B}+z_{3,6,B}\\
+&{}+z_{3,1,C}+z_{3,2,C}+z_{3,3,C}+z_{3,4,C}\\
+&{}+z_{3,5,C}+z_{3,6,C}\\
+&\quad \le 18y_3
+\end{aligned}
+```
+
+**R39 · Kapasitas tonase G4**
+
+```math
+\begin{aligned}
+\mathrm{R39}\quad &z_{4,1,A}+z_{4,2,A}+z_{4,3,A}+z_{4,4,A}\\
+&{}+z_{4,5,A}+z_{4,6,A}+z_{4,1,B}+z_{4,2,B}\\
+&{}+z_{4,3,B}+z_{4,4,B}+z_{4,5,B}+z_{4,6,B}\\
+&{}+z_{4,1,C}+z_{4,2,C}+z_{4,3,C}+z_{4,4,C}\\
+&{}+z_{4,5,C}+z_{4,6,C}\\
+&\quad \le 14y_4
+\end{aligned}
+```
+
+</details>
+
+<details>
+<summary>R40–R43 · Batas waktu kerja gudang</summary>
+
+**R40 · Batas waktu kerja G1**
+
+```math
+\begin{aligned}
+\mathrm{R40}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}+z_{1,4,A}\\
+&{}+z_{1,5,A}+z_{1,6,A}+z_{1,1,B}+z_{1,2,B}\\
+&{}+z_{1,3,B}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}\\
+&\quad \le 19{,}2y_1
+\end{aligned}
+```
+
+**R41 · Batas waktu kerja G2**
+
+```math
+\begin{aligned}
+\mathrm{R41}\quad &z_{2,1,A}+z_{2,2,A}+z_{2,3,A}+z_{2,4,A}\\
+&{}+z_{2,5,A}+z_{2,6,A}+z_{2,1,B}+z_{2,2,B}\\
+&{}+z_{2,3,B}+z_{2,4,B}+z_{2,5,B}+z_{2,6,B}\\
+&{}+z_{2,1,C}+z_{2,2,C}+z_{2,3,C}+z_{2,4,C}\\
+&{}+z_{2,5,C}+z_{2,6,C}\\
+&\quad \le 24y_2
+\end{aligned}
+```
+
+**R42 · Batas waktu kerja G3**
+
+```math
+\begin{aligned}
+\mathrm{R42}\quad &z_{3,1,A}+z_{3,2,A}+z_{3,3,A}+z_{3,4,A}\\
+&{}+z_{3,5,A}+z_{3,6,A}+z_{3,1,B}+z_{3,2,B}\\
+&{}+z_{3,3,B}+z_{3,4,B}+z_{3,5,B}+z_{3,6,B}\\
+&{}+z_{3,1,C}+z_{3,2,C}+z_{3,3,C}+z_{3,4,C}\\
+&{}+z_{3,5,C}+z_{3,6,C}\\
+&\quad \le 21{,}6y_3
+\end{aligned}
+```
+
+**R43 · Batas waktu kerja G4**
+
+```math
+\begin{aligned}
+\mathrm{R43}\quad &z_{4,1,A}+z_{4,2,A}+z_{4,3,A}+z_{4,4,A}\\
+&{}+z_{4,5,A}+z_{4,6,A}+z_{4,1,B}+z_{4,2,B}\\
+&{}+z_{4,3,B}+z_{4,4,B}+z_{4,5,B}+z_{4,6,B}\\
+&{}+z_{4,1,C}+z_{4,2,C}+z_{4,3,C}+z_{4,4,C}\\
+&{}+z_{4,5,C}+z_{4,6,C}\\
+&\quad \le 16{,}8y_4
+\end{aligned}
+```
+
+</details>
+
+</details>
+
+### Jumlahkan bobot, lalu bagi
+
+| Kelompok pasangan | Jumlah pasangan | Bobot Low | Bobot acuan |
 | --- | ---: | ---: | ---: |
 | Kapasitas pabrik × neraca | 66 | 16 | 35 |
 | Neraca × pesanan | 198 | 36 | 66 |
@@ -170,24 +947,26 @@ Untuk kelompok tonase–waktu, setiap rute keluar dipakai pada kedua baris milik
 | Pesanan × tonase | 72 | 36 | 66 |
 | Pesanan × waktu | 72 | 36 | 66 |
 | Tonase × waktu | 16 | 40 | 70 |
-| Pasangan lain, misalnya kapasitas pabrik × pesanan | 391 | 0 | 0 |
+| Kelompok lain | 391 | 0 | 0 |
 | **Total** | **903** | **236** | **435** |
 
-Kelima kelompok dari neraca–pesanan sampai pesanan–waktu masing-masing mendapat satu sumbangan dari setiap rute keluar. Contohnya, sirup G1 → K1 menghubungkan neraca sirup G1 dengan pesanan sirup K1. Dengan aturan yang sama, 36 rute keluar menyumbang total bobot 36 pada kelompok neraca–pesanan di Low, dan 66 rute keluar menyumbang 66 di acuan.
+Setiap rute masuk menyumbang satu ke pasangan kapasitas pabrik–neraca. Setiap rute keluar menyumbang satu pada tiap kelompok dari neraca–pesanan sampai tonase–waktu. Pada kelompok tonase–waktu, empat keputusan buka gudang juga menyumbang empat. Itu sebabnya, misalnya, bobot kelompok tonase–waktu pada Low adalah 36 + 4 = 40.
 
-$$
-\mathrm{WCC}_{\mathrm{Low}}=\frac{236}{435}\times100\%
-\approx54{,}25\%.
-$$
+```math
+\mathrm{WCC}_{\mathrm{Low}}
+=\frac{\text{total bobot Low}}{\text{total bobot acuan}}\times 100\%
+=\frac{236}{435}\times 100\%
+\approx 54{,}25\%.
+```
 
-## 5. Hasil Low, Medium, dan High
+## 4. Ringkasan hasil
 
-| Tingkat | Rute masuk | Rute keluar | Pembilang | Penyebut bersama | WCC |
+| Tingkat | Rute masuk | Rute keluar | Total bobot tingkat | Total bobot acuan | WCC |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Low | 16 | 36 | 236 | 435 | **54,25%** |
 | Medium | 21 | 43 | 283 | 435 | **65,06%** |
 | High | 35 | 57 | 381 | 435 | **87,59%** |
 
-Ketiga tingkat memakai 43 baris operasi yang sama. Tambahan rute memasukkan variabel kiriman baru pada baris yang relevan. Variabel itu dapat membentuk hubungan baru atau memperbesar bobot hubungan yang sudah ada. Pada satu tingkat rute, nilai WCC operasi sama untuk P1–P8. Audit memeriksa skenario stokastik satu per satu. Batas emisi, domain variabel, langkah pemilihan emisi saat biaya sama, dan garis singgung solver berada di luar 43 baris yang diukur.
+Ketiga tingkat menggunakan 43 aturan operasi yang sama. Variabel kiriman bertambah ketika daftar rute bertambah. Pada satu tingkat, WCC operasi sama untuk P1–P8. Audit memeriksa skenario stokastik satu per satu. Batas emisi, domain variabel, pemilihan emisi saat biaya sama, dan garis singgung solver berada di luar 43 baris yang dihitung.
 
-[Data rute](case/Data_Bersama.json) · [Model matematika](math_model_acuan/Model_Matematika.md) · [Audit 24 kombinasi](math_model_acuan/hasil/WCC.csv) · [Halaman utama](README.md)
+[Model matematika](math_model_acuan/Model_Matematika.md) · [Data rute](case/Data_Bersama.json) · [Audit 24 kombinasi](math_model_acuan/hasil/WCC.csv) · [Halaman utama](README.md)
