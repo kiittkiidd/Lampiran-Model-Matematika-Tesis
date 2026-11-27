@@ -61,6 +61,17 @@ Contoh cara membaca tabel. Satu rute gudang → pelanggan muncul di empat aturan
 
 Dari Low ke Medium, ada **5 rute pabrik baru** yang masing-masing memberi 1 poin dan **7 rute gudang baru** yang masing-masing memberi 6 poin. Jadi, seluruh jaringan bertambah **5 + 42 = 47 poin**. Tiga poin dari contoh sirup G1 sudah termasuk dalam 47 poin itu.
 
+## Contoh persamaan R8 pada Low
+
+Gudang G1 boleh mengirim sirup ke K1, K3, dan K5. Persamaan R8 menyatakan **total sirup yang masuk = total sirup yang keluar**.
+
+$$
+\begin{aligned}
+\mathrm{R8}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}\\
+&\quad = z_{1,1,B}+z_{1,3,B}+z_{1,5,B}
+\end{aligned}
+$$
+
 ## Lampiran teknis
 
 <details>
@@ -77,35 +88,30 @@ $`x_{i,g,p}`$ adalah kiriman dari pabrik $`i`$ ke gudang $`g`$ untuk produk $`p`
 
 **Low. Rute sirup ke K1, K3, dan K5**
 
-```math
-\begin{aligned}
-\mathrm{R8}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}\\
-&\quad = z_{1,1,B}+z_{1,3,B}+z_{1,5,B}
-\end{aligned}
-```
+R8 ditampilkan pada [contoh persamaan di atas](#contoh-persamaan-r8-pada-low). R36 menghitung seluruh kiriman keluar dari G1.
 
-```math
+$$
 \begin{aligned}
 \mathrm{R36}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}\\
 &{}+z_{1,4,A}+z_{1,5,A}+z_{1,6,A}\\
 &{}+z_{1,1,B}+z_{1,3,B}+z_{1,5,B}\\
 &\quad \le 16y_1
 \end{aligned}
-```
+$$
 
 **Medium. Rute sirup ke K1 sampai K6**
 
 Suku **tebal** menunjukkan tiga rute sirup yang baru tersedia dari G1 ke **K2, K4, dan K6** pada Medium. Ketiga suku itu muncul pada R8 dan R36.
 
-```math
+$$
 \begin{aligned}
 \mathrm{R8}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}\\
 &\quad = z_{1,1,B}+\boldsymbol{z_{1,2,B}}+z_{1,3,B}\\
 &\qquad {}+\boldsymbol{z_{1,4,B}}+z_{1,5,B}+\boldsymbol{z_{1,6,B}}
 \end{aligned}
-```
+$$
 
-```math
+$$
 \begin{aligned}
 \mathrm{R36}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}\\
 &{}+z_{1,4,A}+z_{1,5,A}+z_{1,6,A}\\
@@ -113,7 +119,7 @@ Suku **tebal** menunjukkan tiga rute sirup yang baru tersedia dari G1 ke **K2, K
 &{}+\boldsymbol{z_{1,4,B}}+z_{1,5,B}+\boldsymbol{z_{1,6,B}}\\
 &\quad \le 16y_1
 \end{aligned}
-```
+$$
 
 **Daftar rute pembanding untuk penyebut**
 
@@ -128,16 +134,16 @@ Daftar pembanding pada kasus PT XYZ dibentuk dari dua tahap pengiriman.
 
 Pada **R8 dalam kasus asli**, sirup dapat masuk ke G1 dari P1, P2, dan P3 pada Low maupun Medium. Daftar pembanding juga memuat **P4 → G1 untuk sirup** karena rute itu tersedia di High. Suku $`x_{4,1,B}`$ ditebalkan di bawah untuk menunjukkan tambahannya pada R8. R36 hanya memuat kiriman keluar dan keputusan buka gudang, sehingga suku tersebut muncul pada satu baris dan menyumbang **0** ke bobot pasangan R8–R36. [Data rute kasus PT XYZ](case/Data_Bersama.json)
 
-```math
+$$
 \begin{aligned}
 \mathrm{R8}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}\\
 &{}+\boldsymbol{x_{4,1,B}}\\
 &\quad = z_{1,1,B}+z_{1,2,B}+z_{1,3,B}\\
 &\qquad {}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}
 \end{aligned}
-```
+$$
 
-```math
+$$
 \begin{aligned}
 \mathrm{R36}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}\\
 &{}+z_{1,4,A}+z_{1,5,A}+z_{1,6,A}\\
@@ -145,7 +151,7 @@ Pada **R8 dalam kasus asli**, sirup dapat masuk ke G1 dari P1, P2, dan P3 pada L
 &{}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}\\
 &\quad \le 16y_1
 \end{aligned}
-```
+$$
 
 ### Daftar indeks yang bisa muncul di kedua kendala
 
@@ -217,51 +223,51 @@ Di model lengkap, nomor berikut mengikuti urutan 43 baris operasi sebelum penyed
 
 **R1 · Kapasitas pabrik P1**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R1}\quad &x_{1,1,A}+x_{1,1,B}+x_{1,2,A} \le 8
 \end{aligned}
-```
+$$
 
 **R2 · Kapasitas pabrik P2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R2}\quad &x_{2,1,A}+x_{2,1,B}+x_{2,4,B} \le 8
 \end{aligned}
-```
+$$
 
 **R3 · Kapasitas pabrik P3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R3}\quad &x_{3,1,B}+x_{3,3,B}+x_{3,3,C}+x_{3,4,B} \le 8
 \end{aligned}
-```
+$$
 
 **R4 · Kapasitas pabrik P4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R4}\quad &x_{4,2,C}+x_{4,3,C} \le 8
 \end{aligned}
-```
+$$
 
 **R5 · Kapasitas pabrik P5**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R5}\quad &x_{5,2,A}+x_{5,4,A} \le 8
 \end{aligned}
-```
+$$
 
 **R6 · Kapasitas pabrik P6**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R6}\quad &x_{6,2,C}+x_{6,3,C} \le 8
 \end{aligned}
-```
+$$
 
 </details>
 
@@ -270,107 +276,107 @@ Di model lengkap, nomor berikut mengikuti urutan 43 baris operasi sebelum penyed
 
 **R7 · Neraca minyak di G1**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R7}\quad &x_{1,1,A}+x_{2,1,A}\\
 &\quad = z_{1,1,A}+z_{1,2,A}+z_{1,3,A}+z_{1,4,A}\\
 &\qquad {}+z_{1,5,A}+z_{1,6,A}
 \end{aligned}
-```
+$$
 
 **R8 · Neraca sirup di G1**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R8}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}\\
 &\quad = z_{1,1,B}+z_{1,3,B}+z_{1,5,B}
 \end{aligned}
-```
+$$
 
 **R9 · Neraca minyak di G2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R9}\quad &x_{1,2,A}+x_{5,2,A}\\
 &\quad = z_{2,1,A}+z_{2,3,A}+z_{2,4,A}+z_{2,5,A}\\
 &\qquad {}+z_{2,6,A}
 \end{aligned}
-```
+$$
 
 **R10 · Neraca sirup di G2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R10}\quad &0\\
 &\quad = 0
 \end{aligned}
-```
+$$
 
 **R11 · Neraca susu di G2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R11}\quad &x_{4,2,C}+x_{6,2,C}\\
 &\quad = z_{2,1,C}+z_{2,2,C}+z_{2,3,C}+z_{2,4,C}\\
 &\qquad {}+z_{2,5,C}+z_{2,6,C}
 \end{aligned}
-```
+$$
 
 **R12 · Neraca minyak di G3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R12}\quad &0\\
 &\quad = 0
 \end{aligned}
-```
+$$
 
 **R13 · Neraca sirup di G3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R13}\quad &x_{3,3,B}\\
 &\quad = z_{3,1,B}+z_{3,2,B}+z_{3,3,B}+z_{3,4,B}\\
 &\qquad {}+z_{3,5,B}+z_{3,6,B}
 \end{aligned}
-```
+$$
 
 **R14 · Neraca susu di G3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R14}\quad &x_{3,3,C}+x_{4,3,C}+x_{6,3,C}\\
 &\quad = z_{3,1,C}+z_{3,2,C}+z_{3,3,C}+z_{3,4,C}\\
 &\qquad {}+z_{3,5,C}+z_{3,6,C}
 \end{aligned}
-```
+$$
 
 **R15 · Neraca minyak di G4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R15}\quad &x_{5,4,A}\\
 &\quad = z_{4,2,A}
 \end{aligned}
-```
+$$
 
 **R16 · Neraca sirup di G4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R16}\quad &x_{2,4,B}+x_{3,4,B}\\
 &\quad = z_{4,2,B}+z_{4,4,B}+z_{4,6,B}
 \end{aligned}
-```
+$$
 
 **R17 · Neraca susu di G4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R17}\quad &0\\
 &\quad = 0
 \end{aligned}
-```
+$$
 
 </details>
 
@@ -379,147 +385,147 @@ Di model lengkap, nomor berikut mengikuti urutan 43 baris operasi sebelum penyed
 
 **R18 · Pesanan minyak di K1**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R18}\quad &z_{1,1,A}+z_{2,1,A} = 3
 \end{aligned}
-```
+$$
 
 **R19 · Pesanan sirup di K1**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R19}\quad &z_{1,1,B}+z_{3,1,B} = 1
 \end{aligned}
-```
+$$
 
 **R20 · Pesanan susu di K1**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R20}\quad &z_{2,1,C}+z_{3,1,C} = 1
 \end{aligned}
-```
+$$
 
 **R21 · Pesanan minyak di K2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R21}\quad &z_{1,2,A}+z_{4,2,A} = 3
 \end{aligned}
-```
+$$
 
 **R22 · Pesanan sirup di K2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R22}\quad &z_{3,2,B}+z_{4,2,B} = 1
 \end{aligned}
-```
+$$
 
 **R23 · Pesanan susu di K2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R23}\quad &z_{2,2,C}+z_{3,2,C} = 1
 \end{aligned}
-```
+$$
 
 **R24 · Pesanan minyak di K3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R24}\quad &z_{1,3,A}+z_{2,3,A} = 1
 \end{aligned}
-```
+$$
 
 **R25 · Pesanan sirup di K3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R25}\quad &z_{1,3,B}+z_{3,3,B} = 3
 \end{aligned}
-```
+$$
 
 **R26 · Pesanan susu di K3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R26}\quad &z_{2,3,C}+z_{3,3,C} = 1
 \end{aligned}
-```
+$$
 
 **R27 · Pesanan minyak di K4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R27}\quad &z_{1,4,A}+z_{2,4,A} = 1
 \end{aligned}
-```
+$$
 
 **R28 · Pesanan sirup di K4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R28}\quad &z_{3,4,B}+z_{4,4,B} = 3
 \end{aligned}
-```
+$$
 
 **R29 · Pesanan susu di K4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R29}\quad &z_{2,4,C}+z_{3,4,C} = 1
 \end{aligned}
-```
+$$
 
 **R30 · Pesanan minyak di K5**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R30}\quad &z_{1,5,A}+z_{2,5,A} = 1
 \end{aligned}
-```
+$$
 
 **R31 · Pesanan sirup di K5**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R31}\quad &z_{1,5,B}+z_{3,5,B} = 1
 \end{aligned}
-```
+$$
 
 **R32 · Pesanan susu di K5**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R32}\quad &z_{2,5,C}+z_{3,5,C} = 3
 \end{aligned}
-```
+$$
 
 **R33 · Pesanan minyak di K6**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R33}\quad &z_{1,6,A}+z_{2,6,A} = 1
 \end{aligned}
-```
+$$
 
 **R34 · Pesanan sirup di K6**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R34}\quad &z_{3,6,B}+z_{4,6,B} = 1
 \end{aligned}
-```
+$$
 
 **R35 · Pesanan susu di K6**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R35}\quad &z_{2,6,C}+z_{3,6,C} = 3
 \end{aligned}
-```
+$$
 
 </details>
 
@@ -528,44 +534,44 @@ Di model lengkap, nomor berikut mengikuti urutan 43 baris operasi sebelum penyed
 
 **R36 · Kapasitas tonase G1**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R36}\quad &z_{1,1,A}+z_{1,1,B}+z_{1,2,A}+z_{1,3,A}\\
 &{}+z_{1,3,B}+z_{1,4,A}+z_{1,5,A}+z_{1,5,B}\\
 &{}+z_{1,6,A}\\
 &\quad \le 16y_1
 \end{aligned}
-```
+$$
 
 **R37 · Kapasitas tonase G2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R37}\quad &z_{2,1,A}+z_{2,1,C}+z_{2,2,C}+z_{2,3,A}\\
 &{}+z_{2,3,C}+z_{2,4,A}+z_{2,4,C}+z_{2,5,A}\\
 &{}+z_{2,5,C}+z_{2,6,A}+z_{2,6,C}\\
 &\quad \le 20y_2
 \end{aligned}
-```
+$$
 
 **R38 · Kapasitas tonase G3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R38}\quad &z_{3,1,B}+z_{3,1,C}+z_{3,2,B}+z_{3,2,C}\\
 &{}+z_{3,3,B}+z_{3,3,C}+z_{3,4,B}+z_{3,4,C}\\
 &{}+z_{3,5,B}+z_{3,5,C}+z_{3,6,B}+z_{3,6,C}\\
 &\quad \le 18y_3
 \end{aligned}
-```
+$$
 
 **R39 · Kapasitas tonase G4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R39}\quad &z_{4,2,A}+z_{4,2,B}+z_{4,4,B}+z_{4,6,B} \le 14y_4
 \end{aligned}
-```
+$$
 
 </details>
 
@@ -574,44 +580,44 @@ Di model lengkap, nomor berikut mengikuti urutan 43 baris operasi sebelum penyed
 
 **R40 · Batas waktu kerja G1**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R40}\quad &z_{1,1,A}+z_{1,1,B}+z_{1,2,A}+z_{1,3,A}\\
 &{}+z_{1,3,B}+z_{1,4,A}+z_{1,5,A}+z_{1,5,B}\\
 &{}+z_{1,6,A}\\
 &\quad \le 19{,}2y_1
 \end{aligned}
-```
+$$
 
 **R41 · Batas waktu kerja G2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R41}\quad &z_{2,1,A}+z_{2,1,C}+z_{2,2,C}+z_{2,3,A}\\
 &{}+z_{2,3,C}+z_{2,4,A}+z_{2,4,C}+z_{2,5,A}\\
 &{}+z_{2,5,C}+z_{2,6,A}+z_{2,6,C}\\
 &\quad \le 24y_2
 \end{aligned}
-```
+$$
 
 **R42 · Batas waktu kerja G3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R42}\quad &z_{3,1,B}+z_{3,1,C}+z_{3,2,B}+z_{3,2,C}\\
 &{}+z_{3,3,B}+z_{3,3,C}+z_{3,4,B}+z_{3,4,C}\\
 &{}+z_{3,5,B}+z_{3,5,C}+z_{3,6,B}+z_{3,6,C}\\
 &\quad \le 21{,}6y_3
 \end{aligned}
-```
+$$
 
 **R43 · Batas waktu kerja G4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R43}\quad &z_{4,2,A}+z_{4,2,B}+z_{4,4,B}+z_{4,6,B} \le 16{,}8y_4
 \end{aligned}
-```
+$$
 
 </details>
 
@@ -642,60 +648,60 @@ Empat puluh tiga baris menghasilkan **43 × 42 ÷ 2 = 903 pasangan**. Jumlahkan 
 
 **R1 · Kapasitas pabrik P1**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R1}\quad &x_{1,1,A}+x_{1,1,B}+x_{1,2,A}+x_{1,2,B}\\
 &{}+x_{1,3,B}+x_{1,4,A}+x_{1,4,B}\\
 &\quad \le 8
 \end{aligned}
-```
+$$
 
 **R2 · Kapasitas pabrik P2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R2}\quad &x_{2,1,A}+x_{2,1,B}+x_{2,2,B}+x_{2,3,B}\\
 &{}+x_{2,4,B}\\
 &\quad \le 8
 \end{aligned}
-```
+$$
 
 **R3 · Kapasitas pabrik P3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R3}\quad &x_{3,1,A}+x_{3,1,B}+x_{3,2,A}+x_{3,2,B}\\
 &{}+x_{3,3,A}+x_{3,3,B}+x_{3,3,C}+x_{3,4,A}\\
 &{}+x_{3,4,B}\\
 &\quad \le 8
 \end{aligned}
-```
+$$
 
 **R4 · Kapasitas pabrik P4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R4}\quad &x_{4,1,B}+x_{4,2,B}+x_{4,2,C}+x_{4,3,B}\\
 &{}+x_{4,3,C}+x_{4,4,B}+x_{4,4,C}\\
 &\quad \le 8
 \end{aligned}
-```
+$$
 
 **R5 · Kapasitas pabrik P5**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R5}\quad &x_{5,1,A}+x_{5,2,A}+x_{5,3,A}+x_{5,4,A} \le 8
 \end{aligned}
-```
+$$
 
 **R6 · Kapasitas pabrik P6**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R6}\quad &x_{6,2,C}+x_{6,3,C}+x_{6,4,C} \le 8
 \end{aligned}
-```
+$$
 
 </details>
 
@@ -704,113 +710,113 @@ Empat puluh tiga baris menghasilkan **43 × 42 ÷ 2 = 903 pasangan**. Jumlahkan 
 
 **R7 · Neraca minyak di G1**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R7}\quad &x_{1,1,A}+x_{2,1,A}+x_{3,1,A}+x_{5,1,A}\\
 &\quad = z_{1,1,A}+z_{1,2,A}+z_{1,3,A}+z_{1,4,A}\\
 &\qquad {}+z_{1,5,A}+z_{1,6,A}
 \end{aligned}
-```
+$$
 
 **R8 · Neraca sirup di G1**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R8}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}+x_{4,1,B}\\
 &\quad = z_{1,1,B}+z_{1,2,B}+z_{1,3,B}+z_{1,4,B}\\
 &\qquad {}+z_{1,5,B}+z_{1,6,B}
 \end{aligned}
-```
+$$
 
 **R9 · Neraca minyak di G2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R9}\quad &x_{1,2,A}+x_{3,2,A}+x_{5,2,A}\\
 &\quad = z_{2,1,A}+z_{2,2,A}+z_{2,3,A}+z_{2,4,A}\\
 &\qquad {}+z_{2,5,A}+z_{2,6,A}
 \end{aligned}
-```
+$$
 
 **R10 · Neraca sirup di G2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R10}\quad &x_{1,2,B}+x_{2,2,B}+x_{3,2,B}+x_{4,2,B}\\
 &\quad = z_{2,1,B}+z_{2,2,B}+z_{2,3,B}+z_{2,4,B}\\
 &\qquad {}+z_{2,5,B}+z_{2,6,B}
 \end{aligned}
-```
+$$
 
 **R11 · Neraca susu di G2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R11}\quad &x_{4,2,C}+x_{6,2,C}\\
 &\quad = z_{2,1,C}+z_{2,2,C}+z_{2,3,C}+z_{2,4,C}\\
 &\qquad {}+z_{2,5,C}+z_{2,6,C}
 \end{aligned}
-```
+$$
 
 **R12 · Neraca minyak di G3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R12}\quad &x_{3,3,A}+x_{5,3,A}\\
 &\quad = z_{3,1,A}+z_{3,2,A}+z_{3,3,A}+z_{3,4,A}\\
 &\qquad {}+z_{3,5,A}+z_{3,6,A}
 \end{aligned}
-```
+$$
 
 **R13 · Neraca sirup di G3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R13}\quad &x_{1,3,B}+x_{2,3,B}+x_{3,3,B}+x_{4,3,B}\\
 &\quad = z_{3,1,B}+z_{3,2,B}+z_{3,3,B}+z_{3,4,B}\\
 &\qquad {}+z_{3,5,B}+z_{3,6,B}
 \end{aligned}
-```
+$$
 
 **R14 · Neraca susu di G3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R14}\quad &x_{3,3,C}+x_{4,3,C}+x_{6,3,C}\\
 &\quad = z_{3,1,C}+z_{3,2,C}+z_{3,3,C}+z_{3,4,C}\\
 &\qquad {}+z_{3,5,C}+z_{3,6,C}
 \end{aligned}
-```
+$$
 
 **R15 · Neraca minyak di G4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R15}\quad &x_{1,4,A}+x_{3,4,A}+x_{5,4,A}\\
 &\quad = z_{4,1,A}+z_{4,2,A}+z_{4,3,A}+z_{4,4,A}\\
 &\qquad {}+z_{4,5,A}+z_{4,6,A}
 \end{aligned}
-```
+$$
 
 **R16 · Neraca sirup di G4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R16}\quad &x_{1,4,B}+x_{2,4,B}+x_{3,4,B}+x_{4,4,B}\\
 &\quad = z_{4,1,B}+z_{4,2,B}+z_{4,3,B}+z_{4,4,B}\\
 &\qquad {}+z_{4,5,B}+z_{4,6,B}
 \end{aligned}
-```
+$$
 
 **R17 · Neraca susu di G4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R17}\quad &x_{4,4,C}+x_{6,4,C}\\
 &\quad = z_{4,1,C}+z_{4,2,C}+z_{4,3,C}+z_{4,4,C}\\
 &\qquad {}+z_{4,5,C}+z_{4,6,C}
 \end{aligned}
-```
+$$
 
 </details>
 
@@ -819,147 +825,147 @@ Empat puluh tiga baris menghasilkan **43 × 42 ÷ 2 = 903 pasangan**. Jumlahkan 
 
 **R18 · Pesanan minyak di K1**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R18}\quad &z_{1,1,A}+z_{2,1,A}+z_{3,1,A}+z_{4,1,A} = 3
 \end{aligned}
-```
+$$
 
 **R19 · Pesanan sirup di K1**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R19}\quad &z_{1,1,B}+z_{2,1,B}+z_{3,1,B}+z_{4,1,B} = 1
 \end{aligned}
-```
+$$
 
 **R20 · Pesanan susu di K1**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R20}\quad &z_{2,1,C}+z_{3,1,C}+z_{4,1,C} = 1
 \end{aligned}
-```
+$$
 
 **R21 · Pesanan minyak di K2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R21}\quad &z_{1,2,A}+z_{2,2,A}+z_{3,2,A}+z_{4,2,A} = 3
 \end{aligned}
-```
+$$
 
 **R22 · Pesanan sirup di K2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R22}\quad &z_{1,2,B}+z_{2,2,B}+z_{3,2,B}+z_{4,2,B} = 1
 \end{aligned}
-```
+$$
 
 **R23 · Pesanan susu di K2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R23}\quad &z_{2,2,C}+z_{3,2,C}+z_{4,2,C} = 1
 \end{aligned}
-```
+$$
 
 **R24 · Pesanan minyak di K3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R24}\quad &z_{1,3,A}+z_{2,3,A}+z_{3,3,A}+z_{4,3,A} = 1
 \end{aligned}
-```
+$$
 
 **R25 · Pesanan sirup di K3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R25}\quad &z_{1,3,B}+z_{2,3,B}+z_{3,3,B}+z_{4,3,B} = 3
 \end{aligned}
-```
+$$
 
 **R26 · Pesanan susu di K3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R26}\quad &z_{2,3,C}+z_{3,3,C}+z_{4,3,C} = 1
 \end{aligned}
-```
+$$
 
 **R27 · Pesanan minyak di K4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R27}\quad &z_{1,4,A}+z_{2,4,A}+z_{3,4,A}+z_{4,4,A} = 1
 \end{aligned}
-```
+$$
 
 **R28 · Pesanan sirup di K4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R28}\quad &z_{1,4,B}+z_{2,4,B}+z_{3,4,B}+z_{4,4,B} = 3
 \end{aligned}
-```
+$$
 
 **R29 · Pesanan susu di K4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R29}\quad &z_{2,4,C}+z_{3,4,C}+z_{4,4,C} = 1
 \end{aligned}
-```
+$$
 
 **R30 · Pesanan minyak di K5**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R30}\quad &z_{1,5,A}+z_{2,5,A}+z_{3,5,A}+z_{4,5,A} = 1
 \end{aligned}
-```
+$$
 
 **R31 · Pesanan sirup di K5**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R31}\quad &z_{1,5,B}+z_{2,5,B}+z_{3,5,B}+z_{4,5,B} = 1
 \end{aligned}
-```
+$$
 
 **R32 · Pesanan susu di K5**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R32}\quad &z_{2,5,C}+z_{3,5,C}+z_{4,5,C} = 3
 \end{aligned}
-```
+$$
 
 **R33 · Pesanan minyak di K6**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R33}\quad &z_{1,6,A}+z_{2,6,A}+z_{3,6,A}+z_{4,6,A} = 1
 \end{aligned}
-```
+$$
 
 **R34 · Pesanan sirup di K6**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R34}\quad &z_{1,6,B}+z_{2,6,B}+z_{3,6,B}+z_{4,6,B} = 1
 \end{aligned}
-```
+$$
 
 **R35 · Pesanan susu di K6**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R35}\quad &z_{2,6,C}+z_{3,6,C}+z_{4,6,C} = 3
 \end{aligned}
-```
+$$
 
 </details>
 
@@ -968,18 +974,18 @@ Empat puluh tiga baris menghasilkan **43 × 42 ÷ 2 = 903 pasangan**. Jumlahkan 
 
 **R36 · Kapasitas tonase G1**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R36}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}+z_{1,4,A}\\
 &{}+z_{1,5,A}+z_{1,6,A}+z_{1,1,B}+z_{1,2,B}\\
 &{}+z_{1,3,B}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}\\
 &\quad \le 16y_1
 \end{aligned}
-```
+$$
 
 **R37 · Kapasitas tonase G2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R37}\quad &z_{2,1,A}+z_{2,2,A}+z_{2,3,A}+z_{2,4,A}\\
 &{}+z_{2,5,A}+z_{2,6,A}+z_{2,1,B}+z_{2,2,B}\\
@@ -988,11 +994,11 @@ Empat puluh tiga baris menghasilkan **43 × 42 ÷ 2 = 903 pasangan**. Jumlahkan 
 &{}+z_{2,5,C}+z_{2,6,C}\\
 &\quad \le 20y_2
 \end{aligned}
-```
+$$
 
 **R38 · Kapasitas tonase G3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R38}\quad &z_{3,1,A}+z_{3,2,A}+z_{3,3,A}+z_{3,4,A}\\
 &{}+z_{3,5,A}+z_{3,6,A}+z_{3,1,B}+z_{3,2,B}\\
@@ -1001,11 +1007,11 @@ Empat puluh tiga baris menghasilkan **43 × 42 ÷ 2 = 903 pasangan**. Jumlahkan 
 &{}+z_{3,5,C}+z_{3,6,C}\\
 &\quad \le 18y_3
 \end{aligned}
-```
+$$
 
 **R39 · Kapasitas tonase G4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R39}\quad &z_{4,1,A}+z_{4,2,A}+z_{4,3,A}+z_{4,4,A}\\
 &{}+z_{4,5,A}+z_{4,6,A}+z_{4,1,B}+z_{4,2,B}\\
@@ -1014,7 +1020,7 @@ Empat puluh tiga baris menghasilkan **43 × 42 ÷ 2 = 903 pasangan**. Jumlahkan 
 &{}+z_{4,5,C}+z_{4,6,C}\\
 &\quad \le 14y_4
 \end{aligned}
-```
+$$
 
 </details>
 
@@ -1023,18 +1029,18 @@ Empat puluh tiga baris menghasilkan **43 × 42 ÷ 2 = 903 pasangan**. Jumlahkan 
 
 **R40 · Batas waktu kerja G1**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R40}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}+z_{1,4,A}\\
 &{}+z_{1,5,A}+z_{1,6,A}+z_{1,1,B}+z_{1,2,B}\\
 &{}+z_{1,3,B}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}\\
 &\quad \le 19{,}2y_1
 \end{aligned}
-```
+$$
 
 **R41 · Batas waktu kerja G2**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R41}\quad &z_{2,1,A}+z_{2,2,A}+z_{2,3,A}+z_{2,4,A}\\
 &{}+z_{2,5,A}+z_{2,6,A}+z_{2,1,B}+z_{2,2,B}\\
@@ -1043,11 +1049,11 @@ Empat puluh tiga baris menghasilkan **43 × 42 ÷ 2 = 903 pasangan**. Jumlahkan 
 &{}+z_{2,5,C}+z_{2,6,C}\\
 &\quad \le 24y_2
 \end{aligned}
-```
+$$
 
 **R42 · Batas waktu kerja G3**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R42}\quad &z_{3,1,A}+z_{3,2,A}+z_{3,3,A}+z_{3,4,A}\\
 &{}+z_{3,5,A}+z_{3,6,A}+z_{3,1,B}+z_{3,2,B}\\
@@ -1056,11 +1062,11 @@ Empat puluh tiga baris menghasilkan **43 × 42 ÷ 2 = 903 pasangan**. Jumlahkan 
 &{}+z_{3,5,C}+z_{3,6,C}\\
 &\quad \le 21{,}6y_3
 \end{aligned}
-```
+$$
 
 **R43 · Batas waktu kerja G4**
 
-```math
+$$
 \begin{aligned}
 \mathrm{R43}\quad &z_{4,1,A}+z_{4,2,A}+z_{4,3,A}+z_{4,4,A}\\
 &{}+z_{4,5,A}+z_{4,6,A}+z_{4,1,B}+z_{4,2,B}\\
@@ -1069,7 +1075,7 @@ Empat puluh tiga baris menghasilkan **43 × 42 ÷ 2 = 903 pasangan**. Jumlahkan 
 &{}+z_{4,5,C}+z_{4,6,C}\\
 &\quad \le 16{,}8y_4
 \end{aligned}
-```
+$$
 
 </details>
 
@@ -1096,12 +1102,12 @@ Empat puluh tiga baris menghasilkan **43 × 42 ÷ 2 = 903 pasangan**. Jumlahkan 
 
 Setiap rute masuk menyumbang satu ke pasangan kapasitas pabrik–neraca. Setiap rute keluar menyumbang satu pada tiap kelompok dari neraca–pesanan sampai tonase–waktu. Pada kelompok tonase–waktu, empat keputusan buka gudang juga menyumbang empat. Itu sebabnya, misalnya, bobot kelompok tonase–waktu pada Low adalah 36 + 4 = 40.
 
-```math
+$$
 \mathrm{WCC}_{\mathrm{Low}}
 =\frac{\text{total bobot aktual Low}}{\text{total bobot maksimum menurut daftar rute}}\times 100\%
 =\frac{236}{435}\times 100\%
 \approx 54{,}25\%.
-```
+$$
 
 ### Dari tambahan 3 pada satu pasangan ke tambahan 47 pada seluruh model
 
