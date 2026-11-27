@@ -74,7 +74,23 @@ $$
 =\frac{4}{5}\times 100\%=80\%.
 $$
 
-Angka 6 pada tabel adalah jumlah **pasangan baris**. Penyebut 5 adalah **jumlah bobot keenam pasangan pada acuan**, termasuk pasangan berbobot 2. Jika Medium dibandingkan terhadap acuan contoh yang sama, hasilnya 5 ÷ 5 × 100% = 100%. Angka itu berarti bobot Medium menyamai bobot acuan pada empat baris contoh. Persentase jaringan lengkap dihitung pada bagian berikut.
+Angka 6 pada tabel adalah jumlah **pasangan baris**. Penyebut 5 adalah **jumlah bobot keenam pasangan pada acuan**, termasuk pasangan berbobot 2. Jika Medium dibandingkan terhadap acuan contoh yang sama, hasilnya 5 ÷ 5 × 100% = 100%. Angka itu berarti bobot Medium menyamai bobot acuan pada empat baris contoh. Persentase jaringan lengkap dihitung pada Bagian 3.
+
+### 1.4 Apa pengaruh NNZ yang berbeda?
+
+**NNZ** (*number of nonzeros*) adalah jumlah koefisien yang bukan nol. Untuk satu baris linear, rapikan dulu persamaannya dan gabungkan suku dari variabel yang sama, lalu hitung variabel yang masih memiliki koefisien bukan nol. Konstanta seperti 8 pada R1 tidak ikut dihitung.
+
+Jika satu baris punya 2 variabel dan baris lain punya 5, keduanya dapat berbagi **paling banyak 2**. Batas ini dihitung per pasangan dari NNZ yang lebih kecil. Untuk mengetahui bobot pasangan, periksa juga variabel mana yang sama, termasuk semua indeksnya.
+
+| Pasangan pada acuan contoh | NNZ kedua baris | Batas atas dari NNZ | Variabel yang muncul di kedua baris | Bobot untuk penyebut |
+| --- | ---: | ---: | --- | ---: |
+| R1–R2 | 1 dan 3 | 1 | $`x_{1,1,B}`$ | 1 |
+| R1–R4 | 1 dan 3 | 1 | Tidak ada | 0 |
+| R2–R4 | 3 dan 3 | 3 | $`z_{1,1,B}`$ dan $`z_{1,2,B}`$ | 2 |
+
+R2 memuat satu kiriman masuk dan dua kiriman keluar. R4 memuat dua kiriman keluar yang sama dan keputusan buka gudang. Maka kedua baris memiliki NNZ 3, tetapi hanya dua variabel yang sama. Pasangan R2–R4 menyumbang **2** ke penyebut.
+
+Jika keenam pasangan diberi batas atas berdasarkan NNZ saja, jumlah batasnya 8, yaitu lima pasangan berbatas 1 ditambah satu pasangan berbatas 3. **Penyebut WCC contoh adalah 5**, yaitu jumlah variabel bersama yang dihitung per pasangan dengan daftar rute acuan. Pada jaringan lengkap, prinsip yang sama menghasilkan penyebut 435.
 
 ## 2. Perluas ke 43 baris operasi
 
