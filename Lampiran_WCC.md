@@ -58,10 +58,16 @@ Tambahan rute G1 → K2 memperbesar bobot **satu garis yang sudah ada** pada pot
 
 ### 1.3 Pisahkan pembilang dan penyebut
 
-Untuk menentukan persentase, tetapkan dahulu **rute yang boleh muncul dalam acuan bersama**. Pada contoh kecil ini, acuan memuat ketiga keputusan kiriman di atas, termasuk sirup dari G1 ke K2. Pada empat baris contoh, menghitung keenam pasangan dalam acuan menghasilkan total bobot 5.
+Untuk contoh ini, acuan memakai empat baris yang sama dan mengizinkan ketiga rute kiriman pada tabel pertama, termasuk sirup dari G1 ke K2. Bobot tiap pasangan dihitung dari variabel yang muncul bersama. Setelah itu, kalikan **jumlah pasangan yang berbobot sama** dengan **bobot per pasangan**.
 
-- **Pembilang untuk Low** adalah 4, yaitu jumlah bobot dari variabel yang dipakai oleh dua baris dalam Low.
-- **Penyebut** adalah 5, yaitu jumlah bobot yang dihitung dari daftar rute acuan pada **empat baris yang sama**.
+| Bobot per pasangan | Jumlah pasangan di Low | Sumbangan ke pembilang | Jumlah pasangan di acuan | Sumbangan ke penyebut |
+| ---: | ---: | ---: | ---: | ---: |
+| 0 | 2 | 2 × 0 = 0 | 2 | 2 × 0 = 0 |
+| 1 | 4 | 4 × 1 = 4 | 3 | 3 × 1 = 3 |
+| 2 | 0 | 0 × 2 = 0 | 1 | 1 × 2 = 2 |
+| **Total** | **6** | **4** | **6** | **5** |
+
+Satu pasangan yang berbobot 2 di acuan adalah **R2–R4**. Neraca sirup G1 dan kapasitas G1 sama-sama memuat dua keputusan kiriman, yaitu sirup ke K1 dan sirup ke K2. Pada Low, keduanya hanya berbagi kiriman sirup ke K1. Jadi pembilangnya **4** dari Low dan penyebutnya **5** dari acuan.
 
 $$
 \mathrm{WCC}_{\mathrm{contoh,\ Low}}
@@ -137,17 +143,17 @@ Untuk penyebut, gunakan aturan dan baris yang sama. Ganti daftar rutenya dengan 
 | G4 | A, B, C | 3 × 6 | 18 |
 | **Total** | **11 pasangan gudang–produk** | **11 × 6** | **66** |
 
-Gunakan rumus bobot yang sama pada acuan. Keempat pilihan buka gudang menyumbang 4, 35 rute masuk menyumbang 35, dan 66 rute keluar menyumbang 396.
+Hitungan lengkap memakai prinsip contoh kecil. Pembilang dijumlahkan dari rute yang diizinkan pada tingkat yang sedang diperiksa. Penyebut dijumlahkan dari rute dalam acuan bersama. Cara cepat di bagian 2.3 mengelompokkan kontribusi **per variabel**. Empat keputusan buka gudang menyumbang 4 × 1, 35 rute masuk acuan menyumbang 35 × 1, dan 66 rute keluar acuan menyumbang 66 × 6. Angka 6 adalah jumlah pasangan kendala yang memakai satu variabel kiriman keluar.
 
 $$
 B_{\mathrm{acuan}}=4+35+6(66)=435.
-$
+$$
 
 Untuk setiap tingkat, bagi bobot tingkat dengan bobot acuan dan ubah hasilnya menjadi persentase.
 
-$
+$$
 \mathrm{WCC}=\frac{B_{\mathrm{tingkat}}}{B_{\mathrm{acuan}}}\times100\%.
-$
+$$
 
 | Tingkat | Rute masuk | Rute keluar | Pembilang (bobot tingkat) | Penyebut (bobot acuan) | WCC |
 | --- | ---: | ---: | ---: | ---: | ---: |
