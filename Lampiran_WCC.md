@@ -25,13 +25,13 @@ flowchart TD
 
 | Pasangan | Variabel yang muncul di kedua baris | Bobot |
 | --- | --- | ---: |
-| R1–R2 | $x_2$ | 1 |
-| R1–R3 | $x_1$ | 1 |
-| R2–R3 | $x_3$ | 1 |
+| R1–R2 | $`x_2`$ | 1 |
+| R1–R3 | $`x_1`$ | 1 |
+| R2–R3 | $`x_3`$ | 1 |
 
-Bobot aktual totalnya $1+1+1=3$. Dengan tiga baris, ada tiga pasangan. Secara umum, $m$ baris menghasilkan $m(m-1)/2$ pasangan. Setiap baris bisa dipasangkan dengan $m-1$ baris lain, lalu hasilnya dibagi dua karena pasangan R1–R2 dan R2–R1 dihitung satu kali. Pasangan dengan irisan kosong tetap terdaftar dengan bobot nol.
+Bobot aktual totalnya $`1+1+1=3`$. Dengan tiga baris, ada tiga pasangan. Secara umum, $`m`$ baris menghasilkan $`m(m-1)/2`$ pasangan. Setiap baris bisa dipasangkan dengan $`m-1`$ baris lain, lalu hasilnya dibagi dua karena pasangan R1–R2 dan R2–R1 dihitung satu kali. Pasangan dengan irisan kosong tetap terdaftar dengan bobot nol.
 
-Untuk kendala linear, gabungkan dahulu semua suku dengan variabel berindeks sama. Ambil variabel dengan koefisien akhir selain nol. Suku $2x_1$ menyumbang satu kemunculan $x_1$, sama seperti suku $x_1$. Pada model berindeks, $z_{1,1,A}$ dan $z_{2,1,A}$ adalah dua keputusan berbeda karena gudangnya berbeda.
+Untuk kendala linear, gabungkan dahulu semua suku dengan variabel berindeks sama. Ambil variabel dengan koefisien akhir selain nol. Suku $`2x_1`$ menyumbang satu kemunculan $`x_1`$, sama seperti suku $`x_1`$. Pada model berindeks, $`z_{1,1,A}`$ dan $`z_{2,1,A}`$ adalah dua keputusan berbeda karena gudangnya berbeda.
 
 ## 2. Cara menetapkan penyebut bersama
 
@@ -52,21 +52,21 @@ Misalkan desain contoh ini menetapkan batas NNZ acuan R1–R4 sebesar **2, 3, 4,
 
 | Pasangan | Batas NNZ kedua baris | Batas bobot dari NNZ | Variabel bersama aktual | Bobot aktual |
 | --- | ---: | ---: | --- | ---: |
-| R1–R2 | 2 dan 3 | 2 | $x_1,x_2$ | 2 |
-| R1–R3 | 2 dan 4 | 2 | $x_1$ | 1 |
+| R1–R2 | 2 dan 3 | 2 | $`x_1,x_2`$ | 2 |
+| R1–R3 | 2 dan 4 | 2 | $`x_1`$ | 1 |
 | R1–R4 | 2 dan 5 | 2 | — | 0 |
-| R2–R3 | 3 dan 4 | 3 | $x_1$ | 1 |
-| R2–R4 | 3 dan 5 | 3 | $x_3$ | 1 |
-| R3–R4 | 4 dan 5 | 4 | $x_4,x_5,x_6$ | 3 |
+| R2–R3 | 3 dan 4 | 3 | $`x_1`$ | 1 |
+| R2–R4 | 3 dan 5 | 3 | $`x_3`$ | 1 |
+| R3–R4 | 4 dan 5 | 4 | $`x_4,x_5,x_6`$ | 3 |
 | **Total** | | **16** | | **8** |
 
-Penyebutnya $2+2+2+3+3+4=16$. WCC contoh ini adalah $8/16\times100\%=50\%$. Batas 2, 3, atau 4 mengikuti kemampuan masing-masing pasangan. Jika keempat batas NNZ itu menjadi bagian dari satu desain tingkat Low, Medium, dan High, ketiganya menggunakan penyebut 16. Isi kendala aktual pada masing-masing tingkat menentukan pembilangnya.
+Penyebutnya $`2+2+2+3+3+4=16`$. WCC contoh ini adalah $`8/16\times100\%=50\%`$. Batas 2, 3, atau 4 mengikuti kemampuan masing-masing pasangan. Jika keempat batas NNZ itu menjadi bagian dari satu desain tingkat Low, Medium, dan High, ketiganya menggunakan penyebut 16. Isi kendala aktual pada masing-masing tingkat menentukan pembilangnya.
 
 ### 2.2 Perketat batas dengan daftar variabel yang diizinkan
 
 Dalam kasus nyata, aturan jaringan bisa lebih informatif daripada NNZ. Kapasitas P1 dan kapasitas P4, misalnya, hanya memakai variabel pengiriman dari pabriknya masing-masing. Indeks pabrik berbeda, sehingga batas pasangan itu memang **0**, berapa pun NNZ kedua baris.
 
-Untuk setiap posisi baris $r$, tetapkan $U_r^{\mathrm{ref}}$, yaitu daftar variabel yang diizinkan muncul oleh desain acuan. Bila desain juga mempunyai batas NNZ independen, sebut $d_r^{\mathrm{ref}}$ sebagai batasnya. Maka batas satu pasangan dapat dihitung sebagai berikut.
+Untuk setiap posisi baris $`r`$, tetapkan $`U_r^{\mathrm{ref}}`$, yaitu daftar variabel yang diizinkan muncul oleh desain acuan. Bila desain juga mempunyai batas NNZ independen, sebut $`d_r^{\mathrm{ref}}`$ sebagai batasnya. Maka batas satu pasangan dapat dihitung sebagai berikut.
 
 ```math
 b_{rs}^{\mathrm{ref}}=
@@ -77,7 +77,7 @@ d_s^{\mathrm{ref}},
 \right).
 ```
 
-Pada kasus distribusi ini, jalur yang diizinkan menentukan seluruh daftar variabel per baris. Nilai $d_r^{\mathrm{ref}}$ sama dengan ukuran daftar $U_r^{\mathrm{ref}}$, sehingga kita cukup menghitung irisannya. Bekukan daftar acuan dan pemetaan ID sebelum penilaian. Untuk setiap tingkat $\ell$, $S_r^{(\ell)}$ adalah daftar variabel dari kendala yang benar-benar ditulis pada tingkat itu.
+Pada kasus distribusi ini, jalur yang diizinkan menentukan seluruh daftar variabel per baris. Nilai $`d_r^{\mathrm{ref}}`$ sama dengan ukuran daftar $`U_r^{\mathrm{ref}}`$, sehingga kita cukup menghitung irisannya. Bekukan daftar acuan dan pemetaan ID sebelum penilaian. Untuk setiap tingkat $`\ell`$, $`S_r^{(\ell)}`$ adalah daftar variabel dari kendala yang benar-benar ditulis pada tingkat itu.
 
 ```math
 \begin{aligned}
@@ -88,7 +88,7 @@ D_{\mathrm{ref}} &= \sum_{(r,s)\in P} b_{rs}^{\mathrm{ref}},\\
 \end{aligned}
 ```
 
-Di sini $P$ adalah daftar pasangan posisi baris yang sama untuk semua tingkat. Pembaginya positif selama sedikitnya satu pasangan bisa berbagi variabel.
+Di sini $`P`$ adalah daftar pasangan posisi baris yang sama untuk semua tingkat. Pembaginya positif selama sedikitnya satu pasangan bisa berbagi variabel.
 
 ## 3. Audit blok operasi P1–P8
 
