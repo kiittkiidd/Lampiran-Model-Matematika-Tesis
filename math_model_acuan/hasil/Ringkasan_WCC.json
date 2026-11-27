@@ -1,0 +1,47 @@
+{
+  "gap_oa": 0.00025,
+  "toleransi_kelayakan": 2e-07,
+  "toleransi_seri": 0.0006,
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "sistem": "Linux",
+  "arsitektur": "x86_64",
+  "wcc": {
+    "L": {
+      "baris": 43,
+      "variabel": 51,
+      "pasangan": 903,
+      "pasangan_positif": 129,
+      "bobot": 206,
+      "acuan": 434,
+      "wcc": 47.465437788018434
+    },
+    "M": {
+      "baris": 43,
+      "variabel": 66,
+      "pasangan": 903,
+      "pasangan_positif": 162,
+      "bobot": 266,
+      "acuan": 434,
+      "wcc": 61.29032258064516
+    },
+    "H": {
+      "baris": 43,
+      "variabel": 92,
+      "pasangan": 903,
+      "pasangan_positif": 222,
+      "bobot": 362,
+      "acuan": 434,
+      "wcc": 83.41013824884793
+    }
+  },
+  "benchmark": {
+    "ulangan": 11,
+    "pemanasan": 1,
+    "seed": 127,
+    "thread": 1,
+    "highs": "1.8.0",
+    "prosesor": ""
+  }
+}
