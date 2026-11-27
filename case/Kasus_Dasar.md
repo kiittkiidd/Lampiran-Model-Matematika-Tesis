@@ -4,13 +4,13 @@ Perusahaan menyalurkan minuman kemasan (A), pangan kering (B), dan produk dingin
 
 Setiap pabrik dan gudang melayani wilayahnya sendiri. Pelanggan suatu wilayah dilayani oleh fasilitas di wilayah tersebut. Keputusan di tiap wilayah diambil dengan aturan operasi yang sama. Biaya dan emisi perusahaan diperoleh dengan menjumlahkan hasil dari wilayah yang dilayani.
 
-| Tingkat | Wilayah yang dilayani | Jenis jaringan lokal |
-| --- | --- | --- |
-| Low | 01 | 01 memakai rute Low |
-| Medium | 01–04 | Tambahan 02–04 memakai rute Medium |
-| High | 01–12 | Tambahan 05–12 memakai rute High |
+## Cakupan wilayah
 
-Contohnya, Wilayah 01 memakai jaringan lokal Low dalam ketiga tingkat. Gudang **01–G2** dan **02–G2** adalah lokasi fisik yang berbeda. Medium harus merencanakan empat wilayah. High harus merencanakan dua belas wilayah. Seusai pengujian, tingkat tersebut dibandingkan sebagai **gabungan skala operasi dan keterhubungan jaringan**.
+![Cakupan wilayah. Low melayani wilayah 01. Medium melayani 01–04. High melayani 01–12. Wilayah 01 selalu memakai rute Low, wilayah 02–04 memakai rute Medium, dan wilayah 05–12 memakai rute High. Dua contoh kiriman menunjukkan P1 ke G2 ke K1 terpisah di wilayah 01 dan 02.](diagram/Diagram_Cakupan_Wilayah.svg)
+
+Baca gambar dari atas. **Low** merencanakan satu wilayah. **Medium** tetap melayani wilayah 01 dan menambah 02–04. **High** mencakup keempat wilayah itu dan menambah 05–12. Warna menunjukkan tipe rute di dalam wilayah. Karena itu, kotak 01 tetap biru pada ketiga tingkat.
+
+Bagian bawah menunjukkan contoh pengiriman produk A. **01–G2 dan 02–G2 adalah dua gudang berbeda.** Di sebelah kiri, kiriman berjalan dari pabrik 01–P1 ke gudang 01–G2 lalu ke pelanggan 01–K1. Di sebelah kanan, pesanan 02–K1 dipenuhi dari fasilitas wilayah 02. Perusahaan menjumlahkan biaya dan emisi dari wilayah yang masuk dalam rencana.
 
 ## Data permintaan dan biaya
 
@@ -35,7 +35,7 @@ Sebagai contoh, menggunakan tarif dasar jaringan lokal Low, satu palet A dapat b
 | G3 | 18 | 28 |
 | G4 | 14 | 17 |
 
-## Jalur masuk dan keluar
+## Rincian rute dalam satu wilayah
 
 Jaringan lokal Low menyediakan 16 rute masuk dan 31 rute keluar. Jaringan lokal Medium menyediakan 22 rute masuk dan 40 rute keluar, termasuk layanan A dari G1 ke K2–K6 dan layanan C dari G3 ke K1, K3, K5, dan K6. High menyediakan 34 rute masuk dan 54 rute keluar, termasuk penyaluran C melalui G4 ke K2, K4, dan K6. Rute yang sudah tersedia ikut dibawa ke tingkat berikutnya. Satu rute dihitung untuk satu produk. Tabel rute dan diagram di bawah menunjukkan jaringan lokal untuk satu wilayah.
 
@@ -48,21 +48,20 @@ Jaringan lokal Low menyediakan 16 rute masuk dan 31 rute keluar. Jaringan lokal 
 
 Setiap panah menunjukkan satu jalur aktif untuk produk di panelnya. Kode fasilitas yang sama di beberapa panel merujuk pada lokasi fisik yang sama.
 
-[Low](diagram/Jaringan_Low.svg) · [Medium](diagram/Jaringan_Medium.svg) · [High](diagram/Jaringan_High.svg)
-
-![Jaringan Low dari pabrik ke calon gudang dan pelanggan, dengan panel untuk produk A, B, dan C](diagram/Jaringan_Low.svg)
-
 <details>
-<summary>Lihat diagram Medium</summary>
+<summary>Lihat diagram rute di dalam satu wilayah</summary>
 
-![Jaringan Medium dari pabrik ke calon gudang dan pelanggan, dengan panel untuk produk A, B, dan C](diagram/Jaringan_Medium.svg)
+**Wilayah 01 · rute lokal Low**
 
-</details>
+![Rute produk A, B, dan C di satu wilayah dengan tipe Low](diagram/Jaringan_Low.svg)
 
-<details>
-<summary>Lihat diagram High</summary>
+**Wilayah 02–04 · rute lokal Medium**
 
-![Jaringan High dari pabrik ke calon gudang dan pelanggan, dengan panel untuk produk A, B, dan C](diagram/Jaringan_High.svg)
+![Rute produk A, B, dan C di satu wilayah dengan tipe Medium](diagram/Jaringan_Medium.svg)
+
+**Wilayah 05–12 · rute lokal High**
+
+![Rute produk A, B, dan C di satu wilayah dengan tipe High](diagram/Jaringan_High.svg)
 
 </details>
 
