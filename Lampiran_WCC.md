@@ -19,37 +19,39 @@ $$
 
 Jika dua baris linear punya masing-masing 2 dan 5 koefisien bukan nol (*number of nonzeros* atau **NNZ**), keduanya bisa berbagi paling banyak 2 variabel. Untuk tahu bobot pada acuan, tetap cek **variabel mana yang sama**. Jika keduanya hanya berbagi satu variabel, pasangan itu menyumbang 1 ke penyebut.
 
-## 2. Contoh kecil dan hitungannya
+## 2. Contoh kecil dengan indeks lengkap
 
-Ambil empat potongan kendala dari jaringan PT XYZ untuk sirup gula cair (produk B). Potongan ini hanya memuat keputusan berikut, agar enam pasangannya bisa diperiksa satu per satu.
+Ambil empat potongan kendala PT XYZ untuk sirup gula cair (produk B). Contoh ini memakai empat variabel berikut. Baris R1–R4 diberi nomor khusus untuk contoh. Model lengkap di Bagian 3 juga memuat rute dan variabel lain.
 
-| Simbol | Keputusan yang diwakili | Tersedia di Low | Tersedia di acuan contoh |
+| Variabel | Cara membaca indeks |
+| --- | --- |
+| $`x_{1,1,B}`$ | Ton sirup dari **pabrik P1** ke **gudang G1**. Indeksnya pabrik, gudang, produk. |
+| $`z_{1,1,B}`$ | Ton sirup dari **gudang G1** ke **zona K1**. Indeksnya gudang, zona, produk. |
+| $`z_{1,2,B}`$ | Ton sirup dari **gudang G1** ke **zona K2**. |
+| $`y_1`$ | Keputusan buka gudang **G1**. Nilai 1 berarti buka dan 0 berarti tutup. |
+
+**Low** memuat rute sirup P1 → G1 dan G1 → K1. **Acuan contoh** memuat kedua rute itu serta rute sirup G1 → K2. Tambahan rute membuat $`z_{1,2,B}`$ muncul di dua baris, yaitu neraca sirup G1 (R2) dan kapasitas G1 (R4).
+
+| Baris | Aturan | Potongan persamaan Low | Potongan persamaan acuan |
 | --- | --- | --- | --- |
-| $a$ | Ton sirup dari pabrik P1 ke gudang G1 | Ya | Ya |
-| $b$ | Ton sirup dari gudang G1 ke zona K1 | Ya | Ya |
-| $c$ | Ton sirup dari gudang G1 ke zona K2 | Tidak | Ya |
-| $y$ | Buka G1, dengan 1 berarti buka dan 0 berarti tutup | Ya | Ya |
+| R1 | Kapasitas pabrik P1 | $`x_{1,1,B}\le 8`$ | $`x_{1,1,B}\le 8`$ |
+| R2 | Neraca sirup di G1 | $`x_{1,1,B}=z_{1,1,B}`$ | $`x_{1,1,B}=z_{1,1,B}+z_{1,2,B}`$ |
+| R3 | Pesanan sirup di K1 | $`z_{1,1,B}=1`$ | $`z_{1,1,B}=1`$ |
+| R4 | Kapasitas tonase G1 | $`z_{1,1,B}\le16y_1`$ | $`z_{1,1,B}+z_{1,2,B}\le16y_1`$ |
 
-| Baris | Aturan | Potongan di Low | Potongan di acuan |
-| --- | --- | --- | --- |
-| R1 | Kapasitas pabrik P1 | $a\le 8$ | $a\le 8$ |
-| R2 | Neraca sirup di G1 | $a=b$ | $a=b+c$ |
-| R3 | Pesanan sirup di K1 | $b=1$ | $b=1$ |
-| R4 | Kapasitas tonase G1 | $b\le16y$ | $b+c\le16y$ |
-
-Hitung bobot pasangan dari variabel yang muncul pada kedua baris. Misalnya, R2 dan R4 sama-sama memakai $b$ di Low. Di acuan, keduanya juga memakai $c$.
+Ambil **R2–R4**. Baca ke kiri dan ke kanan tanda sama dengan atau tanda kurang dari. Pada Low, cari variabel yang tertulis di kedua baris. Hanya $`z_{1,1,B}`$ yang cocok, jadi **bobot Low = 1**. Lakukan hal yang sama pada kolom acuan. Sekarang $`z_{1,1,B}`$ dan $`z_{1,2,B}`$ muncul di kedua baris, jadi **bobot acuan = 2**. Variabel $`x_{1,1,B}`$ hanya muncul di R2, sedangkan $`y_1`$ hanya muncul di R4.
 
 | Pasangan | Variabel bersama di Low | Bobot Low | Variabel bersama di acuan | Bobot acuan |
 | --- | --- | ---: | --- | ---: |
-| R1–R2 | $a$ | 1 | $a$ | 1 |
+| R1–R2 | $`x_{1,1,B}`$ | 1 | $`x_{1,1,B}`$ | 1 |
 | R1–R3 | Tidak ada | 0 | Tidak ada | 0 |
 | R1–R4 | Tidak ada | 0 | Tidak ada | 0 |
-| R2–R3 | $b$ | 1 | $b$ | 1 |
-| R2–R4 | $b$ | 1 | $b,c$ | 2 |
-| R3–R4 | $b$ | 1 | $b$ | 1 |
+| R2–R3 | $`z_{1,1,B}`$ | 1 | $`z_{1,1,B}`$ | 1 |
+| R2–R4 | $`z_{1,1,B}`$ | **1** | $`z_{1,1,B}`$, $`z_{1,2,B}`$ | **2** |
+| R3–R4 | $`z_{1,1,B}`$ | 1 | $`z_{1,1,B}`$ | 1 |
 | **Total** | | **4** | | **5** |
 
-Graf ini menampilkan bobot **Low / acuan**. Pasangan berbobot nol tidak digambar.
+Pada graf, angka pertama di tiap garis adalah bobot Low dan angka kedua adalah bobot acuan. Pasangan yang tidak berbagi variabel tidak memiliki garis.
 
 ```mermaid
 flowchart TB
@@ -59,14 +61,14 @@ flowchart TB
     R3 ---|1 / 1| R4
 ```
 
-- **Pembilang Low = 4.** Ada empat pasangan berbobot 1 dan dua pasangan berbobot 0.
-- **Penyebut = 5.** Di acuan ada tiga pasangan berbobot 1, satu pasangan berbobot 2, dan dua pasangan berbobot 0. Jadi 3 × 1 + 1 × 2 + 2 × 0 = 5.
+- **Pembilang Low** adalah $1+0+0+1+1+1=4$.
+- **Penyebut acuan** adalah $1+0+0+1+2+1=5$.
 
 $$
 \mathrm{WCC}_{\mathrm{contoh,\ Low}}=\frac{4}{5}\times100\%=80\%.
 $$
 
-R2 dan R4 di acuan memiliki NNZ 3 dan 3. Batas berdasarkan ukuran kedua baris adalah 3. Irisan variabelnya hanya berisi $b,c$, sehingga bobot acuan yang masuk ke penyebut adalah **2**.
+Dalam kolom acuan, R2 dan R4 masing-masing mempunyai NNZ 3. Itu memberi batas atas 3 menurut ukuran baris. Pencocokan indeks menemukan dua variabel bersama, sehingga pasangan R2–R4 menyumbang **2** ke penyebut.
 
 ## 3. Kasus utama PT XYZ
 
@@ -94,19 +96,64 @@ Ada **43 × 42 ÷ 2 = 903 pasangan baris**. Satu rute menentukan asal, tujuan, d
 
 Sebelas pasangan gudang–produk ditentukan dari rute masuk acuan. G1 dapat menerima 2 produk, dan G2, G3, serta G4 masing-masing dapat menerima 3. Perhitungan acuan mengizinkan setiap pasangan itu melayani keenam zona, sehingga ada (2 + 3 + 3 + 3) × 6 = 66 rute keluar.
 
-### 3.3 Telusuri beberapa pasangan baris pada Low
+### 3.3 Lihat variabel yang sama pada persamaan lengkap
 
-| Pasangan | Variabel bersama di Low | Bobot Low | Variabel bersama di acuan | Bobot acuan |
-| --- | --- | ---: | --- | ---: |
-| R1–R8. Kapasitas P1 dan neraca sirup G1 | Sirup P1 → G1 | 1 | Sirup P1 → G1 | 1 |
-| R1–R19. Kapasitas P1 dan pesanan sirup K1 | Tidak ada. R1 memakai kiriman masuk dan R19 memakai kiriman keluar. | 0 | Tidak ada | 0 |
-| R8–R19. Neraca sirup G1 dan pesanan sirup K1 | Sirup G1 → K1 | 1 | Sirup G1 → K1 | 1 |
-| R8–R36. Neraca sirup G1 dan kapasitas tonase G1 | Sirup G1 → K1, K3, K5 | **3** | Sirup G1 → K1 sampai K6 | **6** |
-| R36–R40. Kapasitas tonase dan waktu kerja G1 | 9 kiriman keluar G1 dan keputusan buka G1 | 10 | 12 kiriman keluar G1 dan keputusan buka G1 | 13 |
+#### R36–R40. Kapasitas tonase dan waktu kerja G1
 
-Periksa lebih dekat **R8–R36**, yaitu pasangan yang diambil dari contoh kecil. Dalam model lengkap Low, R8 memuat 3 kiriman sirup masuk dan 3 kiriman sirup keluar (**NNZ 6**). R36 memuat 3 kiriman sirup keluar, 6 kiriman minyak keluar, dan 1 keputusan buka gudang (**NNZ 10**). Dari kedua daftar itu, tiga kiriman sirup keluar sama persis, yaitu $`z_{1,1,B}`$, $`z_{1,3,B}`$, dan $`z_{1,5,B}`$.
+Contoh ini memakai bentuk linear pada P1. R36 membatasi volume kiriman G1 sampai **16 ton** saat gudang dibuka. R40 membatasi waktu kerja sampai **19,2 jam** saat gudang dibuka. Setiap ton membutuhkan satu jam kerja, sehingga koefisien setiap kiriman pada R40 adalah 1.
 
-Di acuan, R8 memuat 4 kiriman sirup masuk dan 6 kiriman sirup keluar (**NNZ 10**). R36 memuat 6 kiriman sirup keluar, 6 kiriman minyak keluar, dan 1 keputusan buka (**NNZ 13**). Batas dari NNZ adalah 10. Saat dicocokkan satu per satu, kedua baris berbagi 6 kiriman sirup keluar. Jadi pasangan ini menyumbang **3 ke pembilang Low** dan **6 ke penyebut acuan**.
+**Low.** G1 dapat mengirim minyak (A) ke K1–K6 dan sirup (B) ke K1, K3, serta K5.
+
+$$
+\begin{aligned}
+\mathrm{R36}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}\\
+                  &{}+z_{1,4,A}+z_{1,5,A}+z_{1,6,A}\\
+                  &{}+z_{1,1,B}+z_{1,3,B}+z_{1,5,B}\le 16y_1,\\[3pt]
+\mathrm{R40}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}\\
+                  &{}+z_{1,4,A}+z_{1,5,A}+z_{1,6,A}\\
+                  &{}+z_{1,1,B}+z_{1,3,B}+z_{1,5,B}\le 19{,}2y_1.
+\end{aligned}
+$$
+
+Cocokkan kedua persamaan. Keenam variabel minyak dan ketiga variabel sirup di ruas kiri muncul di kedua baris. Variabel buka gudang $`y_1`$ juga muncul di kedua ruas kanan. Koefisien 16 dan 19,2 berbeda, tetapi variabelnya sama. Jadi **bobot Low = 6 + 3 + 1 = 10**.
+
+**Acuan.** G1 juga dapat mengirim sirup ke K2, K4, dan K6. Ketiga variabel baru itu muncul di kedua baris.
+
+$$
+\begin{aligned}
+\mathrm{R36}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}\\
+                  &{}+z_{1,4,A}+z_{1,5,A}+z_{1,6,A}\\
+                  &{}+z_{1,1,B}+z_{1,2,B}+z_{1,3,B}\\
+                  &{}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}\le 16y_1,\\[3pt]
+\mathrm{R40}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}\\
+                  &{}+z_{1,4,A}+z_{1,5,A}+z_{1,6,A}\\
+                  &{}+z_{1,1,B}+z_{1,2,B}+z_{1,3,B}\\
+                  &{}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}\le 19{,}2y_1.
+\end{aligned}
+$$
+
+Tiga variabel bersama yang bertambah adalah $`z_{1,2,B}`$, $`z_{1,4,B}`$, dan $`z_{1,6,B}`$. Jadi **bobot acuan = 10 + 3 = 13**. Dalam hitungan jaringan, pasangan R36–R40 menyumbang **10 ke pembilang Low** dan **13 ke penyebut**.
+
+#### R8–R36. Neraca sirup dan kapasitas tonase G1
+
+R8 menyatakan sirup yang masuk ke G1 sama dengan sirup yang keluar dari G1. Bandingkan persamaan R8 di bawah dengan R36 yang sudah ditulis di atas.
+
+$$
+\begin{aligned}
+\text{Low}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}\\
+                &\qquad=z_{1,1,B}+z_{1,3,B}+z_{1,5,B},\\[3pt]
+\text{Acuan}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}+x_{4,1,B}\\
+                  &\qquad=z_{1,1,B}+z_{1,2,B}+z_{1,3,B}\\
+                  &\qquad\phantom{=}{}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}.
+\end{aligned}
+$$
+
+| Daftar rute | NNZ R8 | NNZ R36 | Variabel yang muncul di kedua persamaan | Bobot R8–R36 |
+| --- | ---: | ---: | --- | ---: |
+| Low | 6 | 10 | $`z_{1,1,B}`$, $`z_{1,3,B}`$, $`z_{1,5,B}`$ | **3** |
+| Acuan | 10 | 13 | $`z_{1,1,B}`$, $`z_{1,2,B}`$, $`z_{1,3,B}`$, $`z_{1,4,B}`$, $`z_{1,5,B}`$, $`z_{1,6,B}`$ | **6** |
+
+Kiriman masuk $`x_{4,1,B}`$ pada acuan hanya muncul di R8. Jadi variabel itu menambah NNZ R8 dan tidak menyumbang bobot R8–R36. Pasangan ini menyumbang **3 ke pembilang Low** dan **6 ke penyebut**.
 
 ## 4. Jumlahkan bobot pada jaringan lengkap
 
