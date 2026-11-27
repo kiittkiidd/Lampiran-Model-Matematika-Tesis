@@ -8,7 +8,7 @@ Ambil keputusan **ton minyak dari P1 ke G1**. Keputusan ini muncul di kendala ka
 
 Lalu ambil keputusan **ton minyak dari G1 ke K1**. Keputusan ini muncul pada neraca minyak G1, pesanan minyak K1, kapasitas tonase G1, dan batas waktu G1. Empat aturan membentuk enam pasangan, sehingga kiriman tersebut memberi bobot enam pada hitungan total.
 
-Secara umum, jika keputusan $v$ muncul pada $m_v$ baris yang diperiksa, kontribusinya adalah
+Secara umum, jika keputusan $v$ muncul pada $`m_v`$ baris yang diperiksa, kontribusinya adalah
 
 $$
 \binom{m_v}{2}.

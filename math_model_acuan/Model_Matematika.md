@@ -7,15 +7,15 @@ Perusahaan memilih gudang yang dibuka dan membagi kiriman dari pabrik ke zona pe
 | Simbol | Arti |
 | --- | --- |
 | $i,g,j,p$ | Pabrik, gudang, zona pelanggan, dan produk. |
-| $\mathcal R_{\mathrm{in}},\mathcal R_{\mathrm{out}}$ | Daftar rute pabrik–gudang dan gudang–zona yang diizinkan, masing-masing dengan kode produk. |
-| $U_i,V_g,T_g$ | Kapasitas pabrik dalam ton, kapasitas gudang dalam ton, dan waktu kerja gudang dalam jam. |
-| $d_{jp}$ | Permintaan produk $p$ di zona $j$, dalam ton. |
-| $F_g,c^{\mathrm{in}}_{ig},c^{\mathrm{out}}_{gj},h_{gp}$ | Biaya buka gudang, tarif angkut masuk per ton, tarif angkut keluar per ton, dan tarif penanganan per ton. |
-| $y_g\in\{0,1\}$ | Keputusan membuka gudang $g$. Nilai 1 berarti buka. |
-| $x_{igp}\geq0$ | Ton produk $p$ yang dikirim dari pabrik $i$ ke gudang $g$. |
-| $z_{gjp}\geq0$ | Ton produk $p$ yang dikirim dari gudang $g$ ke zona $j$. |
+| $`\mathcal R_{\mathrm{in}},\mathcal R_{\mathrm{out}}`$ | Daftar rute pabrik–gudang dan gudang–zona yang diizinkan, masing-masing dengan kode produk. |
+| $`U_i,V_g,T_g`$ | Kapasitas pabrik dalam ton, kapasitas gudang dalam ton, dan waktu kerja gudang dalam jam. |
+| $`d_{jp}`$ | Permintaan produk $p$ di zona $j$, dalam ton. |
+| $`F_g,c^{\mathrm{in}}_{ig},c^{\mathrm{out}}_{gj},h_{gp}`$ | Biaya buka gudang, tarif angkut masuk per ton, tarif angkut keluar per ton, dan tarif penanganan per ton. |
+| $`y_g\in\{0,1\}`$ | Keputusan membuka gudang $g$. Nilai 1 berarti buka. |
+| $`x_{igp}\geq0`$ | Ton produk $p$ yang dikirim dari pabrik $i$ ke gudang $g$. |
+| $`z_{gjp}\geq0`$ | Ton produk $p$ yang dikirim dari gudang $g$ ke zona $j$. |
 
-Arus hanya dibentuk untuk setiap rute yang diizinkan. Semua penjumlahan arus menggunakan aturan itu. Sebagai singkatan, $q_{gp}=\sum_j z_{gjp}$ adalah tonase produk $p$ yang ditangani di gudang $g$.
+Arus hanya dibentuk untuk setiap rute yang diizinkan. Semua penjumlahan arus menggunakan aturan itu. Sebagai singkatan, $`q_{gp}=\sum_j z_{gjp}`$ adalah tonase produk $p$ yang ditangani di gudang $g$.
 
 ## 2. Biaya dan kendala P1
 
@@ -38,7 +38,7 @@ $$
 \quad\text{untuk setiap pabrik } i.
 $$
 
-Nilai $U_i=8$ ton. Jika P1 memasok 5,5 ton minyak, sisa kapasitasnya untuk semua kiriman adalah 2,5 ton.
+Nilai $`U_i=8`$ ton. Jika P1 memasok 5,5 ton minyak, sisa kapasitasnya untuk semua kiriman adalah 2,5 ton.
 
 **Keseimbangan barang di gudang.** Setiap produk yang masuk harus dikirim ke zona pada periode yang sama.
 
@@ -74,7 +74,7 @@ $$
 \quad\text{untuk setiap gudang } g.
 $$
 
-Data menetapkan $T_g=1{,}2V_g$. G3 yang menangani 18 ton memerlukan 18 jam dan memiliki 21,60 jam tersedia. Karena itu, pada profil linear, pemenuhan kapasitas tonase sekaligus memenuhi batas waktu. Baris waktu dicatat dalam formulasi operasi dan diganti dengan bentuk kuadratik di profil nonlinear.
+Data menetapkan $`T_g=1{,}2V_g`$. G3 yang menangani 18 ton memerlukan 18 jam dan memiliki 21,60 jam tersedia. Karena itu, pada profil linear, pemenuhan kapasitas tonase sekaligus memenuhi batas waktu. Baris waktu dicatat dalam formulasi operasi dan diganti dengan bentuk kuadratik di profil nonlinear.
 
 ## 3. Perubahan pada profil nonlinear
 
@@ -95,14 +95,14 @@ Koefisien 0,025 mengubah kuadrat tonase menjadi jam tambahan. Sepuluh ton sirup 
 
 ## 4. Perubahan pada profil stokastik
 
-Perusahaan memilih $y_g$ sebelum mengetahui permintaan. Setelah skenario $s$ diketahui, perusahaan mengatur $x_{igps}$ dan $z_{gjps}$ sesuai kebutuhan. Semua kendala operasi berlaku pada masing-masing skenario, dengan $q_{gps}=\sum_j z_{gjps}$ dan permintaan $d_{jps}$. Contoh K1 memiliki tiga kemungkinan pesanan minyak, yaitu sekitar 1,475, 3,000, dan 4,525 ton jika nilai tengahnya 3 ton.
+Perusahaan memilih $`y_g`$ sebelum mengetahui permintaan. Setelah skenario $s$ diketahui, perusahaan mengatur $`x_{igps}`$ dan $`z_{gjps}`$ sesuai kebutuhan. Semua kendala operasi berlaku pada masing-masing skenario, dengan $`q_{gps}=\sum_j z_{gjps}`$ dan permintaan $`d_{jps}`$. Contoh K1 memiliki tiga kemungkinan pesanan minyak, yaitu sekitar 1,475, 3,000, dan 4,525 ton jika nilai tengahnya 3 ton.
 
 $$
 C_{\mathrm{stoch}}=
 \sum_g F_g y_g+\sum_s\pi_s C_s^{\mathrm{operasi}}.
 $$
 
-$\pi_s$ adalah peluang skenario, dan $C_s^{\mathrm{operasi}}$ mencakup angkut dan penanganan. Biaya buka dibayar sekali. Pada P6 dan P8, biaya dan waktu kuadratik masing-masing dihitung dari tonase skenario bersangkutan.
+$`\pi_s`$ adalah peluang skenario, dan $`C_s^{\mathrm{operasi}}`$ mencakup angkut dan penanganan. Biaya buka dibayar sekali. Pada P6 dan P8, biaya dan waktu kuadratik masing-masing dihitung dari tonase skenario bersangkutan.
 
 ## 5. Perubahan pada profil multiobjektif
 
@@ -115,7 +115,7 @@ E=
 +\sum_{(g,j,p)\in\mathcal R_{\mathrm{out}}} e^{\mathrm{out}}_{gj}z_{gjp}.
 $$
 
-$e_g^{\mathrm{tetap}}$ adalah emisi gudang yang dibuka. Faktor $e^{\mathrm{in}}_{ig}$ dan $e^{\mathrm{out}}_{gj}$ adalah emisi angkutan per ton. Untuk P4 dan P8, emisi angkutan dirata-ratakan berbobot peluang skenario dan emisi tetap gudang ditambahkan satu kali.
+$`e_g^{\mathrm{tetap}}`$ adalah emisi gudang yang dibuka. Faktor $`e^{\mathrm{in}}_{ig}`$ dan $`e^{\mathrm{out}}_{gj}`$ adalah emisi angkutan per ton. Untuk P4 dan P8, emisi angkutan dirata-ratakan berbobot peluang skenario dan emisi tetap gudang ditambahkan satu kali.
 
 P3, P4, P7, dan P8 mencari kompromi biaya dan emisi dengan metode **ε-constraint**. Untuk setiap batas emisi $\varepsilon$, selesaikan
 
@@ -125,7 +125,7 @@ $$
 
 Gunakan bentuk biaya dan emisi yang sesuai dengan profil. Sebagai contoh, $\varepsilon=120$ berarti rencana biaya terendah harus menghasilkan emisi maksimal 120 kg CO₂e. Pada profil stokastik, batas ini berlaku untuk emisi harapan.
 
-Cari dua solusi ujung dengan menyelesaikan tujuan biaya dan tujuan emisi secara bergantian. Pada masing-masing ujung, gunakan tujuan lainnya untuk memilih di antara solusi dengan nilai tujuan utama yang sama sesuai toleransi. Emisi terendah $E_{\min}$ dan emisi pada solusi biaya terendah $E_C$ menentukan 25 batas.
+Cari dua solusi ujung dengan menyelesaikan tujuan biaya dan tujuan emisi secara bergantian. Pada masing-masing ujung, gunakan tujuan lainnya untuk memilih di antara solusi dengan nilai tujuan utama yang sama sesuai toleransi. Emisi terendah $`E_{\min}`$ dan emisi pada solusi biaya terendah $`E_C`$ menentukan 25 batas.
 
 $$
 \varepsilon_k=E_{\min}+\frac{k}{24}(E_C-E_{\min}),
