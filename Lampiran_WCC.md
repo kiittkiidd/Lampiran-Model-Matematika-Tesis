@@ -3,7 +3,7 @@
 Untuk setiap pasangan kendala, hitung **variabel yang muncul pada kedua baris**. Huruf variabel dan seluruh indeksnya harus sama. Jumlahkan hitungan dari semua pasangan kendala.
 
 - **Pembilang** memakai rute yang tersedia pada tingkat yang sedang diukur, misalnya Low atau Medium.
-- **Penyebut** memakai satu daftar kemungkinan yang ditetapkan untuk semua tingkat. Daftar ini memuat seluruh rute yang diperbolehkan untuk menghitung bobot maksimum menurut rancangan kasus.
+- **Penyebut** memakai satu daftar rute pembanding untuk semua tingkat. Dari daftar itu, hitung berapa variabel berindeks yang bisa muncul di kedua kendala.
 
 ## 1. Hitung satu pasangan dari kasus PT XYZ
 
@@ -36,11 +36,13 @@ $`x_{i,g,p}`$ adalah kiriman dari pabrik $`i`$ ke gudang $`g`$ untuk produk $`p`
 
 **Medium. Rute sirup ke K1 sampai K6**
 
+Suku **tebal** menunjukkan tiga rute sirup yang baru tersedia dari G1 ke **K2, K4, dan K6** pada Medium. Ketiga suku itu muncul pada R8 dan R36.
+
 ```math
 \begin{aligned}
 \mathrm{R8}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}\\
-&\quad = z_{1,1,B}+z_{1,2,B}+z_{1,3,B}\\
-&\qquad {}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}
+&\quad = z_{1,1,B}+\boldsymbol{z_{1,2,B}}+z_{1,3,B}\\
+&\qquad {}+\boldsymbol{z_{1,4,B}}+z_{1,5,B}+\boldsymbol{z_{1,6,B}}
 \end{aligned}
 ```
 
@@ -48,18 +50,29 @@ $`x_{i,g,p}`$ adalah kiriman dari pabrik $`i`$ ke gudang $`g`$ untuk produk $`p`
 \begin{aligned}
 \mathrm{R36}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}\\
 &{}+z_{1,4,A}+z_{1,5,A}+z_{1,6,A}\\
-&{}+z_{1,1,B}+z_{1,2,B}+z_{1,3,B}\\
-&{}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}\\
+&{}+z_{1,1,B}+\boldsymbol{z_{1,2,B}}+z_{1,3,B}\\
+&{}+\boldsymbol{z_{1,4,B}}+z_{1,5,B}+\boldsymbol{z_{1,6,B}}\\
 &\quad \le 16y_1
 \end{aligned}
 ```
 
-**Daftar kemungkinan. Semua rute yang diizinkan untuk menghitung penyebut**
+**Daftar rute pembanding untuk penyebut**
+
+Daftar pembanding ditetapkan sekali dan diterapkan pada Low, Medium, dan High. Satu entri menentukan **rute dan produknya**, misalnya pabrik P3 → gudang G1 untuk sirup. Dalam ilustrasi dengan pabrik P1, P2, dan P3, jika Low mengizinkan P1 dan P2 mengirim sirup ke G1, sedangkan daftar pembanding juga mengizinkan **P3 → G1 untuk sirup**, maka suku $`x_{3,1,B}`$ ikut masuk ke persamaan pembanding.
+
+Daftar pembanding pada kasus PT XYZ dibentuk dari dua tahap pengiriman.
+
+| Tahap | Aturan pembentukan daftar pembanding | Hasil |
+| --- | --- | ---: |
+| Pabrik → gudang | Ambil semua rute masuk yang diizinkan pada High. | **35** rute masuk |
+| Gudang → zona | Dari 35 rute masuk itu, temukan 11 pasangan gudang–produk yang bisa menerima kiriman. Untuk tiap pasangan, izinkan kiriman ke semua enam zona. | **11 × 6 = 66** rute keluar |
+
+Pada **R8 dalam kasus asli**, sirup dapat masuk ke G1 dari P1, P2, dan P3 pada Low maupun Medium. Daftar pembanding juga memuat **P4 → G1 untuk sirup** karena rute itu tersedia di High. Suku $`x_{4,1,B}`$ ditebalkan di bawah untuk menunjukkan tambahannya pada R8. R36 hanya memuat kiriman keluar dan keputusan buka gudang, sehingga suku tersebut muncul pada satu baris dan menyumbang **0** ke bobot pasangan R8–R36. [Data rute kasus PT XYZ](case/Data_Bersama.json)
 
 ```math
 \begin{aligned}
 \mathrm{R8}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}\\
-&{}+x_{4,1,B}\\
+&{}+\boldsymbol{x_{4,1,B}}\\
 &\quad = z_{1,1,B}+z_{1,2,B}+z_{1,3,B}\\
 &\qquad {}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}
 \end{aligned}
@@ -82,11 +95,11 @@ R8 dan R36 bisa berbagi variabel kiriman sirup dari G1 ke zona mana pun. Karena 
 | Rute sirup | Variabel berindeks | Aktual di Low | Aktual di Medium | Mungkin di kedua baris |
 | --- | --- | ---: | ---: | ---: |
 | G1 → K1 | $`z_{1,1,B}`$ | 1 | 1 | 1 |
-| G1 → K2 | $`z_{1,2,B}`$ | 0 | 1 | 1 |
+| **G1 → K2** | $`\boldsymbol{z_{1,2,B}}`$ | 0 | **1** | 1 |
 | G1 → K3 | $`z_{1,3,B}`$ | 1 | 1 | 1 |
-| G1 → K4 | $`z_{1,4,B}`$ | 0 | 1 | 1 |
+| **G1 → K4** | $`\boldsymbol{z_{1,4,B}}`$ | 0 | **1** | 1 |
 | G1 → K5 | $`z_{1,5,B}`$ | 1 | 1 | 1 |
-| G1 → K6 | $`z_{1,6,B}`$ | 0 | 1 | 1 |
+| **G1 → K6** | $`\boldsymbol{z_{1,6,B}}`$ | 0 | **1** | 1 |
 | **Jumlah bobot R8–R36** | | **3** | **6** | **6** |
 
 <details>
