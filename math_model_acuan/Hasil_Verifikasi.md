@@ -14,26 +14,24 @@ Model pasti memiliki 44 posisi baris dan model stokastik memiliki 130. Keduanya 
 
 ## 2. Biaya minimum
 
-Pada profil dua tujuan, tabel mengambil ujung biaya minimum. Nilai model stokastik merupakan biaya harapan.
+Profil satu tujuan dan profil dua tujuan yang memakai data dan aturan operasi yang sama mempunyai ujung biaya minimum yang sama. Profil dua tujuan kemudian menelusuri kompromi ketika emisi dibatasi. Karena itu, tabel menyajikan satu baris untuk setiap pasangan profil. Pada profil stokastik, angka menunjukkan biaya harapan.
 
-| Profil | Low | Medium | High |
+| Profil yang berbagi ujung biaya minimum | Low | Medium | High |
 | --- | ---: | ---: | ---: |
-| P1 | 299,16 | 277,37 | 242,95 |
-| P2 | 299,41 | 277,70 | 243,19 |
-| P3 | 299,16 | 277,37 | 242,95 |
-| P4 | 299,41 | 277,70 | 243,19 |
-| P5 | 306,52 | 285,69 | 249,03 |
-| P6 | 306,80 | 286,05 | 249,30 |
-| P7 | 306,52 | 285,69 | 249,03 |
-| P8 | 306,80 | 286,05 | 249,30 |
+| P1 dan P3 | 299,16 | 277,37 | 242,95 |
+| P2 dan P4 | 299,41 | 277,70 | 243,19 |
+| P5 dan P7 | 306,52 | 285,69 | 249,03 |
+| P6 dan P8 | 306,80 | 286,05 | 249,30 |
 
-Setiap hasil biaya minimum diperiksa dengan enumerasi terhadap 16 pola buka dan tutup dari keempat calon gudang. Angka pola yang memenuhi kendala tersimpan pada CSV. Untuk model nonlinear, solver membuat pendekatan linear dari bawah pada suku kuadratik. Setiap titik yang dilaporkan diperiksa terhadap kendala asli. Verifikasi memakai toleransi celah 0,00025, kelayakan 0,0000002, dan pemecah seri 0,0006. [Ringkasan 24 kombinasi](hasil/Ringkasan.csv)
+Biaya minimum turun dari Low ke Medium dan High karena setiap tingkat menambahkan pilihan rute sambil mempertahankan rute yang telah tersedia. Pada ujung biaya minimum, profil stokastik memakai kombinasi gudang yang sama dengan padanan deterministiknya pada tiap tingkat. Selisih biaya di bawah 0,14% pada kasus ini, yang hanya mengubah pesanan satu pelanggan untuk satu produk. [Ringkasan 24 kombinasi](hasil/Ringkasan.csv)
+
+Biaya minimum diperiksa dengan enumerasi terhadap 16 pola buka dan tutup dari keempat calon gudang. Untuk model nonlinear, solver memakai pendekatan linear dari bawah pada suku kuadratik, lalu memeriksa setiap hasil terhadap kendala asli. Toleransi celah adalah 0,00025, toleransi kelayakan 0,0000002, dan toleransi pemecah seri 0,0006.
 
 ## 3. Kompromi biaya dan emisi
 
-Pada setiap jaringan, P3, P4, P7, dan P8 memakai sembilan batas emisi absolut bersama. Tabel Pareto juga memuat dua titik ujung yang diperoleh khusus untuk setiap profil. Totalnya 132 hasil, dengan kemungkinan beberapa batas menghasilkan pasangan biaya dan emisi yang sama.
+Pada setiap jaringan, P3, P4, P7, dan P8 memakai sembilan batas emisi yang sama. Dua titik ujung dihitung khusus untuk setiap profil, yaitu rencana biaya terendah dan rencana emisi terendah. Sebagian batas menghasilkan pasangan biaya dan emisi yang sama.
 
-| Tingkat | Batas awal (kg CO₂e) | Batas akhir (kg CO₂e) | Jumlah batas |
+| Tingkat | Batas awal (kg CO₂e) | Batas akhir (kg CO₂e) | Jumlah batas bersama |
 | --- | ---: | ---: | ---: |
 | Low | 136,005 | 172,842 | 9 |
 | Medium | 124,368 | 144,984 | 9 |
@@ -41,56 +39,56 @@ Pada setiap jaringan, P3, P4, P7, dan P8 memakai sembilan batas emisi absolut be
 
 ![Titik kompromi biaya dan emisi per tingkat jaringan](hasil/Pareto.svg)
 
-Pada P8 High, rencana dengan biaya minimum memakai G2 dan G4, dengan biaya 249,30 dan emisi 155,67 kg CO₂e. Rencana pada ujung emisi memakai G2, G3, dengan biaya 285,78 dan emisi 111,61 kg CO₂e. Garis putus-putus pada grafik membantu mengikuti urutan titik yang ditampilkan. [Nilai Pareto](hasil/Pareto.csv) · [Pilihan gudang dan arus pengiriman](hasil/Arus_Pareto.csv)
+Contoh berikut menunjukkan kedua ujung pada High. Biaya dan emisi P8 adalah nilai harapan.
 
-## 4. Waktu penyelesaian
+| Profil | Ujung Pareto | Gudang | Biaya | Emisi (kg CO₂e) |
+| --- | --- | --- | ---: | ---: |
+| P7 | Biaya minimum | G2 dan G4 | 249,03 | 155,60 |
+| P7 | Emisi minimum | G2 dan G3 | 285,72 | 111,50 |
+| P8 | Biaya minimum | G2 dan G4 | 249,30 | 155,67 |
+| P8 | Emisi minimum | G2 dan G3 | 285,78 | 111,61 |
 
-Tabel memakai **median 11 pengukuran** setelah satu putaran pemanasan. Urutan 24 kombinasi diacak pada setiap putaran. Waktu mencakup pembuatan struktur solver dan penyelesaian, termasuk penyusunan dan pemeriksaan relaksasi nonlinear. Waktu enumerasi dilaporkan terpisah. Pada profil biaya tunggal, tugasnya satu langkah optimisasi. Pada profil dua tujuan, tugasnya 4 langkah titik ujung dan 18 langkah pada sembilan batas emisi bersama.
+Pada P7 High, berpindah ke rencana emisi minimum mengurangi emisi sekitar 44,10 kg CO₂e dan menambah biaya 36,69. Ketidakpastian juga dapat mengubah pilihan lokasi. Pada ujung emisi Low, P7 memilih G2 dan G3, sedangkan P8 membuka G1, G2, dan G3. [Seluruh titik Pareto](hasil/Pareto.csv) · [Keputusan gudang dan arus pengiriman](hasil/Arus_Pareto.csv)
 
-| Profil | Langkah per tingkat | Low (ms) | Medium (ms) | High (ms) |
-| --- | ---: | ---: | ---: | ---: |
-| P1 | 1 | 10,7 | 13,8 | 12,8 |
-| P2 | 1 | 19,0 | 20,6 | 33,8 |
-| P3 | 22 | 175,1 | 235,0 | 257,0 |
-| P4 | 22 | 304,4 | 507,3 | 590,9 |
-| P5 | 1 | 31,1 | 33,6 | 44,8 |
-| P6 | 1 | 57,0 | 68,1 | 94,7 |
-| P7 | 22 | 244,9 | 423,0 | 479,9 |
-| P8 | 22 | 570,0 | 1.319,2 | 1.482,7 |
+## 4. Waktu penyelesaian pada tugas yang sepadan
 
-P8 menghabiskan waktu paling lama pada ketiga tingkat dalam pilot ini. P1 Medium sedikit lebih lama daripada P1 High. Angka waktu menunjukkan beban penyelesaian tugas yang ditetapkan pada perangkat dan konfigurasi pengujian. Sebelas ulangan mengukur variasi waktu pada keluarga kasus ini. Lingkungan pengujian memakai Linux x86-64, Python 3.12.14, NumPy 2.3.5, SciPy 1.17.0, dan HiGHS 1.8.0 dengan satu thread. [Seluruh ulangan waktu](hasil/Benchmark.csv) · [Detail waktu per langkah verifikasi](hasil/Waktu.csv)
+Bandingkan profil pada **tingkat jaringan yang sama** dan ubah satu karakteristik model pada setiap pasangan. Tabel menunjukkan median waktu profil kedua dibagi median waktu profil pertama. Angka 2,33× pada P7–P8 Low berarti median waktu P8 adalah 2,33 kali median waktu P7 untuk menghasilkan keluaran Pareto pada Low.
 
-## 5. Iterasi LP, node, dan panggilan solver
+| Karakteristik yang berubah | Pasangan profil | Tugas pada kedua profil | Low | Medium | High |
+| --- | --- | --- | ---: | ---: | ---: |
+| Permintaan pasti → stokastik | P1 → P2 | Biaya minimum | 1,77× | 1,48× | 2,63× |
+| Permintaan pasti → stokastik | P3 → P4 | Kompromi biaya–emisi | 1,74× | 2,16× | 2,30× |
+| Permintaan pasti → stokastik | P5 → P6 | Biaya minimum | 1,84× | 2,03× | 2,12× |
+| Permintaan pasti → stokastik | P7 → P8 | Kompromi biaya–emisi | 2,33× | 3,12× | 3,09× |
+| Linear → nonlinear | P1 → P5 | Biaya minimum | 2,90× | 2,43× | 3,49× |
+| Linear → nonlinear | P2 → P6 | Biaya minimum | 3,01× | 3,31× | 2,80× |
+| Linear → nonlinear | P3 → P7 | Kompromi biaya–emisi | 1,40× | 1,80× | 1,87× |
+| Linear → nonlinear | P4 → P8 | Kompromi biaya–emisi | 1,87× | 2,60× | 2,51× |
 
-**LP** adalah *linear programming*. Ketika solver memeriksa pilihan gudang, ia bisa melonggarkan sementara keputusan buka gudang menjadi angka antara 0 dan 1. Contohnya, angka 0,5 dapat muncul dalam solusi sementara untuk menghitung batas biaya. Solusi bisnis yang dihasilkan tetap memakai 0 atau 1. **Iterasi LP** menghitung langkah numerik yang dilaporkan HiGHS ketika mengerjakan submasalah linear tersebut.
+Semua pasangan di tabel menunjukkan waktu median yang lebih tinggi setelah karakteristik tersebut ditambahkan, pada ketiga tingkat kasus ini. P8 memiliki median tertinggi pada setiap tingkat, yaitu **570,0 ms pada Low, 1.319,2 ms pada Medium, dan 1.482,7 ms pada High**.
 
-**Node** adalah simpul pada pohon pencarian *branch-and-bound*. Misalnya, jika solver perlu memisahkan keputusan G2, satu cabang menetapkan G2 tutup dan cabang lain menetapkan G2 buka. Pemeriksaan pada satu node bisa membutuhkan banyak iterasi LP. Solver juga dapat menemukan batas yang cukup untuk menyelesaikan masalah pada node awal.
+Tugas biaya minimum berjalan dalam satu langkah optimisasi. Tugas Pareto pada implementasi ini memakai 22 langkah, yaitu 4 untuk dua titik ujung dan 18 untuk sembilan batas emisi bersama. Durasi seluruh tugas tersebut mencakup pekerjaan yang berbeda. Pengukuran memakai median 11 putaran setelah pemanasan. Urutan kombinasi diacak per putaran. Waktu mencakup penyiapan struktur solver dan penyelesaian. Verifikasi dengan enumerasi diukur terpisah. Lingkungannya Linux x86-64, Python 3.12.14, NumPy 2.3.5, SciPy 1.17.0, dan HiGHS 1.8.0 dengan satu thread. [Data 11 pengukuran per kombinasi](hasil/Benchmark.csv) · [Detail waktu per langkah](hasil/Waktu.csv)
 
-Tabel menjumlahkan iterasi LP dan node pada satu pelaksanaan terpisah dari pengukuran waktu. Hitungan mencakup seluruh panggilan solver dalam langkah yang masuk benchmark. Enumerasi pemeriksaan pola gudang dihitung terpisah.
+<details>
+<summary>Catatan tentang urutan waktu P1 antarjaringan</summary>
 
-| Profil | Iterasi LP Low | Iterasi LP Medium | Iterasi LP High | Node Low | Node Medium | Node High |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| P1 | 67 | 111 | 122 | 1 | 1 | 1 |
-| P2 | 184 | 265 | 566 | 1 | 1 | 5 |
-| P3 | 1.317 | 2.110 | 3.207 | 24 | 26 | 28 |
-| P4 | 3.243 | 6.058 | 9.468 | 22 | 34 | 32 |
-| P5 | 287 | 333 | 375 | 2 | 2 | 2 |
-| P6 | 669 | 846 | 1.423 | 2 | 2 | 10 |
-| P7 | 2.645 | 4.292 | 6.140 | 30 | 27 | 37 |
-| P8 | 7.195 | 14.300 | 18.665 | 27 | 57 | 64 |
+Pada P1, median Medium 13,8 ms dan High 12,8 ms. High lebih cepat dalam 10 dari 11 putaran awal. Kedua instans selesai pada satu node dan memiliki 111 serta 122 iterasi LP. Pengukuran mencerminkan waktu pada instans dan konfigurasi ini. Pengelompokan tingkat mengikuti WCC blok operasi, sehingga selisih waktu tersebut dicatat terpisah dari perbandingan antarprofil pada jaringan yang sama. [Data pengukuran](hasil/Benchmark.csv) · [Log kerja solver](hasil/Kerja_Solver.csv)
 
-Contohnya, P8 Low memerlukan **7.195 iterasi LP pada 27 node**, sedangkan P7 Low memakai **2.645 iterasi LP pada 30 node**. P8 Low memeriksa lebih sedikit node dengan total kerja LP yang lebih besar. Pada ketiga tingkat, P8 memiliki total iterasi LP tertinggi di antara delapan profil. Jumlah node membantu membaca pencarian, sementara iterasi LP membantu membaca pekerjaan di dalamnya.
+</details>
 
-Bentuk nonlinear dapat memanggil HiGHS lagi setelah menambahkan batas linear yang memperbaiki pendekatan. Misalnya, 22 langkah P8 High memerlukan 26 panggilan solver. Profil linear memakai satu panggilan per langkah.
+## 5. Iterasi LP pada batas emisi yang sama
 
-| Profil nonlinear | Panggilan Low | Panggilan Medium | Panggilan High |
-| --- | ---: | ---: | ---: |
-| P5 | 2 | 2 | 2 |
-| P6 | 2 | 2 | 2 |
-| P7 | 26 | 25 | 27 |
-| P8 | 27 | 27 | 26 |
+LP adalah optimisasi linear. Selama pencarian, solver dapat melonggarkan sementara pilihan buka gudang dari 0 atau 1 menjadi nilai di antaranya untuk menghitung batas biaya. Satu iterasi LP adalah satu langkah numerik ketika menyelesaikan submasalah linear tersebut. Solver juga mencatat node, yaitu simpul pohon pencarian. Sebuah node dapat memerlukan banyak iterasi.
 
-WCC mengukur variabel yang dipakai bersama pada blok jaringan. Waktu dan penghitung kerja solver mencakup seluruh formulasi serta prosedur yang dipakai untuk menghasilkan keluaran. Perbandingan antara biaya tunggal dan Pareto juga mencakup perbedaan jumlah langkah. [Log iterasi LP, node, dan panggilan per langkah](hasil/Kerja_Solver.csv)
+Tabel berikut menjumlahkan iterasi LP untuk **sembilan minimisasi biaya dengan batas emisi yang sama** pada P7 dan P8. Kedua profil memakai biaya penanganan nonlinear dan keluaran yang sepadan. Tabel menghitung langkah biaya pada grid. Hitungan untuk pemecah seri emisi serta titik ujung tersedia di log.
+
+| Tingkat | P7 · Permintaan pasti | P8 · Permintaan stokastik |
+| --- | ---: | ---: |
+| Low | 1.238 | 2.689 |
+| Medium | 1.776 | 5.239 |
+| High | 2.686 | 7.626 |
+
+Satu panggilan HiGHS dapat memuat jumlah iterasi LP yang berbeda. Misalnya, pada batas emisi High sekitar 111,615 kg CO₂e, P7 memakai dua panggilan dengan total 280 iterasi LP, sedangkan P8 memakai satu panggilan dengan 370 iterasi LP. Panggilan tambahan pada profil nonlinear muncul ketika pendekatan linear perlu diperbaiki. Jumlah panggilan dan node tetap tersedia untuk menelusuri proses solver per langkah. [Iterasi LP, node, dan panggilan per langkah](hasil/Kerja_Solver.csv)
 
 ## 6. Menjalankan verifikasi
 
