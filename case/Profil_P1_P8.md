@@ -1,6 +1,6 @@
 # Delapan profil perencanaan
 
-Masing-masing profil dikerjakan pada jaringan Low, Medium, dan High. Gunakan rute, kapasitas, permintaan dasar, dan tarif dari [Kasus dasar](Kasus_Dasar.md). Tabel berikut menunjukkan perbedaan antarprofil.
+Masing-masing profil dikerjakan pada jaringan Low, Medium, dan High. Gunakan rute, kapasitas, dan data tiap wilayah dari [Kasus dasar](Kasus_Dasar.md). Tabel berikut menunjukkan perbedaan antarprofil.
 
 | Profil | Kapan permintaan diketahui | Yang hendak diminimalkan | Penanganan di gudang |
 | --- | --- | --- | --- |
@@ -15,9 +15,9 @@ Masing-masing profil dikerjakan pada jaringan Low, Medium, dan High. Gunakan rut
 
 ## Kapan permintaan diketahui?
 
-**P1, P3, P5, dan P7.** Seluruh angka pesanan sudah diketahui saat perencanaan. Perusahaan memilih gudang dan menyusun satu rencana pengiriman menggunakan pesanan pada tabel kasus dasar.
+**P1, P3, P5, dan P7.** Seluruh angka pesanan sudah diketahui saat perencanaan. Perusahaan memilih gudang dan menyusun satu rencana pengiriman menggunakan pesanan wilayah tersebut.
 
-**P2, P4, P6, dan P8.** Perusahaan memilih lokasi yang akan dibuka sebelum mengetahui permintaan aktual. Hanya pesanan produk A di K1 yang belum pasti. Siapkan satu rencana pengiriman untuk masing-masing kondisi di tabel. Ketika permintaan diketahui, perusahaan menjalankan rencana yang sesuai dengan kondisi tersebut. Lokasi yang dibuka tetap sama pada ketiga kondisi. Kapasitas dan anggaran waktu harus terpenuhi untuk setiap kondisi secara terpisah.
+**P2, P4, P6, dan P8.** Perusahaan memilih lokasi yang akan dibuka sebelum mengetahui permintaan aktual. Di setiap wilayah, hanya pesanan produk A di K1 yang belum pasti. Siapkan satu rencana pengiriman untuk masing-masing kondisi di tabel. Ketika permintaan diketahui, perusahaan menjalankan rencana yang sesuai dengan kondisi tersebut. Lokasi yang dibuka tetap sama pada ketiga kondisi. Kapasitas dan anggaran waktu harus terpenuhi untuk setiap kondisi secara terpisah.
 
 | Kondisi | Peluang | Pesanan A di K1 (palet) | Total kebutuhan jaringan (palet) |
 | --- | ---: | ---: | ---: |
@@ -25,7 +25,7 @@ Masing-masing profil dikerjakan pada jaringan Low, Medium, dan High. Gunakan rut
 | Sedang | 68,2689% | 3 | 30 |
 | Ramai | 15,8655% | 4,525135 | 31,525135 |
 
-Tiga kondisi mewakili bagian bawah, tengah, dan atas distribusi normal dengan rata-rata 3 palet dan simpangan baku 1 palet. Dalam kasus perencanaan ini, permintaan aktual diasumsikan mengambil salah satu dari tiga nilai pada tabel dengan peluang yang tercantum. Berkas data memuat nilai sebelum pembulatan.
+Tiga kondisi mewakili bagian bawah, tengah, dan atas distribusi normal dengan simpangan baku 1 palet. Angka pada tabel memakai contoh rata-rata 3 palet. Untuk wilayah dengan rata-rata 3,1, tiga nilainya bergeser menjadi sekitar 1,575, 3,1, dan 4,625 palet. Peluang tetap. Satu keputusan gudang dipakai di semua kondisi pada wilayah tersebut.
 
 Biaya harapan diperoleh dengan mengalikan biaya operasi tiap kondisi dengan peluangnya, lalu menjumlahkan hasilnya dan menambahkan biaya pembukaan gudang satu kali. Misalnya, jika biaya operasi dalam tiga kondisi sebesar 80, 100, dan 120, biaya operasi harapan adalah sekitar 100. Jika seluruh gudang terpilih memiliki biaya buka gabungan 45, biaya total harapan menjadi sekitar 145. Emisi harapan memakai cara yang sama, dengan emisi tetap gudang dihitung satu kali pada rencana yang dipilih.
 
@@ -73,7 +73,7 @@ Satu palet yang dikirim P1 melalui G2 ke K1 menimbulkan 1,8 + 0,9 = 2,7 kg CO₂
 
 ## Keputusan yang perlu dilaporkan
 
-- **Profil satu tujuan.** Laporkan gudang terpilih, arus pada setiap rute yang digunakan, dan biaya minimum. Untuk profil stokastik, gunakan arus per kondisi dan laporkan biaya harapan keseluruhan. Batas emisi 330 kg CO₂e berlaku pada emisi total untuk profil pasti dan emisi harapan untuk profil stokastik. Nilai batas itu berada di atas emisi yang mungkin dicapai dengan data kasus ini.
-- **Profil dua tujuan.** Laporkan pilihan biaya–emisi, mulai dari biaya minimum hingga emisi minimum. Keduanya memiliki satuan berbeda dan perusahaan belum menetapkan bobot untuk menggabungkannya. Untuk setiap batas emisi, cari biaya terendah yang memenuhi batas itu. Jika ada beberapa rencana dengan biaya terbaik, pilih rencana dengan emisi terendah. Sertakan gudang terpilih serta biaya dan emisi tiap pilihan. Pada profil stokastik, batas berlaku pada emisi harapan dan satu pilihan gudang dipakai bersama untuk semua kondisi. [Prosedur pembentukan titik Pareto](../math_model_acuan/Model_Matematika.md#7-mencari-kompromi-biaya-dan-emisi)
+- **Profil satu tujuan.** Laporkan fasilitas terpilih, arus pengiriman, dan total biaya minimum. Untuk profil stokastik, laporkan arus tiap kondisi serta biaya harapan.
+- **Profil dua tujuan.** Perusahaan ingin menyeimbangkan biaya dan emisi. Gunakan lima bobot biaya yang sama pada semua tingkat, yaitu 0,15, 0,325, 0,50, 0,675, dan 0,85. Pada setiap bobot, laporkan total biaya dan emisi untuk gabungan wilayah. [Rumus dan interpretasi bobot](../math_model_acuan/Model_Matematika.md#biaya-dan-emisi)
 
-[Kasus dasar dan diagram jaringan](Kasus_Dasar.md) · [Data terstruktur](Data_Bersama.json) · [Kembali ke daftar isi](../README.md)
+[Kasus dasar](Kasus_Dasar.md) · [Daftar isi](../README.md)

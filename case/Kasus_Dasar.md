@@ -1,10 +1,22 @@
-# Kasus dasar · Pemilihan gudang dan pengiriman
+# Kasus distribusi multiwilayah
 
-Sebuah perusahaan menyalurkan minuman kemasan (A), pangan kering (B), dan produk dingin (C). Dalam satu periode perencanaan, barang dikirim dari enam pabrik ke gudang yang dipilih dari empat lokasi calon, lalu dari gudang ke enam pelanggan. Setiap kiriman melewati kedua tahap itu.
+Perusahaan menyalurkan minuman kemasan (A), pangan kering (B), dan produk dingin (C) melalui jaringan gudang. Setiap wilayah memiliki enam pabrik, empat calon gudang, dan enam pelanggan. Perusahaan memilih gudang dan menentukan jumlah kiriman untuk satu periode.
 
-Perusahaan harus menentukan **gudang mana yang dibuka** dan **berapa palet setiap produk yang dikirim pada setiap rute**. Membuka lebih banyak gudang menambah biaya tetap, tetapi bisa memberi akses ke jalur yang lebih murah atau lebih dekat dengan pelanggan. Gudang G4, misalnya, punya biaya buka terendah dan tarif distribusi ke K2 sebesar 1,79 per palet. Pada Low, akses G4 untuk produk A memang terbatas ke K2, sehingga manfaatnya bergantung pada pelanggan dan produk yang dilayani.
+Setiap pabrik dan gudang melayani wilayahnya sendiri. Pelanggan suatu wilayah dilayani oleh fasilitas di wilayah tersebut. Keputusan di tiap wilayah diambil dengan aturan operasi yang sama. Biaya dan emisi perusahaan diperoleh dengan menjumlahkan hasil dari wilayah yang dilayani.
 
-Kasus ini menggunakan tiga susunan rute, yaitu Low, Medium, dan High. Fasilitas, tarif, kapasitas, dan data dasar permintaan sama pada ketiganya. Setiap susunan rute dipakai untuk delapan profil yang merinci kapan permintaan diketahui, perlakuan biaya dan waktu penanganan, serta tujuan perusahaan. [Ketentuan P1–P8](Profil_P1_P8.md)
+| Tingkat | Wilayah yang dilayani | Jenis jaringan lokal |
+| --- | --- | --- |
+| Low | 01 | 01 memakai rute Low |
+| Medium | 01–04 | Tambahan 02–04 memakai rute Medium |
+| High | 01–12 | Tambahan 05–12 memakai rute High |
+
+Contohnya, Wilayah 01 memakai jaringan lokal Low dalam ketiga tingkat. Gudang **01–G2** dan **02–G2** adalah lokasi fisik yang berbeda. Medium harus merencanakan empat wilayah. High harus merencanakan dua belas wilayah. Seusai pengujian, tingkat tersebut dibandingkan sebagai **gabungan skala operasi dan keterhubungan jaringan**.
+
+## Data permintaan dan biaya
+
+**Instans** berarti satu paket angka yang mendeskripsikan seluruh wilayah, misalnya angka pesanan dan ongkos kirim pada paket 8201. Dalam paket yang sama, data Wilayah 01 sama untuk Low, Medium, dan High. Pengujian memakai sepuluh paket data dengan kode 8201–8210.
+
+Tabel berikut adalah data dasar per wilayah. Untuk tiap paket dan wilayah, kode pembangkit memberi perubahan hingga 5% pada biaya buka dan hingga 3% pada tarif angkut. Permintaan berubah sedikit antarpelanggan dengan total per produk tetap. Pembangkit mengurangi rata-rata variasi per produk dari setiap perubahan agar totalnya tetap sama. Kapasitas, rute yang diizinkan, dan faktor emisi ditetapkan oleh desain. Semua profil memakai input wilayah yang sama. [Data dasar](Data_Bersama.json) · [Kode pembangkit](../math_model_acuan/benchmark_wilayah.py)
 
 ## Aturan operasi
 
@@ -14,7 +26,7 @@ Kasus ini menggunakan tiga susunan rute, yaitu Low, Medium, dan High. Fasilitas,
 - **Pemenuhan pesanan.** Jumlah palet yang diterima setiap pelanggan untuk setiap produk harus tepat sebesar pesanannya. Pesanan bisa dibagi ke beberapa gudang. Contohnya, K1 dapat menerima satu palet A dari G1 dan dua palet A dari G2 untuk memenuhi tiga palet A.
 - **Tarif.** Biaya angkut dikenakan pada kedua tahap. Setiap palet dikenai biaya penanganan sekali di gudang yang menyalurkannya. Semua tarif dan biaya tetap memakai satuan biaya yang sama.
 
-Sebagai contoh, pada Low satu palet A dapat bergerak dari pabrik P1 ke G2 lalu ke K1. Biaya angkutnya 3 pada tahap pertama dan 1 pada tahap kedua. Biaya penanganan dasar di G2 adalah 2, sehingga biaya dasar rute itu 6 per palet. Biaya buka G2 dihitung satu kali untuk seluruh arusnya. Profil nonlinear juga mengenakan biaya tambahan berdasarkan volume produk yang ditangani gudang.
+Sebagai contoh, menggunakan tarif dasar jaringan lokal Low, satu palet A dapat bergerak dari pabrik P1 ke G2 lalu ke K1. Biaya angkutnya 3 pada tahap pertama dan 1 pada tahap kedua. Biaya penanganan dasar di G2 adalah 2, sehingga biaya dasar rute itu 6 per palet. Biaya buka G2 dihitung satu kali untuk seluruh arusnya. Profil nonlinear juga mengenakan biaya tambahan berdasarkan volume produk yang ditangani gudang.
 
 | Gudang | Kapasitas (palet) | Biaya buka |
 | --- | ---: | ---: |
@@ -25,7 +37,7 @@ Sebagai contoh, pada Low satu palet A dapat bergerak dari pabrik P1 ke G2 lalu k
 
 ## Jalur masuk dan keluar
 
-Low menyediakan 16 rute masuk dan 31 rute keluar. Medium menyediakan 22 rute masuk dan 40 rute keluar, termasuk layanan A dari G1 ke K2–K6 dan layanan C dari G3 ke K1, K3, K5, dan K6. High menyediakan 34 rute masuk dan 54 rute keluar, termasuk penyaluran C melalui G4 ke K2, K4, dan K6. Rute yang sudah tersedia ikut dibawa ke tingkat berikutnya. Satu rute dihitung untuk satu produk.
+Jaringan lokal Low menyediakan 16 rute masuk dan 31 rute keluar. Jaringan lokal Medium menyediakan 22 rute masuk dan 40 rute keluar, termasuk layanan A dari G1 ke K2–K6 dan layanan C dari G3 ke K1, K3, K5, dan K6. High menyediakan 34 rute masuk dan 54 rute keluar, termasuk penyaluran C melalui G4 ke K2, K4, dan K6. Rute yang sudah tersedia ikut dibawa ke tingkat berikutnya. Satu rute dihitung untuk satu produk. Tabel rute dan diagram di bawah menunjukkan jaringan lokal untuk satu wilayah.
 
 
 **Pola garis**
@@ -84,7 +96,7 @@ Pada tabel masuk, setiap pabrik pada satu baris produk boleh memasok setiap guda
 
 ## Permintaan per pelanggan
 
-Tabel dalam palet berlaku langsung pada profil dengan permintaan pasti. Pada profil stokastik, gunakan tabel ini untuk seluruh pesanan selain pesanan A di K1. Nilai pesanan tersebut mengikuti [tabel kondisi permintaan](Profil_P1_P8.md#kapan-permintaan-diketahui).
+Tabel dalam palet menunjukkan permintaan dasar sebelum perubahan antarwilayah. Pada profil deterministik seluruh permintaan wilayah diketahui. Pada profil stokastik pesanan A di K1 memiliki [tiga kondisi](Profil_P1_P8.md#kapan-permintaan-diketahui) di sekitar angka permintaan wilayahnya.
 
 | Pelanggan | A | B | C | Total |
 | --- | ---: | ---: | ---: | ---: |
@@ -129,4 +141,4 @@ Tarif angkut berlaku untuk seluruh produk pada satu pasangan lokasi. Pemakaian t
 | G3 | 2 | 1 | 2 |
 | G4 | 1 | 1 | 3 |
 
-Salinan data dalam format terstruktur tersedia di [Data bersama P1–P8](Data_Bersama.json).
+[Data dasar](Data_Bersama.json) · [Delapan profil](Profil_P1_P8.md) · [Kembali ke daftar isi](../README.md)

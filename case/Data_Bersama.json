@@ -1283,17 +1283,9 @@
         3.7,
         2.2
       ]
-    ],
-    "fraksi_batas_emisi": [
-      0,
-      0.25,
-      0.5,
-      0.75,
-      1
     ]
   },
   "kontrol_profil": {
-    "batas_emisi_longgar": 330.0,
     "waktu_per_palet": 1.0,
     "waktu_gudang": [
       19.2,
@@ -1302,7 +1294,6 @@
       16.8
     ],
     "kenaikan_waktu_kuadratik": 0.025,
-    "kenaikan_biaya_kuadratik": 0.04,
-    "jumlah_batas_emisi_bersama": 9
+    "kenaikan_biaya_kuadratik": 0.04
   }
 }
