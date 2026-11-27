@@ -1,11 +1,15 @@
 # Lampiran Model Matematika Tesis
 
-Benchmark perencanaan jaringan distribusi multiwilayah. Delapan profil membandingkan perlakuan permintaan, penanganan linear atau nonlinear, dan tujuan biaya atau biaya–emisi. Tingkat Low, Medium, dan High berturut-turut mencakup 1, 4, dan 12 wilayah.
+Benchmark pemodelan jaringan distribusi PT XYZ Bahan Pangan, perusahaan fiktif yang mengirim minyak goreng curah, sirup gula cair, dan susu cair dingin. Perusahaan memilih gudang yang dibuka dan menentukan jumlah kiriman dari pabrik ke zona pelanggan melalui gudang.
 
-## Urutan membaca
+| Tingkat rute | Pabrik → gudang | Gudang → zona | WCC operasi |
+| --- | ---: | ---: | ---: |
+| Low | 16 | 36 | 54,25% |
+| Medium | 21 | 43 | 65,06% |
+| High | 35 | 57 | 87,59% |
 
-1. [Kasus distribusi](case/Kasus_Dasar.md) untuk cerita masalah, rute, kapasitas, biaya, dan permintaan.
-2. [Profil P1–P8](case/Profil_P1_P8.md) untuk menjelaskan perbedaan tugas.
-3. [Model matematika](math_model_acuan/Model_Matematika.md) untuk kendala dan prosedur penyelesaian.
-4. [Perhitungan WCC](Lampiran_WCC.md) untuk melihat cara mengaudit hubungan antarkendala.
-5. [Protokol dan hasil pengujian](math_model_acuan/Hasil_Verifikasi.md) untuk hasil uji, interpretasi, dan cara menjalankan ulang.
+Enam pabrik, empat calon gudang, dan enam zona pelanggan dipakai pada ketiga tingkat. Setiap panah dihitung untuk satu produk. Delapan profil P1–P8 mengombinasikan permintaan pasti atau stokastik, penanganan linear atau nonlinear, serta satu atau dua tujuan.
+
+[Kasus dan profil](case/Kasus_Dasar.md) · [Model matematika](math_model_acuan/Model_Matematika.md) · [Hasil validasi](math_model_acuan/Hasil_Verifikasi.md) · [Cara menghitung WCC](Lampiran_WCC.md)
+
+![Jaringan distribusi PT XYZ. Low membaca garis hijau, Medium menambahkan merah, dan High menambahkan hitam.](case/diagram/Jaringan_Low_Medium_High.svg)

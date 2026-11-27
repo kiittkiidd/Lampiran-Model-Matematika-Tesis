@@ -1,56 +1,57 @@
-# Protokol dan hasil pengujian
+# Hasil validasi jaringan PT XYZ
 
-Pada **10 instans uji baru**, kedelapan profil menunjukkan urutan **Low < Medium < High** untuk jumlah iterasi LP dan median waktu penyelesaian. Angka tersebut berlaku pada desain multiwilayah dan cara penyelesaian yang ditetapkan di repositori ini.
+Pengujian mencakup **480 kombinasi** dari 20 paket, delapan profil, dan tiga tingkat rute. Dalam tiap paket, permintaan, kapasitas, dan tarif yang sama dipakai pada Low, Medium, dan High. Angka tabel adalah median dari 20 paket.
 
-## Perbandingan
+| Profil | Waktu Low → Medium → High (detik) | Iterasi LP Low → Medium → High | Paket urut waktu | Paket urut iterasi |
+| --- | ---: | ---: | ---: | ---: |
+| P1 | 0,006 → 0,008 → 0,015 | 25,5 → 71,5 → 134,5 | 16/20 | 20/20 |
+| P2 | 0,020 → 0,029 → 0,037 | 233 → 327 → 732 | 18/20 | 20/20 |
+| P3 | 0,181 → 0,377 → 0,683 | 1.072 → 3.608,5 → 9.604 | 20/20 | 20/20 |
+| P4 | 0,412 → 1,171 → 2,192 | 3.896,5 → 13.578,5 → 31.525 | 20/20 | 20/20 |
+| P5 | 0,016 → 0,028 → 0,049 | 178 → 308,5 → 507 | 19/20 | 20/20 |
+| P6 | 0,072 → 0,099 → 0,113 | 855,5 → 1.222 → 2.359 | 11/20 | 18/20 |
+| P7 | 0,294 → 0,560 → 1,381 | 2.383 → 6.272 → 17.638 | 20/20 | 20/20 |
+| P8 | 1,350 → 3,247 → 7,825 | 13.416 → 34.190 → 87.112,5 | 20/20 | 20/20 |
 
-| Profil | Iterasi Low | Iterasi Medium | Iterasi High | Waktu Low (ms) | Waktu Medium (ms) | Waktu High (ms) | Urutan iterasi | Urutan waktu |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| P1 | 70,5 | 327,5 | 1.246 | 10,4 | 40,3 | 138,8 | 10/10 | 10/10 |
-| P2 | 192 | 1.206,5 | 5.441 | 16,2 | 84,2 | 313,4 | 10/10 | 10/10 |
-| P3 | 203,5 | 1.732 | 7.444 | 28,9 | 184,4 | 622,6 | 10/10 | 10/10 |
-| P4 | 740,5 | 4.780,5 | 24.009,5 | 59,3 | 363,3 | 1.438,9 | 10/10 | 10/10 |
-| P5 | 281,5 | 1.398,5 | 4.657,5 | 27,6 | 138,5 | 467,2 | 10/10 | 10/10 |
-| P6 | 644 | 3.873 | 16.262 | 52,1 | 284,1 | 968,0 | 10/10 | 10/10 |
-| P7 | 591 | 4.693,5 | 20.528,5 | 80,6 | 489,8 | 1.650,9 | 10/10 | 10/10 |
-| P8 | 1.775 | 13.750,5 | 65.702,5 | 123,3 | 1.078,7 | 4.150,4 | 10/10 | 10/10 |
+Median waktu naik secara ketat pada **8/8 profil**. Pada tingkat paket individual, urutan itu terjadi pada **144/160 perbandingan**.
 
-Angka dalam tabel adalah median lintas 10 instans. Dua kolom terakhir menghitung instans dengan urutan ketat pada ketiga tingkat. Jika dilihat per pengulangan, waktu berurutan pada **240 dari 240** perbandingan profil dan instans. Seluruh 240 kombinasi instans × tingkat × profil diselesaikan dan diperiksa, dengan 720 pengukuran waktu setelah pemanasan.
+Median iterasi LP naik secara ketat pada **8/8 profil**. Pada tingkat paket individual, urutan itu terjadi pada **158/160 perbandingan**.
 
-![Iterasi LP dan waktu ketiga tingkat untuk P1 hingga P8](hasil/Beban_Solver.svg)
+![Perbandingan waktu dan iterasi LP pada ketiga tingkat](hasil/Beban_Solver.svg)
 
-[Data pengukuran](hasil/Pengukuran.csv) · [Ringkasan](hasil/Ringkasan.csv) · [Biaya, emisi, dan celah terhadap batas bawah](hasil/Titik_Tujuan.csv)
+## Sampel Pareto
 
-## Cara membaca hasil
+P3, P4, P7, dan P8 memakai 25 batas ε per kombinasi. Grafik menampilkan satu paket contoh (10101). Setiap titik mewakili satu pasangan biaya dan emisi yang lolos pemeriksaan. Batas ε yang memberikan titik sama tetap tercatat di CSV.
 
-- **Iterasi LP** menghitung langkah aljabar pada submasalah linear yang dicatat HiGHS, termasuk panggilan solver tambahan pada profil nonlinear. **Waktu** mengukur durasi nyata untuk menyelesaikan dan memeriksa seluruh wilayah aktif.
-- **Satu instans** adalah satu paket permintaan dan tarif. Low, Medium, dan High memakai angka yang sama pada wilayah yang sama dalam instans tersebut. Sepuluh paket uji memakai kode 8201–8210. Paket 8001–8003 dialokasikan untuk kalibrasi.
-- **Perbandingan dalam satu profil.** Jumlah bobot biaya–emisi per wilayah tetap, yaitu lima pada profil dua tujuan. Profil biaya tunggal memakai satu penyelesaian tujuan per wilayah. Angka antardua jenis profil mencakup keluaran yang berbeda.
-- **Robust dalam pengujian ini.** Urutan bertahan pada semua paket uji, dengan rentang variasi data dan lingkungan yang dilaporkan. Setiap perluasan menambah pekerjaan wilayah yang benar-benar diselesaikan. Karena itu, kenaikan iterasi merupakan konsekuensi dari desain wilayah yang bertingkat. Urutan waktunya diperiksa melalui pengukuran, dan WCC operasi juga meningkat seiring perubahan campuran rute.
-- **Batas interpretasi.** Benchmark ini mengalibrasi beban kerja bertingkat melalui jumlah wilayah dan struktur rute secara bersamaan. Pengaruh WCC secara terpisah memerlukan perbandingan dengan jumlah wilayah, ukuran, dan tugas yang dikendalikan.
+![Sampel Pareto pada empat profil multiobjektif](hasil/Pareto_Contoh.svg)
 
-## Protokol
+Pada data dasar High, solusi biaya terendah membuka G2 dan G4 dengan biaya 242,95 dan emisi 155,60 kg CO₂e. Salah satu solusi yang lebih mengutamakan emisi membuka G2 dan G3 dengan biaya 259,00 dan emisi 96,00 kg CO₂e.
 
-Solver memakai HiGHS 1.8.0 melalui SciPy 1.17.0, NumPy 2.3.5, dan Python 3.12.14. Mesin uji Linux x86-64 memakai AMD EPYC 9V74. Enam pekerja dijalankan pada inti CPU berbeda dan HiGHS memakai satu thread per pekerja. Ketiga tingkat untuk satu paket dan profil diukur pada pekerja yang sama dengan urutan yang diacak. Untuk tiap tingkat dilakukan satu putaran pemanasan dan tiga pengukuran. Pencatatan iterasi berjalan terpisah dari pengukuran waktu. Waktu dimulai saat formulasi wilayah yang sudah dibangun diserahkan ke prosedur solver dan mencakup penyempurnaan relaksasi serta pemeriksaan tiap solusi.
+## Nilai alternatif fasilitas dan rute
 
-Pada setiap penyelesaian, kode menghitung ulang biaya dan emisi. Untuk kasus nonlinear, kode memeriksa persamaan kuadratik asli, pilihan gudang biner, dan selisih terhadap batas bawah. Nilai fungsi utama dan emisi kemudian diperiksa ulang secara numerik antarulangan. [Model dan toleransi implementasi](benchmark_wilayah.py)
+- Pada P1 dan P6, pesanan tetap dapat dipenuhi saat salah satu dari 10 fasilitas ditutup, satu per satu.
+- Pada P1, setiap pasangan zona–produk punya minimal dua alternatif gudang pada Low dan Medium serta tiga pada High.
+- Pada 208 pemeriksaan per rute–tingkat, setiap rute memiliki satu kondisi saat penutupannya memperburuk hasil dan satu kondisi saat memaksakannya membawa satu ton juga memperburuk hasil.
 
-## Dasar rancangan
+## Cara pengukuran dan menjalankan ulang
 
-- **Hooker (1995), *Journal of Heuristics*.** Eksperimen komputasi yang terkendali mengubah karakteristik masalah secara eksplisit dan memeriksa bagaimana perilaku algoritma berubah. Ini mendukung pemisahan pola rute, skala wilayah, konfigurasi solver, dan paket data uji. [Artikel](https://iaorifors.com/paper/29510)
-- **Gleixner dkk. (2021), *Mathematical Programming Computation*.** MIPLIB menyusun benchmark dari kumpulan instans yang beragam dan berimbang. Prinsip ini mendukung pelaporan hasil lintas paket data dengan karakteristik yang diketahui. [Artikel](https://doi.org/10.1007/s12532-020-00194-3)
-- **Beiranvand, Hare, dan Lucet (2017), *Optimization and Engineering*.** Pemilihan ukuran kinerja, kumpulan masalah uji, dan prosedur perbandingan perlu mengikuti tujuan pengujian. Ini mendukung pencatatan iterasi dan waktu dengan protokol tetap. [Artikel](https://doi.org/10.1007/s11081-017-9366-1)
-- **Tsiakis, Shah, dan Pantelides (2001), *Industrial & Engineering Chemistry Research*.** Model jaringan rantai pasok multiproduk dan bertingkat memakai skenario permintaan. Rancangan ini memakai gagasan keputusan fasilitas bersama dan arus yang dapat menyesuaikan permintaan. [Artikel](https://doi.org/10.1021/ie0100030)
+HiGHS 1.8.0 digunakan dengan satu thread per penyelesaian. Setiap kombinasi mempunyai 3 ulangan waktu setelah satu pemanasan. Urutan tingkat diseimbangkan antarulangan di setiap paket, dan data serta model operasi disiapkan sebelum pencatatan waktu. Waktu mencakup seluruh penyelesaian, pemilihan solusi jika biaya sama, dan pemeriksaan solusi. Iterasi LP dihitung dari laporan solver pada lintasan terpisah, termasuk panggilan tambahan jika solusi perlu diperiksa ulang.
 
-## Menjalankan ulang
+Profil satu tujuan menyelesaikan biaya minimum. Profil dua tujuan mencakup penentuan dua ujung dan seluruh 25 batas ε. P7 dan P8 memeriksa bentuk kuadrat asli dengan toleransi kelayakan 0,0000002 dan celah tujuan 0,00025. Tercatat **65 panggilan ulang numerik** pada seluruh benchmark.
 
-Buka [notebook di Google Colab](https://colab.research.google.com/github/kiittkiidd/Lampiran-Model-Matematika-Tesis/blob/main/math_model_acuan/Verifikasi_P1_P8.ipynb) atau jalankan dari direktori utama repositori di Linux.
+[Jalankan di Google Colab](https://colab.research.google.com/github/kiittkiidd/Lampiran-Model-Matematika-Tesis/blob/main/math_model_acuan/Verifikasi_P1_P8.ipynb) · [Notebook di repo](Verifikasi_P1_P8.ipynb)
 
-```bash
+Contoh lokal untuk Python 3.12 di Linux, dari direktori utama repo.
+
+~~~bash
 python -m pip install -r requirements.txt
-OPENBLAS_NUM_THREADS=1 python math_model_acuan/benchmark_wilayah.py --set uji --repetisi 3 --pekerja 6 --output uji.jsonl
-```
+OPENBLAS_NUM_THREADS=1 python math_model_acuan/benchmark.py --paket 10101 --profil P3 --output contoh.jsonl
+~~~
 
-Gunakan satu pekerja bila mesin hanya menyediakan satu inti. Durasi berubah sesuai mesin dan beban sistem. Untuk menjalankan satu profil, gunakan opsi misalnya --hanya P1.
+Untuk benchmark lengkap, hilangkan opsi paket dan profil. Gunakan path keluaran baru untuk pengujian baru. Waktu absolut bergantung pada lingkungan. Paket final memakai kode 10101–10110 dan 10301–10310. Paket tersebut dipisahkan dari paket yang dipakai untuk memilih rancangan rute.
 
-[Daftar isi](../README.md)
+## Data pemeriksaan
+
+[Median dan urutan per profil](hasil/Ringkasan.csv) · [Pengukuran per paket](hasil/Pengukuran.csv) · [Biaya dan emisi pada setiap batas](hasil/Titik_Tujuan.csv) · [Audit WCC](hasil/WCC.csv) · [Audit per fasilitas dan zona](hasil/Audit_Fasilitas_Dan_Zona.json) · [Audit per rute](hasil/Audit_Per_Rute.csv)
+
+[Model matematika](Model_Matematika.md) · [Halaman utama](../README.md)

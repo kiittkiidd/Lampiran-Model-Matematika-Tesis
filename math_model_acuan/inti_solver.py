@@ -1,4 +1,4 @@
-"""Formulasi jaringan per wilayah dan pencatatan kerja HiGHS."""
+"""Formulasi jaringan distribusi dan pencatatan kerja HiGHS."""
 from dataclasses import dataclass
 from itertools import product
 from tempfile import TemporaryFile
@@ -79,22 +79,22 @@ def network(data, inbound, outbound, mean, stochastic):
         for k, (i,g,p) in enumerate(inbound, i0):
             matrix[offset+i-1,k] = 1
             matrix[offset+6+categories.index((g,p)),k] = 1
-            cost[k] = probability * data["tarif_masuk_per_palet"][i-1][g-1]
-            energy[k] = probability * data["P3"]["emisi_masuk_per_palet"][i-1][g-1]
+            cost[k] = probability * data["tarif_masuk_per_ton"][i-1][g-1]
+            energy[k] = probability * data["P3"]["emisi_masuk_per_ton"][i-1][g-1]
             names.append(f"x[{i},{g},{p},{s+1}]")
         for k, (g,j,p) in enumerate(outbound, i0+len(inbound)):
             matrix[offset+6+categories.index((g,p)),k] = -1
             matrix[offset+17+orders.index((j,p)),k] = 1
             matrix[offset+34+g,k] = 1
-            cost[k] = probability * (data["tarif_keluar_per_palet"][g-1][j-1]
-                                      + data["tarif_penanganan_per_palet"][g-1]["ABC".index(p)])
-            energy[k] = probability * data["P3"]["emisi_keluar_per_palet"][g-1][j-1]
+            cost[k] = probability * (data["tarif_keluar_per_ton"][g-1][j-1]
+                                      + data["tarif_penanganan_per_ton"][g-1]["ABC".index(p)])
+            energy[k] = probability * data["P3"]["emisi_keluar_per_ton"][g-1][j-1]
             names.append(f"z[{g},{j},{p},{s+1}]")
             groups.setdefault((s,g,p), []).append(k)
         for g in range(1,5):
             capacity = offset+34+g
             time = handling_start+HANDLING_ROWS*s+g-1
-            matrix[time] = matrix[capacity] * settings["waktu_per_palet"]
+            matrix[time] = matrix[capacity] * settings["waktu_per_ton"]
             matrix[time,g-1] = -settings["waktu_gudang"][g-1]
             matrix[capacity,g-1] = -data["kapasitas_gudang"][g-1]
             time_rows.append((time,s,g))

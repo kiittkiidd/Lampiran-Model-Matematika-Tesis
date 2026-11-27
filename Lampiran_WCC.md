@@ -1,26 +1,43 @@
-# WCC jaringan
+# Menghitung Weighted Constraint Coupling
 
-Weighted Constraint Coupling (WCC) mengukur keterhubungan kendala melalui variabel yang dipakai bersama. Ambil kapasitas gudang G3 dan permintaan pelanggan K2. Jika keduanya memakai variabel kiriman G3 ke K2, variabel itu menyumbang satu bobot hubungan. Dua kendala yang mempunyai dua variabel bersama mendapat bobot dua.
+Weighted Constraint Coupling atau **WCC** mengukur seberapa banyak aturan model menggunakan keputusan yang sama. Satu keputusan yang muncul di dua aturan memberi bobot satu pada pasangan aturan itu. Jika dua keputusan muncul bersama di kedua aturan, bobot pasangannya dua.
 
-## Blok yang diperiksa
+## Contoh dari jaringan PT XYZ
 
-Audit memakai kendala operasi **satu wilayah dan satu kondisi**. Ada 43 posisi kendala. Posisi neraca yang kosong mempunyai himpunan variabel kosong. Model deterministik memakai satu kondisi. Pada profil stokastik, audit memeriksa apakah setiap kondisi memiliki himpunan variabel yang sama setelah label kondisi diselaraskan. Struktur arus yang masuk ke suku kuadratik sudah muncul pada kendala waktu linear. Ini menjaga WCC operasi tetap sama di P1–P8 pada tingkat jaringan yang sama.
+Ambil keputusan **ton minyak dari P1 ke G1**. Keputusan ini muncul di kendala kapasitas P1 dan kendala neraca minyak G1. Jadi pasangan kedua aturan mendapat bobot satu dari kiriman tersebut.
 
-### Cara menghitung
+Lalu ambil keputusan **ton minyak dari G1 ke K1**. Keputusan ini muncul pada neraca minyak G1, pesanan minyak K1, kapasitas tonase G1, dan batas waktu G1. Empat aturan membentuk enam pasangan, sehingga kiriman tersebut memberi bobot enam pada hitungan total.
 
-1. Untuk setiap pasangan kendala, hitung variabel yang sama-sama dipakai.
-2. Jumlahkan bobot pasangan itu. Cara ekuivalennya, variabel yang muncul di k kendala menyumbang k(k−1)/2.
-3. Bagi bobot aktual dengan bobot acuan untuk wilayah aktif. Satu wilayah dengan seluruh rute acuan mempunyai bobot 434. Bobot itu diperoleh dari 4 keputusan gudang, 34 rute masuk, dan 66 rute keluar. Masing-masing keputusan gudang dan rute masuk menyumbang satu pasangan. Setiap rute keluar menyumbang enam karena muncul di empat kendala.
-4. Kalikan hasil pembagian dengan 100%.
+Secara umum, jika keputusan $v$ muncul pada $m_v$ baris yang diperiksa, kontribusinya adalah
 
-| Lingkup | Bobot aktual | Bobot acuan wilayah aktif | WCC operasi P1–P8 |
-| --- | ---: | ---: | ---: |
-| Low · 1 wilayah | 206 | 434 | 47,47% |
-| Medium · 4 wilayah | 206 + 3 × 266 = 1.004 | 1.736 | 57,83% |
-| High · 12 wilayah | 1.004 + 8 × 362 = 3.900 | 5.208 | 74,88% |
+$$
+\binom{m_v}{2}.
+$$
 
-Contohnya, Medium berisi Wilayah 01 dengan bobot 206 dan tiga wilayah lain dengan bobot 266 per wilayah. Pembaginya adalah 4 × 434. Angka WCC menyatakan kepadatan hubungan terhadap rute yang diizinkan di wilayah aktif. **Bobot total** menunjukkan jumlah hubungan berbobot yang harus ditangani di seluruh wilayah.
+Masukkan hanya kemunculan yang mempunyai koefisien tidak nol. Misalnya, kapasitas pabrik P1 dan pesanan di K1 tidak berbagi variabel secara langsung, karena masing-masing memakai tahap kiriman yang berlainan.
 
-Ukuran ini mengaudit **graf operasi per kondisi**. Jumlah variabel dan kendala masing-masing formulasi lengkap tetap bergantung pada jumlah kondisi dan wilayah. Pembobotan biaya–emisi dilakukan di fungsi tujuan, dan kode memasukkan garis singgung hanya saat penyelesaian solver.
+## Menghitung angka Low–Medium–High
 
-[Model matematika](math_model_acuan/Model_Matematika.md) · [Kode audit WCC](math_model_acuan/benchmark_wilayah.py)
+Audit memakai 43 baris operasi dalam satu kondisi permintaan sebelum penyederhanaan solver. Baris ini mencakup kapasitas pabrik, keseimbangan barang, pemenuhan pesanan, kapasitas gudang, dan waktu kerja gudang.
+
+| Jenis keputusan | Baris yang memakainya | Bobot per keputusan |
+| --- | --- | ---: |
+| Buka gudang | Kapasitas dan waktu kerja gudang | 1 |
+| Kiriman pabrik → gudang | Kapasitas pabrik dan neraca gudang–produk | 1 |
+| Kiriman gudang → zona | Neraca gudang–produk, pesanan, kapasitas gudang, dan waktu kerja | 6 |
+
+Untuk Low ada 4 pilihan buka gudang, 16 rute masuk, dan 36 rute keluar. Bobot totalnya $4+16+6(36)=236$.
+
+Acuan bersama menggunakan 35 rute masuk High dan mengizinkan seluruh 6 zona bagi 11 pasangan gudang–produk yang kompatibel. Maka acuan memiliki 66 rute keluar dan berbobot $4+35+6(66)=435$.
+
+| Tingkat | Rute masuk | Rute keluar | Bobot | WCC |
+| --- | ---: | ---: | ---: | ---: |
+| Low | 16 | 36 | 236 | 54,25% |
+| Medium | 21 | 43 | 283 | 65,06% |
+| High | 35 | 57 | 381 | 87,59% |
+
+Hitung WCC dengan membagi bobot tingkat oleh 435. Untuk Low, $236/435\times100\%=54{,}25\%$.
+
+WCC tabel ini sama untuk P1–P8 pada tingkat rute yang sama. Profil stokastik memakai satu salinan struktur operasi per skenario dalam audit ini. Pada profil nonlinear, suku kuadrat memakai kiriman yang sudah muncul pada baris waktu. Kendala tambahan batas emisi ε, pemilihan emisi saat biaya sama, domain variabel, serta garis singgung solver berada di luar 43 baris operasi yang diukur.
+
+[Model matematika](math_model_acuan/Model_Matematika.md) · [Hasil validasi](math_model_acuan/Hasil_Verifikasi.md) · [Halaman utama](README.md)

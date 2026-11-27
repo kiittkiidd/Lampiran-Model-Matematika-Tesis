@@ -1,0 +1,249 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1020" height="1330" viewBox="0 0 1020 1330" role="img" aria-labelledby="title desc">
+<title id="title">Rute distribusi produk A, B, dan C</title>
+<desc id="desc">Tiga panel produk dengan posisi fasilitas yang sama. Garis hijau penuh tersedia sejak Low, garis merah putus-putus ditambahkan pada Medium, dan garis hitam bertitik ditambahkan pada High. Low membaca hijau. Medium membaca hijau dan merah. High membaca semua garis.</desc>
+<rect width="1020" height="1330" fill="#F4F6F8"/>
+<style>
+  text{font-family:Inter,"DejaVu Sans",sans-serif;fill:#1A2A3A}
+  .title{font-size:35px;font-weight:700}
+  .description{font-size:17px;fill:#415364}
+  .legend-name{font-size:15px;font-weight:700}
+  .legend-detail{font-size:14px;fill:#415364}
+  .product{font-size:23px;font-weight:700}
+  .column{font-size:13px;font-weight:700;letter-spacing:1.2px;fill:#415364}
+  .facility{font-size:16px;font-weight:700}
+</style>
+<defs>
+<marker id="arrow-L" viewBox="0 0 9 8" markerWidth="8" markerHeight="7" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L7.5 4 L1 7" fill="none" stroke="#17714E" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="arrow-M" viewBox="0 0 9 8" markerWidth="8" markerHeight="7" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L7.5 4 L1 7" fill="none" stroke="#AF3344" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="arrow-H" viewBox="0 0 9 8" markerWidth="8" markerHeight="7" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L7.5 4 L1 7" fill="none" stroke="#22262C" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+<text x="44" y="57" class="title" text-anchor="start">Rute distribusi Low, Medium, dan High</text>
+<text x="45" y="88" class="description" text-anchor="start">Ikuti panah untuk produk yang sama dari pabrik, lewat gudang, hingga zona pelanggan.</text>
+<path d="M45 128 H93" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)"/>
+<text x="107" y="124" class="legend-name" text-anchor="start">Hijau</text>
+<text x="107" y="146" class="legend-detail" text-anchor="start">Tersedia sejak Low</text>
+<path d="M354 128 H402" fill="none" stroke="#AF3344" stroke-width="1.8" stroke-dasharray="7 4" stroke-linecap="round" marker-end="url(#arrow-M)"/>
+<text x="416" y="124" class="legend-name" text-anchor="start">Merah</text>
+<text x="416" y="146" class="legend-detail" text-anchor="start">Tambahan pada Medium</text>
+<path d="M663 128 H711" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)"/>
+<text x="725" y="124" class="legend-name" text-anchor="start">Hitam</text>
+<text x="725" y="146" class="legend-detail" text-anchor="start">Tambahan pada High</text>
+<rect x="45" y="166" width="300" height="32" rx="7" fill="#E8EEF2"/>
+<text x="58" y="187" class="legend-name" text-anchor="start">Low  ·  hijau</text>
+<rect x="354" y="166" width="300" height="32" rx="7" fill="#E8EEF2"/>
+<text x="367" y="187" class="legend-name" text-anchor="start">Medium  ·  hijau + merah</text>
+<rect x="663" y="166" width="300" height="32" rx="7" fill="#E8EEF2"/>
+<text x="676" y="187" class="legend-name" text-anchor="start">High  ·  hijau + merah + hitam</text>
+<g id="produk-A">
+<rect x="44" y="219" width="932" height="346" rx="16" fill="#FFFFFF" stroke="#D7E0E7"/>
+<text x="68" y="260" class="product" text-anchor="start">Produk A  ·  Minyak goreng curah</text>
+<text x="153" y="290" class="column" text-anchor="middle">PABRIK</text>
+<text x="509" y="290" class="column" text-anchor="middle">CALON GUDANG</text>
+<text x="867" y="290" class="column" text-anchor="middle">ZONA PELANGGAN</text>
+<path d="M68 303 H952" stroke="#E6ECF0"/>
+<path d="M187.5 401.0 C288.5 401.0,379.5 373.3,473.5 373.3" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_masuk-3-1-A" data-sejak="H"/>
+<path d="M187.5 407.7 C288.5 407.7,379.5 411.0,473.5 411.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_masuk-3-2-A" data-sejak="H"/>
+<path d="M187.5 414.3 C288.5 414.3,379.5 442.0,473.5 442.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_masuk-3-3-A" data-sejak="H"/>
+<path d="M187.5 421.0 C288.5 421.0,379.5 493.0,473.5 493.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_masuk-3-4-A" data-sejak="H"/>
+<path d="M187.5 496.3 C288.5 496.3,379.5 462.0,473.5 462.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_masuk-5-3-A" data-sejak="H"/>
+<path d="M187.5 339.0 C288.5 339.0,379.5 483.0,473.5 483.0" fill="none" stroke="#AF3344" stroke-width="1.8" stroke-dasharray="7 4" stroke-linecap="round" marker-end="url(#arrow-M)" data-rute="jalur_masuk-1-4-A" data-sejak="M"/>
+<path d="M187.5 483.0 C288.5 483.0,379.5 380.0,473.5 380.0" fill="none" stroke="#AF3344" stroke-width="1.8" stroke-dasharray="7 4" stroke-linecap="round" marker-end="url(#arrow-M)" data-rute="jalur_masuk-5-1-A" data-sejak="M"/>
+<path d="M187.5 319.0 C288.5 319.0,379.5 360.0,473.5 360.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_masuk-1-1-A" data-sejak="L"/>
+<path d="M187.5 329.0 C288.5 329.0,379.5 401.0,473.5 401.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_masuk-1-2-A" data-sejak="L"/>
+<path d="M187.5 370.0 C288.5 370.0,379.5 366.7,473.5 366.7" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_masuk-2-1-A" data-sejak="L"/>
+<path d="M187.5 489.7 C288.5 489.7,379.5 421.0,473.5 421.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_masuk-5-2-A" data-sejak="L"/>
+<path d="M187.5 503.0 C288.5 503.0,379.5 503.0,473.5 503.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_masuk-5-4-A" data-sejak="L"/>
+<path d="M543.5 405.0 C644.5 405.0,737.5 366.7,831.5 366.7" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_keluar-2-2-A" data-sejak="H"/>
+<path d="M543.5 442.0 C644.5 442.0,737.5 339.0,831.5 339.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_keluar-3-1-A" data-sejak="H"/>
+<path d="M543.5 448.7 C644.5 448.7,737.5 373.3,831.5 373.3" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_keluar-3-2-A" data-sejak="H"/>
+<path d="M543.5 455.3 C644.5 455.3,737.5 421.0,831.5 421.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_keluar-3-3-A" data-sejak="H"/>
+<path d="M543.5 462.0 C644.5 462.0,737.5 503.0,831.5 503.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_keluar-3-5-A" data-sejak="H"/>
+<path d="M543.5 493.0 C644.5 493.0,737.5 462.0,831.5 462.0" fill="none" stroke="#AF3344" stroke-width="1.8" stroke-dasharray="7 4" stroke-linecap="round" marker-end="url(#arrow-M)" data-rute="jalur_keluar-4-4-A" data-sejak="M"/>
+<path d="M543.5 503.0 C644.5 503.0,737.5 544.0,831.5 544.0" fill="none" stroke="#AF3344" stroke-width="1.8" stroke-dasharray="7 4" stroke-linecap="round" marker-end="url(#arrow-M)" data-rute="jalur_keluar-4-6-A" data-sejak="M"/>
+<path d="M543.5 360.0 C644.5 360.0,737.5 319.0,831.5 319.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-1-1-A" data-sejak="L"/>
+<path d="M543.5 364.0 C644.5 364.0,737.5 360.0,831.5 360.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-1-2-A" data-sejak="L"/>
+<path d="M543.5 368.0 C644.5 368.0,737.5 401.0,831.5 401.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-1-3-A" data-sejak="L"/>
+<path d="M543.5 372.0 C644.5 372.0,737.5 442.0,831.5 442.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-1-4-A" data-sejak="L"/>
+<path d="M543.5 376.0 C644.5 376.0,737.5 483.0,831.5 483.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-1-5-A" data-sejak="L"/>
+<path d="M543.5 380.0 C644.5 380.0,737.5 524.0,831.5 524.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-1-6-A" data-sejak="L"/>
+<path d="M543.5 401.0 C644.5 401.0,737.5 329.0,831.5 329.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-2-1-A" data-sejak="L"/>
+<path d="M543.5 409.0 C644.5 409.0,737.5 411.0,831.5 411.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-2-3-A" data-sejak="L"/>
+<path d="M543.5 413.0 C644.5 413.0,737.5 452.0,831.5 452.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-2-4-A" data-sejak="L"/>
+<path d="M543.5 417.0 C644.5 417.0,737.5 493.0,831.5 493.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-2-5-A" data-sejak="L"/>
+<path d="M543.5 421.0 C644.5 421.0,737.5 534.0,831.5 534.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-2-6-A" data-sejak="L"/>
+<path d="M543.5 483.0 C644.5 483.0,737.5 380.0,831.5 380.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-4-2-A" data-sejak="L"/>
+<rect x="120.5" y="314.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="153" y="334.5" class="facility" text-anchor="middle">P1</text>
+<rect x="120.5" y="355.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="153" y="375.5" class="facility" text-anchor="middle">P2</text>
+<rect x="120.5" y="396.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="153" y="416.5" class="facility" text-anchor="middle">P3</text>
+<rect x="120.5" y="437.0" width="65" height="30" rx="7" fill="#F7F8FA" stroke="#DBE3E9"/>
+<text x="153" y="457.5" class="facility" text-anchor="middle">P4</text>
+<rect x="120.5" y="478.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="153" y="498.5" class="facility" text-anchor="middle">P5</text>
+<rect x="120.5" y="519.0" width="65" height="30" rx="7" fill="#F7F8FA" stroke="#DBE3E9"/>
+<text x="153" y="539.5" class="facility" text-anchor="middle">P6</text>
+<rect x="476.5" y="355.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="509" y="375.5" class="facility" text-anchor="middle">G1</text>
+<rect x="476.5" y="396.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="509" y="416.5" class="facility" text-anchor="middle">G2</text>
+<rect x="476.5" y="437.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="509" y="457.5" class="facility" text-anchor="middle">G3</text>
+<rect x="476.5" y="478.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="509" y="498.5" class="facility" text-anchor="middle">G4</text>
+<rect x="834.5" y="314.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="334.5" class="facility" text-anchor="middle">K1</text>
+<rect x="834.5" y="355.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="375.5" class="facility" text-anchor="middle">K2</text>
+<rect x="834.5" y="396.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="416.5" class="facility" text-anchor="middle">K3</text>
+<rect x="834.5" y="437.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="457.5" class="facility" text-anchor="middle">K4</text>
+<rect x="834.5" y="478.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="498.5" class="facility" text-anchor="middle">K5</text>
+<rect x="834.5" y="519.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="539.5" class="facility" text-anchor="middle">K6</text>
+</g>
+<g id="produk-B">
+<rect x="44" y="580" width="932" height="346" rx="16" fill="#FFFFFF" stroke="#D7E0E7"/>
+<text x="68" y="621" class="product" text-anchor="start">Produk B  ·  Sirup gula cair</text>
+<text x="153" y="651" class="column" text-anchor="middle">PABRIK</text>
+<text x="509" y="651" class="column" text-anchor="middle">CALON GUDANG</text>
+<text x="867" y="651" class="column" text-anchor="middle">ZONA PELANGGAN</text>
+<path d="M68 664 H952" stroke="#E6ECF0"/>
+<path d="M187.5 693.3 C288.5 693.3,379.5 803.0,473.5 803.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_masuk-1-3-B" data-sejak="H"/>
+<path d="M187.5 700.0 C288.5 700.0,379.5 844.0,473.5 844.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_masuk-1-4-B" data-sejak="H"/>
+<path d="M187.5 768.7 C288.5 768.7,379.5 775.3,473.5 775.3" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_masuk-3-2-B" data-sejak="H"/>
+<path d="M187.5 803.0 C288.5 803.0,379.5 741.0,473.5 741.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_masuk-4-1-B" data-sejak="H"/>
+<path d="M187.5 809.7 C288.5 809.7,379.5 782.0,473.5 782.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_masuk-4-2-B" data-sejak="H"/>
+<path d="M187.5 816.3 C288.5 816.3,379.5 823.0,473.5 823.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_masuk-4-3-B" data-sejak="H"/>
+<path d="M187.5 823.0 C288.5 823.0,379.5 864.0,473.5 864.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_masuk-4-4-B" data-sejak="H"/>
+<path d="M187.5 686.7 C288.5 686.7,379.5 762.0,473.5 762.0" fill="none" stroke="#AF3344" stroke-width="1.8" stroke-dasharray="7 4" stroke-linecap="round" marker-end="url(#arrow-M)" data-rute="jalur_masuk-1-2-B" data-sejak="M"/>
+<path d="M187.5 727.7 C288.5 727.7,379.5 768.7,473.5 768.7" fill="none" stroke="#AF3344" stroke-width="1.8" stroke-dasharray="7 4" stroke-linecap="round" marker-end="url(#arrow-M)" data-rute="jalur_masuk-2-2-B" data-sejak="M"/>
+<path d="M187.5 734.3 C288.5 734.3,379.5 809.7,473.5 809.7" fill="none" stroke="#AF3344" stroke-width="1.8" stroke-dasharray="7 4" stroke-linecap="round" marker-end="url(#arrow-M)" data-rute="jalur_masuk-2-3-B" data-sejak="M"/>
+<path d="M187.5 680.0 C288.5 680.0,379.5 721.0,473.5 721.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_masuk-1-1-B" data-sejak="L"/>
+<path d="M187.5 721.0 C288.5 721.0,379.5 727.7,473.5 727.7" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_masuk-2-1-B" data-sejak="L"/>
+<path d="M187.5 741.0 C288.5 741.0,379.5 850.7,473.5 850.7" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_masuk-2-4-B" data-sejak="L"/>
+<path d="M187.5 762.0 C288.5 762.0,379.5 734.3,473.5 734.3" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_masuk-3-1-B" data-sejak="L"/>
+<path d="M187.5 775.3 C288.5 775.3,379.5 816.3,473.5 816.3" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_masuk-3-3-B" data-sejak="L"/>
+<path d="M187.5 782.0 C288.5 782.0,379.5 857.3,473.5 857.3" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_masuk-3-4-B" data-sejak="L"/>
+<path d="M543.5 782.0 C644.5 782.0,737.5 850.7,831.5 850.7" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_keluar-2-5-B" data-sejak="H"/>
+<path d="M543.5 849.0 C644.5 849.0,737.5 782.0,831.5 782.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_keluar-4-3-B" data-sejak="H"/>
+<path d="M543.5 859.0 C644.5 859.0,737.5 864.0,831.5 864.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_keluar-4-5-B" data-sejak="H"/>
+<path d="M543.5 725.0 C644.5 725.0,737.5 721.0,831.5 721.0" fill="none" stroke="#AF3344" stroke-width="1.8" stroke-dasharray="7 4" stroke-linecap="round" marker-end="url(#arrow-M)" data-rute="jalur_keluar-1-2-B" data-sejak="M"/>
+<path d="M543.5 733.0 C644.5 733.0,737.5 803.0,831.5 803.0" fill="none" stroke="#AF3344" stroke-width="1.8" stroke-dasharray="7 4" stroke-linecap="round" marker-end="url(#arrow-M)" data-rute="jalur_keluar-1-4-B" data-sejak="M"/>
+<path d="M543.5 741.0 C644.5 741.0,737.5 885.0,831.5 885.0" fill="none" stroke="#AF3344" stroke-width="1.8" stroke-dasharray="7 4" stroke-linecap="round" marker-end="url(#arrow-M)" data-rute="jalur_keluar-1-6-B" data-sejak="M"/>
+<path d="M543.5 762.0 C644.5 762.0,737.5 690.0,831.5 690.0" fill="none" stroke="#AF3344" stroke-width="1.8" stroke-dasharray="7 4" stroke-linecap="round" marker-end="url(#arrow-M)" data-rute="jalur_keluar-2-1-B" data-sejak="M"/>
+<path d="M543.5 772.0 C644.5 772.0,737.5 768.7,831.5 768.7" fill="none" stroke="#AF3344" stroke-width="1.8" stroke-dasharray="7 4" stroke-linecap="round" marker-end="url(#arrow-M)" data-rute="jalur_keluar-2-3-B" data-sejak="M"/>
+<path d="M543.5 721.0 C644.5 721.0,737.5 680.0,831.5 680.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-1-1-B" data-sejak="L"/>
+<path d="M543.5 729.0 C644.5 729.0,737.5 762.0,831.5 762.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-1-3-B" data-sejak="L"/>
+<path d="M543.5 737.0 C644.5 737.0,737.5 844.0,831.5 844.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-1-5-B" data-sejak="L"/>
+<path d="M543.5 803.0 C644.5 803.0,737.5 700.0,831.5 700.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-3-1-B" data-sejak="L"/>
+<path d="M543.5 807.0 C644.5 807.0,737.5 731.0,831.5 731.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-3-2-B" data-sejak="L"/>
+<path d="M543.5 811.0 C644.5 811.0,737.5 775.3,831.5 775.3" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-3-3-B" data-sejak="L"/>
+<path d="M543.5 815.0 C644.5 815.0,737.5 813.0,831.5 813.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-3-4-B" data-sejak="L"/>
+<path d="M543.5 819.0 C644.5 819.0,737.5 857.3,831.5 857.3" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-3-5-B" data-sejak="L"/>
+<path d="M543.5 823.0 C644.5 823.0,737.5 895.0,831.5 895.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-3-6-B" data-sejak="L"/>
+<path d="M543.5 844.0 C644.5 844.0,737.5 741.0,831.5 741.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-4-2-B" data-sejak="L"/>
+<path d="M543.5 854.0 C644.5 854.0,737.5 823.0,831.5 823.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-4-4-B" data-sejak="L"/>
+<path d="M543.5 864.0 C644.5 864.0,737.5 905.0,831.5 905.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-4-6-B" data-sejak="L"/>
+<rect x="120.5" y="675.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="153" y="695.5" class="facility" text-anchor="middle">P1</text>
+<rect x="120.5" y="716.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="153" y="736.5" class="facility" text-anchor="middle">P2</text>
+<rect x="120.5" y="757.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="153" y="777.5" class="facility" text-anchor="middle">P3</text>
+<rect x="120.5" y="798.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="153" y="818.5" class="facility" text-anchor="middle">P4</text>
+<rect x="120.5" y="839.0" width="65" height="30" rx="7" fill="#F7F8FA" stroke="#DBE3E9"/>
+<text x="153" y="859.5" class="facility" text-anchor="middle">P5</text>
+<rect x="120.5" y="880.0" width="65" height="30" rx="7" fill="#F7F8FA" stroke="#DBE3E9"/>
+<text x="153" y="900.5" class="facility" text-anchor="middle">P6</text>
+<rect x="476.5" y="716.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="509" y="736.5" class="facility" text-anchor="middle">G1</text>
+<rect x="476.5" y="757.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="509" y="777.5" class="facility" text-anchor="middle">G2</text>
+<rect x="476.5" y="798.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="509" y="818.5" class="facility" text-anchor="middle">G3</text>
+<rect x="476.5" y="839.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="509" y="859.5" class="facility" text-anchor="middle">G4</text>
+<rect x="834.5" y="675.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="695.5" class="facility" text-anchor="middle">K1</text>
+<rect x="834.5" y="716.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="736.5" class="facility" text-anchor="middle">K2</text>
+<rect x="834.5" y="757.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="777.5" class="facility" text-anchor="middle">K3</text>
+<rect x="834.5" y="798.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="818.5" class="facility" text-anchor="middle">K4</text>
+<rect x="834.5" y="839.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="859.5" class="facility" text-anchor="middle">K5</text>
+<rect x="834.5" y="880.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="900.5" class="facility" text-anchor="middle">K6</text>
+</g>
+<g id="produk-C">
+<rect x="44" y="941" width="932" height="346" rx="16" fill="#FFFFFF" stroke="#D7E0E7"/>
+<text x="68" y="982" class="product" text-anchor="start">Produk C  ·  Susu cair dingin</text>
+<text x="153" y="1012" class="column" text-anchor="middle">PABRIK</text>
+<text x="509" y="1012" class="column" text-anchor="middle">CALON GUDANG</text>
+<text x="867" y="1012" class="column" text-anchor="middle">ZONA PELANGGAN</text>
+<path d="M68 1025 H952" stroke="#E6ECF0"/>
+<path d="M187.5 1184.0 C288.5 1184.0,379.5 1205.0,473.5 1205.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_masuk-4-4-C" data-sejak="H"/>
+<path d="M187.5 1266.0 C288.5 1266.0,379.5 1225.0,473.5 1225.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_masuk-6-4-C" data-sejak="H"/>
+<path d="M187.5 1133.0 C288.5 1133.0,379.5 1164.0,473.5 1164.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_masuk-3-3-C" data-sejak="L"/>
+<path d="M187.5 1164.0 C288.5 1164.0,379.5 1123.0,473.5 1123.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_masuk-4-2-C" data-sejak="L"/>
+<path d="M187.5 1174.0 C288.5 1174.0,379.5 1174.0,473.5 1174.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_masuk-4-3-C" data-sejak="L"/>
+<path d="M187.5 1246.0 C288.5 1246.0,379.5 1143.0,473.5 1143.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_masuk-6-2-C" data-sejak="L"/>
+<path d="M187.5 1256.0 C288.5 1256.0,379.5 1184.0,473.5 1184.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_masuk-6-3-C" data-sejak="L"/>
+<path d="M543.5 1205.0 C644.5 1205.0,737.5 1061.0,831.5 1061.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_keluar-4-1-C" data-sejak="H"/>
+<path d="M543.5 1209.0 C644.5 1209.0,737.5 1102.0,831.5 1102.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_keluar-4-2-C" data-sejak="H"/>
+<path d="M543.5 1213.0 C644.5 1213.0,737.5 1143.0,831.5 1143.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_keluar-4-3-C" data-sejak="H"/>
+<path d="M543.5 1217.0 C644.5 1217.0,737.5 1184.0,831.5 1184.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_keluar-4-4-C" data-sejak="H"/>
+<path d="M543.5 1221.0 C644.5 1221.0,737.5 1225.0,831.5 1225.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_keluar-4-5-C" data-sejak="H"/>
+<path d="M543.5 1225.0 C644.5 1225.0,737.5 1266.0,831.5 1266.0" fill="none" stroke="#22262C" stroke-width="1.8" stroke-dasharray="2 3.4" stroke-linecap="round" marker-end="url(#arrow-H)" data-rute="jalur_keluar-4-6-C" data-sejak="H"/>
+<path d="M543.5 1123.0 C644.5 1123.0,737.5 1041.0,831.5 1041.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-2-1-C" data-sejak="L"/>
+<path d="M543.5 1127.0 C644.5 1127.0,737.5 1082.0,831.5 1082.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-2-2-C" data-sejak="L"/>
+<path d="M543.5 1131.0 C644.5 1131.0,737.5 1123.0,831.5 1123.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-2-3-C" data-sejak="L"/>
+<path d="M543.5 1135.0 C644.5 1135.0,737.5 1164.0,831.5 1164.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-2-4-C" data-sejak="L"/>
+<path d="M543.5 1139.0 C644.5 1139.0,737.5 1205.0,831.5 1205.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-2-5-C" data-sejak="L"/>
+<path d="M543.5 1143.0 C644.5 1143.0,737.5 1246.0,831.5 1246.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-2-6-C" data-sejak="L"/>
+<path d="M543.5 1164.0 C644.5 1164.0,737.5 1051.0,831.5 1051.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-3-1-C" data-sejak="L"/>
+<path d="M543.5 1168.0 C644.5 1168.0,737.5 1092.0,831.5 1092.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-3-2-C" data-sejak="L"/>
+<path d="M543.5 1172.0 C644.5 1172.0,737.5 1133.0,831.5 1133.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-3-3-C" data-sejak="L"/>
+<path d="M543.5 1176.0 C644.5 1176.0,737.5 1174.0,831.5 1174.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-3-4-C" data-sejak="L"/>
+<path d="M543.5 1180.0 C644.5 1180.0,737.5 1215.0,831.5 1215.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-3-5-C" data-sejak="L"/>
+<path d="M543.5 1184.0 C644.5 1184.0,737.5 1256.0,831.5 1256.0" fill="none" stroke="#17714E" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow-L)" data-rute="jalur_keluar-3-6-C" data-sejak="L"/>
+<rect x="120.5" y="1036.0" width="65" height="30" rx="7" fill="#F7F8FA" stroke="#DBE3E9"/>
+<text x="153" y="1056.5" class="facility" text-anchor="middle">P1</text>
+<rect x="120.5" y="1077.0" width="65" height="30" rx="7" fill="#F7F8FA" stroke="#DBE3E9"/>
+<text x="153" y="1097.5" class="facility" text-anchor="middle">P2</text>
+<rect x="120.5" y="1118.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="153" y="1138.5" class="facility" text-anchor="middle">P3</text>
+<rect x="120.5" y="1159.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="153" y="1179.5" class="facility" text-anchor="middle">P4</text>
+<rect x="120.5" y="1200.0" width="65" height="30" rx="7" fill="#F7F8FA" stroke="#DBE3E9"/>
+<text x="153" y="1220.5" class="facility" text-anchor="middle">P5</text>
+<rect x="120.5" y="1241.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="153" y="1261.5" class="facility" text-anchor="middle">P6</text>
+<rect x="476.5" y="1077.0" width="65" height="30" rx="7" fill="#F7F8FA" stroke="#DBE3E9"/>
+<text x="509" y="1097.5" class="facility" text-anchor="middle">G1</text>
+<rect x="476.5" y="1118.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="509" y="1138.5" class="facility" text-anchor="middle">G2</text>
+<rect x="476.5" y="1159.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="509" y="1179.5" class="facility" text-anchor="middle">G3</text>
+<rect x="476.5" y="1200.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="509" y="1220.5" class="facility" text-anchor="middle">G4</text>
+<rect x="834.5" y="1036.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="1056.5" class="facility" text-anchor="middle">K1</text>
+<rect x="834.5" y="1077.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="1097.5" class="facility" text-anchor="middle">K2</text>
+<rect x="834.5" y="1118.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="1138.5" class="facility" text-anchor="middle">K3</text>
+<rect x="834.5" y="1159.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="1179.5" class="facility" text-anchor="middle">K4</text>
+<rect x="834.5" y="1200.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="1220.5" class="facility" text-anchor="middle">K5</text>
+<rect x="834.5" y="1241.0" width="65" height="30" rx="7" fill="#EBF1F5" stroke="#B9C9D4"/>
+<text x="867" y="1261.5" class="facility" text-anchor="middle">K6</text>
+</g>
+</svg>
