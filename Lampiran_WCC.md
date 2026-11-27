@@ -1,52 +1,79 @@
 # Menghitung Weighted Constraint Coupling
 
-Dua kendala terhubung jika keduanya memuat **variabel keputusan yang sama persis**, termasuk semua indeksnya. Bobot hubungan adalah jumlah variabel bersama. Kalau keduanya berbagi dua variabel, bobotnya 2. Kalau tidak ada yang sama, bobotnya 0.
+Untuk setiap pasangan kendala, hitung **berapa variabel berindeks yang benar-benar muncul di kedua baris** dan **berapa yang paling banyak bisa muncul di kedua baris berdasarkan rute yang diizinkan rancangan**. Jumlah pertama masuk ke pembilang. Jumlah kedua masuk ke penyebut. Dua variabel cocok jika huruf dan seluruh indeksnya sama.
 
-## 1. Contoh kecil dari Low
+## 1. Pembilang dan penyebut dari kasus PT XYZ
 
-### Kenali baris kendala
+Ambil **R8–R36** dari model distribusi PT XYZ.
 
-| R | Kendala |
-| --- | --- |
-| R1 | Kapasitas pabrik P1 |
-| R2 | Neraca sirup di gudang G1 |
-| R3 | Pesanan sirup di zona K1 |
-| R4 | Kapasitas tonase gudang G1 |
+| R | Kendala | Variabel yang dapat dipakai |
+| --- | --- | --- |
+| R8 | Neraca sirup di G1 | Kiriman sirup masuk ke G1 dan kiriman sirup keluar dari G1 |
+| R36 | Kapasitas tonase G1 | Semua kiriman keluar dari G1 dan keputusan membuka G1 |
 
-Di contoh ini, tulis hanya suku dari rute sirup P1 → G1 → K1 dan keputusan buka G1. Nomor R di contoh kecil berlaku khusus untuk contoh ini.
+### Pembilang. Variabel yang benar-benar muncul di kedua baris pada Low
+
+Dalam notasi $`z_{g,j,p}`$, indeks $`g`$ adalah gudang, $`j`$ adalah zona tujuan, dan $`p`$ adalah produk. Jadi $`z_{1,3,B}`$ berarti kiriman sirup (produk B) dari G1 ke K3. Variabel $`x_{i,g,p}`$ adalah kiriman dari pabrik ke gudang dan $`y_1`$ adalah keputusan membuka G1.
+
+Persamaan Low memuat rute yang tersedia pada tingkat tersebut.
 
 ```math
 \begin{aligned}
-\mathrm{R1}\quad &x_{1,1,B}\le 8,\\
-\mathrm{R2}\quad &x_{1,1,B}=z_{1,1,B},\\
-\mathrm{R3}\quad &z_{1,1,B}=1,\\
-\mathrm{R4}\quad &z_{1,1,B}\le 16y_1.
+\mathrm{R8}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}\\
+&\quad = z_{1,1,B}+z_{1,3,B}+z_{1,5,B}
 \end{aligned}
 ```
 
-B adalah sirup. $`x_{1,1,B}`$ berarti kiriman dari **pabrik P1 ke gudang G1**. $`z_{1,1,B}`$ berarti kiriman dari **gudang G1 ke zona K1**. Hurufnya berbeda, sehingga kedua variabel itu mewakili keputusan yang berbeda meski ketiga indeksnya sama. $`y_1`$ berarti keputusan membuka G1.
-
-### Cocokkan variabel setiap pasangan
-
-| Pasangan | Variabel yang sama persis | Bobot |
-| --- | --- | ---: |
-| R1–R2 | $`x_{1,1,B}`$ | 1 |
-| R1–R3 | Tidak ada | 0 |
-| R1–R4 | Tidak ada | 0 |
-| R2–R3 | $`z_{1,1,B}`$ | 1 |
-| R2–R4 | $`z_{1,1,B}`$ | 1 |
-| R3–R4 | $`z_{1,1,B}`$ | 1 |
-| **Jumlah bobot** | | **4** |
-
-Coba baca **R1–R2**. R1 memuat $`x_{1,1,B}`$. R2 juga memuat $`x_{1,1,B}`$, jadi pasangan itu berbobot 1. R1–R3 berbobot 0 karena R3 hanya memuat $`z_{1,1,B}`$. Untuk setiap pasangan, cek variabel di kedua ruas. Konstanta dan angka koefisien tidak dihitung sebagai variabel.
-
-```mermaid
-flowchart TB
-    R1["R1 · Kapasitas P1"] ---|1| R2["R2 · Neraca sirup G1"]
-    R2 ---|1| R3["R3 · Pesanan sirup K1"]
-    R2 ---|1| R4["R4 · Kapasitas G1"]
-    R3 ---|1| R4
+```math
+\begin{aligned}
+\mathrm{R36}\quad &z_{1,1,A}+z_{1,1,B}+z_{1,2,A}+z_{1,3,A}\\
+&{}+z_{1,3,B}+z_{1,4,A}+z_{1,5,A}+z_{1,5,B}\\
+&{}+z_{1,6,A}\\
+&\quad \le 16y_1
+\end{aligned}
 ```
+
+Cocokkan variabel pada kedua ruas. **Hanya tiga yang sama**, yaitu $`z_{1,1,B}`$, $`z_{1,3,B}`$, dan $`z_{1,5,B}`$. Ketiganya adalah kiriman sirup dari G1 ke K1, K3, dan K5. Bobot aktual pasangan R8–R36 adalah **3**.
+
+### Penyebut. Variabel yang bisa muncul di kedua baris
+
+R8 membatasi produk ke sirup. R36 membatasi asal kiriman ke G1. Karena itu, variabel yang bisa menghubungkan keduanya hanya berbentuk $`z_{1,j,B}`$. Dalam daftar kemungkinan yang sama untuk semua tingkat, G1 boleh mengirim sirup ke keenam zona. Cocokkan indeksnya satu per satu. Angka 1 berarti variabel tersedia pada kedua baris.
+
+| Rute sirup | Variabel | Muncul di kedua baris pada Low | Bisa muncul di kedua baris menurut rancangan |
+| --- | --- | ---: | ---: |
+| G1 → K1 | $`z_{1,1,B}`$ | 1 | 1 |
+| G1 → K2 | $`z_{1,2,B}`$ | 0 | 1 |
+| G1 → K3 | $`z_{1,3,B}`$ | 1 | 1 |
+| G1 → K4 | $`z_{1,4,B}`$ | 0 | 1 |
+| G1 → K5 | $`z_{1,5,B}`$ | 1 | 1 |
+| G1 → K6 | $`z_{1,6,B}`$ | 0 | 1 |
+| **Bobot pasangan R8–R36** | | **3** | **6** |
+
+**Cara memakai NNZ.** NNZ adalah jumlah koefisien bukan nol pada satu baris linear. Pada daftar rute lengkap, R8 dapat memuat 10 variabel (4 kiriman masuk dan 6 kiriman keluar). R36 dapat memuat 13 variabel (6 kiriman minyak, 6 kiriman sirup, dan 1 keputusan buka gudang). Dari NNZ saja, batas atasnya adalah **min(10, 13) = 10**. Pencocokan indeks memperketat batas itu menjadi **6**. Keempat variabel kiriman masuk di R8 memang dapat muncul di R8, tetapi aturan tonase R36 hanya memuat kiriman keluar dan keputusan buka gudang.
+
+<details>
+<summary>Lihat R8 dan R36 dengan semua rute yang mungkin</summary>
+
+```math
+\begin{aligned}
+\mathrm{R8}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}+x_{4,1,B}\\
+&\quad = z_{1,1,B}+z_{1,2,B}+z_{1,3,B}+z_{1,4,B}\\
+&\qquad {}+z_{1,5,B}+z_{1,6,B}
+\end{aligned}
+```
+
+```math
+\begin{aligned}
+\mathrm{R36}\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,A}+z_{1,4,A}\\
+&{}+z_{1,5,A}+z_{1,6,A}+z_{1,1,B}+z_{1,2,B}\\
+&{}+z_{1,3,B}+z_{1,4,B}+z_{1,5,B}+z_{1,6,B}\\
+&\quad \le 16y_1
+\end{aligned}
+```
+
+</details>
+
+Dengan demikian, pasangan yang sama menyumbang **3 ke pembilang Low** dan **6 ke penyebut**. Pasangan lain dihitung dengan cara yang sama.
 
 ## 2. Kendala dan hubungan pada model lengkap Low
 
@@ -465,7 +492,7 @@ Di model lengkap, nomor berikut mengikuti urutan 43 baris operasi sebelum penyed
 
 </details>
 
-### Telusuri hubungan dari persamaan Low
+### Contoh pasangan dari persamaan Low
 
 | Pasangan | Kendala yang dibandingkan | Variabel bersama di Low | Bobot Low |
 | --- | --- | --- | ---: |
@@ -480,23 +507,23 @@ Di model lengkap, nomor berikut mengikuti urutan 43 baris operasi sebelum penyed
 
 Contohnya, R36 dan R40 memuat daftar kiriman keluar G1 yang sama. Dari persamaan keduanya, cocokkan enam variabel kiriman minyak dan tiga variabel kiriman sirup. Cocokkan pula $`y_1`$ pada kedua ruas kanan. Koefisien $`y_1`$ berbeda, yaitu 16 dan 19,2, tetapi identitas variabelnya sama. Bobot pasangan ini adalah **6 + 3 + 1 = 10**.
 
-**NNZ** adalah jumlah koefisien bukan nol pada satu baris linear. Contohnya, R8 pada Low punya 6 variabel dan R36 punya 10. Kedua baris bisa berbagi paling banyak 6 menurut jumlah variabelnya. Indeks yang sama persis hanya tiga, yaitu $`z_{1,1,B}`$, $`z_{1,3,B}`$, dan $`z_{1,5,B}`$, sehingga bobot R8–R36 adalah **3**.
+
 
 Empat puluh tiga baris menghasilkan **43 × 42 ÷ 2 = 903 pasangan**. Jumlahkan bobot setiap pasangan satu kali, termasuk pasangan berbobot nol. Total bobot Low adalah **236**. Tabel pada Bagian 3 merangkum penjumlahannya, dan CSV mencantumkan indeks lengkap untuk setiap pasangan. [Rincian 903 pasangan](math_model_acuan/hasil/Audit_WCC_Pasangan.csv)
 
-## 3. Cara membaca persentase WCC
+## 3. Hitung seluruh pembilang dan penyebut
 
-### Apa itu acuan bersama?
+### Tetapkan semua rute yang mungkin untuk penyebut
 
-Total **236** adalah bobot Low. Supaya bisa menyatakan bobot itu dalam persen, penelitian menetapkan **satu daftar rute pembanding** untuk semua tingkat. Daftar pembanding inilah yang disebut acuan. Acuan memakai 43 aturan yang sama dan mencakup semua rute yang ada di Low, Medium, dan High.
+Daftar yang dipakai untuk menghitung kemungkinan bersama pada setiap pasangan disebut **acuan bersama**. Daftar ini memakai 43 kendala yang sama dan mencakup semua rute pada Low, Medium, dan High.
 
-- **Rute masuk acuan** mengikuti daftar High, yaitu **35 rute**.
-- **Rute keluar acuan** mencakup setiap zona untuk setiap pasangan gudang–produk yang punya rute masuk. Ada 11 pasangan gudang–produk dan 6 zona, sehingga ada **66 rute keluar**.
+- **Rute masuk.** Ada 35 kombinasi pabrik, gudang, dan produk yang diizinkan rancangan. Daftarnya mengikuti rute masuk High.
+- **Rute keluar.** Untuk setiap pasangan gudang–produk yang menerima kiriman pada daftar tersebut, semua zona boleh menjadi tujuan. Ada 11 pasangan gudang–produk dan 6 zona, sehingga terdapat 66 kombinasi gudang, zona, dan produk.
 
-Misalnya, pada Low gudang G1 mengirim sirup ke K1, K3, dan K5. Dalam daftar acuan tersedia juga kiriman sirup G1 ke K2, K4, dan K6. Ketiga variabel tambahan, $`z_{1,2,B}`$, $`z_{1,4,B}`$, dan $`z_{1,6,B}`$, muncul pada **R36 dan R40**, sehingga bobot pasangan pada acuan adalah **10 + 3 = 13**. Artinya, pasangan itu menyumbang **10** saat menghitung Low dan **13** saat menghitung acuan.
+Untuk setiap pasangan kendala, cocokkan variabel dari dua persamaan Low untuk memperoleh bobot aktual. Ulangi pada dua persamaan yang memuat semua rute dalam daftar acuan untuk memperoleh bobot maksimum menurut rancangan. Misalnya, R36 dan R40 memakai kesembilan variabel kiriman keluar G1 dan $`y_1`$ pada Low, sehingga bobot aktualnya 10. Di acuan, tiga rute sirup tambahan dapat muncul di kedua baris, sehingga bobot maksimumnya 13.
 
 <details>
-<summary>Lihat seluruh persamaan R1–R43 dengan rute acuan</summary>
+<summary>Lihat seluruh persamaan R1–R43 dengan daftar rute maksimum</summary>
 
 <details>
 <summary>R1–R6 · Kapasitas pabrik</summary>
@@ -938,7 +965,7 @@ Misalnya, pada Low gudang G1 mengirim sirup ke K1, K3, dan K5. Dalam daftar acua
 
 ### Jumlahkan bobot, lalu bagi
 
-| Kelompok pasangan | Jumlah pasangan | Bobot Low | Bobot acuan |
+| Kelompok pasangan | Jumlah pasangan | Bobot aktual Low | Bobot maksimum menurut daftar rute |
 | --- | ---: | ---: | ---: |
 | Kapasitas pabrik × neraca | 66 | 16 | 35 |
 | Neraca × pesanan | 198 | 36 | 66 |
@@ -954,14 +981,14 @@ Setiap rute masuk menyumbang satu ke pasangan kapasitas pabrik–neraca. Setiap 
 
 ```math
 \mathrm{WCC}_{\mathrm{Low}}
-=\frac{\text{total bobot Low}}{\text{total bobot acuan}}\times 100\%
+=\frac{\text{total bobot aktual Low}}{\text{total bobot maksimum menurut daftar rute}}\times 100\%
 =\frac{236}{435}\times 100\%
 \approx 54{,}25\%.
 ```
 
 ## 4. Ringkasan hasil
 
-| Tingkat | Rute masuk | Rute keluar | Total bobot tingkat | Total bobot acuan | WCC |
+| Tingkat | Rute masuk | Rute keluar | Pembilang | Penyebut tetap | WCC |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Low | 16 | 36 | 236 | 435 | **54,25%** |
 | Medium | 21 | 43 | 283 | 435 | **65,06%** |
