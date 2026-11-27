@@ -39,15 +39,15 @@ Cocokkan variabel pada kedua ruas. **Hanya tiga yang sama**, yaitu $`z_{1,1,B}`$
 
 R8 membatasi produk ke sirup. R36 membatasi asal kiriman ke G1. Karena itu, variabel yang bisa menghubungkan keduanya hanya berbentuk $`z_{1,j,B}`$. Dalam daftar kemungkinan yang sama untuk semua tingkat, G1 boleh mengirim sirup ke keenam zona. Cocokkan indeksnya satu per satu. Angka 1 berarti variabel tersedia pada kedua baris.
 
-| Rute sirup | Variabel | Muncul di kedua baris pada Low | Bisa muncul di kedua baris menurut rancangan |
-| --- | --- | ---: | ---: |
-| G1 → K1 | $`z_{1,1,B}`$ | 1 | 1 |
-| G1 → K2 | $`z_{1,2,B}`$ | 0 | 1 |
-| G1 → K3 | $`z_{1,3,B}`$ | 1 | 1 |
-| G1 → K4 | $`z_{1,4,B}`$ | 0 | 1 |
-| G1 → K5 | $`z_{1,5,B}`$ | 1 | 1 |
-| G1 → K6 | $`z_{1,6,B}`$ | 0 | 1 |
-| **Bobot pasangan R8–R36** | | **3** | **6** |
+| Rute sirup | Variabel | Low (aktual) | Medium (aktual) | Maksimum (penyebut) |
+| --- | --- | ---: | ---: | ---: |
+| G1 → K1 | $`z_{1,1,B}`$ | 1 | 1 | 1 |
+| G1 → K2 | $`z_{1,2,B}`$ | 0 | 1 | 1 |
+| G1 → K3 | $`z_{1,3,B}`$ | 1 | 1 | 1 |
+| G1 → K4 | $`z_{1,4,B}`$ | 0 | 1 | 1 |
+| G1 → K5 | $`z_{1,5,B}`$ | 1 | 1 | 1 |
+| G1 → K6 | $`z_{1,6,B}`$ | 0 | 1 | 1 |
+| **Bobot pasangan R8–R36** | | **3** | **6** | **6** |
 
 **Cara memakai NNZ.** NNZ adalah jumlah koefisien bukan nol pada satu baris linear. Pada daftar rute lengkap, R8 dapat memuat 10 variabel (4 kiriman masuk dan 6 kiriman keluar). R36 dapat memuat 13 variabel (6 kiriman minyak, 6 kiriman sirup, dan 1 keputusan buka gudang). Dari NNZ saja, batas atasnya adalah **min(10, 13) = 10**. Pencocokan indeks memperketat batas itu menjadi **6**. Keempat variabel kiriman masuk di R8 memang dapat muncul di R8, tetapi aturan tonase R36 hanya memuat kiriman keluar dan keputusan buka gudang.
 
@@ -73,7 +73,15 @@ R8 membatasi produk ke sirup. R36 membatasi asal kiriman ke G1. Karena itu, vari
 
 </details>
 
-Dengan demikian, pasangan yang sama menyumbang **3 ke pembilang Low** dan **6 ke penyebut**. Pasangan lain dihitung dengan cara yang sama.
+### Apa yang bertambah dari Low ke Medium?
+
+Medium menambahkan **tiga kiriman sirup dari G1**, yaitu $`z_{1,2,B}`$ ke K2, $`z_{1,4,B}`$ ke K4, dan $`z_{1,6,B}`$ ke K6. Ketiganya muncul di R8 dan R36. Setiap variabel baru dihitung sekali untuk pasangan itu, sehingga sumbangannya ke pembilang naik dari **3 menjadi 6**. Sumbangannya ke penyebut tetap **6** karena daftar kemungkinan sudah mencakup keenam zona.
+
+| R8–R36 | Sumbangan ke pembilang | Sumbangan ke penyebut |
+| --- | ---: | ---: |
+| Low | 3 | 6 |
+| Medium | 6 | 6 |
+| **Perubahan** | **+3** | **0** |
 
 ## 2. Kendala dan hubungan pada model lengkap Low
 
