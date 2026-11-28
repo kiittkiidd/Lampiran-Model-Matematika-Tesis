@@ -79,7 +79,7 @@ Data menyediakan 1,2 jam kerja untuk setiap ton kapasitas. G3 yang menangani 18 
 
 ## 3. Perubahan pada profil nonlinear
 
-Hitung volume per produk di tiap gudang terlebih dahulu. Setiap gudang dapat memiliki jumlah ton berbeda untuk A, B, dan C.
+Pada P5–P8, suku kuadratik berlaku pada biaya dan waktu penanganan di gudang. Hitung volume per produk yang ditangani pada tiap gudang. Kapasitas setiap pabrik memakai kendala linear pada bagian P1. [Contoh penanganan gudang](../case/Kasus_Dasar.md#p5-minimisasi-biaya-dengan-penanganan-nonlinear)
 
 $$
 C_{\mathrm{NL}}=C+0{,}04\sum_{g,p}q_{gp}^{2}.
@@ -96,7 +96,7 @@ Koefisien 0,025 mengubah kuadrat tonase menjadi jam tambahan. Sepuluh ton sirup 
 
 ## 4. Perubahan pada profil stokastik
 
-Perusahaan memilih $`y_g`$ sebelum mengetahui permintaan. Setelah skenario $s$ diketahui, perusahaan mengatur $`x_{igps}`$ dan $`z_{gjps}`$ sesuai kebutuhan. Semua kendala operasi berlaku pada masing-masing skenario, dengan $`q_{gps}=\sum_j z_{gjps}`$ dan permintaan $`d_{jps}`$. Contoh K1 memiliki tiga kemungkinan pesanan minyak, yaitu sekitar 1,475, 3,000, dan 4,525 ton jika nilai tengahnya 3 ton.
+Perusahaan memilih $`y_g`$ sebelum mengetahui permintaan. Setelah skenario $s$ diketahui, perusahaan mengatur $`x_{igps}`$ dan $`z_{gjps}`$ sesuai kebutuhan. Semua kendala operasi berlaku pada masing-masing skenario, dengan $`q_{gps}=\sum_j z_{gjps}`$ dan permintaan $`d_{jps}`$. Pada P2, P4, P6, dan P8, hanya permintaan minyak goreng di K1 yang berubah antarskenario. Pada data dasar nilainya sekitar 1,475, 3,000, dan 4,525 ton. Tujuh belas pasangan zona–produk lainnya memakai nilai yang sama pada ketiga skenario.
 
 $$
 C_{\mathrm{stoch}}=

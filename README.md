@@ -8,8 +8,8 @@ Benchmark pemodelan jaringan distribusi PT XYZ Bahan Pangan, perusahaan fiktif y
 | Medium | 21 | 43 | 65,06% |
 | High | 35 | 57 | 87,59% |
 
-Enam pabrik, empat calon gudang, dan enam zona pelanggan dipakai pada ketiga tingkat. Setiap panah dihitung untuk satu produk. Delapan profil P1–P8 mengombinasikan permintaan pasti atau stokastik, penanganan linear atau nonlinear, serta satu atau dua tujuan.
+Enam pabrik, empat calon gudang, dan enam zona pelanggan dipakai pada ketiga tingkat. Setiap panah dihitung untuk satu produk. Delapan profil P1–P8 mengombinasikan skenario pesanan minyak goreng di K1, penanganan gudang linear atau nonlinear, serta satu atau dua tujuan.
 
-[Kasus dan profil](case/Kasus_Dasar.md) · [Model matematika](math_model_acuan/Model_Matematika.md) · [Hasil validasi](math_model_acuan/Hasil_Verifikasi.md) · [Cara menghitung WCC](Lampiran_WCC.md)
+[Kasus dan profil](case/Kasus_Dasar.md) · [Rute per produk](case/Rute_Pengiriman.md) · [Model matematika](math_model_acuan/Model_Matematika.md) · [Hasil validasi](math_model_acuan/Hasil_Verifikasi.md) · [Cara menghitung WCC](Lampiran_WCC.md)
 
 ![Jaringan distribusi PT XYZ. Low membaca garis hijau, Medium menambahkan merah, dan High menambahkan hitam.](case/diagram/Jaringan_Low_Medium_High.svg)

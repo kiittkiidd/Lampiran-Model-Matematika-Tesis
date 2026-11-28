@@ -66,7 +66,7 @@ Daftar pembanding pada kasus PT XYZ dibentuk dari dua tahap pengiriman.
 | Pabrik → gudang | Ambil semua rute masuk yang diizinkan pada High. | **35** rute masuk |
 | Gudang → zona | Dari 35 rute masuk itu, temukan 11 pasangan gudang–produk yang bisa menerima kiriman. Untuk tiap pasangan, izinkan kiriman ke semua enam zona. | **11 × 6 = 66** rute keluar |
 
-Pada **R8 dalam kasus asli**, sirup dapat masuk ke G1 dari P1, P2, dan P3 pada Low maupun Medium. Daftar pembanding juga memuat **P4 → G1 untuk sirup** karena rute itu tersedia di High. Suku $`x_{4,1,B}`$ ditebalkan di bawah untuk menunjukkan tambahannya pada R8. R36 hanya memuat kiriman keluar dan keputusan buka gudang, sehingga suku tersebut muncul pada satu baris dan menyumbang **0** ke bobot pasangan R8–R36. [Data rute kasus PT XYZ](../case/Data_Bersama.json)
+Pada **R8 dalam kasus asli**, sirup dapat masuk ke G1 dari P1, P2, dan P3 pada Low maupun Medium. Daftar pembanding juga memuat **P4 → G1 untuk sirup** karena rute itu tersedia di High. Suku $`x_{4,1,B}`$ ditebalkan di bawah untuk menunjukkan tambahannya pada R8. R36 hanya memuat kiriman keluar dan keputusan buka gudang, sehingga suku tersebut muncul pada satu baris dan menyumbang **0** ke bobot pasangan R8–R36. [Data rute kasus PT XYZ](../case/Rute_Pengiriman.md)
 
 $$
 \begin{aligned}
