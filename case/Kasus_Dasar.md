@@ -14,7 +14,7 @@ Perusahaan menentukan **gudang mana yang dibuka** dan **berapa ton setiap produk
 | Medium | Hijau + merah putus-putus | 21 | 43 |
 | High | Hijau + merah putus-putus + hitam bertitik | 35 | 57 |
 
-Ikuti panah untuk **produk yang sama** pada kedua tahap. Untuk minyak goreng, misalnya, **P1 → G1 → K1** tersedia sejak Low. Panah kedua selalu harus tersedia agar rute lengkap bisa digunakan. Pabrik, gudang, dan zona yang ditampilkan sama di ketiga tingkat.
+Ikuti panah untuk **produk yang sama** pada kedua tahap. Untuk minyak goreng, misalnya, **P1 → G1 → K1** tersedia sejak Low. Rute lengkap memerlukan kedua panah pada tingkat yang dipilih serta gudang yang dibuka. Pabrik, gudang, zona, permintaan, tarif, dan kapasitas pada kasus dasar sama di ketiga tingkat.
 
 ## Aturan pengiriman
 

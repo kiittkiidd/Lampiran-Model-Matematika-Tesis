@@ -15,7 +15,7 @@ Perusahaan memilih gudang yang dibuka dan membagi kiriman dari pabrik ke zona pe
 | $`x_{igp}\geq0`$ | Ton produk $p$ yang dikirim dari pabrik $i$ ke gudang $g$. |
 | $`z_{gjp}\geq0`$ | Ton produk $p$ yang dikirim dari gudang $g$ ke zona $j$. |
 
-Arus hanya dibentuk untuk setiap rute yang diizinkan. Semua penjumlahan arus menggunakan aturan itu. Sebagai singkatan, $`q_{gp}=\sum_j z_{gjp}`$ adalah tonase produk $p$ yang ditangani di gudang $g$.
+Setiap variabel kiriman mewakili satu rute dan satu produk yang diizinkan. Setiap penjumlahan kiriman mencakup rute yang diizinkan pada tingkat yang dipilih. Dalam biaya dan batas gudang, $`q_{gp}=\sum_j z_{gjp}`$ adalah singkatan untuk tonase produk $p$ yang keluar dari gudang $g$.
 
 ## 2. Biaya dan kendala P1
 
@@ -43,10 +43,10 @@ Nilai $`U_i=8`$ ton. Jika P1 memasok 5,5 ton minyak, sisa kapasitasnya untuk sem
 **Keseimbangan barang di gudang.** Setiap produk yang masuk harus dikirim ke zona pada periode yang sama.
 
 $$
-\underbrace{\sum_i x_{igp}}_{\text{total masuk}} = \underbrace{q_{gp}}_{\text{tonase ditangani}} = \underbrace{\sum_j z_{gjp}}_{\text{total keluar}}
+\underbrace{\sum_i x_{igp}}_{\text{total masuk}} = \underbrace{\sum_j z_{gjp}}_{\text{total keluar}}.
 $$
 
-Persamaan ini berlaku untuk setiap pasangan gudang dan produk yang kompatibel. Panah masuk dari pabrik dan panah keluar ke zona dihubungkan oleh $`q_{gp}`$, singkatan untuk total arus keluar. Saat $`q_{gp}`$ diganti dengan definisinya, persamaan langsung menunjukkan **total masuk = total keluar** untuk produk yang sama di gudang yang sama.
+Persamaan ini berlaku untuk setiap pasangan gudang dan produk yang kompatibel. G1 menangani A dan B. G2, G3, dan G4 masing-masing menangani A, B, dan C. Setiap gudang harus menyeimbangkan kiriman masuk dan keluar untuk tiap produk secara terpisah.
 
 Jika G2 menerima 6 ton minyak, total kiriman minyak dari G2 juga harus 6 ton. Pada pasangan yang belum memiliki rute di suatu tingkat, penjumlahan kosong bernilai nol.
 
@@ -68,14 +68,14 @@ $$
 
 Jika G2 dibuka, batasnya 20 ton. Jika ditutup, arus keluar menjadi nol dan aturan keseimbangan membuat arus masuk juga nol.
 
-**Waktu penanganan linear.** Setiap ton memerlukan satu jam kerja.
+**Waktu penanganan linear.** Tarif waktu $a$ adalah satu jam kerja per ton.
 
 $$
-\sum_p q_{gp}\le T_g y_g
+a\sum_p q_{gp}\le T_g y_g
 \quad\text{untuk setiap gudang } g.
 $$
 
-Data menetapkan $`T_g=1{,}2V_g`$. G3 yang menangani 18 ton memerlukan 18 jam dan memiliki 21,60 jam tersedia. Karena itu, pada profil linear, pemenuhan kapasitas tonase sekaligus memenuhi batas waktu. Baris waktu dicatat dalam formulasi operasi dan diganti dengan bentuk kuadratik di profil nonlinear.
+Data menyediakan 1,2 jam kerja untuk setiap ton kapasitas. G3 yang menangani 18 ton memerlukan 18 jam dan memiliki 21,60 jam tersedia. Karena itu, pada profil linear, pemenuhan kapasitas tonase sekaligus memenuhi batas waktu. Baris waktu dicatat dalam formulasi operasi dan diganti dengan bentuk kuadratik di profil nonlinear.
 
 ## 3. Perubahan pada profil nonlinear
 
@@ -88,7 +88,7 @@ $$
 Koefisien 0,04 mengubah kuadrat tonase menjadi tambahan biaya penanganan. Delapan ton satu produk memberi tambahan $0{,}04(8^2)=2{,}56$ satuan biaya.
 
 $$
-\sum_p(q_{gp}+0{,}025q_{gp}^2)\le T_g y_g
+\sum_p(aq_{gp}+0{,}025q_{gp}^2)\le T_g y_g
 \quad\text{untuk setiap gudang } g.
 $$
 
@@ -103,7 +103,7 @@ C_{\mathrm{stoch}}=
 \sum_g F_g y_g+\sum_s\pi_s C_s^{\mathrm{operasi}}.
 $$
 
-$`\pi_s`$ adalah peluang skenario, dan $`C_s^{\mathrm{operasi}}`$ mencakup angkut dan penanganan. Biaya buka dibayar sekali. Pada P6 dan P8, biaya dan waktu kuadratik masing-masing dihitung dari tonase skenario bersangkutan.
+$`\pi_s`$ adalah peluang skenario, dan $`C_s^{\mathrm{operasi}}`$ mencakup angkut dan penanganan. Biaya buka dibayar sekali. Pada P6 dan P8, tambahkan $`0{,}04\sum_{g,p}q_{gps}^{2}`$ pada biaya operasi sebelum mengalikannya dengan peluang skenario. Gunakan tonase skenario yang sama untuk memeriksa batas waktu di setiap gudang.
 
 ## 5. Perubahan pada profil multiobjektif
 
@@ -116,7 +116,11 @@ E=
 +\sum_{(g,j,p)\in\mathcal R_{\mathrm{out}}} e^{\mathrm{out}}_{gj}z_{gjp}.
 $$
 
-$`e_g^{\mathrm{tetap}}`$ adalah emisi gudang yang dibuka. Faktor $`e^{\mathrm{in}}_{ig}`$ dan $`e^{\mathrm{out}}_{gj}`$ adalah emisi angkutan per ton. Untuk P4 dan P8, emisi angkutan dirata-ratakan berbobot peluang skenario dan emisi tetap gudang ditambahkan satu kali.
+$`e_g^{\mathrm{tetap}}`$ adalah emisi gudang yang dibuka. Faktor $`e^{\mathrm{in}}_{ig}`$ dan $`e^{\mathrm{out}}_{gj}`$ adalah emisi angkutan per ton. Untuk P4 dan P8, hitung $`E_s^{\mathrm{angkut}}`$ dari dua tahap pengiriman pada skenario $s$. Rata-ratakan emisi angkutan dengan peluang skenario, lalu tambahkan emisi tetap gudang satu kali.
+
+$$
+E_{\mathrm{stoch}}=\sum_g e_g^{\mathrm{tetap}}y_g + \sum_s\pi_s E_s^{\mathrm{angkut}}.
+$$
 
 P3, P4, P7, dan P8 mencari kompromi biaya dan emisi dengan metode **ε-constraint**. Untuk setiap batas emisi $\varepsilon$, selesaikan
 
@@ -135,6 +139,6 @@ $$
 
 Kedua ujung ikut dihitung. Pada setiap batas interior, pilih biaya minimum terlebih dahulu, lalu emisi terendah di antara solusi dengan biaya yang sama sesuai toleransi. CSV menyimpan seluruh batas. Grafik menampilkan sampel titik berbeda yang tidak didominasi pada toleransi pencatatan.
 
-Untuk P7 dan P8, kode membangun batas bawah suku kuadrat dengan garis singgung. Biaya dan waktu dihitung kembali dari suku kuadrat asli, dan hasil hanya diterima saat memenuhi toleransi kelayakan dan celah terhadap batas bawah solver. [Metode pengujian dan hasil](Hasil_Verifikasi.md)
+Untuk P5 sampai P8, kode membangun batas bawah suku kuadrat dengan garis singgung. Biaya dan waktu dihitung kembali dari suku kuadrat asli, dan hasil diterima setelah memenuhi toleransi kelayakan dan celah terhadap batas bawah solver. [Metode pengujian dan hasil](Hasil_Verifikasi.md)
 
 [Halaman utama](../README.md)

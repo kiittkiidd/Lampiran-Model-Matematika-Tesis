@@ -25,7 +25,9 @@ Pada P2, P4, P6, dan P8, perusahaan memilih gudang **sebelum** mengetahui jumlah
 | Sedang | 68,27% | 3,000 ton |
 | Ramai | 15,87% | 4,525 ton |
 
-Data mesin menyimpan peluang dan penyimpangan sebelum pembulatan. Biaya dan emisi harapan berarti rata-rata berbobot peluang. Biaya buka dan emisi tetap gudang dihitung satu kali. Laporkan keputusan gudang dan rencana kiriman untuk masing-masing skenario.
+Tiga skenario mewakili tiga bagian distribusi normal permintaan minyak K1 dengan simpangan baku 1 ton. Ambil bagian di bawah rata-rata dikurangi 1 ton, bagian tengah, dan bagian di atas rata-rata ditambah 1 ton. Peluang setiap skenario adalah peluang bagian tersebut, dan pesanan yang dipakai adalah rata-rata pesanan di dalam bagian itu. Data menyimpan angka sebelum pembulatan.
+
+Biaya dan emisi harapan berarti rata-rata berbobot peluang. Biaya buka dan emisi tetap gudang dihitung satu kali. Laporkan keputusan buka gudang bersama dan rencana kiriman untuk masing-masing skenario.
 
 ## Bagaimana waktu dan biaya penanganan dihitung?
 

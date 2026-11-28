@@ -72,14 +72,19 @@ Masing-masing baris di dalam jenis kendala yang sama memakai indeks yang berbeda
 
 ## 2. Perhitungan WCC pada kasus PT XYZ
 
-Tabel ini menjumlahkan bobot dari semua pasangan di antara **43 baris operasi**. Daftar pembanding yang sama memberi **435 poin** dari 35 rute masuk, 66 rute keluar, dan 4 variabel keputusan buka gudang.
+Tabel ini menjumlahkan bobot dari **903 pasangan** di antara 43 baris operasi. Pada setiap tingkat, hitung rute dan keputusan yang muncul pada baris tersebut, termasuk keputusan yang bisa bernilai nol pada solusi optimal.
 
-| Versi | Bobot yang dipakai | Bobot pembanding | WCC |
-| --- | ---: | ---: | ---: |
-| Low | 236 | 435 | **54,25%** |
-| Medium | 283 | 435 | **65,06%** |
-| High | 381 | 435 | **87,59%** |
+Setiap rute masuk muncul pada dua baris, jadi bobotnya **1**. Setiap rute keluar muncul pada empat baris, jadi bobotnya **6** karena ada enam cara memasangkan empat baris. Setiap keputusan buka gudang muncul pada batas tonase dan batas waktu gudang itu, jadi bobotnya **1**.
 
-**Neraca gudang sudah masuk hitungan WCC.** Sejak versi awal, solver memakai satu baris neraca per pasangan gudang–produk yang kompatibel dalam setiap skenario. Baris itu menyamakan total kiriman masuk $`\sum_i x_{igp}`$ dan total kiriman keluar $`\sum_j z_{gjp}`$. Tanda $`q_{gp}`$ di dokumentasi adalah singkatan untuk total kiriman keluar. Menulis ketiganya dalam satu persamaan hanya memperjelas cara baca model. Audit WCC tetap menghitung 43 baris operasi, termasuk neraca, dan hasil optimum serta waktu komputasi merujuk pada formulasi solver yang sama.
+| Daftar rute | Rute masuk × 1 | Rute keluar × 6 | Keputusan buka × 1 | Total bobot | WCC |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Low | 16 | 216 | 4 | **236** | **54,25%** |
+| Medium | 21 | 258 | 4 | **283** | **65,06%** |
+| High | 35 | 342 | 4 | **381** | **87,59%** |
+| Pembanding | 35 | 396 | 4 | **435** | |
+
+**Pembilang** berasal dari rute yang diizinkan pada tingkat yang dihitung. Misalnya, Low mendapat 236 poin. **Penyebut** berasal dari satu daftar pembanding untuk ketiga tingkat. Daftar ini mengambil 35 rute masuk High dan mengizinkan 11 kombinasi gudang–produk mengirim ke keenam zona, sehingga ada 66 rute keluar. High memakai 57 dari 66 rute keluar tersebut. Jadi, persentase High adalah **381 ÷ 435 × 100%**. Selisih Low ke Medium adalah **10,80 poin persentase** dan Medium ke High **22,53 poin persentase**, dihitung sebelum pembulatan.
+
+**Cakupan WCC.** Sebelas dari 43 baris adalah neraca gudang. Masing-masing menyamakan kiriman masuk dan keluar untuk satu produk di satu gudang. Audit menghitung 43 baris operasi sebelum penyederhanaan solver dan memeriksa setiap skenario stokastik secara terpisah. Pada tingkat rute yang sama, P1–P8 memiliki variabel yang sama pada setiap baris yang diukur. Grafik waktu dan iterasi pada halaman hasil mencakup penyelesaian seluruh profil, termasuk skenario tambahan dan perhitungan Pareto.
 
 [Lihat persamaan R1–R43, contoh R8–R36, dan hitungan lengkap](math_model_acuan/Persamaan_WCC.md) · [Rincian 903 pasangan](math_model_acuan/hasil/Audit_WCC_Pasangan.csv) · [Model matematika](math_model_acuan/Model_Matematika.md) · [Gambar jaringan PT XYZ](case/Kasus_Dasar.md) · [Data rute](case/Data_Bersama.json) · [Halaman utama](README.md)

@@ -1,6 +1,6 @@
 # Hasil validasi jaringan PT XYZ
 
-Pengujian mencakup **480 kombinasi** dari 20 paket, delapan profil, dan tiga tingkat rute. Dalam tiap paket, permintaan, kapasitas, dan tarif yang sama dipakai pada Low, Medium, dan High. Angka tabel adalah median dari 20 paket.
+Pengujian mencakup **480 kombinasi** dari 20 paket data, delapan profil, dan tiga tingkat rute. Satu paket memvariasikan biaya buka, tarif angkut, dan pembagian pesanan antar zona. Total permintaan dasar setiap produk tetap. Dalam tiap paket, permintaan, kapasitas, dan tarif yang sama dipakai pada Low, Medium, dan High. Kolom waktu mengambil median dari 3 ulangan untuk tiap paket, lalu median dari 20 paket. Kolom iterasi LP mengambil median dari 20 penghitungan terpisah.
 
 | Profil | Waktu Low → Medium → High (detik) | Iterasi LP Low → Medium → High | Paket urut waktu | Paket urut iterasi |
 | --- | ---: | ---: | ---: | ---: |
@@ -17,27 +17,31 @@ Median waktu naik secara ketat pada **8/8 profil**. Pada tingkat paket individua
 
 Median iterasi LP naik secara ketat pada **8/8 profil**. Pada tingkat paket individual, urutan itu terjadi pada **158/160 perbandingan**.
 
+Satu perbandingan memeriksa tiga tingkat dalam satu paket dan satu profil. Hasil ini menunjukkan pola pada jaringan dan paket yang diuji. Setiap tingkat menambah pilihan rute sekaligus menaikkan WCC. Waktu dan iterasi LP juga mencerminkan jumlah skenario dan prosedur Pareto yang dikerjakan oleh tiap profil.
+
 ![Perbandingan waktu dan iterasi LP pada ketiga tingkat](hasil/Beban_Solver.svg)
 
 ## Sampel Pareto
 
-P3, P4, P7, dan P8 memakai 25 batas ε per kombinasi. Grafik menampilkan satu paket contoh (10101). Setiap titik mewakili satu pasangan biaya dan emisi yang lolos pemeriksaan. Batas ε yang memberikan titik sama tetap tercatat di CSV.
+P3, P4, P7, dan P8 memakai 25 batas ε per kombinasi. Batas tersebut berjarak sama di antara dua ujung rentang emisi untuk kombinasi yang sedang diselesaikan. Grafik menampilkan satu paket contoh (10101). Setiap titik mewakili satu pasangan biaya dan emisi yang lolos pemeriksaan. Batas ε yang memberikan titik sama tetap tercatat di CSV.
 
 ![Sampel Pareto pada empat profil multiobjektif](hasil/Pareto_Contoh.svg)
 
-Pada data dasar High, solusi biaya terendah membuka G2 dan G4 dengan biaya 242,95 dan emisi 155,60 kg CO₂e. Salah satu solusi yang lebih mengutamakan emisi membuka G2 dan G3 dengan biaya 259,00 dan emisi 96,00 kg CO₂e.
+Sebagai contoh terpisah, gunakan data dasar High dengan permintaan pasti dan penanganan linear. Solusi biaya terendah membuka G2 dan G4 dengan biaya 242,95 dan emisi 155,60 kg CO₂e. Salah satu solusi yang lebih mengutamakan emisi membuka G2 dan G3 dengan biaya 259,00 dan emisi 96,00 kg CO₂e.
 
 ## Nilai alternatif fasilitas dan rute
 
-- Pada P1 dan P6, pesanan tetap dapat dipenuhi saat salah satu dari 10 fasilitas ditutup, satu per satu.
-- Pada P1, setiap pasangan zona–produk punya minimal dua alternatif gudang pada Low dan Medium serta tiga pada High.
-- Pada 208 pemeriksaan per rute–tingkat, setiap rute memiliki satu kondisi saat penutupannya memperburuk hasil dan satu kondisi saat memaksakannya membawa satu ton juga memperburuk hasil.
+- Pada setiap tingkat, penutupan satu fasilitas dari 10 fasilitas diuji satu per satu. P1 tetap dapat memenuhi pesanan, dan P6 tetap dapat memenuhi pesanan di ketiga skenario.
+- Pada P1, setiap pesanan zona–produk bisa dipenuhi sepenuhnya dari minimal dua pilihan gudang pada Low dan Medium serta tiga pada High. Setiap pilihan diuji bergantian sambil tetap memenuhi semua pesanan lain.
+- Untuk setiap kombinasi rute dan tingkat, CSV mencatat dua kondisi uji. Pada kondisi pertama, menutup rute menaikkan nilai tujuan atau membuat pesanan mustahil dipenuhi. Pada kondisi kedua, mewajibkan sedikitnya satu ton pada rute itu menaikkan nilai tujuan. Totalnya **208 kombinasi rute dan tingkat**.
+
+Audit rute membandingkan biaya minimum atau skor gabungan berbobot. Skor gabungan menjumlahkan biaya dibagi 300 dan emisi dibagi 150 setelah masing-masing dikalikan bobotnya. Kedua pembagi adalah skala tetap pada uji rute. Pada benchmark Pareto, P3, P4, P7, dan P8 memakai batas ε seperti pada model matematika.
 
 ## Cara pengukuran dan menjalankan ulang
 
-HiGHS 1.8.0 digunakan dengan satu thread per penyelesaian. Setiap kombinasi mempunyai 3 ulangan waktu setelah satu pemanasan. Urutan tingkat diseimbangkan antarulangan di setiap paket, dan data serta model operasi disiapkan sebelum pencatatan waktu. Waktu mencakup seluruh penyelesaian, pemilihan solusi jika biaya sama, dan pemeriksaan solusi. Iterasi LP dihitung dari laporan solver pada lintasan terpisah, termasuk panggilan tambahan jika solusi perlu diperiksa ulang.
+Pengujian memakai Linux, Python 3.12, SciPy 1.17.0, dan HiGHS 1.8.0 dengan satu thread per penyelesaian. Setiap kombinasi mempunyai 3 ulangan waktu setelah satu pemanasan. Urutan tingkat diseimbangkan antarulangan di setiap paket, dan data serta model operasi disiapkan sebelum pencatatan waktu. Waktu mencakup seluruh penyelesaian, pemilihan solusi jika biaya sama, dan pemeriksaan solusi. Iterasi LP dihitung dari laporan solver pada lintasan terpisah, termasuk panggilan tambahan jika solusi perlu diperiksa ulang.
 
-Profil satu tujuan menyelesaikan biaya minimum. Profil dua tujuan mencakup penentuan dua ujung dan seluruh 25 batas ε. P7 dan P8 memeriksa bentuk kuadrat asli dengan toleransi kelayakan 0,0000002 dan celah tujuan 0,00025. Tercatat **65 panggilan ulang numerik** pada seluruh benchmark.
+Profil satu tujuan menyelesaikan biaya minimum. Profil dua tujuan mencakup penentuan dua ujung dan seluruh 25 batas ε. P5 sampai P8 memeriksa bentuk kuadrat asli dengan toleransi kelayakan 0,0000002 dan celah tujuan absolut maksimum 0,00025. Tercatat **65 panggilan ulang numerik** pada seluruh benchmark.
 
 [Jalankan di Google Colab](https://colab.research.google.com/github/kiittkiidd/Lampiran-Model-Matematika-Tesis/blob/main/math_model_acuan/Verifikasi_P1_P8.ipynb) · [Notebook di repo](Verifikasi_P1_P8.ipynb)
 
@@ -49,6 +53,12 @@ OPENBLAS_NUM_THREADS=1 python math_model_acuan/benchmark.py --paket 10101 --prof
 ~~~
 
 Untuk benchmark lengkap, hilangkan opsi paket dan profil. Gunakan path keluaran baru untuk pengujian baru. Waktu absolut bergantung pada lingkungan. Paket final memakai kode 10101–10110 dan 10301–10310. Paket tersebut dipisahkan dari paket yang dipakai untuk memilih rancangan rute.
+
+Untuk membuat ulang tabel dan gambar dari benchmark lengkap, jalankan perintah berikut.
+
+~~~bash
+python math_model_acuan/ringkas.py --input benchmark_lengkap.jsonl --output cek/hasil
+~~~
 
 ## Data pemeriksaan
 

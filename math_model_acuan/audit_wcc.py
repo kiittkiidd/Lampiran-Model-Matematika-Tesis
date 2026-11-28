@@ -24,8 +24,15 @@ def weight(matrix):
     assert linear_algebra == direct
     return direct
 
-_, reference = support(network(data,high,ideal_out,{},False),0)
+reference_net = network(data, high, ideal_out, {}, False)
+_, reference = support(reference_net, 0)
 ref = weight(reference)
+
+def names_by_row(net, matrix):
+    return [set(net.names[j] if j < 4 else net.names[j].rsplit(',', 1)[0] + ']'
+                for j in np.flatnonzero(row)) for row in matrix]
+
+row_names = {'acuan': names_by_row(reference_net, reference)}
 print('Acuan bersama',ref)
 records=[]
 for level, specification in data["level"].items():
@@ -42,21 +49,38 @@ for level, specification in data["level"].items():
                     for i,(ss,gg,_) in enumerate(net.groups):
                         if (s,g) == (ss,gg): enhanced[id_in_view] |= net.aggregation[i]!=0
                 assert np.array_equal(m,enhanced)
-            normalized = [{net.names[j] if j<4 else net.names[j].rsplit(',',1)[0]+']'
-              for j in np.flatnonzero(row)} for row in m]
+            normalized = names_by_row(net, m)
             if baseline is None: baseline=normalized
             assert normalized==baseline
             numerator = weight(m)
         records.append([profile,level,len(m),numerator,ref,100*numerator/ref])
+    row_names[{'L': 'Low', 'M': 'Medium', 'H': 'High'}[level]] = baseline
     print(level,'43 baris',numerator,f'{100*numerator/ref:.6f}%','P1-P8 sama pada masing-masing kondisi')
 if __name__=='__main__':
     from argparse import ArgumentParser
     parser=ArgumentParser()
     parser.add_argument('--output',type=Path)
-    target=parser.parse_args().output
+    parser.add_argument('--pasangan', type=Path, help='CSV untuk seluruh pasangan baris')
+    args = parser.parse_args()
+    target = args.output
     if target:
         target.parent.mkdir(parents=True,exist_ok=True)
         with target.open('w',encoding='utf-8',newline='') as out:
             writer=csv.writer(out)
             writer.writerow(('Profil','Tingkat','Baris operasi per kondisi','Bobot','Acuan','WCC persen'))
             writer.writerows(records)
+    if args.pasangan:
+        variants = ('Low', 'Medium', 'High', 'acuan')
+        args.pasangan.parent.mkdir(parents=True, exist_ok=True)
+        with args.pasangan.open('w', encoding='utf-8', newline='') as out:
+            writer = csv.writer(out, lineterminator='\n')
+            header = ['Baris 1', 'Baris 2']
+            for variant in variants:
+                header.extend([f'Variabel bersama {variant}', f'Bobot {variant}'])
+            writer.writerow(header)
+            for r, s in combinations(range(len(reference)), 2):
+                cells = [f'R{r + 1}', f'R{s + 1}']
+                for variant in variants:
+                    common = row_names[variant][r] & row_names[variant][s]
+                    cells.extend(['; '.join(sorted(common)), len(common)])
+                writer.writerow(cells)

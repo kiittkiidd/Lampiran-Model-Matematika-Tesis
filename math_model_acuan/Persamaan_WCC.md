@@ -136,7 +136,7 @@ Enam indeks untuk penyebut sudah tersedia di daftar kemungkinan sebelum memilih 
 
 ### Daftar kendala R1–R43
 
-Di model lengkap, nomor berikut mengikuti urutan 43 baris operasi sebelum penyederhanaan solver. Produk A adalah minyak goreng, B adalah sirup, dan C adalah susu. Buka kelompok yang ingin diperiksa untuk melihat setiap persamaan beserta indeksnya.
+Di model lengkap, nomor berikut mengikuti urutan 43 baris operasi sebelum penyederhanaan solver. Produk A adalah minyak goreng, B adalah sirup, dan C adalah susu. Persamaan Low dan daftar pembanding ditulis lengkap di bawah tabel.
 
 | Baris | Kendala |
 | --- | --- |
@@ -549,7 +549,7 @@ $$
 
 Contohnya, R36 dan R40 memuat daftar kiriman keluar G1 yang sama. Dari persamaan keduanya, cocokkan enam variabel kiriman minyak dan tiga variabel kiriman sirup. Cocokkan pula $`y_1`$ pada kedua ruas kanan. Koefisien $`y_1`$ berbeda, yaitu 16 dan 19,2, tetapi identitas variabelnya sama. Bobot pasangan ini adalah **6 + 3 + 1 = 10**.
 
-Empat puluh tiga baris menghasilkan **43 × 42 ÷ 2 = 903 pasangan**. Jumlahkan bobot setiap pasangan satu kali, termasuk pasangan berbobot nol. Total bobot Low adalah **236**. Tabel pada Bagian 3 merangkum penjumlahannya, dan CSV mencantumkan indeks lengkap untuk setiap pasangan. [Rincian 903 pasangan](hasil/Audit_WCC_Pasangan.csv)
+Empat puluh tiga baris menghasilkan **43 × 42 ÷ 2 = 903 pasangan**. Jumlahkan bobot setiap pasangan satu kali, termasuk pasangan berbobot nol. Total bobot Low adalah **236**. Tabel penjumlahan di bawah merangkum hitungan ini. CSV mencantumkan variabel bersama dan bobot setiap pasangan untuk Low, Medium, High, dan pembanding. [Rincian 903 pasangan](hasil/Audit_WCC_Pasangan.csv)
 
 ### Persamaan untuk daftar pembanding
 
@@ -1029,6 +1029,12 @@ Setiap rute masuk baru muncul pada dua kendala, sehingga menambah satu bobot. Se
 
 ## Cakupan audit
 
-Ketiga tingkat menggunakan 43 aturan operasi yang sama. Variabel kiriman bertambah ketika daftar rute bertambah. Pada satu tingkat, WCC operasi sama untuk P1–P8. Audit memeriksa skenario stokastik satu per satu. Batas emisi, domain variabel, pemilihan emisi saat biaya sama, dan garis singgung solver berada di luar 43 baris yang dihitung.
+Ketiga tingkat menggunakan 43 aturan operasi yang sama. Variabel kiriman bertambah ketika daftar rute bertambah. Pada satu tingkat, WCC operasi sama untuk P1–P8. Audit memeriksa skenario stokastik satu per satu. Pada profil nonlinear, kuadrat tonase menggunakan variabel kiriman yang sudah ada pada baris waktu. Batas emisi, domain variabel, pemilihan emisi saat biaya sama, dan garis singgung solver berada di luar 43 baris yang dihitung.
+
+Jalankan perintah berikut dari direktori utama repo untuk menghitung ulang ringkasan dan tabel pasangan.
+
+~~~bash
+python math_model_acuan/audit_wcc.py --output cek/WCC.csv --pasangan cek/Audit_WCC_Pasangan.csv
+~~~
 
 [Kembali ke halaman WCC](../Lampiran_WCC.md) · [Model matematika](Model_Matematika.md) · [Audit 24 kombinasi](hasil/WCC.csv)
