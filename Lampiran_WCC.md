@@ -31,44 +31,67 @@ $`V_g`$ adalah kapasitas gudang $`g`$, dan $`d_j`$ adalah permintaan pelanggan $
 
 Pada notasi model PT XYZ, $`\sum_{g,p}x_{igp}\le U_i`$ adalah **kapasitas pabrik** $`i`$. Penjumlahannya mencakup semua gudang dan produk yang dikirim oleh pabrik tersebut.
 
-**2. Gambar hubungan dari variabel yang sama.** R1 dan R2 sama-sama memuat $`x_g`$. R1 dan R3 sama-sama memuat $`z_{g,j}`$.
+**2. Petakan hubungan antarbaris.** G1 dan G2 masing-masing memiliki satu baris neraca dan satu baris kapasitas. K1 dan K2 masing-masing memiliki satu baris permintaan. Jadi, ilustrasi ini memiliki enam simpul, satu untuk setiap baris kendala.
+
+**Garis hitam penuh** menunjukkan pasangan yang berbagi variabel pada Low dan pada pembanding. **Garis merah putus-putus** menunjukkan pasangan yang berbagi variabel hanya pada pembanding. Label di atas garis menunjukkan variabel yang sama pada kedua baris.
 
 ```mermaid
-flowchart LR
-    R2((R2)) ---|x_g| R1((R1))
-    R1 ---|z_gj| R3((R3))
+flowchart TB
+    subgraph WCC["Hubungan antarbaris kendala"]
+        N1["R1 G1 · Neraca"]
+        N2["R1 G2 · Neraca"]
+        C1["R2 G1 · Kapasitas"]
+        C2["R2 G2 · Kapasitas"]
+        D1["R3 K1 · Permintaan"]
+        D2["R3 K2 · Permintaan"]
+
+        N1 ---|x₁| C1
+        N1 ---|z₁,₁| D1
+        N1 ---|z₁,₂| D2
+        N2 -.-|x₂| C2
+        N2 -.-|z₂,₁| D1
+        N2 -.-|z₂,₂| D2
+    end
+
+    classDef baris fill:#f6f8fa,stroke:#57606a,color:#1f2328
+    class N1,N2,C1,C2,D1,D2 baris
+    style WCC fill:#ffffff,stroke:#d0d7de,color:#1f2328
+    linkStyle 0,1,2 stroke:#171717,stroke-width:2px
+    linkStyle 3,4,5 stroke:#b4232f,stroke-width:2px,stroke-dasharray:6 4
 ```
 
-Tiga simpul mewakili **jenis kendala**. Setelah gudang dan pelanggan diberi nomor, R1 punya satu baris untuk setiap gudang, R2 punya satu baris untuk setiap gudang, dan R3 punya satu baris untuk setiap pelanggan. Bobot dihitung dari baris yang sudah berindeks itu.
+Sebagai contoh, garis $`z_{1,2}`$ menghubungkan **neraca G1** dan **permintaan K2**. Kedua baris memuat keputusan kiriman G1 → K2. Keputusan itu tetap dihitung dalam WCC Low meskipun solver akhirnya menetapkan tonasenya nol. Pasangan baris yang tidak berbagi variabel pada Low maupun pembanding memiliki bobot nol dan tidak digambar.
 
-**3. Hitung bobot garis R1–R2.** Pada daftar pembanding, P1 dapat mengirim barang ke G1 dan G2. Pada Low, rute masuk yang tersedia hanya P1 → G1.
+**3. Hitung bobot untuk pasangan neraca–kapasitas (R1–R2).** Pada Low, pabrik P1 hanya dapat mengirim ke G1. Pembanding juga mengizinkan kiriman P1 → G2.
 
-| Kombinasi rute masuk | Variabel | Dua baris yang memuatnya | Bobot pembanding | Bobot Low |
+| Rute masuk | Variabel bersama | Pasangan baris | Bobot Low | Bobot pembanding |
 | --- | --- | --- | ---: | ---: |
-| P1 → G1 | $`x_1`$ | R1 untuk G1 dan R2 untuk G1 | 1 | 1 |
-| P1 → G2 | $`x_2`$ | R1 untuk G2 dan R2 untuk G2 | 1 | 0 |
-| **Total R1–R2** | | | **2** | **1** |
+| P1 → G1 | $`x_1`$ | Neraca G1 dan kapasitas G1 | 1 | 1 |
+| P1 → G2 | $`x_2`$ | Neraca G2 dan kapasitas G2 | 0 | 1 |
+| **Total R1–R2** | | | **1** | **2** |
 
-Jadi, contoh **1 ÷ 2 = 50% benar untuk garis R1–R2**. Kombinasi P1 → G1 menyumbang satu poin melalui $`x_1`$. Kombinasi P1 → G2 menyumbang satu poin pembanding melalui $`x_2`$.
+Pada kelompok pasangan ini, satu variabel bersama muncul di Low dan dua pada pembanding. Maka kelompok R1–R2 menyumbang **1 ke pembilang** dan **2 ke penyebut**.
 
-**4. Jumlahkan bobot seluruh graf.** Pada Low, G1 melayani K1 dan K2 dengan kapasitas yang cukup untuk dua pesanan. Pada daftar pembanding, kedua gudang dapat melayani kedua pelanggan. Setiap rute gudang → pelanggan memberi 1 poin pada garis R1–R3 karena variabel kiriman yang sama muncul di baris neraca gudang asal dan baris permintaan pelanggan tujuan.
+**4. Hitung bobot untuk pasangan neraca–permintaan (R1–R3).** Pada Low, G1 melayani K1 dan K2 dan diasumsikan memiliki kapasitas yang cukup untuk kedua pesanan. Pada pembanding, kedua gudang memiliki rute ke K1 dan K2. Cocokkan setiap kiriman dengan baris neraca gudang asal dan baris permintaan pelanggan tujuan.
 
-| Kombinasi rute keluar | Variabel | Dua baris yang memuatnya | Bobot pembanding | Bobot Low |
+| Rute keluar | Variabel bersama | Pasangan baris | Bobot Low | Bobot pembanding |
 | --- | --- | --- | ---: | ---: |
-| G1 → K1 | $`z_{1,1}`$ | R1 untuk G1 dan R3 untuk K1 | 1 | 1 |
-| G1 → K2 | $`z_{1,2}`$ | R1 untuk G1 dan R3 untuk K2 | 1 | 1 |
-| G2 → K1 | $`z_{2,1}`$ | R1 untuk G2 dan R3 untuk K1 | 1 | 0 |
-| G2 → K2 | $`z_{2,2}`$ | R1 untuk G2 dan R3 untuk K2 | 1 | 0 |
-| **Total R1–R3** | | | **4** | **2** |
+| G1 → K1 | $`z_{1,1}`$ | Neraca G1 dan permintaan K1 | 1 | 1 |
+| G1 → K2 | $`z_{1,2}`$ | Neraca G1 dan permintaan K2 | 1 | 1 |
+| G2 → K1 | $`z_{2,1}`$ | Neraca G2 dan permintaan K1 | 0 | 1 |
+| G2 → K2 | $`z_{2,2}`$ | Neraca G2 dan permintaan K2 | 0 | 1 |
+| **Total R1–R3** | | | **2** | **4** |
 
-| Pasangan jenis kendala | Bobot pembanding | Bobot Low |
+**5. Jumlahkan bobot, lalu bagi.** Kelompok kapasitas–permintaan (R2–R3) berbobot nol karena kapasitas pada ilustrasi ini memakai kiriman masuk, sedangkan permintaan memakai kiriman keluar. Pasangan baris dalam kelompok kendala yang sama juga berbobot nol karena masing-masing memakai indeks yang berbeda.
+
+| Kelompok pasangan kendala | Bobot Low | Bobot pembanding |
 | --- | ---: | ---: |
-| R1–R2 | 2 | 1 |
-| R1–R3 | 4 | 2 |
-| R2–R3 | 0 | 0 |
-| **Total** | **6** | **3** |
+| R1–R2 · Neraca dan kapasitas | 1 | 2 |
+| R1–R3 · Neraca dan permintaan | 2 | 4 |
+| R2–R3 · Kapasitas dan permintaan | 0 | 0 |
+| **Total** | **3 (pembilang)** | **6 (penyebut)** |
 
-Masing-masing baris di dalam jenis kendala yang sama memakai indeks yang berbeda, sehingga sumbangannya nol pada ilustrasi ini. WCC seluruh ilustrasi adalah **(1 + 2) ÷ (2 + 4) × 100% = 50%**. Dalam contoh ini, hasil seluruh ilustrasi kebetulan sama dengan persentase pada garis R1–R2.
+WCC seluruh ilustrasi adalah **3 ÷ 6 × 100% = 50%**. Pada graf, pembilang berasal dari tiga garis hitam. Penyebut berasal dari ketiga garis hitam ditambah tiga garis merah. Setiap garis di ilustrasi ini berbobot satu.
 
 ## 2. Perhitungan WCC pada kasus PT XYZ
 
@@ -83,7 +106,22 @@ Setiap rute masuk muncul pada dua baris, jadi bobotnya **1**. Setiap rute keluar
 | High | 35 | 342 | 4 | **381** | **87,59%** |
 | Pembanding | 35 | 396 | 4 | **435** | |
 
-**Pembilang** berasal dari rute yang diizinkan pada tingkat yang dihitung. Misalnya, Low mendapat 236 poin. **Penyebut** berasal dari satu daftar pembanding untuk ketiga tingkat. Daftar ini mengambil 35 rute masuk High dan mengizinkan 11 kombinasi gudang–produk mengirim ke keenam zona, sehingga ada 66 rute keluar. High memakai 57 dari 66 rute keluar tersebut. Jadi, persentase High adalah **381 ÷ 435 × 100%**. Selisih Low ke Medium adalah **10,80 poin persentase** dan Medium ke High **22,53 poin persentase**, dihitung sebelum pembulatan.
+### Rute apa saja yang masuk ke pembilang dan penyebut?
+
+Satu rute dihitung untuk **satu produk**. Misalnya, P1 → G1 untuk minyak dan P1 → G1 untuk sirup adalah dua keputusan berbeda. Keduanya diperiksa menurut daftar rute pada tingkat yang dihitung.
+
+- **Pembilang.** Ambil rute berindeks yang memang diizinkan pada Low, Medium, atau High. Hitung bobot dari baris kendala yang memuat setiap variabel kiriman. Empat keputusan buka gudang menyumbang empat poin pada setiap tingkat.
+- **Penyebut.** Gunakan satu pembanding untuk ketiga tingkat. Untuk pabrik → gudang, gunakan tepat 35 rute berindeks pada High. Untuk gudang → zona, gunakan 11 pasangan gudang–produk yang menerima kiriman pada High, lalu hubungkan setiap pasangan itu ke keenam zona. Hasilnya 66 rute keluar.
+
+Tiga contoh berikut menunjukkan cara membaca aturan itu dengan produk dan lokasi yang sama seperti di data kasus.
+
+| Rute dan produk | Diizinkan pada Low | Masuk pembanding | Sumbangan dari variabel rute |
+| --- | --- | --- | --- |
+| P1 → G1, minyak (A) | Ya | Ya | 1 pada pembilang Low dan 1 pada penyebut. |
+| P1 → G1, susu dingin (C) | Tidak | Tidak | 0 pada kedua total. G1 hanya menangani minyak dan sirup. |
+| G2 → K2, sirup (B) | Tidak | Ya | 0 pada pembilang Low dan 6 pada penyebut. G2 menangani sirup, jadi pembanding memasukkan rute ke K2. |
+
+Pada baris terakhir, G2 → K2 untuk sirup juga tidak tersedia pada High. Ini salah satu dari sembilan rute keluar tambahan dalam pembanding. Dengan penyebut yang sama, WCC High adalah **381 ÷ 435 × 100% = 87,59%**. Selisih Low ke Medium adalah **10,80 poin persentase** dan Medium ke High **22,53 poin persentase**, dihitung sebelum pembulatan. [Daftar rute berindeks](case/Data_Bersama.json)
 
 **Cakupan WCC.** Sebelas dari 43 baris adalah neraca gudang. Masing-masing menyamakan kiriman masuk dan keluar untuk satu produk di satu gudang. Audit menghitung 43 baris operasi sebelum penyederhanaan solver dan memeriksa setiap skenario stokastik secara terpisah. Pada tingkat rute yang sama, P1–P8 memiliki variabel yang sama pada setiap baris yang diukur. Grafik waktu dan iterasi pada halaman hasil mencakup penyelesaian seluruh profil, termasuk skenario tambahan dan perhitungan Pareto.
 
