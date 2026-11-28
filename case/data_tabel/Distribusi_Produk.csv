@@ -1,0 +1,10 @@
+Produk,Kondisi,Pengali,Peluang
+A,Sepi,0.7,0.25
+A,Sedang,1.0,0.5
+A,Ramai,1.3,0.25
+B,Sepi,0.8,0.2
+B,Sedang,0.95,0.6
+B,Ramai,1.35,0.2
+C,Sepi,0.75,0.3
+C,Sedang,1.05,0.5
+C,Ramai,1.25,0.2

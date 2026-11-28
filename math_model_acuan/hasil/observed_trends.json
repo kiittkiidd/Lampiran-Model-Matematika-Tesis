@@ -1,0 +1,50 @@
+{
+  "P1": {
+    "solver_ms_median": true,
+    "total_ms_median": true,
+    "lp_iterations_median": true,
+    "nlp_iterations_median": false
+  },
+  "P2": {
+    "solver_ms_median": true,
+    "total_ms_median": true,
+    "lp_iterations_median": true,
+    "nlp_iterations_median": false
+  },
+  "P3": {
+    "solver_ms_median": true,
+    "total_ms_median": true,
+    "lp_iterations_median": true,
+    "nlp_iterations_median": false
+  },
+  "P4": {
+    "solver_ms_median": true,
+    "total_ms_median": true,
+    "lp_iterations_median": true,
+    "nlp_iterations_median": false
+  },
+  "P5": {
+    "solver_ms_median": true,
+    "total_ms_median": true,
+    "lp_iterations_median": true,
+    "nlp_iterations_median": true
+  },
+  "P6": {
+    "solver_ms_median": true,
+    "total_ms_median": true,
+    "lp_iterations_median": true,
+    "nlp_iterations_median": false
+  },
+  "P7": {
+    "solver_ms_median": true,
+    "total_ms_median": true,
+    "lp_iterations_median": true,
+    "nlp_iterations_median": true
+  },
+  "P8": {
+    "solver_ms_median": true,
+    "total_ms_median": true,
+    "lp_iterations_median": true,
+    "nlp_iterations_median": true
+  }
+}

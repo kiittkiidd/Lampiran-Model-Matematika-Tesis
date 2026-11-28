@@ -1,0 +1,337 @@
+{
+  "records": 108,
+  "rows": [
+    {
+      "variant": 893101,
+      "profile": "P1",
+      "level": "H",
+      "solver_seconds_median": 0.030816999999999997,
+      "lp_iterations_median": 188
+    },
+    {
+      "variant": 893101,
+      "profile": "P1",
+      "level": "L",
+      "solver_seconds_median": 0.001036,
+      "lp_iterations_median": 5
+    },
+    {
+      "variant": 893101,
+      "profile": "P1",
+      "level": "M",
+      "solver_seconds_median": 0.001802,
+      "lp_iterations_median": 26
+    },
+    {
+      "variant": 893101,
+      "profile": "P3",
+      "level": "H",
+      "solver_seconds_median": 1.237811,
+      "lp_iterations_median": 6710
+    },
+    {
+      "variant": 893101,
+      "profile": "P3",
+      "level": "L",
+      "solver_seconds_median": 0.125769,
+      "lp_iterations_median": 802
+    },
+    {
+      "variant": 893101,
+      "profile": "P3",
+      "level": "M",
+      "solver_seconds_median": 0.186528,
+      "lp_iterations_median": 2286
+    },
+    {
+      "variant": 893101,
+      "profile": "P5",
+      "level": "H",
+      "solver_seconds_median": 0.12970299999999998,
+      "lp_iterations_median": 700
+    },
+    {
+      "variant": 893101,
+      "profile": "P5",
+      "level": "L",
+      "solver_seconds_median": 0.026241,
+      "lp_iterations_median": 96
+    },
+    {
+      "variant": 893101,
+      "profile": "P5",
+      "level": "M",
+      "solver_seconds_median": 0.05121,
+      "lp_iterations_median": 263
+    },
+    {
+      "variant": 893101,
+      "profile": "P7",
+      "level": "H",
+      "solver_seconds_median": 6.2373829999999995,
+      "lp_iterations_median": 27115
+    },
+    {
+      "variant": 893101,
+      "profile": "P7",
+      "level": "L",
+      "solver_seconds_median": 0.5734319999999999,
+      "lp_iterations_median": 2442
+    },
+    {
+      "variant": 893101,
+      "profile": "P7",
+      "level": "M",
+      "solver_seconds_median": 2.011892,
+      "lp_iterations_median": 8515
+    },
+    {
+      "variant": 893102,
+      "profile": "P1",
+      "level": "H",
+      "solver_seconds_median": 0.08080699999999999,
+      "lp_iterations_median": 224
+    },
+    {
+      "variant": 893102,
+      "profile": "P1",
+      "level": "L",
+      "solver_seconds_median": 0.001124,
+      "lp_iterations_median": 5
+    },
+    {
+      "variant": 893102,
+      "profile": "P1",
+      "level": "M",
+      "solver_seconds_median": 0.0018599999999999999,
+      "lp_iterations_median": 27
+    },
+    {
+      "variant": 893102,
+      "profile": "P3",
+      "level": "H",
+      "solver_seconds_median": 1.630858,
+      "lp_iterations_median": 7281
+    },
+    {
+      "variant": 893102,
+      "profile": "P3",
+      "level": "L",
+      "solver_seconds_median": 0.129502,
+      "lp_iterations_median": 851
+    },
+    {
+      "variant": 893102,
+      "profile": "P3",
+      "level": "M",
+      "solver_seconds_median": 0.269092,
+      "lp_iterations_median": 2312
+    },
+    {
+      "variant": 893102,
+      "profile": "P5",
+      "level": "H",
+      "solver_seconds_median": 0.154829,
+      "lp_iterations_median": 700
+    },
+    {
+      "variant": 893102,
+      "profile": "P5",
+      "level": "L",
+      "solver_seconds_median": 0.026442999999999998,
+      "lp_iterations_median": 96
+    },
+    {
+      "variant": 893102,
+      "profile": "P5",
+      "level": "M",
+      "solver_seconds_median": 0.051801,
+      "lp_iterations_median": 252
+    },
+    {
+      "variant": 893102,
+      "profile": "P7",
+      "level": "H",
+      "solver_seconds_median": 5.971938,
+      "lp_iterations_median": 26119
+    },
+    {
+      "variant": 893102,
+      "profile": "P7",
+      "level": "L",
+      "solver_seconds_median": 0.559491,
+      "lp_iterations_median": 2544
+    },
+    {
+      "variant": 893102,
+      "profile": "P7",
+      "level": "M",
+      "solver_seconds_median": 1.388413,
+      "lp_iterations_median": 7970
+    },
+    {
+      "variant": 893103,
+      "profile": "P1",
+      "level": "H",
+      "solver_seconds_median": 0.078805,
+      "lp_iterations_median": 238
+    },
+    {
+      "variant": 893103,
+      "profile": "P1",
+      "level": "L",
+      "solver_seconds_median": 0.0010479999999999999,
+      "lp_iterations_median": 5
+    },
+    {
+      "variant": 893103,
+      "profile": "P1",
+      "level": "M",
+      "solver_seconds_median": 0.0018269999999999998,
+      "lp_iterations_median": 26
+    },
+    {
+      "variant": 893103,
+      "profile": "P3",
+      "level": "H",
+      "solver_seconds_median": 1.3593309999999998,
+      "lp_iterations_median": 7311
+    },
+    {
+      "variant": 893103,
+      "profile": "P3",
+      "level": "L",
+      "solver_seconds_median": 0.126002,
+      "lp_iterations_median": 843
+    },
+    {
+      "variant": 893103,
+      "profile": "P3",
+      "level": "M",
+      "solver_seconds_median": 0.12139899999999999,
+      "lp_iterations_median": 2017
+    },
+    {
+      "variant": 893103,
+      "profile": "P5",
+      "level": "H",
+      "solver_seconds_median": 0.218967,
+      "lp_iterations_median": 1031
+    },
+    {
+      "variant": 893103,
+      "profile": "P5",
+      "level": "L",
+      "solver_seconds_median": 0.02481,
+      "lp_iterations_median": 96
+    },
+    {
+      "variant": 893103,
+      "profile": "P5",
+      "level": "M",
+      "solver_seconds_median": 0.055859,
+      "lp_iterations_median": 259
+    },
+    {
+      "variant": 893103,
+      "profile": "P7",
+      "level": "H",
+      "solver_seconds_median": 6.78492,
+      "lp_iterations_median": 27067
+    },
+    {
+      "variant": 893103,
+      "profile": "P7",
+      "level": "L",
+      "solver_seconds_median": 0.569993,
+      "lp_iterations_median": 2623
+    },
+    {
+      "variant": 893103,
+      "profile": "P7",
+      "level": "M",
+      "solver_seconds_median": 1.428057,
+      "lp_iterations_median": 7542
+    }
+  ],
+  "trends": [
+    {
+      "variant": 893101,
+      "profile": "P1",
+      "time_ordered": true,
+      "lp_ordered": true
+    },
+    {
+      "variant": 893101,
+      "profile": "P3",
+      "time_ordered": true,
+      "lp_ordered": true
+    },
+    {
+      "variant": 893101,
+      "profile": "P5",
+      "time_ordered": true,
+      "lp_ordered": true
+    },
+    {
+      "variant": 893101,
+      "profile": "P7",
+      "time_ordered": true,
+      "lp_ordered": true
+    },
+    {
+      "variant": 893102,
+      "profile": "P1",
+      "time_ordered": true,
+      "lp_ordered": true
+    },
+    {
+      "variant": 893102,
+      "profile": "P3",
+      "time_ordered": true,
+      "lp_ordered": true
+    },
+    {
+      "variant": 893102,
+      "profile": "P5",
+      "time_ordered": true,
+      "lp_ordered": true
+    },
+    {
+      "variant": 893102,
+      "profile": "P7",
+      "time_ordered": true,
+      "lp_ordered": true
+    },
+    {
+      "variant": 893103,
+      "profile": "P1",
+      "time_ordered": true,
+      "lp_ordered": true
+    },
+    {
+      "variant": 893103,
+      "profile": "P3",
+      "time_ordered": false,
+      "lp_ordered": true
+    },
+    {
+      "variant": 893103,
+      "profile": "P5",
+      "time_ordered": true,
+      "lp_ordered": true
+    },
+    {
+      "variant": 893103,
+      "profile": "P7",
+      "time_ordered": true,
+      "lp_ordered": true
+    }
+  ],
+  "time_ordered": 11,
+  "lp_ordered": 12,
+  "comparisons": 12,
+  "max_violation": 9.681997426014277e-09,
+  "max_objective_error": 1.1368683772161603e-13,
+  "narrative": "Urutan median waktu Low < Medium < High ditemukan pada 11 dari 12 perbandingan profil\u2013variasi. Urutan iterasi LP ditemukan pada 12 dari 12 perbandingan. Pengecualian waktu: P3 pada variasi 893103. Pengukuran ini menilai sensitivitas terhadap perubahan data. Kesimpulan urutan pada data acuan tidak diperluas menjadi jaminan untuk setiap variasi permintaan."
+}

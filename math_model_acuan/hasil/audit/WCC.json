@@ -1,0 +1,35 @@
+{
+  "L": {
+    "rows": 38,
+    "pairs": 703,
+    "inbound": 16,
+    "outbound": 36,
+    "numerator": 220,
+    "denominator": 436,
+    "wcc": 50.45871559633027,
+    "business_variables_deterministic": 56,
+    "business_variables_stochastic": 1408
+  },
+  "M": {
+    "rows": 38,
+    "pairs": 703,
+    "inbound": 17,
+    "outbound": 42,
+    "numerator": 256,
+    "denominator": 436,
+    "wcc": 58.71559633027523,
+    "business_variables_deterministic": 63,
+    "business_variables_stochastic": 1597
+  },
+  "H": {
+    "rows": 38,
+    "pairs": 703,
+    "inbound": 22,
+    "outbound": 60,
+    "numerator": 364,
+    "denominator": 436,
+    "wcc": 83.4862385321101,
+    "business_variables_deterministic": 86,
+    "business_variables_stochastic": 2218
+  }
+}

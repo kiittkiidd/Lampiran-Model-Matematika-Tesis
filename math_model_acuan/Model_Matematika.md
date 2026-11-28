@@ -1,144 +1,172 @@
-# Model matematika acuan PT XYZ Bahan Pangan
+# Model matematika acuan P1–P8
 
-Perusahaan memilih gudang yang dibuka dan membagi kiriman dari pabrik ke zona pelanggan melalui gudang selama satu periode. Pilih dahulu tingkat rute Low, Medium, atau High dari [kasus dasar](../case/Kasus_Dasar.md).
+Model ini memakai data pada [Kasus](../case/Kasus_Dasar.md). Jumlah barang diukur dalam ton dan boleh pecahan. Gudang dipilih untuk satu periode. Setiap produk yang diterima gudang harus dikirim kembali dalam periode tersebut.
 
-## 1. Notasi dan keputusan P1
+| Profil | Banyak skenario | Koefisien biaya kuadratik α | Koefisien waktu kuadratik β | Tujuan |
+|---|---:|---:|---:|---|
+| P1 | 1 | 0 | 0 | Biaya |
+| P2 | 27 | 0 | 0 | Biaya harapan |
+| P3 | 1 | 0 | 0 | Biaya dan emisi |
+| P4 | 27 | 0 | 0 | Biaya dan emisi harapan |
+| P5 | 1 | 0,04 | 0,025 | Biaya |
+| P6 | 27 | 0,04 | 0,025 | Biaya harapan |
+| P7 | 1 | 0,04 | 0,025 | Biaya dan emisi |
+| P8 | 27 | 0,04 | 0,025 | Biaya dan emisi harapan |
+
+Profil pasti menggunakan peluang satu pada satu kondisi permintaan. Profil stokastik menggunakan peluang dan pesanan dari dokumen kasus. Rute yang diizinkan pada satu tingkat sama untuk semua profil dan skenario.
+
+## 1. Indeks, parameter, dan keputusan
 
 | Simbol | Arti |
-| --- | --- |
-| $i,g,j,p$ | Pabrik, gudang, zona pelanggan, dan produk. |
-| $`\mathcal R_{\mathrm{in}},\mathcal R_{\mathrm{out}}`$ | Daftar rute pabrik–gudang dan gudang–zona yang diizinkan, masing-masing dengan kode produk. |
-| $`U_i,V_g,T_g`$ | Kapasitas pabrik dalam ton, kapasitas gudang dalam ton, dan waktu kerja gudang dalam jam. |
-| $`d_{jp}`$ | Permintaan produk $p$ di zona $j$, dalam ton. |
-| $`F_g,c^{\mathrm{in}}_{ig},c^{\mathrm{out}}_{gj},h_{gp}`$ | Biaya buka gudang, tarif angkut masuk per ton, tarif angkut keluar per ton, dan tarif penanganan per ton. |
-| $`y_g\in\{0,1\}`$ | Keputusan membuka gudang $g$. Nilai 1 berarti buka. |
-| $`x_{igp}\geq0`$ | Ton produk $p$ yang dikirim dari pabrik $i$ ke gudang $g$. |
-| $`z_{gjp}\geq0`$ | Ton produk $p$ yang dikirim dari gudang $g$ ke zona $j$. |
+|---|---|
+| $i$ | Pabrik P1–P6 |
+| $R^{\mathrm{in}},R^{\mathrm{out}}$ | Himpunan rute pabrik–gudang–produk dan gudang–zona–produk yang diizinkan pada tingkat L/M/H |
+| $\alpha,\beta$ | Koefisien tambahan biaya dan jam kerja kuadratik pada tabel profil |
+| $g$ | Gudang G1–G4 |
+| $j$ | Zona pelanggan K1–K6 |
+| $p$ | Produk A, B, atau C |
+| $s$ | Kondisi permintaan; satu kondisi pada profil pasti dan 27 skenario pada profil stokastik |
+| $\pi_s$ | Peluang skenario; bernilai satu pada profil pasti |
+| $d_{jps}$ | Pesanan produk $p$ di zona $j$ pada skenario $s$ |
+| $V_g,T_g$ | Kapasitas tonase dan jam kerja gudang $g$ |
+| $F_g$ | Biaya membuka gudang $g$ |
+| $c^{\mathrm{in}}_{ig},c^{\mathrm{out}}_{gj}$ | Tarif angkut masuk dan keluar per ton |
+| $h_{gp}$ | Biaya penanganan dasar per ton |
+| $e_g^F,e^{\mathrm{in}}_{ig},e^{\mathrm{out}}_{gj}$ | Emisi tetap gudang dan emisi angkutan per ton |
+| $y_g$ | Keputusan buka gudang: 1 berarti buka, 0 berarti tutup |
+| $x_{igps}$ | Kiriman produk $p$ dari pabrik $i$ ke gudang $g$ pada skenario $s$ |
+| $z_{gjps}$ | Kiriman produk $p$ dari gudang $g$ ke zona $j$ pada skenario $s$ |
 
-Setiap variabel kiriman mewakili satu rute dan satu produk yang diizinkan. Setiap penjumlahan kiriman mencakup rute yang diizinkan pada tingkat yang dipilih. Dalam biaya dan batas gudang, $`q_{gp}=\sum_j z_{gjp}`$ adalah singkatan untuk tonase produk $p$ yang keluar dari gudang $g$.
+Variabel kiriman hanya disediakan untuk rute yang diizinkan pada tingkat yang dipilih. Keputusan $y_g$ dipakai bersama pada seluruh skenario. Setiap jumlah kiriman memiliki indeks skenarionya sendiri. Contoh $x_{1,2,A,s}$ dibaca ton minyak dari Pabrik P1 ke G2 pada skenario $s$; $z_{1,2,A,s}$ dibaca ton minyak dari G1 ke K2 pada skenario yang sama. Huruf dan semua indeks menentukan identitas keputusan.
 
-## 2. Biaya dan kendala P1
+Tonase produk di gudang ditulis dengan singkatan berikut:
 
-**Tujuan biaya.** Pilih rencana dengan jumlah biaya buka, biaya angkut dua tahap, dan biaya penanganan paling rendah.
+```math
+q_{gps}:=\sum_{j:(g,j,p)\in R^{\mathrm{out}}}z_{gjps}.
+```
 
-$$
-\min C =
-\sum_g F_g y_g
-+\sum_{(i,g,p)\in\mathcal R_{\mathrm{in}}}c^{\mathrm{in}}_{ig}x_{igp}
-+\sum_{(g,j,p)\in\mathcal R_{\mathrm{out}}}c^{\mathrm{out}}_{gj}z_{gjp}
-+\sum_{g,p}h_{gp}q_{gp}.
-$$
+$q_{gps}$ adalah jumlah semua kiriman keluar untuk satu produk dari satu gudang. Pada representasi acuan, simbol ini merupakan singkatan penjumlahan. Contohnya, jika G1 mengirim 1,20 ton dan 0,80 ton minyak ke dua zona, tonase minyak di G1 adalah 2,00 ton.
 
-Contoh P1 → G1 → K1 untuk produk A dikenai biaya angkut dan penanganan $2+1+2=5$ per ton. Biaya tetap G1 sebesar 25 dibayar sekali jika dibuka.
+## 2. Fungsi biaya dan emisi
 
-**Kapasitas pabrik.** Seluruh produk yang dikirim satu pabrik berbagi kapasitas.
+Biaya total adalah biaya membuka gudang sekali, ditambah biaya operasi yang dirata-ratakan menurut peluang skenario.
 
-$$
-\sum_{g,p}x_{igp}\le U_i
-\quad\text{untuk setiap pabrik } i.
-$$
+```math
+C=\sum_g F_g y_g+
+\sum_s\pi_s\left[
+\sum_{(i,g,p)\in R^{\mathrm{in}}}c^{\mathrm{in}}_{ig}x_{igps}
++\sum_{(g,j,p)\in R^{\mathrm{out}}}c^{\mathrm{out}}_{gj}z_{gjps}
++\sum_{g,p}h_{gp}q_{gps}
++\alpha\sum_{g,p}q_{gps}^{2}\right].
+```
 
-Nilai $`U_i=8`$ ton. Jika P1 memasok 5,5 ton minyak, sisa kapasitasnya untuk semua kiriman adalah 2,5 ton.
+Gunakan $\alpha=0$ pada profil linear dan $\alpha=0{,}04$ pada profil nonlinear. Karena jumlah peluang satu, biaya operasi pada profil pasti adalah biaya dari satu kondisi yang diketahui. Sebagai contoh, tonase 5, 4, dan 3 ton di satu gudang memberikan tambahan biaya nonlinear sebesar $0{,}04(25+16+9)=2$.
 
-**Keseimbangan barang di gudang.** Setiap produk yang masuk harus dikirim ke zona pada periode yang sama.
+Emisi total menghitung emisi tetap gudang satu kali dan emisi angkutan sesuai peluang skenario.
 
-$$
-\underbrace{\sum_i x_{igp}}_{\text{total masuk}} = \underbrace{\sum_j z_{gjp}}_{\text{total keluar}}.
-$$
+```math
+E=\sum_g e_g^F y_g+
+\sum_s\pi_s\left[
+\sum_{(i,g,p)\in R^{\mathrm{in}}}e^{\mathrm{in}}_{ig}x_{igps}
++\sum_{(g,j,p)\in R^{\mathrm{out}}}e^{\mathrm{out}}_{gj}z_{gjps}\right].
+```
 
-Persamaan ini berlaku untuk setiap pasangan gudang dan produk yang kompatibel. G1 menangani A dan B. G2, G3, dan G4 masing-masing menangani A, B, dan C. Setiap gudang harus menyeimbangkan kiriman masuk dan keluar untuk tiap produk secara terpisah.
+Pada profil stokastik, $C$ dan $E$ adalah biaya harapan dan emisi harapan. Pada profil satu tujuan, minimalkan $C$. Pada profil dua tujuan, cari kompromi antara $C$ dan $E$ dengan prosedur pada Bagian 4.
 
-Jika G2 menerima 6 ton minyak, total kiriman minyak dari G2 juga harus 6 ton. Pada pasangan yang belum memiliki rute di suatu tingkat, penjumlahan kosong bernilai nol.
+## 3. Kendala operasi
 
-**Pemenuhan pesanan.** Seluruh permintaan dilayani tepat sesuai jumlah yang diminta.
+### Keseimbangan setiap produk di setiap gudang
 
-$$
-\sum_g z_{gjp}=d_{jp}
-\quad\text{untuk setiap zona } j \text{ dan produk } p.
-$$
+```math
+\sum_{i:(i,g,p)\in R^{\mathrm{in}}}x_{igps}
+=\sum_{j:(g,j,p)\in R^{\mathrm{out}}}z_{gjps},
+\qquad \forall g,p,s.
+```
 
-Jika K1 memesan 3 ton minyak, G1 dapat mengirim 1,25 ton dan G2 mengirim 1,75 ton.
+Kedua ruas menyatakan produk yang sama di gudang dan skenario yang sama. Jika G1 menerima 2 ton sirup, seluruh kiriman sirup keluar G1 harus berjumlah 2 ton. Ada 12 baris per skenario: empat gudang dikalikan tiga produk.
 
-**Kapasitas tonase gudang.** Barang hanya bisa disalurkan melalui gudang yang dibuka dan totalnya dibatasi.
+### Pemenuhan pesanan
 
-$$
-\sum_p q_{gp}\le V_g y_g
-\quad\text{untuk setiap gudang } g.
-$$
+```math
+\sum_{g:(g,j,p)\in R^{\mathrm{out}}}z_{gjps}=d_{jps},
+\qquad \forall j,p,s.
+```
 
-Jika G2 dibuka, batasnya 20 ton. Jika ditutup, arus keluar menjadi nol dan aturan keseimbangan membuat arus masuk juga nol.
+Pesanan boleh dibagi antargudang. Pesanan 3,17 ton minyak di K1 dapat dipenuhi, misalnya, dengan 1,20 ton dari satu gudang dan 1,97 ton dari gudang lainnya jika kedua rutenya diizinkan. Ada 18 baris per skenario: enam zona dikalikan tiga produk.
 
-**Waktu penanganan linear.** Tarif waktu $a$ adalah satu jam kerja per ton.
+### Kapasitas tonase gudang
 
-$$
-a\sum_p q_{gp}\le T_g y_g
-\quad\text{untuk setiap gudang } g.
-$$
+```math
+\sum_p q_{gps}\le V_g y_g,
+\qquad \forall g,s.
+```
 
-Data menyediakan 1,2 jam kerja untuk setiap ton kapasitas. G3 yang menangani 18 ton memerlukan 18 jam dan memiliki 21,60 jam tersedia. Karena itu, pada profil linear, pemenuhan kapasitas tonase sekaligus memenuhi batas waktu. Baris waktu dicatat dalam formulasi operasi dan diganti dengan bentuk kuadratik di profil nonlinear.
+Jumlah seluruh produk berbagi kapasitas gudang. Jika G1 dibuka, batasnya 16 ton; jika ditutup, ruas kanan nol. Karena semua kiriman nonnegatif dan barang masuk sama dengan barang keluar, penutupan gudang juga membuat arus masuknya nol. Ada empat baris per skenario.
 
-## 3. Perubahan pada profil nonlinear
+### Waktu penanganan gudang
 
-Pada P5–P8, suku kuadratik berlaku pada biaya dan waktu penanganan di gudang. Hitung volume per produk yang ditangani pada tiap gudang. Kapasitas setiap pabrik memakai kendala linear pada bagian P1. [Contoh penanganan gudang](../case/Kasus_Dasar.md#p5-minimisasi-biaya-dengan-penanganan-nonlinear)
+```math
+\sum_p q_{gps}+\beta\sum_p q_{gps}^{2}\le T_g y_g,
+\qquad \forall g,s.
+```
 
-$$
-C_{\mathrm{NL}}=C+0{,}04\sum_{g,p}q_{gp}^{2}.
-$$
+Gunakan $\beta=0$ pada profil linear dan $\beta=0{,}025$ pada profil nonlinear. Waktu dasar satu jam per ton. Untuk 5 ton minyak, 4 ton sirup, dan 3 ton susu, waktu linear 12 jam; waktu nonlinear $12+0{,}025(25+16+9)=13{,}25$ jam. Aturan berlaku pada seluruh empat gudang dan seluruh skenario.
 
-Koefisien 0,04 mengubah kuadrat tonase menjadi tambahan biaya penanganan. Delapan ton satu produk memberi tambahan $0{,}04(8^2)=2{,}56$ satuan biaya.
+Pada profil linear, waktu tersedia lebih besar daripada kapasitas tonase, sehingga batas tonase juga cukup untuk memenuhi batas waktu. Kedua baris tetap dicatat sebagai dua aturan fisik yang dibedakan. Pada profil nonlinear, tambahan waktu kuadratik dapat membuat batas waktu aktif.
 
-$$
-\sum_p(aq_{gp}+0{,}025q_{gp}^2)\le T_g y_g
-\quad\text{untuk setiap gudang } g.
-$$
+### Domain keputusan
 
-Koefisien 0,025 mengubah kuadrat tonase menjadi jam tambahan. Sepuluh ton sirup dan delapan ton susu di G3 memerlukan $18+0{,}025(10^2+8^2)=22{,}10$ jam, melebihi batas 21,60 jam. Batas tonase tetap 18 ton.
+```math
+\begin{aligned}
+y_g&\in\{0,1\} &&\forall g,\\
+x_{igps}&\ge0 &&\forall (i,g,p)\in R^{\mathrm{in}},s,\\
+z_{gjps}&\ge0 &&\forall (g,j,p)\in R^{\mathrm{out}},s.
+\end{aligned}
+```
 
-## 4. Perubahan pada profil stokastik
+Keputusan gudang biner, sedangkan kiriman dapat pecahan. Penghitungan WCC menggunakan 38 baris operasi per skenario: 12 neraca, 18 permintaan, empat kapasitas, dan empat waktu. Domain dicatat terpisah dari 38 baris tersebut.
 
-Perusahaan memilih $`y_g`$ sebelum mengetahui permintaan. Setelah skenario $s$ diketahui, perusahaan mengatur $`x_{igps}`$ dan $`z_{gjps}`$ sesuai kebutuhan. Semua kendala operasi berlaku pada masing-masing skenario, dengan $`q_{gps}=\sum_j z_{gjps}`$ dan permintaan $`d_{jps}`$. Pada P2, P4, P6, dan P8, hanya permintaan minyak goreng di K1 yang berubah antarskenario. Pada data dasar nilainya sekitar 1,475, 3,000, dan 4,525 ton. Tujuh belas pasangan zona–produk lainnya memakai nilai yang sama pada ketiga skenario.
+## 4. Profil dua tujuan dan 25 batas emisi
 
-$$
-C_{\mathrm{stoch}}=
-\sum_g F_g y_g+\sum_s\pi_s C_s^{\mathrm{operasi}}.
-$$
+Untuk setiap batas emisi $\varepsilon$, selesaikan:
 
-$`\pi_s`$ adalah peluang skenario, dan $`C_s^{\mathrm{operasi}}`$ mencakup angkut dan penanganan. Biaya buka dibayar sekali. Pada P6 dan P8, tambahkan $`0{,}04\sum_{g,p}q_{gps}^{2}`$ pada biaya operasi sebelum mengalikannya dengan peluang skenario. Gunakan tonase skenario yang sama untuk memeriksa batas waktu di setiap gudang.
+```math
+\min C\qquad\text{dengan kendala operasi dan }E\le\varepsilon.
+```
 
-## 5. Perubahan pada profil multiobjektif
+Setelah biaya minimum pada langkah tersebut diperoleh, pilih emisi minimum di antara rencana yang biayanya berada dalam toleransi biaya yang ditetapkan:
 
-Emisi dihitung dalam kilogram setara karbon dioksida (kg CO₂e).
+```math
+\min E\qquad\text{dengan kendala operasi, }E\le\varepsilon,
+\quad C\le C^{\star}_{\varepsilon}+\delta_C.
+```
 
-$$
-E=
-\sum_g e_g^{\mathrm{tetap}}y_g
-+\sum_{(i,g,p)\in\mathcal R_{\mathrm{in}}} e^{\mathrm{in}}_{ig}x_{igp}
-+\sum_{(g,j,p)\in\mathcal R_{\mathrm{out}}} e^{\mathrm{out}}_{gj}z_{gjp}.
-$$
+$\delta_C=0{,}00025$ adalah toleransi pemecah seri dalam satuan biaya. Toleransi selisih objektif pada penyelesaian biaya adalah 0,00025 satuan biaya; pada penyelesaian emisi adalah 0,00025 kg CO2e. Batas celah absolut SCIP pada profil linear ditetapkan lebih ketat, yaitu $10^{-8}$; pada profil nonlinear sebesar 0,00025. Seluruh hasil harus memenuhi batas pemeriksaan 0,00025 pada tujuan yang sedang diminimalkan.
 
-$`e_g^{\mathrm{tetap}}`$ adalah emisi gudang yang dibuka. Faktor $`e^{\mathrm{in}}_{ig}`$ dan $`e^{\mathrm{out}}_{gj}`$ adalah emisi angkutan per ton. Untuk P4 dan P8, hitung $`E_s^{\mathrm{angkut}}`$ dari dua tahap pengiriman pada skenario $s$. Rata-ratakan emisi angkutan dengan peluang skenario, lalu tambahkan emisi tetap gudang satu kali.
+Empat langkah awal menghitung biaya minimum, emisi minimum, rencana biaya minimum dekat ujung emisi minimum, serta emisi minimum dekat ujung biaya minimum. Ambil 25 batas berjarak sama di antara emisi kedua rencana ujung itu. Pada 23 batas interior, lakukan masing-masing dua langkah di atas. Jumlahnya 50 langkah optimisasi per profil dan tingkat. Rentang batas dihitung untuk masing-masing profil dan tingkat; jumlah batas serta prosedurnya sama. Pada profil stokastik, batas diterapkan pada emisi harapan dan seluruh skenario tetap diselesaikan dalam satu model dengan keputusan gudang bersama.
 
-$$
-E_{\mathrm{stoch}}=\sum_g e_g^{\mathrm{tetap}}y_g + \sum_s\pi_s E_s^{\mathrm{angkut}}.
-$$
+Titik biaya–emisi yang sama ditampilkan sekali. Titik yang didominasi dikeluarkan dari grafik Pareto. Toleransi numerik dinyatakan dalam konfigurasi yang dibekukan.
 
-P3, P4, P7, dan P8 mencari kompromi biaya dan emisi dengan metode **ε-constraint**. Untuk setiap batas emisi $\varepsilon$, selesaikan
+## 5. Representasi internal SCIP
 
-$$
-\min C\qquad\text{dengan}\qquad E\le\varepsilon.
-$$
+SCIP menangani keputusan biner dan kontinu secara bersama. Implementasi menggunakan variabel bantu tonase pada seluruh profil:
 
-Gunakan bentuk biaya dan emisi yang sesuai dengan profil. Sebagai contoh, $\varepsilon=120$ berarti rencana biaya terendah harus menghasilkan emisi maksimal 120 kg CO₂e. Pada profil stokastik, batas ini berlaku untuk emisi harapan.
+```math
+\widehat q_{gps}=\sum_j z_{gjps}.
+```
 
-Cari dua solusi ujung dengan menyelesaikan tujuan biaya dan tujuan emisi secara bergantian. Pada masing-masing ujung, gunakan tujuan lainnya untuk memilih di antara solusi dengan nilai tujuan utama yang sama sesuai toleransi. Emisi terendah $`E_{\min}`$ dan emisi pada solusi biaya terendah $`E_C`$ menentukan 25 batas.
+Variabel bantu ditentukan sepenuhnya oleh kiriman. Menggantikan $\widehat q$ dengan ruas kanannya mengembalikan persamaan acuan. Pada profil nonlinear, setiap kuadrat tonase diberi variabel bantu berikut:
 
-$$
-\varepsilon_k=E_{\min}+\frac{k}{24}(E_C-E_{\min}),
-\qquad k=0,\ldots,24.
-$$
+```math
+v_{gps}\ge\widehat q_{gps}^{2}.
+```
 
-Kedua ujung ikut dihitung. Pada setiap batas interior, pilih biaya minimum terlebih dahulu, lalu emisi terendah di antara solusi dengan biaya yang sama sesuai toleransi. CSV menyimpan seluruh batas. Grafik menampilkan sampel titik berbeda yang tidak didominasi pada toleransi pencatatan.
+Tambahan biaya menjadi $0{,}04\sum_s\pi_s\sum_{g,p}v_{gps}$ dan tambahan jam kerja menjadi $0{,}025\sum_p v_{gps}$. Seluruh fungsi tujuan dan batas lain kemudian linear terhadap variabel bantu ini; hubungan kuadrat berada pada pertidaksamaan di atas.
 
-Untuk P5 sampai P8, kode membangun batas bawah suku kuadrat dengan garis singgung. Biaya dan waktu dihitung kembali dari suku kuadrat asli, dan hasil diterima setelah memenuhi toleransi kelayakan dan celah terhadap batas bawah solver. [Metode pengujian dan hasil](Hasil_Verifikasi.md)
+Representasi ini setara dalam keputusan bisnis. Setiap rencana asli dapat diperluas dengan memilih $v_{gps}=q_{gps}^{2}$. Sebaliknya, jika suatu rencana memenuhi batas dengan $v_{gps}\ge q_{gps}^{2}$, menggantinya dengan kuadrat sebenarnya tidak menambah biaya atau jam kerja. Pada minimisasi biaya, koefisien positif mendorong nilai bantu ke batas kuadratnya. Pada pemilihan emisi dengan batas biaya, proyeksi rencana ke kiriman asli tetap memenuhi biaya serta waktu asli. Biaya dan waktu yang dilaporkan selalu dihitung ulang dari kuadrat tonase sebenarnya.
 
-[Halaman utama](../README.md)
+Batas atas kiriman diturunkan dari kendala acuan. Kiriman keluar tidak melampaui pesanan tujuan. Tonase produk di gudang tidak melampaui kapasitas gudang dan total pesanan produk tersebut. Setiap batas mengikuti nonnegativitas, neraca, pesanan, dan kapasitas yang sudah berlaku.
+
+WCC dihitung pada representasi acuan sebelum variabel bantu dan presolve. Pemeriksaan solusi menghitung ulang neraca, kapasitas, waktu, biaya, dan emisi langsung dari kiriman asli. Data, kode, konfigurasi, dan hasil pengukuran dicatat dengan checksum pada versi yang dibekukan.
+
+[Kasus untuk pemodel](../case/Kasus_Dasar.md) · [Tutorial WCC](../Lampiran_WCC.md) · [Persamaan Low R1–R38](Persamaan_WCC.md) · [Hasil verifikasi](Hasil_Verifikasi.md)

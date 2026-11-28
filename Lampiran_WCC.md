@@ -1,128 +1,222 @@
-# Cara menghitung WCC di PT XYZ
+# Menghitung Weighted Constraint Coupling
 
-## 1. Ilustrasi perhitungan WCC
+## 1. Apa yang dihitung?
 
-### a. Apa itu WCC?
+*Weighted Constraint Coupling* (WCC) menghitung **variabel keputusan yang dipakai bersama oleh pasangan baris kendala**. Satu variabel bersama memberi bobot satu. Jika dua baris memakai tiga variabel yang sama, bobot pasangannya tiga. Cocokkan huruf **dan seluruh indeks**: $z_{2,5,C}$ berbeda dari $z_{2,6,C}$, dan $x_{2,5,C}$ berbeda dari $z_{2,5,C}$.
 
-WCC (*Weighted Constraint Coupling*) mengukur seberapa banyak **variabel keputusan yang sama muncul pada dua baris kendala**. Jika kedua baris memuat satu variabel yang sama, pasangan itu mendapat bobot 1. Jika kedua baris memuat dua variabel yang sama, bobotnya 2.
+Setiap baris kendala menjadi satu titik pada graf. Garis menghubungkan dua baris yang berbagi variabel; angka pada garis menunjukkan jumlah variabel bersama. Periksa setiap pasangan satu kali.
 
-### b. Rumus WCC
-
-$$
-\mathrm{WCC}
-=\frac{\text{jumlah bobot semua pasangan pada versi yang dinilai}}
-       {\text{jumlah bobot semua pasangan pada daftar pembanding}}
-\times 100\%.
-$$
-
-Pada setiap versi, cocokkan variabel hingga ke indeksnya. Hitung setiap pasangan baris satu kali, lalu jumlahkan bobotnya. Daftar pembanding menunjukkan kombinasi rute yang boleh dipakai sebagai patokan dan ditetapkan sekali untuk semua versi yang dibandingkan.
-
-### c. Bagaimana menghitung WCC?
-
-**1. Tulis tiga jenis kendala.** Ada satu pabrik P1, dua gudang G1 dan G2, dua pelanggan K1 dan K2, serta satu produk. Variabel $`x_g`$ menyatakan kiriman dari P1 ke gudang $`g`$. Variabel $`z_{g,j}`$ menyatakan kiriman dari gudang $`g`$ ke pelanggan $`j`$.
-
-| Simpul | Kendala | Persamaan |
-| --- | --- | --- |
-| R1 | Keseimbangan aliran di setiap gudang | $`x_g=\sum_j z_{g,j}`$ |
-| R2 | Kapasitas setiap gudang | $`x_g\le V_g`$ |
-| R3 | Permintaan setiap pelanggan | $`\sum_g z_{g,j}=d_j`$ |
-
-$`V_g`$ adalah kapasitas gudang $`g`$, dan $`d_j`$ adalah permintaan pelanggan $`j`$. R2 membatasi arus masuk. Karena R1 menyamakan arus masuk dan arus keluar, batas kapasitas itu juga dapat ditulis $`\sum_j z_{g,j}\le V_g`$. Ilustrasi ini memakai bentuk arus masuk agar hubungan $`x_g`$ terlihat langsung. Gunakan bentuk kendala yang sama saat menghitung bobot versi Low dan pembanding.
-
-Pada notasi model PT XYZ, $`\sum_{g,p}x_{igp}\le U_i`$ adalah **kapasitas pabrik** $`i`$. Penjumlahannya mencakup semua gudang dan produk yang dikirim oleh pabrik tersebut.
-
-**2. Petakan hubungan antarbaris.** G1 dan G2 masing-masing memiliki satu baris neraca dan satu baris kapasitas. K1 dan K2 masing-masing memiliki satu baris permintaan. Jadi, ilustrasi ini memiliki enam simpul, satu untuk setiap baris kendala.
-
-**Garis hitam penuh** menunjukkan pasangan yang berbagi variabel pada Low dan pada pembanding. **Garis merah putus-putus** menunjukkan pasangan yang berbagi variabel hanya pada pembanding. Label di atas garis menunjukkan variabel yang sama pada kedua baris.
-
-```mermaid
-flowchart TB
-    subgraph WCC["Hubungan antarbaris kendala"]
-        N1["R1 G1 · Neraca"]
-        N2["R1 G2 · Neraca"]
-        C1["R2 G1 · Kapasitas"]
-        C2["R2 G2 · Kapasitas"]
-        D1["R3 K1 · Permintaan"]
-        D2["R3 K2 · Permintaan"]
-
-        N1 ---|x₁| C1
-        N1 ---|z₁,₁| D1
-        N1 ---|z₁,₂| D2
-        N2 -.-|x₂| C2
-        N2 -.-|z₂,₁| D1
-        N2 -.-|z₂,₂| D2
-    end
-
-    classDef baris fill:#f6f8fa,stroke:#57606a,color:#1f2328
-    class N1,N2,C1,C2,D1,D2 baris
-    style WCC fill:#ffffff,stroke:#d0d7de,color:#1f2328
-    linkStyle 0,1,2 stroke:#171717,stroke-width:2px
-    linkStyle 3,4,5 stroke:#b4232f,stroke-width:2px,stroke-dasharray:6 4
+```math
+w_{rs}=|S_r\cap S_s|,\qquad
+B=\sum_{r<s}w_{rs},\qquad
+\mathrm{WCC}=\frac{B}{B_{\mathrm{ref}}}\times100\%.
 ```
 
-Sebagai contoh, garis $`z_{1,2}`$ menghubungkan **neraca G1** dan **permintaan K2**. Kedua baris memuat keputusan kiriman G1 → K2. Keputusan itu tetap dihitung dalam WCC Low meskipun solver akhirnya menetapkan tonasenya nol. Pasangan baris yang tidak berbagi variabel pada Low maupun pembanding memiliki bobot nol dan tidak digambar.
+| Simbol | Arti dan cara mendapatkannya |
+|---|---|
+| $S_r$ | Himpunan variabel berbeda yang muncul pada baris $r$. |
+| $w_{rs}$ | Bobot pasangan: hitung variabel yang terdapat di kedua himpunan. |
+| $B$ | **Pembilang**: jumlahkan bobot seluruh pasangan pada tingkat yang dinilai. |
+| $B_{\mathrm{ref}}$ | **Penyebut bersama**: jumlahkan bobot pasangan pada satu daftar rute pembanding yang ditetapkan untuk semua tingkat. |
 
-**3. Hitung bobot untuk pasangan neraca–kapasitas (R1–R2).** Pada Low, pabrik P1 hanya dapat mengirim ke G1. Pembanding juga mengizinkan kiriman P1 → G2.
+**Dari mana daftar pembanding berasal?** Kasus ini memiliki empat gudang, enam zona, dan tiga produk. Semua gudang mampu menangani semua produk. Daftar pembanding mengizinkan setiap gudang mengirim setiap produk ke setiap zona: $4\times6\times3=72$ rute keluar. Rute masuk mengikuti daftar High. Low, Medium, dan High hanya menggunakan sebagian dari daftar tersebut. Fasilitas tambahan tidak dibuat untuk menghitung penyebut.
 
-| Rute masuk | Variabel bersama | Pasangan baris | Bobot Low | Bobot pembanding |
-| --- | --- | --- | ---: | ---: |
-| P1 → G1 | $`x_1`$ | Neraca G1 dan kapasitas G1 | 1 | 1 |
-| P1 → G2 | $`x_2`$ | Neraca G2 dan kapasitas G2 | 0 | 1 |
-| **Total R1–R2** | | | **1** | **2** |
+Penyebut ini adalah bobot maksimum **dalam struktur rute pembanding tersebut**. Normalisasi ini ditetapkan untuk penelitian ini; persentasenya perlu dibaca bersama daftar rute dan cakupan kendala yang digunakan.
 
-Pada kelompok pasangan ini, satu variabel bersama muncul di Low dan dua pada pembanding. Maka kelompok R1–R2 menyumbang **1 ke pembilang** dan **2 ke penyebut**.
+**NNZ dan kemungkinan hubungan.** NNZ adalah jumlah entri bukan nol. Pada matriks insidensi variabel–kendala, NNZ satu baris sama dengan banyaknya variabel berbeda yang muncul pada baris itu. Konstanta tidak dihitung. Dua baris dengan NNZ 3 dan 7 dapat berbagi paling banyak 3 variabel. Akan tetapi, batas 3 belum menyatakan bahwa ketiganya bisa cocok: asal, tujuan, produk, dan jenis keputusan juga harus sesuai. Penyebut dihitung dari **variabel yang benar-benar dapat muncul bersama dalam struktur pembanding**, bukan dengan mengalikan semua pasangan dengan satu angka NNZ.
 
-**4. Hitung bobot untuk pasangan neraca–permintaan (R1–R3).** Pada Low, G1 melayani K1 dan K2 dan diasumsikan memiliki kapasitas yang cukup untuk kedua pesanan. Pada pembanding, kedua gudang memiliki rute ke K1 dan K2. Cocokkan setiap kiriman dengan baris neraca gudang asal dan baris permintaan pelanggan tujuan.
+## 2. Contoh kecil dari empat baris model sebenarnya
 
-| Rute keluar | Variabel bersama | Pasangan baris | Bobot Low | Bobot pembanding |
-| --- | --- | --- | ---: | ---: |
-| G1 → K1 | $`z_{1,1}`$ | Neraca G1 dan permintaan K1 | 1 | 1 |
-| G1 → K2 | $`z_{1,2}`$ | Neraca G1 dan permintaan K2 | 1 | 1 |
-| G2 → K1 | $`z_{2,1}`$ | Neraca G2 dan permintaan K1 | 0 | 1 |
-| G2 → K2 | $`z_{2,2}`$ | Neraca G2 dan permintaan K2 | 0 | 1 |
-| **Total R1–R3** | | | **2** | **4** |
+Ambil empat baris dari profil P1 Low. Nomor baris mengikuti model lengkap, sehingga contoh dapat ditelusuri pada [persamaan R1–R38](math_model_acuan/Persamaan_WCC.md).
 
-**5. Jumlahkan bobot, lalu bagi.** Kelompok kapasitas–permintaan (R2–R3) berbobot nol karena kapasitas pada ilustrasi ini memakai kiriman masuk, sedangkan permintaan memakai kiriman keluar. Pasangan baris dalam kelompok kendala yang sama juga berbobot nol karena masing-masing memakai indeks yang berbeda.
+| Baris | Aturan | Data yang dipakai |
+|---|---|---|
+| R6 | Neraca susu C di G2 | Susu masuk harus sama dengan susu keluar. |
+| R27 | Pesanan susu C di K5 | Pesanan K5 sebesar 2,73 ton. |
+| R32 | Kapasitas tonase G2 | Maksimal 20 ton jika G2 dibuka. |
+| R36 | Waktu kerja G2 | Maksimal 22,40 jam jika G2 dibuka. |
 
-| Kelompok pasangan kendala | Bobot Low | Bobot pembanding |
-| --- | ---: | ---: |
-| R1–R2 · Neraca dan kapasitas | 1 | 2 |
-| R1–R3 · Neraca dan permintaan | 2 | 4 |
-| R2–R3 · Kapasitas dan permintaan | 0 | 0 |
-| **Total** | **3 (pembilang)** | **6 (penyebut)** |
+### 2.1 Tulis persamaan dan seluruh indeksnya
 
-WCC seluruh ilustrasi adalah **3 ÷ 6 × 100% = 50%**. Pada graf, pembilang berasal dari tiga garis hitam. Penyebut berasal dari ketiga garis hitam ditambah tiga garis merah. Setiap garis di ilustrasi ini berbobot satu.
+Pada Low, G2 menerima susu dari P4 dan mengirimkannya ke K5 serta K6:
 
-## 2. Perhitungan WCC pada kasus PT XYZ
+```math
+\mathrm{R6}:\quad x_{4,2,C}=z_{2,5,C}+z_{2,6,C}.
+```
 
-Tabel ini menjumlahkan bobot dari **903 pasangan** di antara 43 baris operasi. Pada setiap tingkat, hitung rute dan keputusan yang muncul pada baris tersebut, termasuk keputusan yang bisa bernilai nol pada solusi optimal.
+Pesanan susu K5 dilayani melalui G1 dan G2:
 
-Setiap rute masuk muncul pada dua baris, jadi bobotnya **1**. Setiap rute keluar muncul pada empat baris, jadi bobotnya **6** karena ada enam cara memasangkan empat baris. Setiap keputusan buka gudang muncul pada batas tonase dan batas waktu gudang itu, jadi bobotnya **1**.
+```math
+\mathrm{R27}:\quad z_{1,5,C}+z_{2,5,C}=2{,}73.
+```
 
-| Daftar rute | Rute masuk × 1 | Rute keluar × 6 | Keputusan buka × 1 | Total bobot | WCC |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Low | 16 | 216 | 4 | **236** | **54,25%** |
-| Medium | 21 | 258 | 4 | **283** | **65,06%** |
-| High | 35 | 342 | 4 | **381** | **87,59%** |
-| Pembanding | 35 | 396 | 4 | **435** | |
+Kapasitas tonase G2 menjumlahkan semua produk yang keluar:
 
-### Rute apa saja yang masuk ke pembilang dan penyebut?
+```math
+\begin{aligned}
+\mathrm{R32}:\quad &z_{2,1,A}+z_{2,2,A}+z_{2,3,B}+z_{2,4,B}\\
+&+z_{2,5,C}+z_{2,6,C}\le20y_2.
+\end{aligned}
+```
 
-Satu rute dihitung untuk **satu produk**. Misalnya, P1 → G1 untuk minyak dan P1 → G1 untuk sirup adalah dua keputusan berbeda. Keduanya diperiksa menurut daftar rute pada tingkat yang dihitung.
+Pada P1, setiap ton membutuhkan satu jam. Baris waktu G2 memakai kiriman yang sama:
 
-- **Pembilang.** Ambil rute berindeks yang memang diizinkan pada Low, Medium, atau High. Hitung bobot dari baris kendala yang memuat setiap variabel kiriman. Empat keputusan buka gudang menyumbang empat poin pada setiap tingkat.
-- **Penyebut.** Gunakan satu pembanding untuk ketiga tingkat. Untuk pabrik → gudang, gunakan tepat 35 rute berindeks pada High. Untuk gudang → zona, gunakan 11 pasangan gudang–produk yang menerima kiriman pada High, lalu hubungkan setiap pasangan itu ke keenam zona. Hasilnya 66 rute keluar.
+```math
+\begin{aligned}
+\mathrm{R36}:\quad &z_{2,1,A}+z_{2,2,A}+z_{2,3,B}+z_{2,4,B}\\
+&+z_{2,5,C}+z_{2,6,C}\le22{,}40y_2.
+\end{aligned}
+```
 
-Tiga contoh berikut menunjukkan cara membaca aturan itu dengan produk dan lokasi yang sama seperti di data kasus.
+$x_{4,2,C}$ berarti ton susu dari **P4 ke G2**. $z_{2,5,C}$ berarti ton susu dari **G2 ke K5**. $y_2$ adalah keputusan membuka G2. Angka 20 dan 22,40 merupakan parameter; keduanya tidak menambah bobot.
 
-| Rute dan produk | Diizinkan pada Low | Masuk pembanding | Sumbangan dari variabel rute |
-| --- | --- | --- | --- |
-| P1 → G1, minyak (A) | Ya | Ya | 1 pada pembilang Low dan 1 pada penyebut. |
-| P1 → G1, susu dingin (C) | Tidak | Tidak | 0 pada kedua total. G1 hanya menangani minyak dan sirup. |
-| G2 → K2, sirup (B) | Tidak | Ya | 0 pada pembilang Low dan 6 pada penyebut. G2 menangani sirup, jadi pembanding memasukkan rute ke K2. |
+| Baris | Variabel yang muncul pada Low | NNZ insidensi |
+|---|---|---:|
+| R6 | $x_{4,2,C},z_{2,5,C},z_{2,6,C}$ | 3 |
+| R27 | $z_{1,5,C},z_{2,5,C}$ | 2 |
+| R32 | $z_{2,1,A},z_{2,2,A},z_{2,3,B},z_{2,4,B},z_{2,5,C},z_{2,6,C},y_2$ | 7 |
+| R36 | Sama dengan daftar R32 | 7 |
 
-Pada baris terakhir, G2 → K2 untuk sirup juga tidak tersedia pada High. Ini salah satu dari sembilan rute keluar tambahan dalam pembanding. Dengan penyebut yang sama, WCC High adalah **381 ÷ 435 × 100% = 87,59%**. Selisih Low ke Medium adalah **10,80 poin persentase** dan Medium ke High **22,53 poin persentase**, dihitung sebelum pembulatan. [Daftar rute berindeks](case/Rute_Pengiriman.md)
+### 2.2 Hitung pembilang: periksa keenam pasangan
 
-**Cakupan WCC.** Sebelas dari 43 baris adalah neraca gudang. Masing-masing menyamakan kiriman masuk dan keluar untuk satu produk di satu gudang. Audit menghitung 43 baris operasi sebelum penyederhanaan solver dan memeriksa setiap skenario stokastik secara terpisah. Pada tingkat rute yang sama, P1–P8 memiliki variabel yang sama pada setiap baris yang diukur. Grafik waktu dan iterasi pada halaman hasil mencakup penyelesaian seluruh profil, termasuk skenario tambahan dan perhitungan Pareto.
+Empat baris mempunyai $4(4-1)/2=6$ pasangan. Mulai dari R6 dengan tiga baris sesudahnya, lalu R27 dengan dua baris sesudahnya, dan terakhir R32–R36.
 
-[Lihat persamaan R1–R43, contoh R8–R36, dan hitungan lengkap](math_model_acuan/Persamaan_WCC.md) · [Rincian 903 pasangan](math_model_acuan/hasil/Audit_WCC_Pasangan.csv) · [Model matematika](math_model_acuan/Model_Matematika.md) · [Gambar jaringan PT XYZ](case/Kasus_Dasar.md) · [Data rute](case/Rute_Pengiriman.md) · [Halaman utama](README.md)
+| Pasangan | Variabel bersama pada Low | Bobot Low |
+|---|---|---:|
+| R6–R27 | $z_{2,5,C}$ | 1 |
+| R6–R32 | $z_{2,5,C},z_{2,6,C}$ | 2 |
+| R6–R36 | $z_{2,5,C},z_{2,6,C}$ | 2 |
+| R27–R32 | $z_{2,5,C}$ | 1 |
+| R27–R36 | $z_{2,5,C}$ | 1 |
+| R32–R36 | Keenam kiriman $z$ pada R32 dan $y_2$ | 7 |
+| **Jumlah pada empat baris** | $1+2+2+1+1+7$ | **14** |
+
+Contoh R6–R32: keduanya memuat kiriman susu ke K5 dan K6. Variabel masuk $x_{4,2,C}$ tidak ada pada R32. Kiriman minyak dan sirup serta $y_2$ tidak ada pada R6. Karena itu, bobotnya **2**, walaupun NNZ yang lebih kecil adalah 3.
+
+### 2.3 Hitung penyebut pada empat baris yang sama
+
+Daftar pembanding membolehkan susu dari G2 dikirim ke seluruh K1–K6. Gudang lain juga dapat melayani susu K5. Keempat aturan tetap berlaku; daftar kiriman yang boleh muncul diperluas.
+
+| Baris | Persamaan dengan daftar rute pembanding | NNZ insidensi |
+|---|---|---:|
+| R6 | $x_{4,2,C}=\sum_{j=1}^{6}z_{2,j,C}$ | 7 |
+| R27 | $\sum_{g=1}^{4}z_{g,5,C}=2{,}73$ | 4 |
+| R32 | $\sum_{p\in\{A,B,C\}}\sum_{j=1}^{6}z_{2,j,p}\le20y_2$ | 19 |
+| R36 | $\sum_{p\in\{A,B,C\}}\sum_{j=1}^{6}z_{2,j,p}\le22{,}40y_2$ | 19 |
+
+Penjumlahan pada R6 berarti $z_{2,1,C}+z_{2,2,C}+z_{2,3,C}+z_{2,4,C}+z_{2,5,C}+z_{2,6,C}$. Penjumlahan pada R32 mencakup enam kiriman A, enam kiriman B, dan enam kiriman C, sehingga terdapat 18 kiriman ditambah $y_2$.
+
+| Pasangan | Variabel yang dapat muncul bersama pada pembanding | Bobot pembanding |
+|---|---|---:|
+| R6–R27 | $z_{2,5,C}$ | 1 |
+| R6–R32 | $z_{2,1,C},z_{2,2,C},z_{2,3,C},z_{2,4,C},z_{2,5,C},z_{2,6,C}$ | 6 |
+| R6–R36 | Enam kiriman C yang sama | 6 |
+| R27–R32 | $z_{2,5,C}$ | 1 |
+| R27–R36 | $z_{2,5,C}$ | 1 |
+| R32–R36 | Seluruh 18 kiriman keluar G2 dan $y_2$ | 19 |
+| **Jumlah pada empat baris** | $1+6+6+1+1+19$ | **34** |
+
+R6–R27 tetap berbobot satu: R6 hanya membahas G2 dan R27 hanya membahas K5. Variabel yang memenuhi kedua identitas itu hanya $z_{2,5,C}$. NNZ 7 dan 4 tidak membuat empat kiriman bisa digunakan bersama oleh pasangan ini.
+
+![Graf empat baris: bobot Low dan bobot pembanding](math_model_acuan/diagram/WCC_Empat_Baris.svg)
+
+Garis hitam memperlihatkan bobot aktual Low; garis merah putus-putus memperlihatkan bobot yang dimungkinkan oleh daftar pembanding. Persilangan garis di tengah gambar bukan simpul tambahan. [Buka versi PNG](math_model_acuan/diagram/WCC_Empat_Baris.png).
+
+Untuk **potongan empat baris ini**, persentasenya $14/34\times100\%=41{,}18\%$. Angka tersebut hanya menerangkan empat baris yang dipilih. WCC seluruh model menjumlahkan semua 703 pasangan, termasuk pasangan dengan baris di luar gambar.
+
+### 2.4 Mengapa pembilang naik ketika rute ditambahkan?
+
+Telusuri satu pasangan yang sama, **R6–R32**, dari Low ke Medium dan High. Ada enam tujuan yang diperbolehkan pada pembanding.
+
+| Variabel susu dari G2 | Low | Medium | High | Pembanding |
+|---|---:|---:|---:|---:|
+| $z_{2,1,C}$ | 0 | **1** | 1 | 1 |
+| $z_{2,2,C}$ | 0 | **1** | 1 | 1 |
+| $z_{2,3,C}$ | 0 | **1** | 1 | 1 |
+| $z_{2,4,C}$ | 0 | 0 | **1** | 1 |
+| $z_{2,5,C}$ | 1 | 1 | 1 | 1 |
+| $z_{2,6,C}$ | 1 | 1 | 1 | 1 |
+| **Bobot pasangan** | **2** | **5** | **6** | **6** |
+
+Angka 1 berarti variabel kiriman itu muncul pada kedua baris. Medium menambah tiga kiriman susu; bobot pasangan naik dari 2 menjadi 5. High menambah satu lagi; bobot menjadi 6. Penyebut pasangan tetap 6. R6 tetap merupakan aturan neraca, dan R32 tetap merupakan aturan kapasitas; yang berubah adalah rute yang boleh digunakan.
+
+## 3. Perhitungan untuk seluruh model PT XYZ
+
+### 3.1 Tetapkan baris yang diukur
+
+| Keluarga kendala | Nomor baris | Jumlah |
+|---|---|---:|
+| Neraca gudang–produk | R1–R12 | $4\times3=12$ |
+| Pesanan zona–produk | R13–R30 | $6\times3=18$ |
+| Kapasitas gudang | R31–R34 | 4 |
+| Waktu kerja gudang | R35–R38 | 4 |
+| **Total** | **R1–R38** | **38** |
+
+Jumlah pasangan adalah $38(38-1)/2=703$. Baris yang sama dipakai pada Low, Medium, dan High. Semua fasilitas dan produk tetap; daftar rute berubah. Karena variabel hanya disediakan untuk rute yang diizinkan, jumlah variabel kiriman juga berubah.
+
+### 3.2 Jumlahkan kontribusi setiap variabel
+
+Bobot seluruh pasangan dapat dihitung dengan cara lain yang memberi hasil sama. Jika satu variabel muncul pada $m$ baris, variabel tersebut menyumbang $m(m-1)/2$ pasangan.
+
+| Jenis keputusan | Baris yang memakainya | Pasangan yang dibentuk | Bobot per variabel |
+|---|---|---|---:|
+| Kiriman masuk $x_{igp}$ | Satu neraca gudang–produk | Tidak ada pasangan | 0 |
+| Kiriman keluar $z_{gjp}$ | Neraca, pesanan, kapasitas, waktu | Neraca–pesanan; neraca–kapasitas; neraca–waktu; pesanan–kapasitas; pesanan–waktu; kapasitas–waktu | 6 |
+| Buka gudang $y_g$ | Kapasitas dan waktu gudang itu | Kapasitas–waktu | 1 |
+
+Kiriman masuk tidak muncul pada batas pasokan pabrik karena kasus ini tidak membatasi pasokan pabrik. Karena hanya muncul pada satu baris yang diukur, kontribusinya nol. Kiriman itu tetap menjadi variabel model serta menimbulkan biaya dan emisi angkutan.
+
+Contoh $z_{2,5,C}$ muncul di R6, R27, R32, dan R36. Keempatnya membentuk enam pasangan pada tabel contoh. Satu variabel menyumbang satu pada masing-masing pasangan, sehingga total kontribusinya enam.
+
+Empat keputusan buka menyumbang 4. Jika terdapat $n_{\mathrm{out}}$ rute keluar, total bobot adalah:
+
+```math
+B=6n_{\mathrm{out}}+4,
+\qquad B_{\mathrm{ref}}=6(72)+4=436.
+```
+
+### 3.3 Pembilang, penyebut, dan hasil
+
+| Tingkat | Rute masuk | Rute keluar | Hitungan pembilang | Total bobot | Penyebut tetap | WCC |
+|---|---:|---:|---|---:|---:|---:|
+| Low | 16 | 36 | $6(36)+4$ | 220 | 436 | **50,458716%** |
+| Medium | 17 | 42 | $6(42)+4$ | 256 | 436 | **58,715596%** |
+| High | 22 | 60 | $6(60)+4$ | 364 | 436 | **83,486239%** |
+| Pembanding | 22 | 72 | $6(72)+4$ | 436 | 436 | 100% |
+
+Sebagai contoh, Low dihitung dengan $220/436\times100\%$. Medium menambah enam rute keluar, sehingga bobot bertambah $6\times6=36$, dari 220 menjadi 256. High menambah 18 rute keluar dari Medium, sehingga bobot bertambah $18\times6=108$, dari 256 menjadi 364. Selisih persentasenya **8,256881 poin** dan **24,770642 poin**, dihitung sebelum pembulatan.
+
+Penambahan satu rute masuk pada Medium tidak menambah bobot pada cakupan ini karena kiriman masuk hanya muncul pada satu baris. Dengan demikian, WCC ini terutama berubah bersama jumlah rute keluar; angka WCC perlu dibaca bersama susunan jaringan dan banyak variabel.
+
+### 3.4 Pemeriksaan seluruh pasangan
+
+Tabel berikut mengelompokkan 703 pasangan yang sudah diperiksa satu per satu. Angka pada kolom bobot merupakan **jumlah variabel bersama**, bukan jumlah garis.
+
+| Kelompok pasangan | Jumlah pasangan | Bobot Low | Bobot Medium | Bobot High | Bobot pembanding |
+|---|---:|---:|---:|---:|---:|
+| Neraca × neraca | 66 | 0 | 0 | 0 | 0 |
+| Neraca × permintaan | 216 | 36 | 42 | 60 | 72 |
+| Neraca × kapasitas | 48 | 36 | 42 | 60 | 72 |
+| Neraca × waktu | 48 | 36 | 42 | 60 | 72 |
+| Permintaan × permintaan | 153 | 0 | 0 | 0 | 0 |
+| Permintaan × kapasitas | 72 | 36 | 42 | 60 | 72 |
+| Permintaan × waktu | 72 | 36 | 42 | 60 | 72 |
+| Kapasitas × kapasitas | 6 | 0 | 0 | 0 | 0 |
+| Kapasitas × waktu | 16 | 40 | 46 | 64 | 76 |
+| Waktu × waktu | 6 | 0 | 0 | 0 | 0 |
+| **Total** | **703** | **220** | **256** | **364** | **436** |
+
+
+Pasangan berbobot nol tetap diperiksa. Misalnya, dua baris neraca untuk gudang atau produk berbeda tidak memakai kiriman yang sama. Pada pembanding pun bobotnya nol. Pasangan tersebut menyumbang nol pada pembilang dan penyebut. Penyebut 436 adalah jumlah bobot yang diperbolehkan struktur; jumlah pasangan 703 bukan penyebut persentase ini.
+
+Audit memakai dua metode: irisan himpunan variabel untuk seluruh pasangan, serta penjumlahan kontribusi kemunculan setiap variabel. Keduanya menghasilkan bobot yang sama.
+
+## 4. Kesamaan WCC pada P1–P8
+
+Pada satu tingkat rute, P1–P8 memakai identitas variabel yang sama pada **38 baris operasi per skenario**. Profil stokastik memiliki 27 salinan skenario dalam model lengkap, dengan keputusan buka bersama. Audit struktur di sini memeriksa setiap salinan secara terpisah.
+
+Pada profil nonlinear, singkatan tonase $q_{gp}$ terlebih dahulu diganti dengan jumlah kiriman $z_{gjp}$. Suku kuadrat memakai variabel yang sudah ada pada baris waktu; satu variabel dihitung sekali dalam daftar variabel baris itu. Nilai kiriman nol pada solusi optimal tidak menghapus variabel dari audit.
+
+Fungsi tujuan, domain, batas emisi, pemecah seri, hubungan lintas skenario, serta variabel bantu dan baris tambahan solver berada di luar 38 baris yang diukur. Karena itu, kesamaan WCC ini berlaku pada blok operasi acuan yang dinyatakan, sedangkan waktu dan iterasi mengukur penyelesaian seluruh formulasi dan prosedur profil.
+
+[Kasus untuk pemodel](case/Kasus_Dasar.md) · [Model matematika](math_model_acuan/Model_Matematika.md) · [Persamaan lengkap R1–R38](math_model_acuan/Persamaan_WCC.md) · [Seluruh 703 pasangan](math_model_acuan/hasil/audit/WCC_Pasangan.csv) · [Hasil verifikasi](math_model_acuan/Hasil_Verifikasi.md) · [Halaman utama](README.md)

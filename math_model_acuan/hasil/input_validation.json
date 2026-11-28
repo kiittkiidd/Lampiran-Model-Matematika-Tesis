@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "physical_nodes": {
+    "factories": 6,
+    "warehouses": 4,
+    "zones": 6,
+    "products": 3
+  },
+  "all_warehouses_handle_all_products": true,
+  "route_nesting": true,
+  "common_mean_demand": true,
+  "mean_total_demand": 30,
+  "scenarios": 27,
+  "total_scenario_probability": 1.0,
+  "max_total_demand": 39.0,
+  "data_sha256": "ffcbcbcc92f4e49121cbfdd11e0cbe478b612ac75c9620e16704565c14f2924a"
+}

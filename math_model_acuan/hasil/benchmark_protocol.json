@@ -1,0 +1,31 @@
+{
+  "config": {
+    "default_solver": "SCIP",
+    "version": "1.0.0-scip",
+    "benchmark_repeats": 3,
+    "benchmark_order_seed": 28112026,
+    "pareto_grid_points": 25,
+    "objective_gap_cost": 0.00025,
+    "objective_gap_emission": 0.00025,
+    "lexicographic_cost_tolerance": 0.00025,
+    "constraint_check_tolerance": 1e-06,
+    "scip_feasibility_tolerance": 1e-08,
+    "scalar_time_limit_seconds": 120,
+    "threads": 1,
+    "random_seed": 0,
+    "presolve": "SCIP default",
+    "expected_scip_version": "10.0.2",
+    "data_sha256": "ffcbcbcc92f4e49121cbfdd11e0cbe478b612ac75c9620e16704565c14f2924a",
+    "nonlinear_assumeconvex": true,
+    "warm_start": "previous feasible solutions within the same profile and level; first solve has no external start",
+    "solver_representation": "Exact throughput definitions and separate square epigraphs on nonlinear profiles; linear cost/emission objective; derived flow upper bounds; canonical WCC before solver auxiliaries",
+    "preserve_throughput_auxiliaries": true
+  },
+  "data_sha256": "ffcbcbcc92f4e49121cbfdd11e0cbe478b612ac75c9620e16704565c14f2924a",
+  "solver_sha256": "a48dcacf5366fbaa649cd306cc091cf4b5345713ca3fbfe3a3bbde1664ad3166",
+  "network_sha256": "0510702ef413c1ddc760d68f4e349197af4177a2c129220803c7ed11edfc711e",
+  "warmup": "one unreported P1-L run; same machine and process; sequential jobs",
+  "timing": "SCIP getSolvingTime sum; model construction and total wall time reported separately",
+  "iterations": "SCIP getNLPIterations: cumulative LP iterations, summed across scalar solves",
+  "data_modified_during_benchmark": false
+}

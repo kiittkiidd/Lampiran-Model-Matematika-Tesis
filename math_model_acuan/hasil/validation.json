@@ -1,0 +1,514 @@
+{
+  "reference_cost_checks": 72,
+  "max_reference_cost_difference": 3.226011813239893e-08,
+  "records": 72,
+  "points": 936,
+  "max_violation": 1.641987097400488e-07,
+  "max_objective_error": 2.2737367544323206e-13,
+  "checks": [
+    {
+      "profile": "P4",
+      "level": "L",
+      "points": 25,
+      "max_violation": 4.4853010194856324e-13,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P8",
+      "level": "H",
+      "points": 25,
+      "max_violation": 9.472845619029613e-09,
+      "max_objective_error": 1.1368683772161603e-13
+    },
+    {
+      "profile": "P5",
+      "level": "L",
+      "points": 1,
+      "max_violation": 2.220446049250313e-16,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P7",
+      "level": "M",
+      "points": 25,
+      "max_violation": 8.936555828675807e-09,
+      "max_objective_error": 1.1368683772161603e-13
+    },
+    {
+      "profile": "P6",
+      "level": "M",
+      "points": 1,
+      "max_violation": 1.6595453899981294e-09,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P8",
+      "level": "L",
+      "points": 25,
+      "max_violation": 1.7806622842897468e-09,
+      "max_objective_error": 1.7053025658242404e-13
+    },
+    {
+      "profile": "P2",
+      "level": "L",
+      "points": 1,
+      "max_violation": 8.881784197001252e-16,
+      "max_objective_error": 0.0
+    },
+    {
+      "profile": "P8",
+      "level": "M",
+      "points": 25,
+      "max_violation": 1.7969394860983812e-09,
+      "max_objective_error": 2.2737367544323206e-13
+    },
+    {
+      "profile": "P1",
+      "level": "L",
+      "points": 1,
+      "max_violation": 1.7763568394002505e-15,
+      "max_objective_error": 2.842170943040401e-14
+    },
+    {
+      "profile": "P4",
+      "level": "M",
+      "points": 25,
+      "max_violation": 1.1812772982011666e-13,
+      "max_objective_error": 1.1368683772161603e-13
+    },
+    {
+      "profile": "P6",
+      "level": "H",
+      "points": 1,
+      "max_violation": 8.280836462736672e-10,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P5",
+      "level": "M",
+      "points": 1,
+      "max_violation": 8.784979410592086e-10,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P1",
+      "level": "H",
+      "points": 1,
+      "max_violation": 1.6187051699034782e-15,
+      "max_objective_error": 2.842170943040401e-14
+    },
+    {
+      "profile": "P2",
+      "level": "M",
+      "points": 1,
+      "max_violation": 3.9968028886505635e-15,
+      "max_objective_error": 1.1368683772161603e-13
+    },
+    {
+      "profile": "P5",
+      "level": "H",
+      "points": 1,
+      "max_violation": 9.567138192778657e-10,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P4",
+      "level": "H",
+      "points": 25,
+      "max_violation": 3.028688411177427e-13,
+      "max_objective_error": 1.1368683772161603e-13
+    },
+    {
+      "profile": "P6",
+      "level": "L",
+      "points": 1,
+      "max_violation": 7.197797913249815e-12,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P3",
+      "level": "H",
+      "points": 25,
+      "max_violation": 1.9405578917817856e-14,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P3",
+      "level": "M",
+      "points": 25,
+      "max_violation": 8.881784197001252e-16,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P1",
+      "level": "M",
+      "points": 1,
+      "max_violation": 2.220446049250313e-15,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P2",
+      "level": "H",
+      "points": 1,
+      "max_violation": 3.1086244689504375e-15,
+      "max_objective_error": 8.526512829121202e-14
+    },
+    {
+      "profile": "P7",
+      "level": "H",
+      "points": 25,
+      "max_violation": 1.641987097400488e-07,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P7",
+      "level": "L",
+      "points": 25,
+      "max_violation": 8.881784197001252e-16,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P3",
+      "level": "L",
+      "points": 25,
+      "max_violation": 8.881784197001252e-16,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P6",
+      "level": "H",
+      "points": 1,
+      "max_violation": 8.280836462736672e-10,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P4",
+      "level": "L",
+      "points": 25,
+      "max_violation": 4.4853010194856324e-13,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P1",
+      "level": "H",
+      "points": 1,
+      "max_violation": 1.6187051699034782e-15,
+      "max_objective_error": 2.842170943040401e-14
+    },
+    {
+      "profile": "P1",
+      "level": "M",
+      "points": 1,
+      "max_violation": 2.220446049250313e-15,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P5",
+      "level": "L",
+      "points": 1,
+      "max_violation": 2.220446049250313e-16,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P6",
+      "level": "L",
+      "points": 1,
+      "max_violation": 7.197797913249815e-12,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P2",
+      "level": "H",
+      "points": 1,
+      "max_violation": 3.1086244689504375e-15,
+      "max_objective_error": 8.526512829121202e-14
+    },
+    {
+      "profile": "P1",
+      "level": "L",
+      "points": 1,
+      "max_violation": 1.7763568394002505e-15,
+      "max_objective_error": 2.842170943040401e-14
+    },
+    {
+      "profile": "P8",
+      "level": "L",
+      "points": 25,
+      "max_violation": 1.7806622842897468e-09,
+      "max_objective_error": 1.7053025658242404e-13
+    },
+    {
+      "profile": "P2",
+      "level": "L",
+      "points": 1,
+      "max_violation": 8.881784197001252e-16,
+      "max_objective_error": 0.0
+    },
+    {
+      "profile": "P4",
+      "level": "H",
+      "points": 25,
+      "max_violation": 3.028688411177427e-13,
+      "max_objective_error": 1.1368683772161603e-13
+    },
+    {
+      "profile": "P3",
+      "level": "H",
+      "points": 25,
+      "max_violation": 1.9405578917817856e-14,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P7",
+      "level": "L",
+      "points": 25,
+      "max_violation": 8.881784197001252e-16,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P3",
+      "level": "M",
+      "points": 25,
+      "max_violation": 8.881784197001252e-16,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P5",
+      "level": "M",
+      "points": 1,
+      "max_violation": 8.784979410592086e-10,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P8",
+      "level": "H",
+      "points": 25,
+      "max_violation": 9.472845619029613e-09,
+      "max_objective_error": 1.1368683772161603e-13
+    },
+    {
+      "profile": "P4",
+      "level": "M",
+      "points": 25,
+      "max_violation": 1.1812772982011666e-13,
+      "max_objective_error": 1.1368683772161603e-13
+    },
+    {
+      "profile": "P8",
+      "level": "M",
+      "points": 25,
+      "max_violation": 1.7969394860983812e-09,
+      "max_objective_error": 2.2737367544323206e-13
+    },
+    {
+      "profile": "P6",
+      "level": "M",
+      "points": 1,
+      "max_violation": 1.6595453899981294e-09,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P7",
+      "level": "M",
+      "points": 25,
+      "max_violation": 8.936555828675807e-09,
+      "max_objective_error": 1.1368683772161603e-13
+    },
+    {
+      "profile": "P2",
+      "level": "M",
+      "points": 1,
+      "max_violation": 3.9968028886505635e-15,
+      "max_objective_error": 1.1368683772161603e-13
+    },
+    {
+      "profile": "P3",
+      "level": "L",
+      "points": 25,
+      "max_violation": 8.881784197001252e-16,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P7",
+      "level": "H",
+      "points": 25,
+      "max_violation": 1.641987097400488e-07,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P5",
+      "level": "H",
+      "points": 1,
+      "max_violation": 9.567138192778657e-10,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P2",
+      "level": "H",
+      "points": 1,
+      "max_violation": 3.1086244689504375e-15,
+      "max_objective_error": 8.526512829121202e-14
+    },
+    {
+      "profile": "P4",
+      "level": "H",
+      "points": 25,
+      "max_violation": 3.028688411177427e-13,
+      "max_objective_error": 1.1368683772161603e-13
+    },
+    {
+      "profile": "P5",
+      "level": "L",
+      "points": 1,
+      "max_violation": 2.220446049250313e-16,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P3",
+      "level": "H",
+      "points": 25,
+      "max_violation": 1.9405578917817856e-14,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P8",
+      "level": "M",
+      "points": 25,
+      "max_violation": 1.7969394860983812e-09,
+      "max_objective_error": 2.2737367544323206e-13
+    },
+    {
+      "profile": "P1",
+      "level": "M",
+      "points": 1,
+      "max_violation": 2.220446049250313e-15,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P2",
+      "level": "M",
+      "points": 1,
+      "max_violation": 3.9968028886505635e-15,
+      "max_objective_error": 1.1368683772161603e-13
+    },
+    {
+      "profile": "P5",
+      "level": "H",
+      "points": 1,
+      "max_violation": 9.567138192778657e-10,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P5",
+      "level": "M",
+      "points": 1,
+      "max_violation": 8.784979410592086e-10,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P4",
+      "level": "M",
+      "points": 25,
+      "max_violation": 1.1812772982011666e-13,
+      "max_objective_error": 1.1368683772161603e-13
+    },
+    {
+      "profile": "P6",
+      "level": "H",
+      "points": 1,
+      "max_violation": 8.280836462736672e-10,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P6",
+      "level": "M",
+      "points": 1,
+      "max_violation": 1.6595453899981294e-09,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P7",
+      "level": "L",
+      "points": 25,
+      "max_violation": 8.881784197001252e-16,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P3",
+      "level": "L",
+      "points": 25,
+      "max_violation": 8.881784197001252e-16,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P8",
+      "level": "H",
+      "points": 25,
+      "max_violation": 9.472845619029613e-09,
+      "max_objective_error": 1.1368683772161603e-13
+    },
+    {
+      "profile": "P4",
+      "level": "L",
+      "points": 25,
+      "max_violation": 4.4853010194856324e-13,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P6",
+      "level": "L",
+      "points": 1,
+      "max_violation": 7.197797913249815e-12,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P1",
+      "level": "H",
+      "points": 1,
+      "max_violation": 1.6187051699034782e-15,
+      "max_objective_error": 2.842170943040401e-14
+    },
+    {
+      "profile": "P1",
+      "level": "L",
+      "points": 1,
+      "max_violation": 1.7763568394002505e-15,
+      "max_objective_error": 2.842170943040401e-14
+    },
+    {
+      "profile": "P2",
+      "level": "L",
+      "points": 1,
+      "max_violation": 8.881784197001252e-16,
+      "max_objective_error": 0.0
+    },
+    {
+      "profile": "P3",
+      "level": "M",
+      "points": 25,
+      "max_violation": 8.881784197001252e-16,
+      "max_objective_error": 5.684341886080802e-14
+    },
+    {
+      "profile": "P7",
+      "level": "M",
+      "points": 25,
+      "max_violation": 8.936555828675807e-09,
+      "max_objective_error": 1.1368683772161603e-13
+    },
+    {
+      "profile": "P8",
+      "level": "L",
+      "points": 25,
+      "max_violation": 1.7806622842897468e-09,
+      "max_objective_error": 1.7053025658242404e-13
+    },
+    {
+      "profile": "P7",
+      "level": "H",
+      "points": 25,
+      "max_violation": 1.641987097400488e-07,
+      "max_objective_error": 5.684341886080802e-14
+    }
+  ]
+}

@@ -1,186 +1,325 @@
 # Kasus distribusi PT XYZ Bahan Pangan
 
-Delapan profil menggunakan jaringan distribusi yang sama. **P1** memuat kasus dasar secara lengkap. **P2–P8** merujuk pada profil sebelumnya dan menjelaskan perubahan yang perlu diterapkan. Setiap profil dapat dijalankan pada salah satu tingkat rute **Low**, **Medium**, atau **High**.
+Dokumen ini memuat seluruh informasi untuk menyusun delapan model perencanaan distribusi. **Profil P1 menjelaskan kasus dasar secara lengkap. Profil P2–P8 merujuk pada profil sebelumnya dan menetapkan perubahan yang diterapkan.** Setiap profil dapat menggunakan jaringan Low, Medium, atau High.
 
-**Cakupan model.** Pada profil stokastik, **hanya pesanan minyak goreng di zona K1** yang berubah antarskenario. Pada profil nonlinear, **biaya dan waktu penanganan di gudang** bergantung pada kuadrat tonase. Keenam pabrik masing-masing memakai batas pasokan linear sebesar 8 ton.
+[P1](#p1) · [P2](#p2) · [P3](#p3) · [P4](#p4) · [P5](#p5) · [P6](#p6) · [P7](#p7) · [P8](#p8)
 
-[P1](#p1-minimisasi-biaya-dengan-permintaan-pasti) · [P2](#p2-minimisasi-biaya-harapan) · [P3](#p3-biaya-dan-emisi) · [P4](#p4-biaya-harapan-dan-emisi-harapan) · [P5](#p5-minimisasi-biaya-dengan-penanganan-nonlinear) · [P6](#p6-biaya-harapan-dengan-penanganan-nonlinear) · [P7](#p7-biaya-dan-emisi-dengan-penanganan-nonlinear) · [P8](#p8-biaya-harapan-dan-emisi-harapan-dengan-penanganan-nonlinear)
+<a id="p1"></a>
 
-## P1. Minimisasi biaya dengan permintaan pasti
+## Profil P1. Biaya minimum dengan permintaan pasti
 
-PT XYZ Bahan Pangan adalah perusahaan fiktif yang memasok **minyak goreng curah (A)**, **sirup gula cair (B)**, dan **susu cair dingin (C)**. Perusahaan memiliki enam pabrik dan empat calon gudang untuk melayani enam zona pelanggan selama satu periode. Barang melewati dua tahap pengiriman, yaitu **pabrik → gudang** dan **gudang → zona pelanggan**.
+### Perusahaan, aliran barang, dan keputusan
 
-Perusahaan menentukan **gudang mana yang dibuka** dan **berapa ton setiap produk dikirim melalui tiap rute**. Sebagai contoh, zona K1 dapat menerima **1,25 ton minyak dari G1** dan **1,75 ton dari G2** untuk memenuhi pesanannya sebesar **3 ton**. Jumlah kiriman boleh pecahan.
+PT XYZ Bahan Pangan adalah perusahaan fiktif yang memasok **minyak goreng curah (A)**, **sirup gula cair (B)**, dan **susu cair dingin (C)**. Perusahaan memiliki enam pabrik P1–P6 dan empat calon gudang G1–G4 untuk melayani enam zona pelanggan K1–K6 selama **satu periode**. Sebutan Pabrik P1 menunjuk fasilitas; Profil P1 menunjuk jenis kasus pada bagian ini.
+
+Barang dikirim melalui dua tahap: **pabrik → gudang → zona pelanggan**. Perusahaan memilih gudang yang dibuka dan menentukan berapa ton setiap produk dikirim pada setiap rute. Jumlah barang bersifat kontinu dan boleh pecahan. Pesanan 3,17 ton minyak, misalnya, dapat dipenuhi dengan 1,20 ton dari satu gudang dan 1,97 ton dari gudang lainnya jika rutenya tersedia.
+
+Pasokan pabrik dianggap mencukupi untuk produk dan rute yang diizinkan; tidak ada batas tonase pasokan pabrik. Kapasitas penyaluran dibatasi di gudang. Keempat gudang dapat menangani ketiga produk. Produk tetap dicatat terpisah, sedangkan kapasitas tonase dan waktu kerja di setiap gudang dipakai bersama oleh seluruh produk.
+
+### Pesanan yang harus dipenuhi
+
+| Zona | Minyak A (ton) | Sirup B (ton) | Susu C (ton) |
+| --- | --- | --- | --- |
+| K1 | 3,17 | 0,88 | 1,09 |
+| K2 | 2,84 | 1,16 | 0,86 |
+| K3 | 1,12 | 2,79 | 1,07 |
+| K4 | 0,93 | 3,24 | 0,98 |
+| K5 | 1,03 | 0,97 | 2,73 |
+| K6 | 0,91 | 0,96 | 3,27 |
+
+Setiap produk mempunyai total pesanan 10 ton. Total pesanan perusahaan adalah 30 ton. Perusahaan mengetahui seluruh pesanan tersebut sebelum memilih gudang dan jumlah kiriman.
+
+### Pembukaan dan kapasitas gudang
+
+| Gudang | Kapasitas (ton) | Waktu tersedia (jam) | Biaya buka |
+| --- | --- | --- | --- |
+| G1 | 16,00 | 17,80 | 25,40 |
+| G2 | 20,00 | 22,40 | 31,65 |
+| G3 | 18,00 | 19,80 | 28,30 |
+| G4 | 14,00 | 16,10 | 18,75 |
+
+Membuka gudang mengaktifkan kapasitas pada tabel selama periode perencanaan. Biaya buka dibayar sekali untuk setiap gudang yang dipilih. Gudang yang ditutup tidak menerima atau mengirim barang. Kapasitas gudang yang dibuka tetap sebesar angka pada tabel; perusahaan tidak memilih tambahan kapasitas.
+
+Pada Profil P1, menangani satu ton barang membutuhkan **satu jam kerja**, untuk setiap produk dan gudang. Jika G1 menangani 5 ton minyak, 4 ton sirup, dan 3 ton susu, pemakaian kapasitasnya 12 ton dan waktunya 12 jam. Keduanya memenuhi batas G1, yaitu 16 ton dan 17,80 jam.
+
+Kapasitas tonase dan waktu kerja merupakan dua batas operasi yang diperiksa pada gudang yang sama. Dalam data linear ini, batas tonase sudah cukup untuk memenuhi batas waktu karena setiap ton memakai satu jam dan waktu tersedia lebih besar daripada kapasitas tonase.
+
+### Produk yang tersedia dari pabrik
+
+| Pabrik | Produk |
+| --- | --- |
+| P1 | A, B |
+| P2 | A |
+| P3 | A, B, C |
+| P4 | B, C |
+| P5 | A, C |
+| P6 | B, C |
 
 ### Rute Low, Medium, dan High
 
-![Rute pabrik–gudang–zona untuk tiga produk. Warna menunjukkan tingkat saat rute pertama kali tersedia.](diagram/Jaringan_Low_Medium_High.svg)
+Ketiga tingkat memakai pabrik, gudang, zona, produk, permintaan, kapasitas, dan tarif yang sama. Perbedaannya adalah rute per produk yang diizinkan. **Semua rute Low tersedia pada Medium; semua rute Medium tersedia pada High.** Rute yang tersedia merupakan pilihan dan boleh mempunyai jumlah kiriman nol.
 
-| Tingkat | Panah yang dibaca | Pabrik → gudang | Gudang → zona |
-| --- | --- | ---: | ---: |
-| Low | Hijau penuh | 16 | 36 |
-| Medium | Hijau + merah putus-putus | 21 | 43 |
-| High | Hijau + merah putus-putus + hitam bertitik | 35 | 57 |
+![Jaringan tiga produk untuk Low, Medium, dan High](diagram/Jaringan_Low_Medium_High.svg)
 
-Ikuti panah untuk **produk yang sama** pada kedua tahap. Untuk minyak goreng, misalnya, **P1 → G1 → K1** tersedia sejak Low. Rute lengkap memerlukan kedua panah pada tingkat yang dipilih serta gudang yang dibuka. Pabrik, gudang, zona, permintaan, tarif, dan kapasitas pada kasus dasar sama di ketiga tingkat. [Lihat daftar rute per produk](Rute_Pengiriman.md#cara-membaca-tabel)
+Nama node yang sama pada panel A, B, dan C menunjuk fasilitas fisik yang sama. Kapasitas gudang berlaku untuk gabungan ketiga produk. Low membaca garis hijau; Medium membaca hijau dan merah putus-putus; High membaca seluruh garis. [Buka gambar PNG](diagram/Jaringan_Low_Medium_High.png).
 
-### Aturan pengiriman
+| Tingkat | Rute pabrik–gudang–produk | Rute gudang–zona–produk |
+| --- | --- | --- |
+| Low | 16 | 36 |
+| Medium | 17 | 42 |
+| High | 22 | 60 |
 
-1. **Pabrik.** Setiap pabrik dapat memasok maksimal 8 ton. Ketiga produk berbagi batas tersebut.
-2. **Gudang.** Gudang yang dibuka dapat menerima dan mengirim barang sampai batas tonase dan waktu penanganannya. Barang yang diterima harus diteruskan ke zona pelanggan dalam periode yang sama, per produk. Gudang yang ditutup memiliki arus masuk dan keluar nol.
-3. **Zona pelanggan.** Pesanan per produk harus dipenuhi tepat. Kiriman dapat dibagi ke beberapa gudang yang melayani produk dan zona tersebut.
-4. **Tarif.** Perusahaan membayar biaya buka gudang satu kali. Biaya angkut dibayar pada kedua tahap, dan biaya penanganan dikenakan sekali per ton yang melewati gudang. Semua angka biaya memakai satuan biaya sintetis.
+**Pabrik yang diizinkan memasok setiap gudang–produk:**
 
-| Calon gudang | Kapasitas (ton) | Waktu tersedia (jam) | Biaya buka |
-| --- | ---: | ---: | ---: |
-| G1 | 16 | 19,20 | 25 |
-| G2 | 20 | 24,00 | 31 |
-| G3 | 18 | 21,60 | 28 |
-| G4 | 14 | 16,80 | 17 |
+| Gudang–produk | Low | Medium | High |
+| --- | --- | --- | --- |
+| G1–A | P1 | P1 | P1 |
+| G1–B | P1 | P1 | P1 |
+| G1–C | P4 | P4 | P3, P4 |
+| G2–A | P1, P2 | P1, P2 | P1, P2 |
+| G2–B | P4 | P4 | P4 |
+| G2–C | P4 | P4 | P4 |
+| G3–A | P3 | P3 | P3, P5 |
+| G3–B | P3 | P3 | P3, P6 |
+| G3–C | P3 | P3 | P3, P5, P6 |
+| G4–A | P3, P5 | P3, P5 | P3, P5 |
+| G4–B | P3, P6 | P3, P6 | P3, P6 |
+| G4–C | P5, P6 | P3, P5, P6 | P3, P5, P6 |
 
-### Tarif angkut dan penanganan
+**Zona yang diizinkan menerima kiriman setiap gudang–produk:**
 
-Seluruh biaya memakai satuan biaya sintetis. Tarif angkut ditentukan oleh pasangan lokasi dan berlaku untuk semua produk yang boleh memakai jalur tersebut. Gunakan [daftar rute per produk](Rute_Pengiriman.md) untuk melihat jalur yang tersedia.
+| Gudang–produk | Low | Medium | High |
+| --- | --- | --- | --- |
+| G1–A | K1, K2 | K1, K2 | K1, K2, K3, K5 |
+| G1–B | K3, K4 | K3, K4 | K1, K3, K4 |
+| G1–C | K5, K6 | K5, K6 | K5, K6 |
+| G2–A | K1, K2 | K1, K2, K4, K6 | K1, K2, K4, K6 |
+| G2–B | K3, K4 | K2, K3, K4 | K2, K3, K4, K5, K6 |
+| G2–C | K5, K6 | K1, K2, K3, K5, K6 | K1, K2, K3, K4, K5, K6 |
+| G3–A | K3, K4, K5, K6 | K3, K4, K5, K6 | K1, K2, K3, K4, K5, K6 |
+| G3–B | K1, K2, K5, K6 | K1, K2, K5, K6 | K1, K2, K3, K4, K5, K6 |
+| G3–C | K1, K2, K3, K4 | K1, K2, K3, K4 | K1, K2, K3, K4, K5, K6 |
+| G4–A | K3, K4, K5, K6 | K3, K4, K5, K6 | K1, K2, K3, K4, K5, K6 |
+| G4–B | K1, K2, K5, K6 | K1, K2, K5, K6 | K1, K2, K3, K4, K5, K6 |
+| G4–C | K1, K2, K3, K4 | K1, K2, K3, K4 | K1, K2, K3, K4, K5, K6 |
 
-**Angkut dari pabrik ke gudang · biaya per ton**
+Untuk memakai rute lengkap, kedua tahap pengiriman produk yang sama harus tersedia dan gudangnya harus dibuka. Contoh pada Low: Pabrik P4 dapat mengirim susu ke G2; G2 dapat mengirim susu itu ke K5 atau K6. Pada Medium, G2 juga dapat mengirim susu ke K1, K2, dan K3.
 
-| Pabrik | G1 | G2 | G3 | G4 |
-| --- | ---: | ---: | ---: | ---: |
-| P1 | 2 | 3 | 7 | 8 |
-| P2 | 3 | 4 | 7 | 8 |
-| P3 | 7 | 6 | 2 | 3 |
-| P4 | 2 | 2 | 7 | 8 |
-| P5 | 7 | 6 | 3 | 2 |
-| P6 | 7 | 6 | 2 | 3 |
+### Biaya angkut dan penanganan
 
-**Angkut dari gudang ke zona pelanggan · biaya per ton**
+Perusahaan membayar biaya buka gudang, biaya angkut pada kedua tahap, dan biaya penanganan dasar sekali per ton yang melewati gudang. Semua angka biaya memakai **satuan biaya sintetis** yang konsisten. Tarif angkut pada satu pasangan fasilitas berlaku per ton untuk produk yang diizinkan melalui pasangan tersebut.
 
-| Gudang | K1 | K2 | K3 | K4 | K5 | K6 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| G1 | 2 | 7 | 2 | 7 | 3 | 7 |
-| G2 | 1 | 7 | 2 | 7 | 2 | 6 |
-| G3 | 7 | 2 | 7 | 2 | 6 | 2 |
-| G4 | 7 | 1,79 | 6 | 2 | 7 | 2 |
+Angka pada matriks tarif dipakai hanya jika rute produk itu tersedia pada tingkat yang dipilih. Izin rute ditentukan oleh dua tabel rute sebelumnya.
 
-**Penanganan di gudang · biaya per ton**
-
-| Gudang | Minyak (A) | Sirup (B) | Susu (C) |
-| --- | ---: | ---: | ---: |
-| G1 | 1 | 1 | — |
-| G2 | 2 | 2 | 3 |
-| G3 | 2 | 1 | 2 |
-| G4 | 1 | 1 | 3 |
-
-Tanda **—** berarti produk tersebut tidak ditangani oleh gudang. Biaya buka gudang pada tabel sebelumnya dibayar sekali.
-
-Untuk minyak goreng dari **P1 lewat G1 ke K1**, tarif dasar per ton adalah 2 untuk angkut masuk, 1 untuk penanganan, dan 2 untuk angkut keluar. Jumlahnya **5 per ton**. Biaya membuka G1, jika dipilih, dihitung terpisah.
-
-### Kapasitas fisik dan waktu penanganan
-
-Kapasitas tonase mengukur **berapa banyak barang** yang dapat ditangani. Batas waktu mengukur **berapa jam kerja** yang tersedia. Pada data uji, untuk tiap ton kapasitas tersedia 1,2 jam. Karena itu, G3 yang berkapasitas 18 ton mempunyai waktu 21,60 jam.
-
-Pada P1, waktu penanganan dihitung secara linear. Setiap ton membutuhkan satu jam. Menangani 18 ton di G3 memerlukan 18 jam, sehingga memenuhi kedua batas.
-
-### Permintaan dasar
-
-| Zona | Minyak goreng (ton) | Sirup gula (ton) | Susu dingin (ton) |
-| --- | ---: | ---: | ---: |
-| K1 | 3 | 1 | 1 |
-| K2 | 3 | 1 | 1 |
-| K3 | 1 | 3 | 1 |
-| K4 | 1 | 3 | 1 |
-| K5 | 1 | 1 | 3 |
-| K6 | 1 | 1 | 3 |
-
-**Keputusan dan keluaran.** Perusahaan mengetahui seluruh pesanan sebelum menentukan gudang yang dibuka dan jumlah kiriman. Carilah biaya total terendah yang mencakup biaya buka gudang, biaya angkut pada kedua tahap, dan biaya penanganan. Laporkan biaya total, gudang yang dibuka, dan jumlah kiriman pada setiap rute dan produk.
-
-## P2. Minimisasi biaya harapan
-
-Gunakan [P1](#p1-minimisasi-biaya-dengan-permintaan-pasti) dengan perubahan pada permintaan minyak goreng di K1. Pesanan itu dapat berada pada salah satu dari tiga skenario. **Sebanyak 17 kombinasi zona–produk lainnya memakai angka yang sama pada ketiga skenario.** Contohnya, pesanan sirup K1 selalu 1 ton dan pesanan minyak K2 selalu 3 ton pada data dasar.
-
-| Skenario | Peluang (dibulatkan) | Pesanan minyak K1 jika rata-ratanya 3 ton |
-| --- | ---: | ---: |
-| Sepi | 15,87% | 1,475 ton |
-| Sedang | 68,27% | 3,000 ton |
-| Ramai | 15,87% | 4,525 ton |
-
-Skenario dibentuk dari tiga bagian distribusi normal dengan simpangan baku 1 ton. Bagian bawah berada di bawah rata-rata dikurangi 1 ton, bagian tengah berada dalam rentang satu simpangan baku di sekitar rata-rata, dan bagian atas berada di atas rata-rata ditambah 1 ton. Peluang setiap skenario adalah peluang bagiannya. Pesanan pada tabel adalah rata-rata dalam bagian itu. Tabel menampilkan angka yang dibulatkan. Solver menggunakan nilai sebelum pembulatan.
-
-Pada benchmark, volume permintaan dasar bisa berbeda dari satu paket data ke paket lain. Setelah satu paket dipilih, hanya pesanan minyak K1 yang berubah di antara ketiga skenarionya.
-
-**Keputusan dan keluaran.** Tentukan gudang yang dibuka sebelum skenario diketahui. Gunakan keputusan buka yang sama di ketiga skenario, lalu sesuaikan jumlah kiriman setelah permintaan diketahui. Penuhi seluruh pesanan di setiap skenario. Minimalkan biaya buka gudang ditambah rata-rata berbobot peluang dari biaya angkut dan penanganan. Laporkan biaya harapan, gudang yang dibuka, dan rencana kiriman per skenario.
-
-## P3. Biaya dan emisi
-
-Gunakan [P1](#p1-minimisasi-biaya-dengan-permintaan-pasti) dan tambahkan emisi sebagai tujuan kedua. Hitung emisi dalam kg CO₂e dari setiap gudang yang dibuka dan dari angkutan pada kedua tahap pengiriman.
-
-### Faktor emisi
-
-**Bukaan gudang · kg CO₂e per gudang yang dibuka**
-
-| Gudang | Emisi tetap |
-| --- | ---: |
-| G1 | 12 |
-| G2 | 20 |
-| G3 | 8 |
-| G4 | 24 |
-
-**Angkut dari pabrik ke gudang · kg CO₂e per ton**
+**Tarif angkut pabrik → gudang per ton:**
 
 | Pabrik | G1 | G2 | G3 | G4 |
-| --- | ---: | ---: | ---: | ---: |
-| P1 | 1,4 | 1,8 | 1,5 | 1,3 |
-| P2 | 1,6 | 2,1 | 3,9 | 4,4 |
-| P3 | 1,2 | 3,1 | 0,8 | 2,1 |
-| P4 | 1,8 | 1 | 3,5 | 4,4 |
-| P5 | 3,8 | 3,5 | 1,1 | 3,5 |
-| P6 | 4,1 | 3,5 | 1 | 2,9 |
+| --- | --- | --- | --- | --- |
+| P1 | 2,35 | 3,42 | 6,85 | 7,64 |
+| P2 | 3,18 | 2,76 | 6,43 | 5,87 |
+| P3 | 6,72 | 5,48 | 2,24 | 3,36 |
+| P4 | 2,68 | 2,41 | 5,96 | 6,83 |
+| P5 | 5,84 | 4,73 | 4,23 | 2,17 |
+| P6 | 6,13 | 5,26 | 3,04 | 2,89 |
 
-**Angkut dari gudang ke zona pelanggan · kg CO₂e per ton**
+**Tarif angkut gudang → zona per ton:**
 
 | Gudang | K1 | K2 | K3 | K4 | K5 | K6 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| G1 | 1,4 | 3,6 | 1,7 | 3,7 | 1,9 | 3,6 |
-| G2 | 0,9 | 3,5 | 1,2 | 3,5 | 1,3 | 3,3 |
-| G3 | 0,75 | 0,9 | 0,8 | 0,8 | 3,1 | 0,8 |
-| G4 | 3,7 | 2 | 3,6 | 2,1 | 3,7 | 2,2 |
+| --- | --- | --- | --- | --- | --- | --- |
+| G1 | 1,84 | 5,72 | 2,36 | 5,48 | 3,15 | 5,93 |
+| G2 | 2,43 | 4,86 | 1,92 | 4,37 | 2,68 | 4,71 |
+| G3 | 5,61 | 2,18 | 4,92 | 1,76 | 4,35 | 2,64 |
+| G4 | 4,87 | 2,56 | 4,28 | 2,31 | 5,14 | 1,89 |
 
-Sebagai contoh, satu ton minyak dari pabrik P1 melalui G1 ke K1 menghasilkan **1,4 + 1,4 = 2,8 kg CO₂e** dari angkutan. Jika G1 dibuka, tambahkan **12 kg CO₂e** satu kali untuk bukaan gudang.
+**Tarif penanganan dasar per ton:**
 
-### Prosedur Pareto
+| Gudang | A | B | C |
+| --- | --- | --- | --- |
+| G1 | 1,18 | 1,74 | 2,86 |
+| G2 | 1,63 | 1,29 | 2,21 |
+| G3 | 1,92 | 1,46 | 1,57 |
+| G4 | 1,37 | 1,88 | 1,94 |
 
-**Keputusan dan keluaran.** Cari kompromi antara biaya dan emisi. Tentukan 25 batas emisi berjarak sama, mulai dari emisi minimum hingga emisi pada solusi biaya terendah. Pada setiap ujung rentang, gunakan tujuan lain sebagai pemecah seri. Untuk setiap batas, cari biaya minimum, lalu pilih emisi terendah di antara solusi dengan biaya yang sama sesuai toleransi penyelesaian. Laporkan pasangan biaya–emisi dan gudang yang dibuka. Pada grafik Pareto, tampilkan titik yang tidak didominasi dan tampilkan setiap titik tersebut satu kali.
+Sebagai contoh, satu ton minyak melalui Pabrik P1 → G1 → K1 menimbulkan biaya angkut masuk 2,35, penanganan 1,18, dan angkut keluar 1,84. Jumlahnya **5,37 per ton**. Untuk 2 ton melalui rute tersebut, biaya variabelnya 10,74. Biaya buka G1 sebesar 25,40 dihitung satu kali untuk seluruh rencana yang memakai G1.
 
-## P4. Biaya harapan dan emisi harapan
+### Aturan operasi dan keluaran P1
 
-Gabungkan skenario dan keputusan buka gudang dari [P2](#p2-minimisasi-biaya-harapan) dengan tujuan emisi dan prosedur Pareto dari [P3](#p3-biaya-dan-emisi).
+1. Gunakan hanya produk dan rute yang diizinkan pada tingkat yang dipilih.
+2. Untuk setiap produk di setiap gudang, jumlah yang diterima harus sama dengan jumlah yang dikirim keluar selama periode tersebut. Barang tidak berubah jenis saat melewati gudang.
+3. Seluruh pesanan per zona dan produk dipenuhi tepat. Kiriman dapat dibagi antargudang.
+4. Jumlah seluruh produk yang ditangani sebuah gudang memenuhi batas tonase dan jam kerja gudang itu. Gudang tertutup mempunyai arus masuk dan keluar nol.
+5. Setiap gudang dipilih buka atau tutup. Jumlah kiriman nonnegatif dan boleh pecahan.
 
-**Keputusan dan keluaran.** Hitung biaya harapan seperti pada P2. Hitung emisi harapan dengan menjumlahkan emisi tetap gudang yang dibuka dan rata-rata berbobot peluang dari emisi angkutan. Terapkan 25 batas pada emisi harapan. Pada setiap batas, minimalkan biaya harapan. Laporkan pasangan biaya harapan–emisi harapan, gudang yang dibuka, dan rencana kiriman per skenario untuk setiap solusi yang dilaporkan.
+**Tugas P1:** susun model untuk meminimalkan jumlah biaya buka, angkut dua tahap, dan penanganan dasar. Laporkan biaya minimum, gudang yang dibuka, serta tonase kiriman per rute dan produk. Hasil perhitungan dapat disajikan dalam satuan biaya dengan empat angka desimal.
 
-## P5. Minimisasi biaya dengan penanganan nonlinear
+<a id="p2"></a>
 
-Gunakan [P1](#p1-minimisasi-biaya-dengan-permintaan-pasti) dengan biaya dan waktu penanganan gudang yang bertambah secara kuadratik. Aturan ini berlaku di keempat gudang untuk produk yang dapat ditangani. Hitung kuadrat tonase setiap produk secara terpisah pada setiap gudang. Pabrik tetap memiliki satu batas pasokan linear sebesar 8 ton untuk gabungan semua produk. Kalikan dengan **0,04** untuk mendapatkan tambahan biaya dan dengan **0,025** untuk mendapatkan tambahan jam kerja. Jumlahkan tambahannya dengan biaya penanganan dasar dan waktu dasar satu jam per ton. Terapkan batas tonase dan batas waktu pada setiap gudang.
+## Profil P2. Biaya harapan minimum dengan permintaan stokastik
 
-Sebagai contoh, G3 menangani 10 ton sirup dan 8 ton susu. Waktunya adalah $18+0{,}025(10^2+8^2)=22{,}10$ jam. Volume 18 ton memenuhi kapasitas fisik G3, sedangkan waktu penanganannya melampaui batas 21,60 jam.
+Gunakan seluruh aturan dan data P1, dengan perubahan pada **seluruh 18 pesanan zona–produk**. Setiap produk mempunyai distribusi diskret dengan tiga kondisi berikut. Angka pengali dikalikan dengan tabel pesanan dasar P1.
 
-**Keputusan dan keluaran.** Minimalkan biaya total dengan tambahan biaya penanganan tersebut. Laporkan biaya total, gudang yang dibuka, dan jumlah kiriman pada setiap rute dan produk.
+| Produk | Sepi: pengali; peluang | Sedang: pengali; peluang | Ramai: pengali; peluang |
+| --- | --- | --- | --- |
+| A | 0,70; 25,00% | 1,00; 50,00% | 1,30; 25,00% |
+| B | 0,80; 20,00% | 0,95; 60,00% | 1,35; 20,00% |
+| C | 0,75; 30,00% | 1,05; 50,00% | 1,25; 20,00% |
 
-## P6. Biaya harapan dengan penanganan nonlinear
+Kondisi A, B, dan C diasumsikan independen. Zona untuk produk yang sama bergerak bersama: apabila pengali A adalah 0,70, seluruh enam pesanan minyak dikalikan 0,70. Kondisi produk B dan C ditentukan oleh pengalinya masing-masing. Terdapat **27 kombinasi bersama**, yaitu 3 × 3 × 3.
 
-Gabungkan skenario permintaan dari [P2](#p2-minimisasi-biaya-harapan) dengan penanganan nonlinear dari [P5](#p5-minimisasi-biaya-dengan-penanganan-nonlinear).
+Contoh ketika A sepi, B ramai, dan C sedang: peluangnya 0,25 × 0,20 × 0,50 = **0,025 atau 2,5%**. Pesanan K1 menjadi 2,219 ton A, 1,188 ton B, dan 1,1445 ton C.
 
-**Keputusan dan keluaran.** Untuk setiap skenario, hitung tambahan biaya dan jam kerja dari tonase yang ditangani pada skenario itu. Periksa batas waktu di setiap gudang untuk ketiga skenario. Rata-ratakan biaya angkut dan penanganan dengan peluang skenario, lalu tambahkan biaya buka gudang satu kali. Laporkan biaya harapan minimum, gudang yang dibuka, dan rencana kiriman per skenario.
+Nilai harapan pengali setiap produk adalah satu. Karena itu, tabel pesanan pasti pada P1 juga merupakan nilai harapan permintaan P2. Kondisi bernama sedang mengikuti angka pada tabel dan tidak harus sama dengan nilai harapan setiap produk.
 
-## P7. Biaya dan emisi dengan penanganan nonlinear
+**Seluruh skenario yang digunakan:**
 
-Gabungkan penanganan nonlinear dari [P5](#p5-minimisasi-biaya-dengan-penanganan-nonlinear) dengan tujuan emisi dan prosedur Pareto dari [P3](#p3-biaya-dan-emisi). Gunakan permintaan pasti dari P1.
+| Skenario | Pengali A | Pengali B | Pengali C | Peluang (%) | Total pesanan (ton) |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 0,70 | 0,80 | 0,75 | 1,50 | 22,50 |
+| 2 | 0,70 | 0,80 | 1,05 | 2,50 | 25,50 |
+| 3 | 0,70 | 0,80 | 1,25 | 1,00 | 27,50 |
+| 4 | 0,70 | 0,95 | 0,75 | 4,50 | 24,00 |
+| 5 | 0,70 | 0,95 | 1,05 | 7,50 | 27,00 |
+| 6 | 0,70 | 0,95 | 1,25 | 3,00 | 29,00 |
+| 7 | 0,70 | 1,35 | 0,75 | 1,50 | 28,00 |
+| 8 | 0,70 | 1,35 | 1,05 | 2,50 | 31,00 |
+| 9 | 0,70 | 1,35 | 1,25 | 1,00 | 33,00 |
+| 10 | 1,00 | 0,80 | 0,75 | 3,00 | 25,50 |
+| 11 | 1,00 | 0,80 | 1,05 | 5,00 | 28,50 |
+| 12 | 1,00 | 0,80 | 1,25 | 2,00 | 30,50 |
+| 13 | 1,00 | 0,95 | 0,75 | 9,00 | 27,00 |
+| 14 | 1,00 | 0,95 | 1,05 | 15,00 | 30,00 |
+| 15 | 1,00 | 0,95 | 1,25 | 6,00 | 32,00 |
+| 16 | 1,00 | 1,35 | 0,75 | 3,00 | 31,00 |
+| 17 | 1,00 | 1,35 | 1,05 | 5,00 | 34,00 |
+| 18 | 1,00 | 1,35 | 1,25 | 2,00 | 36,00 |
+| 19 | 1,30 | 0,80 | 0,75 | 1,50 | 28,50 |
+| 20 | 1,30 | 0,80 | 1,05 | 2,50 | 31,50 |
+| 21 | 1,30 | 0,80 | 1,25 | 1,00 | 33,50 |
+| 22 | 1,30 | 0,95 | 0,75 | 4,50 | 30,00 |
+| 23 | 1,30 | 0,95 | 1,05 | 7,50 | 33,00 |
+| 24 | 1,30 | 0,95 | 1,25 | 3,00 | 35,00 |
+| 25 | 1,30 | 1,35 | 0,75 | 1,50 | 34,00 |
+| 26 | 1,30 | 1,35 | 1,05 | 2,50 | 37,00 |
+| 27 | 1,30 | 1,35 | 1,25 | 1,00 | 39,00 |
 
-**Keputusan dan keluaran.** Pada setiap batas emisi, minimalkan biaya total yang memuat tambahan biaya penanganan kuadratik. Periksa batas tonase dan waktu penanganan. Laporkan pasangan biaya–emisi dan gudang yang dibuka seperti pada P3.
+Seluruh skenario tersebut dipertimbangkan bersama. Daftar dan peluangnya menjadi data tetap model. Semua pesanan dalam setiap skenario dihitung dari tabel P1 dan pengali di atas. Nilai harapan total pesanan adalah 30 ton; total terendah 22,50 ton dan tertinggi 39,00 ton.
 
-## P8. Biaya harapan dan emisi harapan dengan penanganan nonlinear
+**Urutan keputusan:** perusahaan memilih gudang sebelum kondisi permintaan diketahui. Pilihan gudang tersebut berlaku sama untuk seluruh 27 skenario. Setelah kondisi diketahui, jumlah kiriman dapat disesuaikan. Setiap skenario wajib memenuhi seluruh pesanan, neraca barang, kapasitas tonase, dan waktu gudang.
 
-Gunakan [P6](#p6-biaya-harapan-dengan-penanganan-nonlinear) untuk skenario permintaan, biaya harapan, dan batas waktu penanganan. Tambahkan emisi harapan dan prosedur Pareto dari [P4](#p4-biaya-harapan-dan-emisi-harapan).
+**Tugas P2:** minimalkan biaya buka gudang satu kali ditambah biaya operasi rata-rata berbobot peluang. Rata-rata berbobot diperoleh dengan mengalikan biaya operasi setiap skenario dengan peluangnya, lalu menjumlahkan hasilnya. Laporkan biaya harapan, gudang yang dibuka, dan rencana kiriman untuk setiap skenario.
 
-**Keputusan dan keluaran.** Pada setiap batas emisi harapan, minimalkan biaya harapan dengan biaya penanganan kuadratik. Untuk setiap solusi, gunakan kombinasi gudang terbuka yang sama pada ketiga skenario. Hitung rencana kiriman dan periksa batas waktu penanganan di setiap skenario. Laporkan pasangan biaya harapan–emisi harapan, gudang yang dibuka, dan rencana kiriman per skenario untuk setiap solusi yang dilaporkan.
+<a id="p3"></a>
 
-[Daftar rute per produk](Rute_Pengiriman.md) · [Ringkasan profil](Profil_P1_P8.md) · [Model matematika acuan](../math_model_acuan/Model_Matematika.md) · [Halaman utama](../README.md)
+## Profil P3. Biaya dan emisi dengan permintaan pasti
+
+Gunakan P1 dan tambahkan **emisi sebagai tujuan kedua**. Emisi yang diperhitungkan berasal dari gudang yang dibuka serta angkutan pada kedua tahap. Emisi tetap gudang dihitung sekali per gudang yang dibuka; emisi angkutan dihitung dengan mengalikan faktor rute dengan ton yang dikirim. Satuan emisi adalah kg CO₂e.
+
+**Emisi tetap gudang per periode:**
+
+| Gudang | Emisi tetap (kg CO₂e) |
+| --- | --- |
+| G1 | 25,00 |
+| G2 | 20,00 |
+| G3 | 8,00 |
+| G4 | 24,00 |
+
+**Emisi pabrik → gudang, kg CO₂e per ton:**
+
+| Pabrik | G1 | G2 | G3 | G4 |
+| --- | --- | --- | --- | --- |
+| P1 | 5,00 | 1,80 | 1,50 | 1,30 |
+| P2 | 1,60 | 2,10 | 3,90 | 4,40 |
+| P3 | 1,20 | 3,10 | 2,40 | 2,10 |
+| P4 | 4,50 | 1,00 | 3,50 | 4,40 |
+| P5 | 3,80 | 3,50 | 0,70 | 3,50 |
+| P6 | 4,10 | 3,50 | 1,00 | 2,90 |
+
+**Emisi gudang → zona, kg CO₂e per ton:**
+
+| Gudang | K1 | K2 | K3 | K4 | K5 | K6 |
+| --- | --- | --- | --- | --- | --- | --- |
+| G1 | 1,40 | 3,60 | 1,70 | 3,70 | 1,90 | 3,60 |
+| G2 | 0,90 | 3,50 | 1,20 | 3,50 | 1,30 | 3,30 |
+| G3 | 0,75 | 0,90 | 0,80 | 0,80 | 3,10 | 0,80 |
+| G4 | 3,70 | 2,00 | 3,60 | 2,10 | 3,70 | 2,20 |
+
+Sebagai contoh, satu ton minyak melalui Pabrik P1 → G1 → K1 menimbulkan emisi angkutan 5,00 + 1,40 = **6,40 kg CO₂e**. Emisi tetap G1 sebesar 25 kg CO₂e ditambahkan sekali apabila G1 dibuka.
+
+**Tugas P3:** cari kompromi antara biaya dan emisi. Gunakan prosedur batas emisi berikut untuk menghasilkan keluaran yang dapat dibandingkan:
+
+1. Cari titik ujung emisi minimum dan titik ujung biaya minimum. Pada ujung emisi minimum, pilih biaya terendah di antara rencana dengan emisi setara secara numerik. Pada ujung biaya minimum, pilih emisi terendah di antara rencana dengan biaya setara secara numerik.
+2. Ambil **25 batas emisi berjarak sama**, termasuk kedua ujung rentang emisi dari rencana ujung tersebut. Rentang dihitung untuk profil dan tingkat rute yang sedang dinilai.
+3. Untuk setiap batas emisi, cari biaya terendah yang tetap memenuhi batas tersebut. Selanjutnya pilih emisi terendah di antara rencana dengan biaya setara secara numerik dan tetap memenuhi batas emisi.
+4. Gunakan toleransi kesetaraan biaya 0,00025 satuan biaya dan toleransi emisi 0,00025 kg CO₂e. Laporkan pasangan biaya–emisi, gudang terbuka, dan kiriman. Pada grafik, tampilkan setiap titik unik sekali dan keluarkan titik yang didominasi oleh titik hasil lain sesuai toleransi tersebut.
+
+Sebuah titik didominasi apabila ada titik lain yang biaya dan emisinya sama atau lebih rendah, dengan setidaknya satu ukuran lebih rendah. Batas emisi menyatakan emisi maksimum yang diperbolehkan untuk satu rencana distribusi.
+
+<a id="p4"></a>
+
+## Profil P4. Biaya harapan dan emisi harapan
+
+Gabungkan ketidakpastian permintaan P2 dengan dua tujuan dan data emisi P3. Gudang dipilih sebelum permintaan diketahui dan pilihan yang sama digunakan pada seluruh 27 skenario. Kiriman disesuaikan pada setiap skenario.
+
+**Tugas P4:** minimalkan biaya harapan dan emisi harapan. Emisi harapan adalah emisi tetap gudang satu kali ditambah rata-rata berbobot peluang dari emisi angkutan. Terapkan 25 batas pada **emisi harapan** menggunakan prosedur P3. Pesanan, kapasitas, waktu, dan neraca harus dipenuhi pada setiap skenario. Laporkan pasangan tujuan, pilihan gudang, dan kiriman per skenario untuk setiap titik yang dilaporkan.
+
+<a id="p5"></a>
+
+## Profil P5. Biaya minimum dengan penanganan nonlinear
+
+Gunakan permintaan pasti dan seluruh aturan P1, dengan perubahan biaya dan waktu penanganan pada **keempat gudang**. Biaya angkut, kapasitas tonase, jam tersedia, dan biaya buka tetap mengikuti P1.
+
+Untuk **setiap produk di setiap gudang**, jumlahkan seluruh ton produk itu yang dikirim dari gudang ke zona-zona. Kuadratkan jumlah tersebut. Tambahkan:
+
+- **0,04 kali kuadrat tonase** sebagai biaya penanganan tambahan.
+- **0,025 kali kuadrat tonase** sebagai jam kerja tambahan.
+
+Jumlahkan kontribusi ketiga produk pada masing-masing gudang. Kuadrat dihitung setelah seluruh kiriman satu produk dari gudang itu dijumlahkan. Tetap tambahkan biaya penanganan dasar per ton dan waktu dasar satu jam per ton.
+
+Contoh: pada High, G3 menangani 5 ton A, 4 ton B, dan 3 ton C. Jumlah kuadrat tonase adalah 25 + 16 + 9 = **50**. Tambahan biaya adalah 0,04 × 50 = **2,00**, sedangkan tambahan waktu adalah 0,025 × 50 = **1,25 jam**. Total waktu penanganannya menjadi 12 + 1,25 = **13,25 jam**.
+
+Contoh lain: rencana menangani 10 ton B dan 8 ton C di G3 memenuhi kapasitas fisik 18 ton. Akan tetapi, waktu nonlinear menjadi 18 + 0,025 × (100 + 64) = **22,10 jam**, melebihi waktu tersedia G3 sebesar 19,80 jam. Karena itu, rencana tersebut harus diubah agar memenuhi batas waktu.
+
+**Tugas P5:** minimalkan biaya buka, angkut, penanganan dasar, dan tambahan penanganan kuadratik. Penuhi kapasitas tonase serta waktu nonlinear pada setiap gudang. Laporkan biaya minimum, gudang terbuka, dan kiriman per rute dan produk.
+
+<a id="p6"></a>
+
+## Profil P6. Biaya harapan dengan penanganan nonlinear
+
+Gabungkan 27 skenario permintaan P2 dengan aturan penanganan kuadratik P5. Hitung tonase, kuadrat tonase, biaya penanganan, dan jam kerja **pada masing-masing skenario**. Setelah biaya skenario dihitung, kalikan dengan peluang skenario dan jumlahkan untuk memperoleh biaya operasi harapan. Tambahkan biaya buka gudang satu kali.
+
+Pilihan gudang berlaku sama pada seluruh skenario. Pesanan, neraca, kapasitas tonase, dan waktu nonlinear dipenuhi di setiap skenario; jumlah kiriman boleh disesuaikan dengan skenario.
+
+**Tugas P6:** minimalkan biaya harapan. Laporkan biaya harapan, gudang terbuka, dan rencana kiriman setiap skenario.
+
+<a id="p7"></a>
+
+## Profil P7. Biaya dan emisi dengan penanganan nonlinear
+
+Gunakan permintaan pasti serta penanganan nonlinear P5. Tambahkan tujuan dan data emisi P3. Definisi emisi tetap mengikuti P3: emisi gudang yang dibuka dan emisi angkutan dua tahap. Tambahan biaya dan waktu kuadratik mengikuti P5 pada seluruh gudang.
+
+**Tugas P7:** hasilkan kompromi biaya–emisi dengan 25 batas emisi dan prosedur P3. Biaya mencakup penanganan kuadratik; setiap rencana memenuhi kapasitas tonase dan waktu nonlinear. Laporkan pasangan tujuan, gudang, dan kiriman pada setiap titik yang dilaporkan.
+
+<a id="p8"></a>
+
+## Profil P8. Biaya harapan dan emisi harapan dengan penanganan nonlinear
+
+Gabungkan biaya harapan dan penanganan nonlinear P6 dengan emisi harapan serta prosedur Pareto P4. Seluruh 18 pesanan mengikuti 27 skenario P2. Pilihan gudang sama pada seluruh skenario, sedangkan kiriman disesuaikan per skenario.
+
+**Tugas P8:** terapkan 25 batas pada emisi harapan dan minimalkan biaya harapan pada setiap batas. Biaya penanganan kuadratik dihitung pada setiap skenario sebelum dirata-ratakan. Kapasitas tonase dan waktu nonlinear wajib dipenuhi di setiap skenario. Laporkan pasangan biaya harapan–emisi harapan, gudang terbuka, dan kiriman setiap skenario untuk setiap titik yang dilaporkan.
+
+## Ringkasan penggunaan data
+
+| Profil | Permintaan | Tujuan | Penanganan |
+| --- | --- | --- | --- |
+| P1 | Pasti | Biaya | Linear |
+| P2 | 27 skenario | Biaya harapan | Linear |
+| P3 | Pasti | Biaya dan emisi | Linear |
+| P4 | 27 skenario | Biaya dan emisi harapan | Linear |
+| P5 | Pasti | Biaya | Kuadratik |
+| P6 | 27 skenario | Biaya harapan | Kuadratik |
+| P7 | Pasti | Biaya dan emisi | Kuadratik |
+| P8 | 27 skenario | Biaya dan emisi harapan | Kuadratik |
+
+Semua profil memakai daftar fasilitas dan tabel tarif yang sama pada tingkat rute yang sama. Profil deterministik memakai satu kondisi pesanan pasti. Profil stokastik memakai 27 skenario bersama. Pada profil dua tujuan, 25 batas emisi menghasilkan sampel kompromi dan dapat memberikan kurang dari 25 titik unik.
+
+[Halaman utama](../README.md) · [Tabel data CSV](data_tabel/) · [Model matematika acuan](../math_model_acuan/Model_Matematika.md)

@@ -1,0 +1,176 @@
+[
+  {
+    "level": "L",
+    "stochastic": false,
+    "nonlinear": false,
+    "cost_upper": 282.4203,
+    "cost_lower": 282.4203,
+    "gap": 0.0,
+    "warehouses": [
+      2,
+      4
+    ],
+    "feasible_patterns": 6,
+    "profile": "P1"
+  },
+  {
+    "level": "M",
+    "stochastic": false,
+    "nonlinear": false,
+    "cost_upper": 278.70709999999997,
+    "cost_lower": 278.70709999999997,
+    "gap": 0.0,
+    "warehouses": [
+      2,
+      4
+    ],
+    "feasible_patterns": 6,
+    "profile": "P1"
+  },
+  {
+    "level": "H",
+    "stochastic": false,
+    "nonlinear": false,
+    "cost_upper": 251.3682,
+    "cost_lower": 251.3682,
+    "gap": 0.0,
+    "warehouses": [
+      1,
+      3
+    ],
+    "feasible_patterns": 11,
+    "profile": "P1"
+  },
+  {
+    "level": "L",
+    "stochastic": true,
+    "nonlinear": false,
+    "cost_upper": 310.6635,
+    "cost_lower": 310.6635,
+    "gap": 0.0,
+    "warehouses": [
+      1,
+      2,
+      3
+    ],
+    "feasible_patterns": 2,
+    "profile": "P2"
+  },
+  {
+    "level": "M",
+    "stochastic": true,
+    "nonlinear": false,
+    "cost_upper": 299.14060000000006,
+    "cost_lower": 299.14060000000006,
+    "gap": 0.0,
+    "warehouses": [
+      1,
+      2,
+      4
+    ],
+    "feasible_patterns": 3,
+    "profile": "P2"
+  },
+  {
+    "level": "H",
+    "stochastic": true,
+    "nonlinear": false,
+    "cost_upper": 263.54819999999995,
+    "cost_lower": 263.5482,
+    "gap": -5.684341886080802e-14,
+    "warehouses": [
+      1,
+      3,
+      4
+    ],
+    "feasible_patterns": 5,
+    "profile": "P2"
+  },
+  {
+    "level": "L",
+    "stochastic": false,
+    "nonlinear": true,
+    "cost_upper": 288.66678,
+    "cost_lower": 288.66677999999996,
+    "gap": 5.684341886080802e-14,
+    "warehouses": [
+      2,
+      4
+    ],
+    "feasible_patterns": 6,
+    "profile": "P5"
+  },
+  {
+    "level": "M",
+    "stochastic": false,
+    "nonlinear": true,
+    "cost_upper": 286.60968789030267,
+    "cost_lower": 286.6096736319176,
+    "gap": 1.4258385078846914e-05,
+    "warehouses": [
+      2,
+      4
+    ],
+    "feasible_patterns": 6,
+    "profile": "P5"
+  },
+  {
+    "level": "H",
+    "stochastic": false,
+    "nonlinear": true,
+    "cost_upper": 260.53192539111836,
+    "cost_lower": 260.5319253902278,
+    "gap": 8.905658432922792e-10,
+    "warehouses": [
+      1,
+      3
+    ],
+    "feasible_patterns": 10,
+    "profile": "P5"
+  },
+  {
+    "level": "L",
+    "stochastic": true,
+    "nonlinear": true,
+    "cost_upper": 316.38966714917655,
+    "cost_lower": 316.38966714596137,
+    "gap": 3.215177457605023e-09,
+    "warehouses": [
+      1,
+      2,
+      3
+    ],
+    "feasible_patterns": 2,
+    "profile": "P6"
+  },
+  {
+    "level": "M",
+    "stochastic": true,
+    "nonlinear": true,
+    "cost_upper": 305.6418445285923,
+    "cost_lower": 305.64184311519244,
+    "gap": 1.413399843386287e-06,
+    "warehouses": [
+      1,
+      2,
+      4
+    ],
+    "feasible_patterns": 3,
+    "profile": "P6"
+  },
+  {
+    "level": "H",
+    "stochastic": true,
+    "nonlinear": true,
+    "cost_upper": 269.5925547081476,
+    "cost_lower": 269.5925491721867,
+    "gap": 5.535960895031167e-06,
+    "warehouses": [
+      1,
+      3,
+      4
+    ],
+    "feasible_patterns": 5,
+    "profile": "P6"
+  }
+]

@@ -1,0 +1,171 @@
+{
+  "parent_data_sha256": "ac501022c7eadc66aa5b2c705b107c62e12883753615dabba13709849233b8db",
+  "selected_data_sha256": "ffcbcbcc92f4e49121cbfdd11e0cbe478b612ac75c9620e16704565c14f2924a",
+  "changes": [
+    {
+      "path": "tarif_masuk_per_ton[4][2]",
+      "old": 3.12,
+      "new": 4.23
+    },
+    {
+      "path": "tarif_masuk_per_ton[5][2]",
+      "old": 2.57,
+      "new": 3.04
+    },
+    {
+      "path": "level.M.jalur_keluar",
+      "removed": [
+        [
+          3,
+          1,
+          "A"
+        ],
+        [
+          3,
+          3,
+          "B"
+        ],
+        [
+          3,
+          4,
+          "B"
+        ],
+        [
+          3,
+          5,
+          "C"
+        ],
+        [
+          4,
+          1,
+          "A"
+        ],
+        [
+          4,
+          2,
+          "A"
+        ],
+        [
+          4,
+          4,
+          "B"
+        ],
+        [
+          4,
+          6,
+          "C"
+        ]
+      ],
+      "added": [
+        [
+          2,
+          1,
+          "C"
+        ],
+        [
+          2,
+          2,
+          "B"
+        ],
+        [
+          2,
+          2,
+          "C"
+        ],
+        [
+          2,
+          3,
+          "C"
+        ],
+        [
+          2,
+          4,
+          "A"
+        ],
+        [
+          2,
+          6,
+          "A"
+        ]
+      ],
+      "old_count": 44,
+      "new_count": 42
+    },
+    {
+      "path": "level.H.jalur_masuk",
+      "removed": [
+        [
+          1,
+          4,
+          "A"
+        ],
+        [
+          1,
+          4,
+          "B"
+        ],
+        [
+          3,
+          1,
+          "A"
+        ],
+        [
+          3,
+          1,
+          "B"
+        ]
+      ],
+      "added": [
+        [
+          5,
+          3,
+          "A"
+        ],
+        [
+          5,
+          3,
+          "C"
+        ],
+        [
+          6,
+          3,
+          "B"
+        ],
+        [
+          6,
+          3,
+          "C"
+        ]
+      ],
+      "old_count": 22,
+      "new_count": 22
+    },
+    {
+      "path": "P3.emisi_tetap_gudang[0]",
+      "old": 12,
+      "new": 25.0
+    },
+    {
+      "path": "P3.emisi_masuk_per_ton[0][0]",
+      "old": 1.4,
+      "new": 5.0
+    },
+    {
+      "path": "P3.emisi_masuk_per_ton[2][2]",
+      "old": 0.8,
+      "new": 2.4
+    },
+    {
+      "path": "P3.emisi_masuk_per_ton[3][0]",
+      "old": 1.8,
+      "new": 4.5
+    },
+    {
+      "path": "P3.emisi_masuk_per_ton[4][2]",
+      "old": 1.1,
+      "new": 0.7
+    }
+  ],
+  "capacities_scenarios_and_nonlinear_coefficients_unchanged": true,
+  "calibration_scope": "Tariffs/emissions and Medium outbound / High inbound route lists; no business constraints added; full benchmark rerun after data and solver representation fixed"
+}

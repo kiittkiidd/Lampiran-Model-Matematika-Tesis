@@ -1,0 +1,21 @@
+{
+  "heldout_seeds": [
+    893101,
+    893102,
+    893103
+  ],
+  "heldout_mean_demand_rule": "Independent zone adjustments in [-0.06,+0.06] ton for the first five zones per product, rounded to two decimals; sixth adjusted so product total remains 10 ton.",
+  "heldout_profiles": [
+    "P1",
+    "P3",
+    "P5",
+    "P7"
+  ],
+  "repetitions_per_heldout_case": 3,
+  "calibration_uses_only_base_case": true,
+  "chosen_case": "Supplier cost/emission trade-offs and six additional Medium outbound routes; exact separate-square-epigraph SCIP implementation",
+  "calibration_complete_before_heldout": true,
+  "validation_rule": "Report every predefined perturbation; do not recalibrate the reference dataset using these results",
+  "selected_data_sha256": "ffcbcbcc92f4e49121cbfdd11e0cbe478b612ac75c9620e16704565c14f2924a",
+  "selected_solver_sha256": "a48dcacf5366fbaa649cd306cc091cf4b5345713ca3fbfe3a3bbde1664ad3166"
+}
