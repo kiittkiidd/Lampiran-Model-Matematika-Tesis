@@ -43,9 +43,14 @@ Nilai $`U_i=8`$ ton. Jika P1 memasok 5,5 ton minyak, sisa kapasitasnya untuk sem
 **Keseimbangan barang di gudang.** Setiap produk yang masuk harus dikirim ke zona pada periode yang sama.
 
 $$
-\sum_i x_{igp}=q_{gp}
-\quad\text{untuk setiap pasangan gudang dan produk yang kompatibel.}
+\underbrace{\sum_i x_{igp}}_{\text{total masuk}}
+=
+\underbrace{q_{gp}}_{\text{tonase ditangani}}
+=
+\underbrace{\sum_j z_{gjp}}_{\text{total keluar}}
 $$
+
+Persamaan ini berlaku untuk setiap pasangan gudang dan produk yang kompatibel. Panah masuk dari pabrik dan panah keluar ke zona dihubungkan oleh $`q_{gp}`$, singkatan untuk total arus keluar. Saat $`q_{gp}`$ diganti dengan definisinya, persamaan langsung menunjukkan **total masuk = total keluar** untuk produk yang sama di gudang yang sama.
 
 Jika G2 menerima 6 ton minyak, total kiriman minyak dari G2 juga harus 6 ton. Pada pasangan yang belum memiliki rute di suatu tingkat, penjumlahan kosong bernilai nol.
 

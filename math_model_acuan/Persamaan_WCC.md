@@ -15,7 +15,14 @@ $`x_{i,g,p}`$ adalah kiriman dari pabrik $`i`$ ke gudang $`g`$ untuk produk $`p`
 
 **Low. Rute sirup ke K1, K3, dan K5**
 
-R8 ditampilkan pada [contoh persamaan pada halaman utama](../Lampiran_WCC.md#contoh-persamaan-r8-pada-low). R36 menghitung seluruh kiriman keluar dari G1.
+R8 menyeimbangkan kiriman sirup yang masuk dan keluar. R36 menghitung seluruh kiriman keluar dari G1.
+
+$$
+\begin{aligned}
+\mathrm{R8}\quad &x_{1,1,B}+x_{2,1,B}+x_{3,1,B}\\
+&\quad = z_{1,1,B}+z_{1,3,B}+z_{1,5,B}
+\end{aligned}
+$$
 
 $$
 \begin{aligned}
