@@ -80,4 +80,6 @@ Tabel ini menjumlahkan bobot dari semua pasangan di antara **43 baris operasi**.
 | Medium | 283 | 435 | **65,06%** |
 | High | 381 | 435 | **87,59%** |
 
+**Neraca gudang sudah masuk hitungan WCC.** Sejak versi awal, solver memakai satu baris neraca per pasangan gudang–produk yang kompatibel dalam setiap skenario. Baris itu menyamakan total kiriman masuk $`\sum_i x_{igp}`$ dan total kiriman keluar $`\sum_j z_{gjp}`$. Tanda $`q_{gp}`$ di dokumentasi adalah singkatan untuk total kiriman keluar. Menulis ketiganya dalam satu persamaan hanya memperjelas cara baca model. Audit WCC tetap menghitung 43 baris operasi, termasuk neraca, dan hasil optimum serta waktu komputasi merujuk pada formulasi solver yang sama.
+
 [Lihat persamaan R1–R43, contoh R8–R36, dan hitungan lengkap](math_model_acuan/Persamaan_WCC.md) · [Rincian 903 pasangan](math_model_acuan/hasil/Audit_WCC_Pasangan.csv) · [Model matematika](math_model_acuan/Model_Matematika.md) · [Gambar jaringan PT XYZ](case/Kasus_Dasar.md) · [Data rute](case/Data_Bersama.json) · [Halaman utama](README.md)
