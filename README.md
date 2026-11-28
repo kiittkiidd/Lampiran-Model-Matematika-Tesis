@@ -56,4 +56,4 @@ OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python math_model_acuan/source/verify.p
 
 Data mentah kiriman tersimpan sebagai JSONL terkompresi gzip agar ukuran repositori tetap ringkas. Pembaca verifikasi membuka berkas itu secara otomatis. Catatan [penyesuaian data](math_model_acuan/hasil/Perubahan_Data.md), [checksum versi](math_model_acuan/hasil/MANIFEST.json), dan hasil sensitivitas tersedia bersama audit.
 
-Seluruh gambar adalah SVG/PNG statis. Data, kode optimisasi, dan hasil utama sama dengan versi yang diuji. Pengukuran utama memakai median tiga ulangan setelah pemanasan; hasil variasi permintaan dilaporkan terpisah.
+Seluruh gambar dan persamaan ditampilkan sebagai SVG/PNG statis. Persamaan tetap terbaca tanpa renderer LaTeX GitHub; [sumber LaTeX](math_model_acuan/source/persamaan_sumber.tex) tersedia untuk penyuntingan dan reproduksi. Data, kode optimisasi, dan hasil utama sama dengan versi yang diuji. Pengukuran utama memakai median tiga ulangan setelah pemanasan; hasil variasi permintaan dilaporkan terpisah.

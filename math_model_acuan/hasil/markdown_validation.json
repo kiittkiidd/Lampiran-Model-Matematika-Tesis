@@ -1,5 +1,38 @@
 {
   "markdown_files": 7,
-  "math_expressions": 180,
-  "errors": []
+  "formula_occurrences": 184,
+  "unique_svg_formulas": 141,
+  "missing_links": [],
+  "svg_errors": [],
+  "unconverted_math": [],
+  "latex_source_and_visual_mathjax": "141 original formulas and 141 visual variants compiled without merror; 184 occurrences",
+  "notebook_markdown_cells": 5,
+  "notebook_math_expressions": 0,
+  "github_render_check": {
+    "preview_commit": "68fb53ed9e2ca22c932dec6c4ef1107893e40198",
+    "pages": [
+      {
+        "path": "Lampiran_WCC.md",
+        "formula_images": 76,
+        "loaded_formula_images": 76,
+        "broken_images": 0,
+        "math_renderers": 0
+      },
+      {
+        "path": "math_model_acuan/Model_Matematika.md",
+        "formula_images": 66,
+        "loaded_formula_images": 66,
+        "broken_images": 0,
+        "math_renderers": 0
+      },
+      {
+        "path": "math_model_acuan/Persamaan_WCC.md",
+        "formula_images": 42,
+        "loaded_formula_images": 42,
+        "broken_images": 0,
+        "math_renderers": 0
+      }
+    ],
+    "passed": true
+  }
 }

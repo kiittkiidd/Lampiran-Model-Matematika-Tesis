@@ -1,0 +1,2196 @@
+{
+  "renderer": "MathJax 3.2.2 → standalone SVG paths",
+  "formulas": [
+    {
+      "id": "a5c59404f778b060",
+      "file": "math_model_acuan/diagram/persamaan/eq-a5c59404f778b060.svg",
+      "display": true,
+      "latex": "w_{rs}=\\lvert S_r\\cap S_s\\rvert.",
+      "rendered_latex": "w_{rs}=\\lvert S_r\\cap S_s\\rvert.",
+      "width": 129,
+      "height": 25
+    },
+    {
+      "id": "3521201a6bfde71b",
+      "file": "math_model_acuan/diagram/persamaan/eq-3521201a6bfde71b.svg",
+      "display": true,
+      "latex": "B=\\sum_{r=1}^{m-1}\\sum_{s=r+1}^{m}w_{rs}.",
+      "rendered_latex": "B=\\sum_{r=1}^{m-1}\\sum_{s=r+1}^{m}w_{rs}.",
+      "width": 147,
+      "height": 60
+    },
+    {
+      "id": "16eaea62a468189a",
+      "file": "math_model_acuan/diagram/persamaan/eq-16eaea62a468189a.svg",
+      "display": true,
+      "latex": "\\mathrm{WCC}=\\frac{B}{B_{\\mathrm{ref}}}\\times100\\%.",
+      "rendered_latex": "\\mathrm{WCC}=\\frac{B}{B_{\\mathrm{ref}}}\\times100\\%.",
+      "width": 183,
+      "height": 47
+    },
+    {
+      "id": "37b00332ebe5bcd1",
+      "file": "math_model_acuan/diagram/persamaan/eq-37b00332ebe5bcd1.svg",
+      "display": true,
+      "latex": "\\mathrm{R6}:\\quad x_{4,2,C}=z_{2,5,C}+z_{2,6,C}.",
+      "rendered_latex": "\\mathrm{R6}:\\quad x_{4,2,C}=z_{2,5,C}+z_{2,6,C}.",
+      "width": 233,
+      "height": 24
+    },
+    {
+      "id": "8470e7c81d0ae0a6",
+      "file": "math_model_acuan/diagram/persamaan/eq-8470e7c81d0ae0a6.svg",
+      "display": true,
+      "latex": "\\mathrm{R27}:\\quad z_{1,5,C}+z_{2,5,C}=2{,}73.",
+      "rendered_latex": "\\mathrm{R27}:\\quad z_{1,5,C}+z_{2,5,C}=2{,}73.",
+      "width": 233,
+      "height": 24
+    },
+    {
+      "id": "97a0420885694952",
+      "file": "math_model_acuan/diagram/persamaan/eq-97a0420885694952.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R32}:\\quad &z_{2,1,A}+z_{2,2,A}+z_{2,3,B}+z_{2,4,B}\\\\\n&+z_{2,5,C}+z_{2,6,C}\\le20y_2.\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R32}:\\quad &z_{2,1,A}+z_{2,2,A}+z_{2,3,B}+z_{2,4,B}\\\\\n&+z_{2,5,C}+z_{2,6,C}\\le20y_2.\n\\end{aligned}",
+      "width": 289,
+      "height": 50
+    },
+    {
+      "id": "ae3ea22e756710c9",
+      "file": "math_model_acuan/diagram/persamaan/eq-ae3ea22e756710c9.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R36}:\\quad &z_{2,1,A}+z_{2,2,A}+z_{2,3,B}+z_{2,4,B}\\\\\n&+z_{2,5,C}+z_{2,6,C}\\le22{,}40y_2.\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R36}:\\quad &z_{2,1,A}+z_{2,2,A}+z_{2,3,B}+z_{2,4,B}\\\\\n&+z_{2,5,C}+z_{2,6,C}\\le22{,}40y_2.\n\\end{aligned}",
+      "width": 289,
+      "height": 50
+    },
+    {
+      "id": "0ed36ff1e1ef9ec3",
+      "file": "math_model_acuan/diagram/persamaan/eq-0ed36ff1e1ef9ec3.svg",
+      "display": true,
+      "latex": "B=6n_{\\mathrm{out}}+4,\n\\qquad B_{\\mathrm{ref}}=6(72)+4=436.",
+      "rendered_latex": "B=6n_{\\mathrm{out}}+4,\n\\qquad B_{\\mathrm{ref}}=6(72)+4=436.",
+      "width": 342,
+      "height": 25
+    },
+    {
+      "id": "20f50f2c52af3966",
+      "file": "math_model_acuan/diagram/persamaan/eq-20f50f2c52af3966.svg",
+      "display": false,
+      "latex": "z_{2,5,C}",
+      "rendered_latex": "z_{2,5,C}",
+      "width": 37,
+      "height": 14
+    },
+    {
+      "id": "50e66253d5477375",
+      "file": "math_model_acuan/diagram/persamaan/eq-50e66253d5477375.svg",
+      "display": false,
+      "latex": "z_{2,6,C}",
+      "rendered_latex": "z_{2,6,C}",
+      "width": 37,
+      "height": 14
+    },
+    {
+      "id": "25118c2b79b6e17d",
+      "file": "math_model_acuan/diagram/persamaan/eq-25118c2b79b6e17d.svg",
+      "display": false,
+      "latex": "x_{2,5,C}",
+      "rendered_latex": "x_{2,5,C}",
+      "width": 39,
+      "height": 14
+    },
+    {
+      "id": "445aa3949d772c6d",
+      "file": "math_model_acuan/diagram/persamaan/eq-445aa3949d772c6d.svg",
+      "display": false,
+      "latex": "m",
+      "rendered_latex": "m",
+      "width": 16,
+      "height": 10
+    },
+    {
+      "id": "ff35acc776e974da",
+      "file": "math_model_acuan/diagram/persamaan/eq-ff35acc776e974da.svg",
+      "display": false,
+      "latex": "S_r",
+      "rendered_latex": "S_r",
+      "width": 19,
+      "height": 16
+    },
+    {
+      "id": "640a535e9ee5fc23",
+      "file": "math_model_acuan/diagram/persamaan/eq-640a535e9ee5fc23.svg",
+      "display": false,
+      "latex": "r",
+      "rendered_latex": "r",
+      "width": 10,
+      "height": 10
+    },
+    {
+      "id": "63d36148233e0986",
+      "file": "math_model_acuan/diagram/persamaan/eq-63d36148233e0986.svg",
+      "display": false,
+      "latex": "w_{rs}",
+      "rendered_latex": "w_{rs}",
+      "width": 26,
+      "height": 12
+    },
+    {
+      "id": "d10534071a7edbe1",
+      "file": "math_model_acuan/diagram/persamaan/eq-d10534071a7edbe1.svg",
+      "display": false,
+      "latex": "B",
+      "rendered_latex": "B",
+      "width": 15,
+      "height": 13
+    },
+    {
+      "id": "c005b2e0ea3a3bda",
+      "file": "math_model_acuan/diagram/persamaan/eq-c005b2e0ea3a3bda.svg",
+      "display": false,
+      "latex": "B_{\\mathrm{ref}}",
+      "rendered_latex": "B_{\\mathrm{ref}}",
+      "width": 30,
+      "height": 16
+    },
+    {
+      "id": "d7b7a786f959b0e6",
+      "file": "math_model_acuan/diagram/persamaan/eq-d7b7a786f959b0e6.svg",
+      "display": false,
+      "latex": "4\\times6\\times3=72",
+      "rendered_latex": "4\\times6\\times3=72",
+      "width": 103,
+      "height": 15
+    },
+    {
+      "id": "7c80e0e1b67ffdbd",
+      "file": "math_model_acuan/diagram/persamaan/eq-7c80e0e1b67ffdbd.svg",
+      "display": false,
+      "latex": "x_{4,2,C}",
+      "rendered_latex": "x_{4,2,C}",
+      "width": 39,
+      "height": 14
+    },
+    {
+      "id": "23c9f2185134e5d1",
+      "file": "math_model_acuan/diagram/persamaan/eq-23c9f2185134e5d1.svg",
+      "display": false,
+      "latex": "y_2",
+      "rendered_latex": "y_2",
+      "width": 17,
+      "height": 13
+    },
+    {
+      "id": "f6270fe0f0c235de",
+      "file": "math_model_acuan/diagram/persamaan/eq-f6270fe0f0c235de.svg",
+      "display": false,
+      "latex": "x_{4,2,C},z_{2,5,C},z_{2,6,C}",
+      "rendered_latex": "x_{4,2,C},z_{2,5,C},z_{2,6,C}",
+      "width": 123,
+      "height": 14
+    },
+    {
+      "id": "0dafb840ef3922e0",
+      "file": "math_model_acuan/diagram/persamaan/eq-0dafb840ef3922e0.svg",
+      "display": false,
+      "latex": "z_{1,5,C},z_{2,5,C}",
+      "rendered_latex": "z_{1,5,C},z_{2,5,C}",
+      "width": 79,
+      "height": 14
+    },
+    {
+      "id": "f67d77694859fe62",
+      "file": "math_model_acuan/diagram/persamaan/eq-f67d77694859fe62.svg",
+      "display": false,
+      "latex": "z_{2,1,A},z_{2,2,A},z_{2,3,B},z_{2,4,B},z_{2,5,C},z_{2,6,C},y_2",
+      "rendered_latex": "z_{2,1,A},z_{2,2,A},z_{2,3,B},z_{2,4,B},z_{2,5,C},z_{2,6,C},y_2",
+      "width": 270,
+      "height": 14
+    },
+    {
+      "id": "de7865567492ec87",
+      "file": "math_model_acuan/diagram/persamaan/eq-de7865567492ec87.svg",
+      "display": false,
+      "latex": "4(4-1)/2=6",
+      "rendered_latex": "4(4-1)/2=6",
+      "width": 104,
+      "height": 18
+    },
+    {
+      "id": "176c6700b69a1676",
+      "file": "math_model_acuan/diagram/persamaan/eq-176c6700b69a1676.svg",
+      "display": false,
+      "latex": "z_{2,5,C},z_{2,6,C}",
+      "rendered_latex": "z_{2,5,C},z_{2,6,C}",
+      "width": 79,
+      "height": 14
+    },
+    {
+      "id": "40c3e2b505699b72",
+      "file": "math_model_acuan/diagram/persamaan/eq-40c3e2b505699b72.svg",
+      "display": false,
+      "latex": "z",
+      "rendered_latex": "z",
+      "width": 10,
+      "height": 10
+    },
+    {
+      "id": "5aa69473bcc366a9",
+      "file": "math_model_acuan/diagram/persamaan/eq-5aa69473bcc366a9.svg",
+      "display": false,
+      "latex": "1+2+2+1+1+7",
+      "rendered_latex": "1+2+2+1+1+7",
+      "width": 148,
+      "height": 15
+    },
+    {
+      "id": "09cf41f891d89b38",
+      "file": "math_model_acuan/diagram/persamaan/eq-09cf41f891d89b38.svg",
+      "display": false,
+      "latex": "x_{4,2,C}=\\sum_{j=1}^{6}z_{2,j,C}",
+      "rendered_latex": "x_{4,2,C}=\\sum_{j=1}^{6}z_{2,j,C}",
+      "width": 134,
+      "height": 24
+    },
+    {
+      "id": "7529c23fe011c15c",
+      "file": "math_model_acuan/diagram/persamaan/eq-7529c23fe011c15c.svg",
+      "display": false,
+      "latex": "\\sum_{g=1}^{4}z_{g,5,C}=2{,}73",
+      "rendered_latex": "\\sum_{g=1}^{4}z_{g,5,C}=2{,}73",
+      "width": 128,
+      "height": 25
+    },
+    {
+      "id": "58be380f6023d400",
+      "file": "math_model_acuan/diagram/persamaan/eq-58be380f6023d400.svg",
+      "display": false,
+      "latex": "\\sum_{p\\in\\{A,B,C\\}}\\sum_{j=1}^{6}z_{2,j,p}\\le20y_2",
+      "rendered_latex": "\\sum_{p\\in\\{A,B,C\\}}\\sum_{j=1}^{6}z_{2,j,p}\\le20y_2",
+      "width": 203,
+      "height": 25
+    },
+    {
+      "id": "91766a0606a90af5",
+      "file": "math_model_acuan/diagram/persamaan/eq-91766a0606a90af5.svg",
+      "display": false,
+      "latex": "\\sum_{p\\in\\{A,B,C\\}}\\sum_{j=1}^{6}z_{2,j,p}\\le22{,}40y_2",
+      "rendered_latex": "\\sum_{p\\in\\{A,B,C\\}}\\sum_{j=1}^{6}z_{2,j,p}\\le22{,}40y_2",
+      "width": 224,
+      "height": 25
+    },
+    {
+      "id": "f520d850c99061e1",
+      "file": "math_model_acuan/diagram/persamaan/eq-f520d850c99061e1.svg",
+      "display": false,
+      "latex": "z_{2,1,C}+z_{2,2,C}+z_{2,3,C}+z_{2,4,C}+z_{2,5,C}+z_{2,6,C}",
+      "rendered_latex": "z_{2,1,C}+z_{2,2,C}+z_{2,3,C}+z_{2,4,C}+z_{2,5,C}+z_{2,6,C}",
+      "width": 310,
+      "height": 16
+    },
+    {
+      "id": "5b72bff40a4d171f",
+      "file": "math_model_acuan/diagram/persamaan/eq-5b72bff40a4d171f.svg",
+      "display": false,
+      "latex": "z_{2,1,C},z_{2,2,C},z_{2,3,C},z_{2,4,C},z_{2,5,C},z_{2,6,C}",
+      "rendered_latex": "z_{2,1,C},z_{2,2,C},z_{2,3,C},z_{2,4,C},z_{2,5,C},z_{2,6,C}",
+      "width": 248,
+      "height": 14
+    },
+    {
+      "id": "2eaf0f37fc624ec2",
+      "file": "math_model_acuan/diagram/persamaan/eq-2eaf0f37fc624ec2.svg",
+      "display": false,
+      "latex": "1+6+6+1+1+19",
+      "rendered_latex": "1+6+6+1+1+19",
+      "width": 156,
+      "height": 14
+    },
+    {
+      "id": "1ad0c0d5fb34f2dd",
+      "file": "math_model_acuan/diagram/persamaan/eq-1ad0c0d5fb34f2dd.svg",
+      "display": false,
+      "latex": "14/34\\times100\\%=41{,}18\\%",
+      "rendered_latex": "14/34\\times100\\%=41{,}18\\%",
+      "width": 170,
+      "height": 18
+    },
+    {
+      "id": "dad8cda73ef43f85",
+      "file": "math_model_acuan/diagram/persamaan/eq-dad8cda73ef43f85.svg",
+      "display": false,
+      "latex": "z_{2,1,C}",
+      "rendered_latex": "z_{2,1,C}",
+      "width": 37,
+      "height": 14
+    },
+    {
+      "id": "d8fab703088bccbf",
+      "file": "math_model_acuan/diagram/persamaan/eq-d8fab703088bccbf.svg",
+      "display": false,
+      "latex": "z_{2,2,C}",
+      "rendered_latex": "z_{2,2,C}",
+      "width": 37,
+      "height": 14
+    },
+    {
+      "id": "ed158fa0601da2da",
+      "file": "math_model_acuan/diagram/persamaan/eq-ed158fa0601da2da.svg",
+      "display": false,
+      "latex": "z_{2,3,C}",
+      "rendered_latex": "z_{2,3,C}",
+      "width": 37,
+      "height": 14
+    },
+    {
+      "id": "35b41dd378893d19",
+      "file": "math_model_acuan/diagram/persamaan/eq-35b41dd378893d19.svg",
+      "display": false,
+      "latex": "z_{2,4,C}",
+      "rendered_latex": "z_{2,4,C}",
+      "width": 37,
+      "height": 14
+    },
+    {
+      "id": "8bfbae5ae6669fc8",
+      "file": "math_model_acuan/diagram/persamaan/eq-8bfbae5ae6669fc8.svg",
+      "display": false,
+      "latex": "4\\times3=12",
+      "rendered_latex": "4\\times3=12",
+      "width": 75,
+      "height": 15
+    },
+    {
+      "id": "fa000d1b42c194f0",
+      "file": "math_model_acuan/diagram/persamaan/eq-fa000d1b42c194f0.svg",
+      "display": false,
+      "latex": "6\\times3=18",
+      "rendered_latex": "6\\times3=18",
+      "width": 75,
+      "height": 14
+    },
+    {
+      "id": "e963e466f68194ed",
+      "file": "math_model_acuan/diagram/persamaan/eq-e963e466f68194ed.svg",
+      "display": false,
+      "latex": "38(38-1)/2=703",
+      "rendered_latex": "38(38-1)/2=703",
+      "width": 136,
+      "height": 18
+    },
+    {
+      "id": "41db94071046f741",
+      "file": "math_model_acuan/diagram/persamaan/eq-41db94071046f741.svg",
+      "display": false,
+      "latex": "m(m-1)/2",
+      "rendered_latex": "m(m-1)/2",
+      "width": 87,
+      "height": 18
+    },
+    {
+      "id": "00245e20aeb2a830",
+      "file": "math_model_acuan/diagram/persamaan/eq-00245e20aeb2a830.svg",
+      "display": false,
+      "latex": "x_{igp}",
+      "rendered_latex": "x_{igp}",
+      "width": 28,
+      "height": 14
+    },
+    {
+      "id": "0753b7b06478fb85",
+      "file": "math_model_acuan/diagram/persamaan/eq-0753b7b06478fb85.svg",
+      "display": false,
+      "latex": "z_{gjp}",
+      "rendered_latex": "z_{gjp}",
+      "width": 27,
+      "height": 14
+    },
+    {
+      "id": "d26cd80ea0976736",
+      "file": "math_model_acuan/diagram/persamaan/eq-d26cd80ea0976736.svg",
+      "display": false,
+      "latex": "y_g",
+      "rendered_latex": "y_g",
+      "width": 17,
+      "height": 14
+    },
+    {
+      "id": "d57bd3051440493e",
+      "file": "math_model_acuan/diagram/persamaan/eq-d57bd3051440493e.svg",
+      "display": false,
+      "latex": "n_{\\mathrm{out}}",
+      "rendered_latex": "n_{\\mathrm{out}}",
+      "width": 30,
+      "height": 12
+    },
+    {
+      "id": "2c95dae5578e4c3f",
+      "file": "math_model_acuan/diagram/persamaan/eq-2c95dae5578e4c3f.svg",
+      "display": false,
+      "latex": "6(36)+4",
+      "rendered_latex": "6(36)+4",
+      "width": 66,
+      "height": 18
+    },
+    {
+      "id": "3335123211c7c626",
+      "file": "math_model_acuan/diagram/persamaan/eq-3335123211c7c626.svg",
+      "display": false,
+      "latex": "6(42)+4",
+      "rendered_latex": "6(42)+4",
+      "width": 66,
+      "height": 18
+    },
+    {
+      "id": "3766eaa63c7258c8",
+      "file": "math_model_acuan/diagram/persamaan/eq-3766eaa63c7258c8.svg",
+      "display": false,
+      "latex": "6(60)+4",
+      "rendered_latex": "6(60)+4",
+      "width": 66,
+      "height": 18
+    },
+    {
+      "id": "94d454d578e07111",
+      "file": "math_model_acuan/diagram/persamaan/eq-94d454d578e07111.svg",
+      "display": false,
+      "latex": "6(72)+4",
+      "rendered_latex": "6(72)+4",
+      "width": 66,
+      "height": 18
+    },
+    {
+      "id": "17cf4fa99a5099ec",
+      "file": "math_model_acuan/diagram/persamaan/eq-17cf4fa99a5099ec.svg",
+      "display": false,
+      "latex": "220/436\\times100\\%",
+      "rendered_latex": "220/436\\times100\\%",
+      "width": 115,
+      "height": 18
+    },
+    {
+      "id": "19e6fbbf92618eb8",
+      "file": "math_model_acuan/diagram/persamaan/eq-19e6fbbf92618eb8.svg",
+      "display": false,
+      "latex": "6\\times6=36",
+      "rendered_latex": "6\\times6=36",
+      "width": 75,
+      "height": 14
+    },
+    {
+      "id": "b357db16df32231d",
+      "file": "math_model_acuan/diagram/persamaan/eq-b357db16df32231d.svg",
+      "display": false,
+      "latex": "18\\times6=108",
+      "rendered_latex": "18\\times6=108",
+      "width": 91,
+      "height": 14
+    },
+    {
+      "id": "1f4fc71f503e6ed2",
+      "file": "math_model_acuan/diagram/persamaan/eq-1f4fc71f503e6ed2.svg",
+      "display": false,
+      "latex": "q_{gp}",
+      "rendered_latex": "q_{gp}",
+      "width": 22,
+      "height": 14
+    },
+    {
+      "id": "4caf660d7c845ba8",
+      "file": "math_model_acuan/diagram/persamaan/eq-4caf660d7c845ba8.svg",
+      "display": true,
+      "latex": "q_{gps}:=\\sum_{j:(g,j,p)\\in R^{\\mathrm{out}}}z_{gjps}.",
+      "rendered_latex": "q_{gps}:=\\sum_{j:(g,j,p)\\in R^{\\mathrm{out}}}z_{gjps}.",
+      "width": 181,
+      "height": 50
+    },
+    {
+      "id": "6985f348df95c75b",
+      "file": "math_model_acuan/diagram/persamaan/eq-6985f348df95c75b.svg",
+      "display": true,
+      "latex": "C=\\sum_g F_g y_g+\n\\sum_s\\pi_s\\left[\n\\sum_{(i,g,p)\\in R^{\\mathrm{in}}}c^{\\mathrm{in}}_{ig}x_{igps}\n+\\sum_{(g,j,p)\\in R^{\\mathrm{out}}}c^{\\mathrm{out}}_{gj}z_{gjps}\n+\\sum_{g,p}h_{gp}q_{gps}\n+\\alpha\\sum_{g,p}q_{gps}^{2}\\right].",
+      "rendered_latex": "\\begin{aligned}C={}&\\sum_g F_g y_g\\\\ &+\\sum_s\\pi_s\\Biggl[\\sum_{(i,g,p)\\in R^{\\mathrm{in}}}c^{\\mathrm{in}}_{ig}x_{igps}\\\\ &\\qquad+\\sum_{(g,j,p)\\in R^{\\mathrm{out}}}c^{\\mathrm{out}}_{gj}z_{gjps}\\\\ &\\qquad+\\sum_{g,p}h_{gp}q_{gps}+\\alpha\\sum_{g,p}q_{gps}^{2}\\Biggr].\\end{aligned}",
+      "width": 288,
+      "height": 218
+    },
+    {
+      "id": "8dac50c042abeded",
+      "file": "math_model_acuan/diagram/persamaan/eq-8dac50c042abeded.svg",
+      "display": true,
+      "latex": "E=\\sum_g e_g^F y_g+\n\\sum_s\\pi_s\\left[\n\\sum_{(i,g,p)\\in R^{\\mathrm{in}}}e^{\\mathrm{in}}_{ig}x_{igps}\n+\\sum_{(g,j,p)\\in R^{\\mathrm{out}}}e^{\\mathrm{out}}_{gj}z_{gjps}\\right].",
+      "rendered_latex": "\\begin{aligned}E={}&\\sum_g e_g^F y_g\\\\ &+\\sum_s\\pi_s\\Biggl[\\sum_{(i,g,p)\\in R^{\\mathrm{in}}}e^{\\mathrm{in}}_{ig}x_{igps}\\\\ &\\qquad+\\sum_{(g,j,p)\\in R^{\\mathrm{out}}}e^{\\mathrm{out}}_{gj}z_{gjps}\\Biggr].\\end{aligned}",
+      "width": 245,
+      "height": 173
+    },
+    {
+      "id": "114bdc32f5b6ce1a",
+      "file": "math_model_acuan/diagram/persamaan/eq-114bdc32f5b6ce1a.svg",
+      "display": true,
+      "latex": "\\sum_{i:(i,g,p)\\in R^{\\mathrm{in}}}x_{igps}\n=\\sum_{j:(g,j,p)\\in R^{\\mathrm{out}}}z_{gjps},\n\\qquad \\forall g,p,s.",
+      "rendered_latex": "\\sum_{i:(i,g,p)\\in R^{\\mathrm{in}}}x_{igps}\n=\\sum_{j:(g,j,p)\\in R^{\\mathrm{out}}}z_{gjps},\n\\qquad \\forall g,p,s.",
+      "width": 350,
+      "height": 50
+    },
+    {
+      "id": "d8484168760fc413",
+      "file": "math_model_acuan/diagram/persamaan/eq-d8484168760fc413.svg",
+      "display": true,
+      "latex": "\\sum_{g:(g,j,p)\\in R^{\\mathrm{out}}}z_{gjps}=d_{jps},\n\\qquad \\forall j,p,s.",
+      "rendered_latex": "\\sum_{g:(g,j,p)\\in R^{\\mathrm{out}}}z_{gjps}=d_{jps},\n\\qquad \\forall j,p,s.",
+      "width": 272,
+      "height": 50
+    },
+    {
+      "id": "80c6a49fc9d1e680",
+      "file": "math_model_acuan/diagram/persamaan/eq-80c6a49fc9d1e680.svg",
+      "display": true,
+      "latex": "\\sum_p q_{gps}\\le V_g y_g,\n\\qquad \\forall g,s.",
+      "rendered_latex": "\\sum_p q_{gps}\\le V_g y_g,\n\\qquad \\forall g,s.",
+      "width": 206,
+      "height": 47
+    },
+    {
+      "id": "085c091ef3143db2",
+      "file": "math_model_acuan/diagram/persamaan/eq-085c091ef3143db2.svg",
+      "display": true,
+      "latex": "\\sum_p q_{gps}+\\beta\\sum_p q_{gps}^{2}\\le T_g y_g,\n\\qquad \\forall g,s.",
+      "rendered_latex": "\\sum_p q_{gps}+\\beta\\sum_p q_{gps}^{2}\\le T_g y_g,\n\\qquad \\forall g,s.",
+      "width": 299,
+      "height": 47
+    },
+    {
+      "id": "5fb583a8ccd54b31",
+      "file": "math_model_acuan/diagram/persamaan/eq-5fb583a8ccd54b31.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\ny_g&\\in\\{0,1\\} &&\\forall g,\\\\\nx_{igps}&\\ge0 &&\\forall (i,g,p)\\in R^{\\mathrm{in}},s,\\\\\nz_{gjps}&\\ge0 &&\\forall (g,j,p)\\in R^{\\mathrm{out}},s.\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\ny_g&\\in\\{0,1\\} &&\\forall g,\\\\\nx_{igps}&\\ge0 &&\\forall (i,g,p)\\in R^{\\mathrm{in}},s,\\\\\nz_{gjps}&\\ge0 &&\\forall (g,j,p)\\in R^{\\mathrm{out}},s.\n\\end{aligned}",
+      "width": 286,
+      "height": 78
+    },
+    {
+      "id": "b29d26548587c25d",
+      "file": "math_model_acuan/diagram/persamaan/eq-b29d26548587c25d.svg",
+      "display": true,
+      "latex": "\\min C\\qquad\\text{dengan kendala operasi dan }E\\le\\varepsilon.",
+      "rendered_latex": "\\min C\\qquad\\text{dengan kendala operasi dan }E\\le\\varepsilon.",
+      "width": 360,
+      "height": 23
+    },
+    {
+      "id": "01ddac2da318bf29",
+      "file": "math_model_acuan/diagram/persamaan/eq-01ddac2da318bf29.svg",
+      "display": true,
+      "latex": "\\min E\\qquad\\text{dengan kendala operasi, }E\\le\\varepsilon,\n\\quad C\\le C^{\\star}_{\\varepsilon}+\\delta_C.",
+      "rendered_latex": "\\min E\\qquad\\text{dengan kendala operasi, }E\\le\\varepsilon,\n\\quad C\\le C^{\\star}_{\\varepsilon}+\\delta_C.",
+      "width": 458,
+      "height": 25
+    },
+    {
+      "id": "972dfdc202411477",
+      "file": "math_model_acuan/diagram/persamaan/eq-972dfdc202411477.svg",
+      "display": true,
+      "latex": "\\widehat q_{gps}=\\sum_j z_{gjps}.",
+      "rendered_latex": "\\widehat q_{gps}=\\sum_j z_{gjps}.",
+      "width": 126,
+      "height": 48
+    },
+    {
+      "id": "c594e6bca4b67874",
+      "file": "math_model_acuan/diagram/persamaan/eq-c594e6bca4b67874.svg",
+      "display": true,
+      "latex": "v_{gps}\\ge\\widehat q_{gps}^{2}.",
+      "rendered_latex": "v_{gps}\\ge\\widehat q_{gps}^{2}.",
+      "width": 93,
+      "height": 30
+    },
+    {
+      "id": "3924da6c6c6887a6",
+      "file": "math_model_acuan/diagram/persamaan/eq-3924da6c6c6887a6.svg",
+      "display": false,
+      "latex": "i",
+      "rendered_latex": "i",
+      "width": 8,
+      "height": 13
+    },
+    {
+      "id": "7e524a7302e1d9a3",
+      "file": "math_model_acuan/diagram/persamaan/eq-7e524a7302e1d9a3.svg",
+      "display": false,
+      "latex": "R^{\\mathrm{in}},R^{\\mathrm{out}}",
+      "rendered_latex": "R^{\\mathrm{in}},R^{\\mathrm{out}}",
+      "width": 62,
+      "height": 19
+    },
+    {
+      "id": "10e36d9b3f540053",
+      "file": "math_model_acuan/diagram/persamaan/eq-10e36d9b3f540053.svg",
+      "display": false,
+      "latex": "\\alpha,\\beta",
+      "rendered_latex": "\\alpha,\\beta",
+      "width": 29,
+      "height": 17
+    },
+    {
+      "id": "23009c376bb95b17",
+      "file": "math_model_acuan/diagram/persamaan/eq-23009c376bb95b17.svg",
+      "display": false,
+      "latex": "g",
+      "rendered_latex": "g",
+      "width": 10,
+      "height": 13
+    },
+    {
+      "id": "68fa4ad2d7561e59",
+      "file": "math_model_acuan/diagram/persamaan/eq-68fa4ad2d7561e59.svg",
+      "display": false,
+      "latex": "j",
+      "rendered_latex": "j",
+      "width": 9,
+      "height": 16
+    },
+    {
+      "id": "e4bd8005f58b3d95",
+      "file": "math_model_acuan/diagram/persamaan/eq-e4bd8005f58b3d95.svg",
+      "display": false,
+      "latex": "p",
+      "rendered_latex": "p",
+      "width": 10,
+      "height": 13
+    },
+    {
+      "id": "b7c4deb092eb7e51",
+      "file": "math_model_acuan/diagram/persamaan/eq-b7c4deb092eb7e51.svg",
+      "display": false,
+      "latex": "s",
+      "rendered_latex": "s",
+      "width": 10,
+      "height": 10
+    },
+    {
+      "id": "c4d441f388584f0e",
+      "file": "math_model_acuan/diagram/persamaan/eq-c4d441f388584f0e.svg",
+      "display": false,
+      "latex": "\\pi_s",
+      "rendered_latex": "\\pi_s",
+      "width": 18,
+      "height": 12
+    },
+    {
+      "id": "9a8eb14ced6400b8",
+      "file": "math_model_acuan/diagram/persamaan/eq-9a8eb14ced6400b8.svg",
+      "display": false,
+      "latex": "d_{jps}",
+      "rendered_latex": "d_{jps}",
+      "width": 28,
+      "height": 18
+    },
+    {
+      "id": "6c3a42dc84aeac00",
+      "file": "math_model_acuan/diagram/persamaan/eq-6c3a42dc84aeac00.svg",
+      "display": false,
+      "latex": "V_g,T_g",
+      "rendered_latex": "V_g,T_g",
+      "width": 42,
+      "height": 18
+    },
+    {
+      "id": "f26ede7eb59ffc69",
+      "file": "math_model_acuan/diagram/persamaan/eq-f26ede7eb59ffc69.svg",
+      "display": false,
+      "latex": "F_g",
+      "rendered_latex": "F_g",
+      "width": 19,
+      "height": 18
+    },
+    {
+      "id": "2b2ae609fd609cf7",
+      "file": "math_model_acuan/diagram/persamaan/eq-2b2ae609fd609cf7.svg",
+      "display": false,
+      "latex": "c^{\\mathrm{in}}_{ig},c^{\\mathrm{out}}_{gj}",
+      "rendered_latex": "c^{\\mathrm{in}}_{ig},c^{\\mathrm{out}}_{gj}",
+      "width": 52,
+      "height": 23
+    },
+    {
+      "id": "62a914a47ed38e7b",
+      "file": "math_model_acuan/diagram/persamaan/eq-62a914a47ed38e7b.svg",
+      "display": false,
+      "latex": "h_{gp}",
+      "rendered_latex": "h_{gp}",
+      "width": 24,
+      "height": 18
+    },
+    {
+      "id": "b089f8fb83a9e76b",
+      "file": "math_model_acuan/diagram/persamaan/eq-b089f8fb83a9e76b.svg",
+      "display": false,
+      "latex": "e_g^F,e^{\\mathrm{in}}_{ig},e^{\\mathrm{out}}_{gj}",
+      "rendered_latex": "e_g^F,e^{\\mathrm{in}}_{ig},e^{\\mathrm{out}}_{gj}",
+      "width": 77,
+      "height": 23
+    },
+    {
+      "id": "b2fdff9ebb764674",
+      "file": "math_model_acuan/diagram/persamaan/eq-b2fdff9ebb764674.svg",
+      "display": false,
+      "latex": "x_{igps}",
+      "rendered_latex": "x_{igps}",
+      "width": 33,
+      "height": 14
+    },
+    {
+      "id": "d7bdd5cb0ed4a4f2",
+      "file": "math_model_acuan/diagram/persamaan/eq-d7bdd5cb0ed4a4f2.svg",
+      "display": false,
+      "latex": "z_{gjps}",
+      "rendered_latex": "z_{gjps}",
+      "width": 32,
+      "height": 14
+    },
+    {
+      "id": "d9d42646709eb6a0",
+      "file": "math_model_acuan/diagram/persamaan/eq-d9d42646709eb6a0.svg",
+      "display": false,
+      "latex": "x_{1,2,A,s}",
+      "rendered_latex": "x_{1,2,A,s}",
+      "width": 47,
+      "height": 14
+    },
+    {
+      "id": "b8df615b14bee623",
+      "file": "math_model_acuan/diagram/persamaan/eq-b8df615b14bee623.svg",
+      "display": false,
+      "latex": "z_{1,2,A,s}",
+      "rendered_latex": "z_{1,2,A,s}",
+      "width": 46,
+      "height": 14
+    },
+    {
+      "id": "c6fac57b4e73ac71",
+      "file": "math_model_acuan/diagram/persamaan/eq-c6fac57b4e73ac71.svg",
+      "display": false,
+      "latex": "q_{gps}",
+      "rendered_latex": "q_{gps}",
+      "width": 27,
+      "height": 14
+    },
+    {
+      "id": "5f165748abcddf56",
+      "file": "math_model_acuan/diagram/persamaan/eq-5f165748abcddf56.svg",
+      "display": false,
+      "latex": "\\alpha=0",
+      "rendered_latex": "\\alpha=0",
+      "width": 42,
+      "height": 14
+    },
+    {
+      "id": "dfa7349853e20714",
+      "file": "math_model_acuan/diagram/persamaan/eq-dfa7349853e20714.svg",
+      "display": false,
+      "latex": "\\alpha=0{,}04",
+      "rendered_latex": "\\alpha=0{,}04",
+      "width": 62,
+      "height": 16
+    },
+    {
+      "id": "aa4f24a21bae1b9f",
+      "file": "math_model_acuan/diagram/persamaan/eq-aa4f24a21bae1b9f.svg",
+      "display": false,
+      "latex": "0{,}04(25+16+9)=2",
+      "rendered_latex": "0{,}04(25+16+9)=2",
+      "width": 152,
+      "height": 18
+    },
+    {
+      "id": "269b432f796e73cc",
+      "file": "math_model_acuan/diagram/persamaan/eq-269b432f796e73cc.svg",
+      "display": false,
+      "latex": "C",
+      "rendered_latex": "C",
+      "width": 15,
+      "height": 14
+    },
+    {
+      "id": "5864a2ca82e50724",
+      "file": "math_model_acuan/diagram/persamaan/eq-5864a2ca82e50724.svg",
+      "display": false,
+      "latex": "E",
+      "rendered_latex": "E",
+      "width": 15,
+      "height": 13
+    },
+    {
+      "id": "57602d2f79bdee5e",
+      "file": "math_model_acuan/diagram/persamaan/eq-57602d2f79bdee5e.svg",
+      "display": false,
+      "latex": "\\beta=0",
+      "rendered_latex": "\\beta=0",
+      "width": 41,
+      "height": 17
+    },
+    {
+      "id": "17addaa5ae549cf2",
+      "file": "math_model_acuan/diagram/persamaan/eq-17addaa5ae549cf2.svg",
+      "display": false,
+      "latex": "\\beta=0{,}025",
+      "rendered_latex": "\\beta=0{,}025",
+      "width": 69,
+      "height": 17
+    },
+    {
+      "id": "4e98520bfad22885",
+      "file": "math_model_acuan/diagram/persamaan/eq-4e98520bfad22885.svg",
+      "display": false,
+      "latex": "12+0{,}025(25+16+9)=13{,}25",
+      "rendered_latex": "12+0{,}025(25+16+9)=13{,}25",
+      "width": 224,
+      "height": 18
+    },
+    {
+      "id": "cc52deca71b2deea",
+      "file": "math_model_acuan/diagram/persamaan/eq-cc52deca71b2deea.svg",
+      "display": false,
+      "latex": "\\varepsilon",
+      "rendered_latex": "\\varepsilon",
+      "width": 10,
+      "height": 10
+    },
+    {
+      "id": "8cad4135cea4703e",
+      "file": "math_model_acuan/diagram/persamaan/eq-8cad4135cea4703e.svg",
+      "display": false,
+      "latex": "\\delta_C=0{,}00025",
+      "rendered_latex": "\\delta_C=0{,}00025",
+      "width": 93,
+      "height": 17
+    },
+    {
+      "id": "a886a0ce44f2e9a4",
+      "file": "math_model_acuan/diagram/persamaan/eq-a886a0ce44f2e9a4.svg",
+      "display": false,
+      "latex": "10^{-8}",
+      "rendered_latex": "10^{-8}",
+      "width": 34,
+      "height": 17
+    },
+    {
+      "id": "e4a35c47d62b71fe",
+      "file": "math_model_acuan/diagram/persamaan/eq-e4a35c47d62b71fe.svg",
+      "display": false,
+      "latex": "\\widehat q",
+      "rendered_latex": "\\widehat q",
+      "width": 10,
+      "height": 18
+    },
+    {
+      "id": "eb954a6e26267505",
+      "file": "math_model_acuan/diagram/persamaan/eq-eb954a6e26267505.svg",
+      "display": false,
+      "latex": "0{,}04\\sum_s\\pi_s\\sum_{g,p}v_{gps}",
+      "rendered_latex": "0{,}04\\sum_s\\pi_s\\sum_{g,p}v_{gps}",
+      "width": 139,
+      "height": 21
+    },
+    {
+      "id": "a3c652ab533d0849",
+      "file": "math_model_acuan/diagram/persamaan/eq-a3c652ab533d0849.svg",
+      "display": false,
+      "latex": "0{,}025\\sum_p v_{gps}",
+      "rendered_latex": "0{,}025\\sum_p v_{gps}",
+      "width": 94,
+      "height": 21
+    },
+    {
+      "id": "809300ee2215c1ea",
+      "file": "math_model_acuan/diagram/persamaan/eq-809300ee2215c1ea.svg",
+      "display": false,
+      "latex": "v_{gps}=q_{gps}^{2}",
+      "rendered_latex": "v_{gps}=q_{gps}^{2}",
+      "width": 74,
+      "height": 22
+    },
+    {
+      "id": "f8824c9bd7955215",
+      "file": "math_model_acuan/diagram/persamaan/eq-f8824c9bd7955215.svg",
+      "display": false,
+      "latex": "v_{gps}\\ge q_{gps}^{2}",
+      "rendered_latex": "v_{gps}\\ge q_{gps}^{2}",
+      "width": 74,
+      "height": 22
+    },
+    {
+      "id": "ab1f9c903647ce1b",
+      "file": "math_model_acuan/diagram/persamaan/eq-ab1f9c903647ce1b.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R1}:\\quad &x_{1,1,A}=z_{1,1,A}+z_{1,2,A}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R1}:\\quad &x_{1,1,A}=z_{1,1,A}+z_{1,2,A}\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "6f5c487e0658f06a",
+      "file": "math_model_acuan/diagram/persamaan/eq-6f5c487e0658f06a.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R2}:\\quad &x_{1,1,B}=z_{1,3,B}+z_{1,4,B}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R2}:\\quad &x_{1,1,B}=z_{1,3,B}+z_{1,4,B}\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "f115328e279354e9",
+      "file": "math_model_acuan/diagram/persamaan/eq-f115328e279354e9.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R3}:\\quad &x_{4,1,C}=z_{1,5,C}+z_{1,6,C}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R3}:\\quad &x_{4,1,C}=z_{1,5,C}+z_{1,6,C}\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "ac57f96b406b2a3c",
+      "file": "math_model_acuan/diagram/persamaan/eq-ac57f96b406b2a3c.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R4}:\\quad &x_{1,2,A}+x_{2,2,A}=z_{2,1,A}+z_{2,2,A}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R4}:\\quad &x_{1,2,A}+x_{2,2,A}=z_{2,1,A}+z_{2,2,A}\n\\end{aligned}",
+      "width": 286,
+      "height": 26
+    },
+    {
+      "id": "47a15fab043847fc",
+      "file": "math_model_acuan/diagram/persamaan/eq-47a15fab043847fc.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R5}:\\quad &x_{4,2,B}=z_{2,3,B}+z_{2,4,B}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R5}:\\quad &x_{4,2,B}=z_{2,3,B}+z_{2,4,B}\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "e587891df6e10165",
+      "file": "math_model_acuan/diagram/persamaan/eq-e587891df6e10165.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R6}:\\quad &x_{4,2,C}=z_{2,5,C}+z_{2,6,C}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R6}:\\quad &x_{4,2,C}=z_{2,5,C}+z_{2,6,C}\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "2cb185937fef663f",
+      "file": "math_model_acuan/diagram/persamaan/eq-2cb185937fef663f.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R7}:\\quad &x_{3,3,A}=z_{3,3,A}+z_{3,4,A}+z_{3,5,A}+z_{3,6,A}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R7}:\\quad &x_{3,3,A}=z_{3,3,A}+z_{3,4,A}+z_{3,5,A}+z_{3,6,A}\n\\end{aligned}",
+      "width": 345,
+      "height": 26
+    },
+    {
+      "id": "52a527b3d66f69b3",
+      "file": "math_model_acuan/diagram/persamaan/eq-52a527b3d66f69b3.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R8}:\\quad &x_{3,3,B}=z_{3,1,B}+z_{3,2,B}+z_{3,5,B}+z_{3,6,B}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R8}:\\quad &x_{3,3,B}=z_{3,1,B}+z_{3,2,B}+z_{3,5,B}+z_{3,6,B}\n\\end{aligned}",
+      "width": 346,
+      "height": 26
+    },
+    {
+      "id": "7aad9c09c3ade2e4",
+      "file": "math_model_acuan/diagram/persamaan/eq-7aad9c09c3ade2e4.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R9}:\\quad &x_{3,3,C}=z_{3,1,C}+z_{3,2,C}+z_{3,3,C}+z_{3,4,C}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R9}:\\quad &x_{3,3,C}=z_{3,1,C}+z_{3,2,C}+z_{3,3,C}+z_{3,4,C}\n\\end{aligned}",
+      "width": 346,
+      "height": 26
+    },
+    {
+      "id": "f016428178c41fc6",
+      "file": "math_model_acuan/diagram/persamaan/eq-f016428178c41fc6.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R10}:\\quad &x_{3,4,A}+x_{5,4,A}=z_{4,3,A}+z_{4,4,A}+z_{4,5,A}+z_{4,6,A}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R10}:\\quad &x_{3,4,A}+x_{5,4,A}=z_{4,3,A}+z_{4,4,A}+z_{4,5,A}+z_{4,6,A}\n\\end{aligned}",
+      "width": 417,
+      "height": 26
+    },
+    {
+      "id": "32cdec8d863e5055",
+      "file": "math_model_acuan/diagram/persamaan/eq-32cdec8d863e5055.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R11}:\\quad &x_{3,4,B}+x_{6,4,B}=z_{4,1,B}+z_{4,2,B}+z_{4,5,B}+z_{4,6,B}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R11}:\\quad &x_{3,4,B}+x_{6,4,B}=z_{4,1,B}+z_{4,2,B}+z_{4,5,B}+z_{4,6,B}\n\\end{aligned}",
+      "width": 418,
+      "height": 26
+    },
+    {
+      "id": "c4d200632034110a",
+      "file": "math_model_acuan/diagram/persamaan/eq-c4d200632034110a.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R12}:\\quad &x_{5,4,C}+x_{6,4,C}=z_{4,1,C}+z_{4,2,C}+z_{4,3,C}+z_{4,4,C}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R12}:\\quad &x_{5,4,C}+x_{6,4,C}=z_{4,1,C}+z_{4,2,C}+z_{4,3,C}+z_{4,4,C}\n\\end{aligned}",
+      "width": 418,
+      "height": 26
+    },
+    {
+      "id": "601c6ea515408e96",
+      "file": "math_model_acuan/diagram/persamaan/eq-601c6ea515408e96.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R13}:\\quad &z_{1,1,A}+z_{2,1,A}=3{,}17\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R13}:\\quad &z_{1,1,A}+z_{2,1,A}=3{,}17\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "880002079a199b8f",
+      "file": "math_model_acuan/diagram/persamaan/eq-880002079a199b8f.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R14}:\\quad &z_{3,1,B}+z_{4,1,B}=0{,}88\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R14}:\\quad &z_{3,1,B}+z_{4,1,B}=0{,}88\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "48cd6a5de91ab8a8",
+      "file": "math_model_acuan/diagram/persamaan/eq-48cd6a5de91ab8a8.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R15}:\\quad &z_{3,1,C}+z_{4,1,C}=1{,}09\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R15}:\\quad &z_{3,1,C}+z_{4,1,C}=1{,}09\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "39ecb51523138c6a",
+      "file": "math_model_acuan/diagram/persamaan/eq-39ecb51523138c6a.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R16}:\\quad &z_{1,2,A}+z_{2,2,A}=2{,}84\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R16}:\\quad &z_{1,2,A}+z_{2,2,A}=2{,}84\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "55680f866978cb77",
+      "file": "math_model_acuan/diagram/persamaan/eq-55680f866978cb77.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R17}:\\quad &z_{3,2,B}+z_{4,2,B}=1{,}16\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R17}:\\quad &z_{3,2,B}+z_{4,2,B}=1{,}16\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "82bbcc82e7396347",
+      "file": "math_model_acuan/diagram/persamaan/eq-82bbcc82e7396347.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R18}:\\quad &z_{3,2,C}+z_{4,2,C}=0{,}86\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R18}:\\quad &z_{3,2,C}+z_{4,2,C}=0{,}86\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "b6a93be3653bbcb4",
+      "file": "math_model_acuan/diagram/persamaan/eq-b6a93be3653bbcb4.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R19}:\\quad &z_{3,3,A}+z_{4,3,A}=1{,}12\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R19}:\\quad &z_{3,3,A}+z_{4,3,A}=1{,}12\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "2afb478f4f5d99ed",
+      "file": "math_model_acuan/diagram/persamaan/eq-2afb478f4f5d99ed.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R20}:\\quad &z_{1,3,B}+z_{2,3,B}=2{,}79\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R20}:\\quad &z_{1,3,B}+z_{2,3,B}=2{,}79\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "16fb100b36a7d2da",
+      "file": "math_model_acuan/diagram/persamaan/eq-16fb100b36a7d2da.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R21}:\\quad &z_{3,3,C}+z_{4,3,C}=1{,}07\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R21}:\\quad &z_{3,3,C}+z_{4,3,C}=1{,}07\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "54474a3a09915926",
+      "file": "math_model_acuan/diagram/persamaan/eq-54474a3a09915926.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R22}:\\quad &z_{3,4,A}+z_{4,4,A}=0{,}93\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R22}:\\quad &z_{3,4,A}+z_{4,4,A}=0{,}93\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "fc41eed46b9727ce",
+      "file": "math_model_acuan/diagram/persamaan/eq-fc41eed46b9727ce.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R23}:\\quad &z_{1,4,B}+z_{2,4,B}=3{,}24\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R23}:\\quad &z_{1,4,B}+z_{2,4,B}=3{,}24\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "3259a10e51f1c5f0",
+      "file": "math_model_acuan/diagram/persamaan/eq-3259a10e51f1c5f0.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R24}:\\quad &z_{3,4,C}+z_{4,4,C}=0{,}98\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R24}:\\quad &z_{3,4,C}+z_{4,4,C}=0{,}98\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "6f220caafe59cc29",
+      "file": "math_model_acuan/diagram/persamaan/eq-6f220caafe59cc29.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R25}:\\quad &z_{3,5,A}+z_{4,5,A}=1{,}03\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R25}:\\quad &z_{3,5,A}+z_{4,5,A}=1{,}03\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "c424f01c07b6e028",
+      "file": "math_model_acuan/diagram/persamaan/eq-c424f01c07b6e028.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R26}:\\quad &z_{3,5,B}+z_{4,5,B}=0{,}97\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R26}:\\quad &z_{3,5,B}+z_{4,5,B}=0{,}97\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "0265ac2ae5283dba",
+      "file": "math_model_acuan/diagram/persamaan/eq-0265ac2ae5283dba.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R27}:\\quad &z_{1,5,C}+z_{2,5,C}=2{,}73\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R27}:\\quad &z_{1,5,C}+z_{2,5,C}=2{,}73\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "b1dbab66d505f648",
+      "file": "math_model_acuan/diagram/persamaan/eq-b1dbab66d505f648.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R28}:\\quad &z_{3,6,A}+z_{4,6,A}=0{,}91\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R28}:\\quad &z_{3,6,A}+z_{4,6,A}=0{,}91\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "aca468cc7fb742bf",
+      "file": "math_model_acuan/diagram/persamaan/eq-aca468cc7fb742bf.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R29}:\\quad &z_{3,6,B}+z_{4,6,B}=0{,}96\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R29}:\\quad &z_{3,6,B}+z_{4,6,B}=0{,}96\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "6dba6c7dd6ac58b5",
+      "file": "math_model_acuan/diagram/persamaan/eq-6dba6c7dd6ac58b5.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R30}:\\quad &z_{1,6,C}+z_{2,6,C}=3{,}27\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R30}:\\quad &z_{1,6,C}+z_{2,6,C}=3{,}27\n\\end{aligned}",
+      "width": 223,
+      "height": 26
+    },
+    {
+      "id": "454fc0a199939162",
+      "file": "math_model_acuan/diagram/persamaan/eq-454fc0a199939162.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R31}:\\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,B}+z_{1,4,B}\\\\\n&\\quad+z_{1,5,C}+z_{1,6,C}\\le16y_{1}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R31}:\\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,B}+z_{1,4,B}\\\\\n&\\quad+z_{1,5,C}+z_{1,6,C}\\le16y_{1}\n\\end{aligned}",
+      "width": 289,
+      "height": 50
+    },
+    {
+      "id": "34b5b7b480db2d0d",
+      "file": "math_model_acuan/diagram/persamaan/eq-34b5b7b480db2d0d.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R32}:\\quad &z_{2,1,A}+z_{2,2,A}+z_{2,3,B}+z_{2,4,B}\\\\\n&\\quad+z_{2,5,C}+z_{2,6,C}\\le20y_{2}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R32}:\\quad &z_{2,1,A}+z_{2,2,A}+z_{2,3,B}+z_{2,4,B}\\\\\n&\\quad+z_{2,5,C}+z_{2,6,C}\\le20y_{2}\n\\end{aligned}",
+      "width": 289,
+      "height": 50
+    },
+    {
+      "id": "a66bcb2fee32e516",
+      "file": "math_model_acuan/diagram/persamaan/eq-a66bcb2fee32e516.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R33}:\\quad &z_{3,1,B}+z_{3,1,C}+z_{3,2,B}+z_{3,2,C}\\\\\n&\\quad+z_{3,3,A}+z_{3,3,C}+z_{3,4,A}+z_{3,4,C}\\\\\n&\\quad+z_{3,5,A}+z_{3,5,B}+z_{3,6,A}+z_{3,6,B}\\le18y_{3}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R33}:\\quad &z_{3,1,B}+z_{3,1,C}+z_{3,2,B}+z_{3,2,C}\\\\\n&\\quad+z_{3,3,A}+z_{3,3,C}+z_{3,4,A}+z_{3,4,C}\\\\\n&\\quad+z_{3,5,A}+z_{3,5,B}+z_{3,6,A}+z_{3,6,B}\\le18y_{3}\n\\end{aligned}",
+      "width": 380,
+      "height": 74
+    },
+    {
+      "id": "ad11496047295f5b",
+      "file": "math_model_acuan/diagram/persamaan/eq-ad11496047295f5b.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R34}:\\quad &z_{4,1,B}+z_{4,1,C}+z_{4,2,B}+z_{4,2,C}\\\\\n&\\quad+z_{4,3,A}+z_{4,3,C}+z_{4,4,A}+z_{4,4,C}\\\\\n&\\quad+z_{4,5,A}+z_{4,5,B}+z_{4,6,A}+z_{4,6,B}\\le14y_{4}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R34}:\\quad &z_{4,1,B}+z_{4,1,C}+z_{4,2,B}+z_{4,2,C}\\\\\n&\\quad+z_{4,3,A}+z_{4,3,C}+z_{4,4,A}+z_{4,4,C}\\\\\n&\\quad+z_{4,5,A}+z_{4,5,B}+z_{4,6,A}+z_{4,6,B}\\le14y_{4}\n\\end{aligned}",
+      "width": 380,
+      "height": 74
+    },
+    {
+      "id": "c114c87671352537",
+      "file": "math_model_acuan/diagram/persamaan/eq-c114c87671352537.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R35}:\\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,B}+z_{1,4,B}\\\\\n&\\quad+z_{1,5,C}+z_{1,6,C}\\le17{,}8y_{1}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R35}:\\quad &z_{1,1,A}+z_{1,2,A}+z_{1,3,B}+z_{1,4,B}\\\\\n&\\quad+z_{1,5,C}+z_{1,6,C}\\le17{,}8y_{1}\n\\end{aligned}",
+      "width": 289,
+      "height": 50
+    },
+    {
+      "id": "5375549d3e065b61",
+      "file": "math_model_acuan/diagram/persamaan/eq-5375549d3e065b61.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R36}:\\quad &z_{2,1,A}+z_{2,2,A}+z_{2,3,B}+z_{2,4,B}\\\\\n&\\quad+z_{2,5,C}+z_{2,6,C}\\le22{,}4y_{2}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R36}:\\quad &z_{2,1,A}+z_{2,2,A}+z_{2,3,B}+z_{2,4,B}\\\\\n&\\quad+z_{2,5,C}+z_{2,6,C}\\le22{,}4y_{2}\n\\end{aligned}",
+      "width": 289,
+      "height": 50
+    },
+    {
+      "id": "c0b6f4b857d3a457",
+      "file": "math_model_acuan/diagram/persamaan/eq-c0b6f4b857d3a457.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R37}:\\quad &z_{3,1,B}+z_{3,1,C}+z_{3,2,B}+z_{3,2,C}\\\\\n&\\quad+z_{3,3,A}+z_{3,3,C}+z_{3,4,A}+z_{3,4,C}\\\\\n&\\quad+z_{3,5,A}+z_{3,5,B}+z_{3,6,A}+z_{3,6,B}\\le19{,}8y_{3}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R37}:\\quad &z_{3,1,B}+z_{3,1,C}+z_{3,2,B}+z_{3,2,C}\\\\\n&\\quad+z_{3,3,A}+z_{3,3,C}+z_{3,4,A}+z_{3,4,C}\\\\\n&\\quad+z_{3,5,A}+z_{3,5,B}+z_{3,6,A}+z_{3,6,B}\\le19{,}8y_{3}\n\\end{aligned}",
+      "width": 394,
+      "height": 74
+    },
+    {
+      "id": "b1e0246097e2fa92",
+      "file": "math_model_acuan/diagram/persamaan/eq-b1e0246097e2fa92.svg",
+      "display": true,
+      "latex": "\\begin{aligned}\n\\mathrm{R38}:\\quad &z_{4,1,B}+z_{4,1,C}+z_{4,2,B}+z_{4,2,C}\\\\\n&\\quad+z_{4,3,A}+z_{4,3,C}+z_{4,4,A}+z_{4,4,C}\\\\\n&\\quad+z_{4,5,A}+z_{4,5,B}+z_{4,6,A}+z_{4,6,B}\\le16{,}1y_{4}\n\\end{aligned}",
+      "rendered_latex": "\\begin{aligned}\n\\mathrm{R38}:\\quad &z_{4,1,B}+z_{4,1,C}+z_{4,2,B}+z_{4,2,C}\\\\\n&\\quad+z_{4,3,A}+z_{4,3,C}+z_{4,4,A}+z_{4,4,C}\\\\\n&\\quad+z_{4,5,A}+z_{4,5,B}+z_{4,6,A}+z_{4,6,B}\\le16{,}1y_{4}\n\\end{aligned}",
+      "width": 394,
+      "height": 74
+    },
+    {
+      "id": "1e7707f40a0800bf",
+      "file": "math_model_acuan/diagram/persamaan/eq-1e7707f40a0800bf.svg",
+      "display": false,
+      "latex": "i,g,j,p",
+      "rendered_latex": "i,g,j,p",
+      "width": 52,
+      "height": 16
+    }
+  ],
+  "occurrences": [
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "a5c59404f778b060",
+      "display": true
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "3521201a6bfde71b",
+      "display": true
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "16eaea62a468189a",
+      "display": true
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "37b00332ebe5bcd1",
+      "display": true
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "8470e7c81d0ae0a6",
+      "display": true
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "97a0420885694952",
+      "display": true
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "ae3ea22e756710c9",
+      "display": true
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "0ed36ff1e1ef9ec3",
+      "display": true
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "20f50f2c52af3966",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "50e66253d5477375",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "25118c2b79b6e17d",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "20f50f2c52af3966",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "445aa3949d772c6d",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "ff35acc776e974da",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "640a535e9ee5fc23",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "63d36148233e0986",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "d10534071a7edbe1",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "c005b2e0ea3a3bda",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "d7b7a786f959b0e6",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "d10534071a7edbe1",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "7c80e0e1b67ffdbd",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "20f50f2c52af3966",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "23c9f2185134e5d1",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "f6270fe0f0c235de",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "0dafb840ef3922e0",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "f67d77694859fe62",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "de7865567492ec87",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "20f50f2c52af3966",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "176c6700b69a1676",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "176c6700b69a1676",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "20f50f2c52af3966",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "20f50f2c52af3966",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "40c3e2b505699b72",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "23c9f2185134e5d1",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "5aa69473bcc366a9",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "7c80e0e1b67ffdbd",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "23c9f2185134e5d1",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "09cf41f891d89b38",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "7529c23fe011c15c",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "58be380f6023d400",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "91766a0606a90af5",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "f520d850c99061e1",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "23c9f2185134e5d1",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "20f50f2c52af3966",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "5b72bff40a4d171f",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "20f50f2c52af3966",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "20f50f2c52af3966",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "23c9f2185134e5d1",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "2eaf0f37fc624ec2",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "20f50f2c52af3966",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "1ad0c0d5fb34f2dd",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "dad8cda73ef43f85",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "d8fab703088bccbf",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "ed158fa0601da2da",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "35b41dd378893d19",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "20f50f2c52af3966",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "50e66253d5477375",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "8bfbae5ae6669fc8",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "fa000d1b42c194f0",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "e963e466f68194ed",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "445aa3949d772c6d",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "41db94071046f741",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "00245e20aeb2a830",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "0753b7b06478fb85",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "d26cd80ea0976736",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "20f50f2c52af3966",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "d57bd3051440493e",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "2c95dae5578e4c3f",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "3335123211c7c626",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "3766eaa63c7258c8",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "94d454d578e07111",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "17cf4fa99a5099ec",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "19e6fbbf92618eb8",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "b357db16df32231d",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "1f4fc71f503e6ed2",
+      "display": false
+    },
+    {
+      "document": "Lampiran_WCC.md",
+      "id": "0753b7b06478fb85",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "4caf660d7c845ba8",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "6985f348df95c75b",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "8dac50c042abeded",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "114bdc32f5b6ce1a",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "d8484168760fc413",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "80c6a49fc9d1e680",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "085c091ef3143db2",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "5fb583a8ccd54b31",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "b29d26548587c25d",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "01ddac2da318bf29",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "972dfdc202411477",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "c594e6bca4b67874",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "3924da6c6c6887a6",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "7e524a7302e1d9a3",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "10e36d9b3f540053",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "23009c376bb95b17",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "68fa4ad2d7561e59",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "e4bd8005f58b3d95",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "b7c4deb092eb7e51",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "c4d441f388584f0e",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "9a8eb14ced6400b8",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "e4bd8005f58b3d95",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "68fa4ad2d7561e59",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "b7c4deb092eb7e51",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "6c3a42dc84aeac00",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "23009c376bb95b17",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "f26ede7eb59ffc69",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "23009c376bb95b17",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "2b2ae609fd609cf7",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "62a914a47ed38e7b",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "b089f8fb83a9e76b",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "d26cd80ea0976736",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "b2fdff9ebb764674",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "e4bd8005f58b3d95",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "3924da6c6c6887a6",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "23009c376bb95b17",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "b7c4deb092eb7e51",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "d7bdd5cb0ed4a4f2",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "e4bd8005f58b3d95",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "23009c376bb95b17",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "68fa4ad2d7561e59",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "b7c4deb092eb7e51",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "d26cd80ea0976736",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "d9d42646709eb6a0",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "b7c4deb092eb7e51",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "b8df615b14bee623",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "c6fac57b4e73ac71",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "5f165748abcddf56",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "dfa7349853e20714",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "aa4f24a21bae1b9f",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "269b432f796e73cc",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "5864a2ca82e50724",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "269b432f796e73cc",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "269b432f796e73cc",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "5864a2ca82e50724",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "57602d2f79bdee5e",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "17addaa5ae549cf2",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "4e98520bfad22885",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "cc52deca71b2deea",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "8cad4135cea4703e",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "a886a0ce44f2e9a4",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "e4a35c47d62b71fe",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "eb954a6e26267505",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "a3c652ab533d0849",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "809300ee2215c1ea",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Model_Matematika.md",
+      "id": "f8824c9bd7955215",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "ab1f9c903647ce1b",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "6f5c487e0658f06a",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "f115328e279354e9",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "ac57f96b406b2a3c",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "47a15fab043847fc",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "e587891df6e10165",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "2cb185937fef663f",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "52a527b3d66f69b3",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "7aad9c09c3ade2e4",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "f016428178c41fc6",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "32cdec8d863e5055",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "c4d200632034110a",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "601c6ea515408e96",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "880002079a199b8f",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "48cd6a5de91ab8a8",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "39ecb51523138c6a",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "55680f866978cb77",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "82bbcc82e7396347",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "b6a93be3653bbcb4",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "2afb478f4f5d99ed",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "16fb100b36a7d2da",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "54474a3a09915926",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "fc41eed46b9727ce",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "3259a10e51f1c5f0",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "6f220caafe59cc29",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "c424f01c07b6e028",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "0265ac2ae5283dba",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "b1dbab66d505f648",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "aca468cc7fb742bf",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "6dba6c7dd6ac58b5",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "454fc0a199939162",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "34b5b7b480db2d0d",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "a66bcb2fee32e516",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "ad11496047295f5b",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "c114c87671352537",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "5375549d3e065b61",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "c0b6f4b857d3a457",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "b1e0246097e2fa92",
+      "display": true
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "1e7707f40a0800bf",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "00245e20aeb2a830",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "0753b7b06478fb85",
+      "display": false
+    },
+    {
+      "document": "math_model_acuan/Persamaan_WCC.md",
+      "id": "d26cd80ea0976736",
+      "display": false
+    }
+  ]
+}

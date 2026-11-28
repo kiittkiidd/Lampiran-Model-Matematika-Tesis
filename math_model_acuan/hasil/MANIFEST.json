@@ -519,21 +519,54 @@
   },
   "markdown": {
     "markdown_files": 7,
-    "math_expressions": 180,
-    "errors": []
+    "formula_occurrences": 184,
+    "unique_svg_formulas": 141,
+    "missing_links": [],
+    "svg_errors": [],
+    "unconverted_math": [],
+    "latex_source_and_visual_mathjax": "141 original formulas and 141 visual variants compiled without merror; 184 occurrences",
+    "notebook_markdown_cells": 5,
+    "notebook_math_expressions": 0,
+    "github_render_check": {
+      "preview_commit": "68fb53ed9e2ca22c932dec6c4ef1107893e40198",
+      "pages": [
+        {
+          "path": "Lampiran_WCC.md",
+          "formula_images": 76,
+          "loaded_formula_images": 76,
+          "broken_images": 0,
+          "math_renderers": 0
+        },
+        {
+          "path": "math_model_acuan/Model_Matematika.md",
+          "formula_images": 66,
+          "loaded_formula_images": 66,
+          "broken_images": 0,
+          "math_renderers": 0
+        },
+        {
+          "path": "math_model_acuan/Persamaan_WCC.md",
+          "formula_images": 42,
+          "loaded_formula_images": 42,
+          "broken_images": 0,
+          "math_renderers": 0
+        }
+      ],
+      "passed": true
+    }
   },
   "notebook_smoke": "P1-L passed; minimum cost 282.4203; G2 and G4; LP iterations 4",
   "wcc_audit": "703 pairs reproduced; all 24 profile-level combinations; every scenario block",
   "files": [
     {
       "path": "Lampiran_WCC.md",
-      "bytes": 13407,
-      "sha256": "8f249402984c81f7b0ba4ff1533d80135ce212e4d7a5bb2c9d6d8811ff5bd805"
+      "bytes": 22410,
+      "sha256": "e905d1f89eff0e106ab77fa4f287e463c3f598ac14deb22e9806bb4cf6fbf943"
     },
     {
       "path": "README.md",
-      "bytes": 3864,
-      "sha256": "d1ebf2aba0b0204682fc2acbc36182f3f178f42d67dd5bd8f88e18425eafdf63"
+      "bytes": 4049,
+      "sha256": "04cffde39031fad730bf964beef22c2292c1a31d1bcc2c70821f0886e8a1daaa"
     },
     {
       "path": "case/Data_Bersama.json",
@@ -617,13 +650,13 @@
     },
     {
       "path": "math_model_acuan/Model_Matematika.md",
-      "bytes": 9994,
-      "sha256": "bf900da26607f58efda3f65893c461a5f4356d5e13eb72e1279faa273fddac3c"
+      "bytes": 16421,
+      "sha256": "7362e1a096f950a1aa4ad7fadf193cd03971bc3d9c0b22d28bca235fc32eeebe"
     },
     {
       "path": "math_model_acuan/Persamaan_WCC.md",
-      "bytes": 9884,
-      "sha256": "1c7e219c4d247ff5261a2a286b23a7c78347b796005c33077c757aa025d13103"
+      "bytes": 14172,
+      "sha256": "d8a385c05f5ee2d1b1be6ffdf13b76c3647d00b2ca29dc4c11db7aac827c0bb9"
     },
     {
       "path": "math_model_acuan/Reproduksi.ipynb",
@@ -659,6 +692,711 @@
       "path": "math_model_acuan/diagram/WCC_Empat_Baris.svg",
       "bytes": 13783,
       "sha256": "1fa13088268046c5b41bbe915ececcf61720de26e98557afa3f97de2eff78899"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-00245e20aeb2a830.svg",
+      "bytes": 3627,
+      "sha256": "2eab076f9c66236eafb9272b337d052207bb3d448f3fd4d05d7d75d965bdbd45"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-01ddac2da318bf29.svg",
+      "bytes": 16217,
+      "sha256": "f965b35c0e39c47e30e850bbc95a34a8e2ed908a72d15dbd439b66f6a6f85868"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-0265ac2ae5283dba.svg",
+      "bytes": 8650,
+      "sha256": "655e43975b19feb2314442f7eef4c33c939d96c40ec1c51862bf022aff2a9c90"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-0753b7b06478fb85.svg",
+      "bytes": 3601,
+      "sha256": "2436c57534ed8b64532d2dba19d27fe9e343de87050e1f49f4be13a5176bce8d"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-085c091ef3143db2.svg",
+      "bytes": 10941,
+      "sha256": "c7bb5ac5ba8e7d5380571ee5f377f86ce2df7da9467af3c8f19a0a1589cee5fb"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-09cf41f891d89b38.svg",
+      "bytes": 7881,
+      "sha256": "7b2cf17268da9697e61ce712ba127e4b0350ff977dc2c5e5b58c8bf5bc912170"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-0dafb840ef3922e0.svg",
+      "bytes": 4834,
+      "sha256": "23a853474801a6d70729a0b511ac08c39bbb9b05d5b6974878c7095f08774e6f"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-0ed36ff1e1ef9ec3.svg",
+      "bytes": 11140,
+      "sha256": "64648f0075a152c6395cfcf14bb79388e156f46aa269c7b0281eb6cdc37abc28"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-10e36d9b3f540053.svg",
+      "bytes": 2249,
+      "sha256": "c743a7e84f8a4392168fae97be1a5a43b7124d456929025d39dbaa82c1e1fd66"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-114bdc32f5b6ce1a.svg",
+      "bytes": 16765,
+      "sha256": "45048ed6e9623dc1afeec950ae41a92fda13ad278c6f130770fb8f50c9ac940b"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-16eaea62a468189a.svg",
+      "bytes": 7613,
+      "sha256": "6e351f1f930b69b402c474f1931346717272ef73eb9717e8e663a32a78d87d32"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-16fb100b36a7d2da.svg",
+      "bytes": 8771,
+      "sha256": "e229162a600cc07e13e5e3845a70b99f4b99d4bf13ad41803012663b49994a63"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-176c6700b69a1676.svg",
+      "bytes": 5096,
+      "sha256": "040ae0e23139e3ad763aa7b5be0ec266b2d2bdb8836eba2c3c7602cf63432464"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-17addaa5ae549cf2.svg",
+      "bytes": 3620,
+      "sha256": "5e6527d7e066e719d30f2b8c3d979473335ace933feb5add46457a9a925ad276"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-17cf4fa99a5099ec.svg",
+      "bytes": 5643,
+      "sha256": "5398455321b558b000d754b6741e69f66c3235ca1bee060a59ffd78281d76558"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-19e6fbbf92618eb8.svg",
+      "bytes": 2857,
+      "sha256": "f099a3bbc5f651497f3b453b3565481dfca51809461aca7c7e938fe3ef0eab2f"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-1ad0c0d5fb34f2dd.svg",
+      "bytes": 6332,
+      "sha256": "fa16f34c44b5c7f67bf75efb2b07d83e6d6d930eb4c010dac631e9070dc280ee"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-1e7707f40a0800bf.svg",
+      "bytes": 4030,
+      "sha256": "0152520c39dfcb5edb22431de639c1a1b7ef3646daeb2e50b0357b374ac27435"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-1f4fc71f503e6ed2.svg",
+      "bytes": 2869,
+      "sha256": "174e10433711d8129f179dab3d810cf40e7de4764433fbee30e49b500aededfe"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-20f50f2c52af3966.svg",
+      "bytes": 3651,
+      "sha256": "8ae81825c520c9d317470e6d82d1ee3d37562a3dadccaa48302bdd0791117b1e"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-23009c376bb95b17.svg",
+      "bytes": 1138,
+      "sha256": "0112dac030afa92684caa82cf39cb43a914a4fef0f51f7f825206f120ba4b7b3"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-23c9f2185134e5d1.svg",
+      "bytes": 1953,
+      "sha256": "5be27436a9741f612bc8584aab0bbf1971a2345acb8708754927d5c3ecf8efc4"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-25118c2b79b6e17d.svg",
+      "bytes": 3720,
+      "sha256": "437ee0d7aa62bb907e3bcf6fcec7b4b9edfb83acdb4285d62ef6d58ba1b9fe36"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-269b432f796e73cc.svg",
+      "bytes": 1073,
+      "sha256": "e42c36e148263fdb4da5b722c116612b6c71f57601cedf7cae982363b6a17af2"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-2afb478f4f5d99ed.svg",
+      "bytes": 9198,
+      "sha256": "39e35e02ab052338cefa56fb7330308f9bf41f4bd10a5d589af85db73d39766d"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-2b2ae609fd609cf7.svg",
+      "bytes": 6725,
+      "sha256": "7c4603247956e8bd01be19c4a1954cf0be4bfac754e315917335fd8ce739c385"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-2c95dae5578e4c3f.svg",
+      "bytes": 3462,
+      "sha256": "c7f91bfd4e7320636d195741fd9bd129fbedfcfeef13450c8f0d93568a82d208"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-2cb185937fef663f.svg",
+      "bytes": 11411,
+      "sha256": "6c3940b4412559db6380b08a05019f2e233061e9d319f393dc80ebb100356a81"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-2eaf0f37fc624ec2.svg",
+      "bytes": 3353,
+      "sha256": "23ba3a6b8c1a74d0a05875f73a201ec7ea4586c82548cbc97d3b321d49c86405"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-3259a10e51f1c5f0.svg",
+      "bytes": 9339,
+      "sha256": "64961f0870d4f7c6c27e8c9e289d40309b3ff0e06da083f51e268b45ff653467"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-32cdec8d863e5055.svg",
+      "bytes": 12915,
+      "sha256": "c4f23149037819cdb43ade56898f1f4bbf16a0f50029a48d4f96198fbee6132c"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-3335123211c7c626.svg",
+      "bytes": 3274,
+      "sha256": "b9dc8a513e04a22d0f3aa3b92bb8773ed1ea5f054b598a99605a02f9210d238b"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-34b5b7b480db2d0d.svg",
+      "bytes": 15506,
+      "sha256": "9e886255dfc033a555cde5162b6b355ac9fdafad4ec9274e17340732392dfd7b"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-3521201a6bfde71b.svg",
+      "bytes": 8099,
+      "sha256": "dc83ee1ce3c5b9976a9e94215b1818061cfa8d6fc362fa2dda8a46235f85aada"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-35b41dd378893d19.svg",
+      "bytes": 3414,
+      "sha256": "c8f216b832c3929a242f7ecc1902365f2c153be199d13b810168bc5fbfdb77f3"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-3766eaa63c7258c8.svg",
+      "bytes": 3149,
+      "sha256": "745769485c596a09a5769bd18685917d98100d26137b88a165eb46d62274a470"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-37b00332ebe5bcd1.svg",
+      "bytes": 9018,
+      "sha256": "6351aa404fdeab8ec5466b681c167bc50ef9210fd54fafc79e89dc0ac296c76c"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-3924da6c6c6887a6.svg",
+      "bytes": 1081,
+      "sha256": "ddca7b7e6573ead6583730cc40c1843ecc8832386a6289ec0a525daff5f5a582"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-39ecb51523138c6a.svg",
+      "bytes": 8554,
+      "sha256": "f5fdd0d062e48d252898e4d9da5397d209792802e8dc565b88a57ee526cf6d0a"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-40c3e2b505699b72.svg",
+      "bytes": 1155,
+      "sha256": "6c4d308a7b9f29ca59834b0c31b0ad66de82889e1d6f54d7a4a5a0983c60cb3b"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-41db94071046f741.svg",
+      "bytes": 3885,
+      "sha256": "e25e6a95d709127dca4109d5790013ffc2ee50a4520632d1a01475bde581689c"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-445aa3949d772c6d.svg",
+      "bytes": 1395,
+      "sha256": "7c8521aef2e8070ff88bd795203b1c0430a1ba837365b8135a053c1246ec505a"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-454fc0a199939162.svg",
+      "bytes": 15137,
+      "sha256": "309ed3b6135b5605e64ffb10d171485a2874b5dea8b8a288f86eb476dfa2cf71"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-47a15fab043847fc.svg",
+      "bytes": 9304,
+      "sha256": "b681f4d2a367fbe6892c89ff2232319e97d0c0e115ae087ccb904ff1d90c2156"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-48cd6a5de91ab8a8.svg",
+      "bytes": 9001,
+      "sha256": "e213f638f55f6428993a63390491967f3405ddf687084f42371ab37a13337f4e"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-4caf660d7c845ba8.svg",
+      "bytes": 12027,
+      "sha256": "ad6fba56c612a14c6ead22738a4b2028f3a420e63a0cbbde4967e557dc11cb84"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-4e98520bfad22885.svg",
+      "bytes": 7530,
+      "sha256": "d9f6ed75531140d6c0653dd9a4eaa29c457ad0afd3725c8225f8daa536b4bfcc"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-50e66253d5477375.svg",
+      "bytes": 3676,
+      "sha256": "29cb3d6772edc1e8fe7debb5acc5ec037a8bc67310fe1795eca89e683e85a9af"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-52a527b3d66f69b3.svg",
+      "bytes": 12321,
+      "sha256": "d5b9432586b4dd7597fe9249f13c9e3f2b93c8f89abbb117b0ff99542feec0e7"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-5375549d3e065b61.svg",
+      "bytes": 15421,
+      "sha256": "c6b256cf792c21c3cd25ceaf2cb5326f78a4b758b70f9316b029c40c2dacf370"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-54474a3a09915926.svg",
+      "bytes": 8662,
+      "sha256": "7872e353ec556fc2f25fb070dcb25efc7cdc3e11e9938c3e3e67f7fddeb97d80"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-55680f866978cb77.svg",
+      "bytes": 9096,
+      "sha256": "3fc80a62d14d7502bee9fd78ee43250751d8987b58440447e6695a17ae992eef"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-57602d2f79bdee5e.svg",
+      "bytes": 1995,
+      "sha256": "39b4fd667e5da182833401790c73e9e8141da96c8a66d66c3f20f1da428915ad"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-5864a2ca82e50724.svg",
+      "bytes": 1338,
+      "sha256": "e53190b24089e2a250a462d9396b20cb248cdf6cb25cb7c9fe2124122915050c"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-58be380f6023d400.svg",
+      "bytes": 12994,
+      "sha256": "50e19403c40954984bc8f0ee8d8fad410f94488145197c4937b45e3889109ea7"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-5aa69473bcc366a9.svg",
+      "bytes": 3026,
+      "sha256": "5866cb9718e13e3d2532c1ea7ee2df54be6635de4b91aff2057da9f1f44ef914"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-5b72bff40a4d171f.svg",
+      "bytes": 9904,
+      "sha256": "5fa835176d44170477ce10b3966e7c41a6304fb6e0df5a8c4c0f61feeeeea99c"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-5f165748abcddf56.svg",
+      "bytes": 1872,
+      "sha256": "1165f090077ad85c729715f2db9498539a9d382dfedd519f0bd499ccbef2e899"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-5fb583a8ccd54b31.svg",
+      "bytes": 20342,
+      "sha256": "187a8e32eb256eee95072039ac23daf89d0cce9c21741c0bd51fcefa487a9a42"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-601c6ea515408e96.svg",
+      "bytes": 8109,
+      "sha256": "7ea51501680914a980a7d875e670b708edd0a463f961cfa00fad095e0e0c28d4"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-62a914a47ed38e7b.svg",
+      "bytes": 2822,
+      "sha256": "09adfed8dd43dad933a810164e1a7b997fcd3aa6b5ba8e3d2b5b5f5e1ca2b102"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-63d36148233e0986.svg",
+      "bytes": 2723,
+      "sha256": "d6c03fc2387f6f61a34c457df875c070a3c24e4d66f97974863d683303232e1a"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-640a535e9ee5fc23.svg",
+      "bytes": 1015,
+      "sha256": "188203f3d2a8fbba575e6e4d82b9c893c990ee2c4e137919715fd9384399b22b"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-68fa4ad2d7561e59.svg",
+      "bytes": 1113,
+      "sha256": "ac3ccc86c95190a8fc6cfa5ef2683586d2c292b629a701c6c96693d1a43772dd"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-6985f348df95c75b.svg",
+      "bytes": 28593,
+      "sha256": "29d9d29a8bad6290970216952a87c9046725d6208967f3acefe8177358f67a58"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-6c3a42dc84aeac00.svg",
+      "bytes": 3199,
+      "sha256": "07f8f0c3027b251acaa0479f29c0b5229b57eeabaa1ee2a544acfa75d413959e"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-6dba6c7dd6ac58b5.svg",
+      "bytes": 9033,
+      "sha256": "2043ee7c8279bb601cd91086b8237c2ba8da9d306cbd3767e30d009852af6012"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-6f220caafe59cc29.svg",
+      "bytes": 8915,
+      "sha256": "22f0fbdfda419aedb649fcffa1c6b3d9a6915b9ba19fb3584c758ce34a657a52"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-6f5c487e0658f06a.svg",
+      "bytes": 9056,
+      "sha256": "1d543914516c34117122bd3317d08af8c007c8c2d603c48e59aa645c5d47ddcc"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-7529c23fe011c15c.svg",
+      "bytes": 7980,
+      "sha256": "27a3487520c934655db2281f597e678422fee76e504dd50a5d8dcc6a9729fcd4"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-7aad9c09c3ade2e4.svg",
+      "bytes": 11278,
+      "sha256": "c07cf629245117c0015461521e316cccae3815ab7154eee33c70804b6227cbc6"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-7c80e0e1b67ffdbd.svg",
+      "bytes": 3472,
+      "sha256": "421ad93a9b7ab9dd67de609c05fc6afc0239eaef728554942bbbb722bb56ca12"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-7e524a7302e1d9a3.svg",
+      "bytes": 4814,
+      "sha256": "54f4792322ab7575a486eeecde5780c55c1ab2a33bdc282bdadeae0714a0b034"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-809300ee2215c1ea.svg",
+      "bytes": 5668,
+      "sha256": "d194b81072c7db5a20c7a4174622727a9e996c7f76b795c4e4e9f924d2d7f9d3"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-80c6a49fc9d1e680.svg",
+      "bytes": 8271,
+      "sha256": "ee2d286a5dc00f448990537994335d1e413abb25cb9e758c075928380e7d9661"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-82bbcc82e7396347.svg",
+      "bytes": 9606,
+      "sha256": "4d5e3f345aa25f35841ee6877f1dd64389f874841bd1976d44c1e5af91d5f52d"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-8470e7c81d0ae0a6.svg",
+      "bytes": 8609,
+      "sha256": "de78ce207569fbffce721873529bbc601eb17408a48531ff744cdc7f76f30ed5"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-880002079a199b8f.svg",
+      "bytes": 8698,
+      "sha256": "89fdd7f38793e8ba52c5ae8e3f37b85c74c0bc75b7a6b2eab10bbc8287b31060"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-8bfbae5ae6669fc8.svg",
+      "bytes": 3379,
+      "sha256": "9a8911e63e40cfdea890719850704e563054529b2b0e1e40ba0da2171fa358d8"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-8cad4135cea4703e.svg",
+      "bytes": 4341,
+      "sha256": "367f925ba1f1f4af330f8dfc6b33c9cfb8954c14cdf0f550c7e1487684d2787f"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-8dac50c042abeded.svg",
+      "bytes": 23302,
+      "sha256": "64d3c3a5d26cd4f47d1143d0575328cc42e78bfb294b23cb75a3d41ed1e875f5"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-91766a0606a90af5.svg",
+      "bytes": 13651,
+      "sha256": "af46e77a79f7a1286926c23870b582bbca03363354f662822af7122b157183c3"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-94d454d578e07111.svg",
+      "bytes": 3668,
+      "sha256": "5e6be2e230eb660e233d94c96981737ab0606af1208244dfc753985b88519c8c"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-972dfdc202411477.svg",
+      "bytes": 7255,
+      "sha256": "19fce02de181c545b735f87b99a3877873ee4ba9487fa093dc3c32d66658e114"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-97a0420885694952.svg",
+      "bytes": 15510,
+      "sha256": "f6fcadb61b14eeec8fa8189876d0e58ed9c16c80ead5fbef97985ed4189156f0"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-9a8eb14ced6400b8.svg",
+      "bytes": 3608,
+      "sha256": "c95ce642e2a3bd258404d7d21dbb70656c284dd0d02c6b93c0f84c2ee6bb8bae"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-a3c652ab533d0849.svg",
+      "bytes": 6379,
+      "sha256": "4b10fad3c01211214ccc76c23fcca42ede24271e257a675734fcc14180b617a5"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-a5c59404f778b060.svg",
+      "bytes": 5404,
+      "sha256": "7b6ceb151065dd6362fbeb33eeab2405f1b5766e5b1e0014c9df9935ddaa73f4"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-a66bcb2fee32e516.svg",
+      "bytes": 21420,
+      "sha256": "77ce2e0b93a01c95f0cf4b9030617247c020e8c6dc8e314eeba1b5f12bcecdd0"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-a886a0ce44f2e9a4.svg",
+      "bytes": 2373,
+      "sha256": "b803c103534a9755d8366780cbb92ca3b369326c3e64bc0e24d25b980ac6b663"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-aa4f24a21bae1b9f.svg",
+      "bytes": 6398,
+      "sha256": "5703849c2e69d3409226338f0e0c7a6cb2cc30fffb8ac737a72f7957b79925a2"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-ab1f9c903647ce1b.svg",
+      "bytes": 7947,
+      "sha256": "ab065d9f3afb40eea826fbb75c2a5b96ca4ac5ab25fc31aeab17735f114486a5"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-ac57f96b406b2a3c.svg",
+      "bytes": 9132,
+      "sha256": "46bd6c911e9095f548982517624e44bdacb79d9f061f77ec6053d33aa60e3286"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-aca468cc7fb742bf.svg",
+      "bytes": 9357,
+      "sha256": "a886344b6c3bd62229387368f22eecb635687452b9ab0c271c66d363cb4bfe34"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-ad11496047295f5b.svg",
+      "bytes": 20744,
+      "sha256": "03af187595ec98d384b32a673a12536364a44c289f88f237b8588f89eedbfe84"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-ae3ea22e756710c9.svg",
+      "bytes": 15872,
+      "sha256": "68d8c29bfd88112e11e225b0f9935efbdf53ff5dced3f5fb667f7f2d23f821b6"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-b089f8fb83a9e76b.svg",
+      "bytes": 8045,
+      "sha256": "f1a43023a912becf0f86ab8b2d01780c6f62a0e2950d8fbc9d85a02fe5f4d426"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-b1dbab66d505f648.svg",
+      "bytes": 10184,
+      "sha256": "c853d2aac46f20557ea66c5b1c7d2af559dd550664192f0640339de7f64ac39a"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-b1e0246097e2fa92.svg",
+      "bytes": 21701,
+      "sha256": "4a70a061867d6f3cbe3af46d55a9bfa9af787238c9096ac446db7399d41c3bb5"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-b29d26548587c25d.svg",
+      "bytes": 13642,
+      "sha256": "380a0af19be82052c4a9e18726e4c9845673f52916eba0018415ff3ec8fdd935"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-b2fdff9ebb764674.svg",
+      "bytes": 4315,
+      "sha256": "ae4cc7b030c91f9d2bd19445fa33963a53ebaa79ffb665d7b1abdd36944b658f"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-b357db16df32231d.svg",
+      "bytes": 3678,
+      "sha256": "6f5127c16f8fc6c8cf53431d588400d6a8bc9cffcc4afe6d463d6c19b07f0755"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-b6a93be3653bbcb4.svg",
+      "bytes": 8585,
+      "sha256": "b7a051d2279490fa33ced943594ce562b0858cb302798b1c14d7b981f2f8a40f"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-b7c4deb092eb7e51.svg",
+      "bytes": 1092,
+      "sha256": "0ec6a690df7a4bf71af3f365e78f1f93e89c260c0a6c9031369e3613d366f0a6"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-b8df615b14bee623.svg",
+      "bytes": 4215,
+      "sha256": "2dc25556a0fba673d1db40fbe6f92b1244a37ff25108ec780fd934eccf625770"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-c005b2e0ea3a3bda.svg",
+      "bytes": 3071,
+      "sha256": "731598a7de04f0a2e8fd242b9bf49ec48a399821150d7b9aa4c893078ec01514"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-c0b6f4b857d3a457.svg",
+      "bytes": 22675,
+      "sha256": "4d02f2cb01346abc261f69f29c16f9c7e74a6c293a35b98ff47f95e6cbc658ba"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-c114c87671352537.svg",
+      "bytes": 16492,
+      "sha256": "21f5f6e2941d59b8e6c03fbb8636051a65930ccb8063f29018fca28ba5f120db"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-c424f01c07b6e028.svg",
+      "bytes": 10292,
+      "sha256": "18f2442dea78ee5804ea18aa621fdbcd2a7d171ac001583beb5c33e5157310fc"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-c4d200632034110a.svg",
+      "bytes": 12775,
+      "sha256": "1855ad8c098ef61b09b3da913ae5044fcaa78bc84d7f3765cbe1082610ac3911"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-c4d441f388584f0e.svg",
+      "bytes": 1769,
+      "sha256": "917438a091d577ca3ed8ee6fb42203060dce114f1ae7b4a500d91693a67eabcd"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-c594e6bca4b67874.svg",
+      "bytes": 6457,
+      "sha256": "594b484b506c73cb41f4b5fe6438be187b363ca2cfbedec1cfc7dd92381e78e8"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-c6fac57b4e73ac71.svg",
+      "bytes": 3560,
+      "sha256": "2a61df8f660fbc11356d10c3bd2276a9cba49cb98286c10868a52ec79303b4d9"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-cc52deca71b2deea.svg",
+      "bytes": 1014,
+      "sha256": "c0b6831176136feb7bb3b5fecf28843c73c521c3fafefc113c9dbcae612f839b"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-d10534071a7edbe1.svg",
+      "bytes": 1213,
+      "sha256": "64accc9012e32aa290df10185456812c91ba10af390a00e3c25e4b2df8114f0f"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-d26cd80ea0976736.svg",
+      "bytes": 2084,
+      "sha256": "d9c5b103f4a33a852e951af1d199b6f7ea32de3672a0a58ad526a46be3e5dea9"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-d57bd3051440493e.svg",
+      "bytes": 2627,
+      "sha256": "98e7077b20b7f949756d9ed0ea825864fbcae74b09603990a6b458c255143e15"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-d7b7a786f959b0e6.svg",
+      "bytes": 4271,
+      "sha256": "2838838c79a2cdda14a21f168af9f3f35294b7565eabccbbeebc259a6f9690fa"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-d7bdd5cb0ed4a4f2.svg",
+      "bytes": 4289,
+      "sha256": "1fcf80bddc4934b1c2a34502972b8c323c6c295bb036bdc45989531f23fae998"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-d8484168760fc413.svg",
+      "bytes": 13164,
+      "sha256": "777ed9921b9b7aa7453b1d77db6395a9cdaccd3e10d9aad0b0f663cc6cfe9f0c"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-d8fab703088bccbf.svg",
+      "bytes": 3123,
+      "sha256": "c8523e673885987588fb8a2b97c6a462a34d21016e7ac14782af224ed59fc474"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-d9d42646709eb6a0.svg",
+      "bytes": 4273,
+      "sha256": "a0024862a957bfbd8abccab81594dbdaa6b4ad1153e8f22256dcf9fca939fcb0"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-dad8cda73ef43f85.svg",
+      "bytes": 3414,
+      "sha256": "df14876d00a035dbd370f1dd08db6dbb117d8fc45b97a42bce3de7c7c7602666"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-de7865567492ec87.svg",
+      "bytes": 4257,
+      "sha256": "12e9bb4c29a3940ddb8487c89189e860c6b596bb9552d2a787196d2aa8a536d4"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-dfa7349853e20714.svg",
+      "bytes": 2784,
+      "sha256": "b9d6ce1e8ddea5bfc3e061e9a70401e7a2bb6d75a0a86b898b9d5ff09d78b048"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-e4a35c47d62b71fe.svg",
+      "bytes": 1539,
+      "sha256": "47c1ca10f017386b109a590408f1d6559e66d03c20eae057dd6e7776cb3bc5c1"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-e4bd8005f58b3d95.svg",
+      "bytes": 1301,
+      "sha256": "56e74f15d1f6b24a8e73d40060c98971d2df031bb14411d4fb4564e391f07ff2"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-e587891df6e10165.svg",
+      "bytes": 9036,
+      "sha256": "9e46c2fcc3da826b41863fa4190c03b896f609f780f69c51c2d28949ea8a999a"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-e963e466f68194ed.svg",
+      "bytes": 5866,
+      "sha256": "4a0075973365641864ba3295324c1935e798aa55b10c574bfd5fdd7d9304b1cf"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-eb954a6e26267505.svg",
+      "bytes": 6991,
+      "sha256": "e0e4090af41bbba8a3eb1cd901c8d0dbfd0d221ec30ed591680e07fdd4180aeb"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-ed158fa0601da2da.svg",
+      "bytes": 3804,
+      "sha256": "d5395abf740d4380f581b6421d88a0d2d82c9b499e5414eb9b11515855fdec1c"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-f016428178c41fc6.svg",
+      "bytes": 12657,
+      "sha256": "edaa071ce0e13a3fcb3f2929715bda5794460edb4059ed66d93f551a1b5bc273"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-f115328e279354e9.svg",
+      "bytes": 9516,
+      "sha256": "d3e1dcc5add88d3fe6096447f198709d8cbc3572876b6c1d2b2c77de0ab0ebe4"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-f26ede7eb59ffc69.svg",
+      "bytes": 2070,
+      "sha256": "3287e78e3571ae080efd7fa754060bdcd5f5da101a25aa378218bd1eb7bbbd01"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-f520d850c99061e1.svg",
+      "bytes": 10119,
+      "sha256": "88fd751fd78ae69204698dab37a1af0f872198e34b9f7dacc9e4807ae13b771e"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-f6270fe0f0c235de.svg",
+      "bytes": 6968,
+      "sha256": "7f1f865e7116e3b3ba909d6dd6624780015b0f28c6374af2d80fd7772ec5a9f2"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-f67d77694859fe62.svg",
+      "bytes": 12323,
+      "sha256": "cb5d2dd2011da293c351886c446e18cfca85c925c8e73052eba24b7cd84950df"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-f8824c9bd7955215.svg",
+      "bytes": 5836,
+      "sha256": "8baa27cb9e76d8a5b7e5f11aac4ffecb16a6ab568276dd714d81c3447d200ef1"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-fa000d1b42c194f0.svg",
+      "bytes": 3823,
+      "sha256": "4347c7223b490a77a956303813b3e931e0304f43626042092f7a1b62d41db775"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-fc41eed46b9727ce.svg",
+      "bytes": 8147,
+      "sha256": "c740b0325bf1726100f090022dfc780632cf51d28265ccfc2afb3f9c770e8961"
+    },
+    {
+      "path": "math_model_acuan/diagram/persamaan/eq-ff35acc776e974da.svg",
+      "bytes": 1934,
+      "sha256": "1ffa1936158dc9561cbe6ce3d6638ebe7d56471f235472143e086308845eabcd"
     },
     {
       "path": "math_model_acuan/hasil/Benchmark.csv",
@@ -732,8 +1470,8 @@
     },
     {
       "path": "math_model_acuan/hasil/markdown_validation.json",
-      "bytes": 69,
-      "sha256": "f6cf46fe0f317dd6f87669051e0eda9ecb918fe806d4ffd67bbb53d0223cc818"
+      "bytes": 1050,
+      "sha256": "3017bcd0b2c8823be680a63f39eaa0e80ffa1785d9240e13f3d492f86e976db9"
     },
     {
       "path": "math_model_acuan/hasil/node_usage.json",
@@ -851,6 +1589,16 @@
       "sha256": "0510702ef413c1ddc760d68f4e349197af4177a2c129220803c7ed11edfc711e"
     },
     {
+      "path": "math_model_acuan/source/persamaan_sumber.json",
+      "bytes": 68340,
+      "sha256": "d31c01a35051f987d34b2b5c4b70fef14ad585991ab63e67f18d523dd63c558a"
+    },
+    {
+      "path": "math_model_acuan/source/persamaan_sumber.tex",
+      "bytes": 11125,
+      "sha256": "8704f96434d9b12fe262d953d6687f49fd4195236a1579c6e087cb00c02a327c"
+    },
+    {
       "path": "math_model_acuan/source/plot_results.py",
       "bytes": 5320,
       "sha256": "3635864f3f5cfa4df90af737556aad028d68de652d035700ed56c9b9e6d3eb98"
@@ -869,6 +1617,11 @@
       "path": "math_model_acuan/source/reference_oracle.py",
       "bytes": 4708,
       "sha256": "e4e8c75c48291ee8fe91ee21e95b9a36884107c856d18e730f22931565765971"
+    },
+    {
+      "path": "math_model_acuan/source/render_math_svg.cjs",
+      "bytes": 2235,
+      "sha256": "032ee94873b530a30a279ffbd8035bdb3ed12976abfabccc69f3ac68963fef53"
     },
     {
       "path": "math_model_acuan/source/requirements.txt",
@@ -915,5 +1668,6 @@
       "bytes": 2824,
       "sha256": "8072cc5db1e913676a3a8f4650244155bb2df3e7d952f45f00033b0d901d120f"
     }
-  ]
+  ],
+  "documentation_revision": "static-svg-2026-11-28"
 }
